@@ -166,7 +166,7 @@
               
                 <h1 id="1-accelerator-installation-and-upgrade-guide">1. Accelerator Installation and Upgrade Guide</h1>
 <p><strong><em>We encourage customers installing the Accelerator to get the support of their local AWS account team (SA, TAM, CSM, Proserve) to assist with the installation of the Accelerator, as the Accelerator leverages, deploys, or orchestrates over 30 different AWS services.</em></strong></p>
-<p><em>Users are strongly encouraged to also read the <a href="/operations/index.md">Accelerator Operations/Troubleshooting Guide</a> before installation. The Operations/Troubleshooting Guide provides details as to what is being performed at each stage of the installation process, including detailed troubleshooting guidance.</em></p>
+<p><em>Users are strongly encouraged to also read the <a href="../operations/">Accelerator Operations/Troubleshooting Guide</a> before installation. The Operations/Troubleshooting Guide provides details as to what is being performed at each stage of the installation process, including detailed troubleshooting guidance.</em></p>
 <p>These installation instructions assume one of the prescribed architectures is being deployed.</p>
 <h2 id="2-installation">2. Installation</h2>
 <h2 id="21-prerequisites">2.1. Prerequisites</h2>
@@ -180,7 +180,7 @@
 <li>Government of Canada customers are still required to do a standalone installation at this time, please request standalone installation instructions from your Account SA or TAM</li>
 <li>The Accelerator <em>can</em> be installed into existing AWS Organizations - see caveats and notes in <a href="#4-existing-organizations--accounts">section 4</a> below</li>
 <li>Existing AWS Landing Zone Solution (ALZ) customers are required to remove their ALZ deployment before deploying the Accelerator. Scripts are available to assist with this process.</li>
-<li>Changes to the Accelerator codebase are strongly discouraged unless they are contributed and accepted back to the solution. Code customization will block the ability to upgrade to the latest release and upgrades are encouraged to be done between quarterly to semi-annually. The solution was designed to be extremely customizable without changing code, existing customers following these guidelines have been able to upgrade across more than 50 Accelerator releases, while maintaining their customizations and gaining the latest bug fixes, features and enhancements without any developer or professional services based support. Please see <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/faq/faq.md#1112-how-do-i-modify-and-extend-the-accelerator-or-execute-my-own-code-after-the-accelerator-provisions-a-new-aws-account-or-the-state-machine-executes">this</a> FAQ for more details.</li>
+<li>Changes to the Accelerator codebase are strongly discouraged unless they are contributed and accepted back to the solution. Code customization will block the ability to upgrade to the latest release and upgrades are encouraged to be done between quarterly to semi-annually. The solution was designed to be extremely customizable without changing code, existing customers following these guidelines have been able to upgrade across more than 50 Accelerator releases, while maintaining their customizations and gaining the latest bug fixes, features and enhancements without any developer or professional services based support. Please see <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/faq/index.md#1112-how-do-i-modify-and-extend-the-accelerator-or-execute-my-own-code-after-the-accelerator-provisions-a-new-aws-account-or-the-state-machine-executes">this</a> FAQ for more details.</li>
 </ul>
 <h2 id="22-production-deployment-planning">2.2. Production Deployment Planning</h2>
 <h3 id="221-general">2.2.1. General</h3>
@@ -230,7 +230,7 @@
 <p>For example: the Control Tower with Network Firewall example config requires a single BGP ASN for the TGW, the IPSec VPN example requires two BGP ASN's, and the multi-region example requires five unique BGP ASN's.</p>
 </li>
 </ol>
-<p>NOTE: Prior to v1.5.0 CIDR ranges were assigned to each VPC and subnet throughout the config file. This required customers to perform extensive updates across the config file when needing to move to specific IP ranges compatible with a customer's existing on-premise networks. While this is still supported for those wanting to control exactly what address is used on every subnet, the solution has added support for dynamic CIDR assignments and the sample config files have been updated to reflect. New installs will have CIDR's pulled from CIDR pools, defined in the global-options section of the config file with state maintained in DynamoDB. The v1.5.0 <a href="v150-Upgrade/">custom upgrade guide</a> will provides details on the upgrade process and requirements to migrate to the new CIDR assignment system, if desired. A <a href="../reference-artifacts/Custom-Scripts/Update-Scripts/v1.3.8_to_v1.5.0">script</a> was created to assist with this migration.</p>
+<p>NOTE: Prior to v1.5.0 CIDR ranges were assigned to each VPC and subnet throughout the config file. This required customers to perform extensive updates across the config file when needing to move to specific IP ranges compatible with a customer's existing on-premise networks. While this is still supported for those wanting to control exactly what address is used on every subnet, the solution has added support for dynamic CIDR assignments and the sample config files have been updated to reflect. New installs will have CIDR's pulled from CIDR pools, defined in the global-options section of the config file with state maintained in DynamoDB. The v1.5.0 <a href="v150-Upgrade/">custom upgrade guide</a> will provides details on the upgrade process and requirements to migrate to the new CIDR assignment system, if desired. A <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/tree/main/reference-artifacts/Custom-Scripts/Update-Scripts/v1.3.8_to_v1.5.0">script</a> was created to assist with this migration.</p>
 <h3 id="224-dns-domain-name-tls-certificate-planning">2.2.4. DNS, Domain Name, TLS Certificate Planning</h3>
 <p>If deploying the prescriptive architecture, you must decide on:</p>
 <ol>
@@ -434,7 +434,7 @@
 <ol>
 <li>Select a sample config file as a baseline starting point</li>
 <li><strong>IMPORTANT: Use a config file from the Github code branch you are deploying from, as valid parameters change over time. The <code>main</code> branch is NOT the current release and often will not work with the GA releases.</strong></li>
-<li>sample config files can be found in <a href="../../reference-artifacts/SAMPLE_CONFIGS/">this</a> folder;</li>
+<li>sample config files can be found in <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/tree/main/reference-artifacts/SAMPLE_CONFIGS/">this</a> folder;</li>
 <li>descriptions of the sample config files and customization guidance can be found <a href="customization-index/">here</a>;</li>
 <li>unsure where to start, use the <code>config.lite-CTNFW-example.json</code>, where CTNFW is for Control Tower w/NFW;</li>
 <li>These configuration files can be used, as-is, with only minor modification to successfully deploy the sample architectures;</li>
@@ -463,7 +463,7 @@
 <li>If required, place the firewall configuration and license files in the folder and path defined in the config file</li>
 <li>For AWS Network Firewall: <code>nfw/nfw-example-policy.json</code></li>
 <li>For Fortinet: <code>firewall/firewall-example.txt</code>, <code>firewall/license1.lic</code> and <code>firewall/license2.lic</code><ul>
-<li>We have made several samples available <a href="../../reference-artifacts/Third-Party">here</a>: <code>./reference-artifacts/Third-Party/</code></li>
+<li>We have made several samples available <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/tree/main/reference-artifacts/Third-Party">here</a>: <code>./reference-artifacts/Third-Party/</code></li>
 <li>Both samples comprise an active / active firewall pair. Until recently we only brought up one tunnel per firewall, you now also have an example which brings up both tunnels per firewall</li>
 <li>If you updated your perimeter VPC subnet names, you must also make these changes in your firewall-example.txt file</li>
 <li>If you don't have any license files, update the config file with an empty array (<code>"license": []</code>). Do NOT use the following: <code>[""]</code>.</li>
@@ -472,7 +472,7 @@
 <li>The basic Checkpoint configuration is stored directly in config.json</li>
 <li>Place any defined certificate files in the folder and path defined in the config file</li>
 <li>i.e. <code>certs/example1-cert.key</code>, <code>certs/example1-cert.crt</code></li>
-<li>Sample available <a href="../../reference-artifacts/Certs-Sample/">here</a>: <code>./reference-artifacts/Certs-Sample/*</code></li>
+<li>Sample available <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/tree/main/reference-artifacts/Certs-Sample/">here</a>: <code>./reference-artifacts/Certs-Sample/*</code></li>
 <li>Ideally you would generate real certificates using your existing certificate authority</li>
 <li>Should you wish, instructions are provided to aid in generating your own self-signed certificates (Self signed certificates are NOT secure and simply for demo purposes)</li>
 <li>Use the examples to demonstrate Accelerator TLS functionality only</li>
@@ -516,7 +516,7 @@
 <li>For new stack deployments, when the stack deployment completes, the Accelerator state machine will automatically execute (in Code Pipeline). When upgrading you must manually <code>Release Change</code> to start the pipeline.</li>
 <li><strong>While the pipeline is running:</strong><ul>
 <li>review the list of <a href="#251-known-installation-issues">Known Installation Issues</a> in section 2.5.1 below</li>
-<li>review the Accelerator Basic Operation and Frequently Asked Questions <a href="../faq/faq.md">(FAQ) Document</a></li>
+<li>review the Accelerator Basic Operation and Frequently Asked Questions <a href="../faq/">(FAQ) Document</a></li>
 </ul>
 </li>
 <li>Once the pipeline completes (~10 mins), the main state machine, named <code>ASEA-MainStateMachine_sm</code>, will start in Step Functions</li>
@@ -530,7 +530,7 @@
 <p>If the state machine <strong>fails</strong>:</p>
 <ul>
 <li>Refer to the <a href="../operations/#4-troubleshooting">Troubleshooting Guide</a> for instructions on how to inspect and retrieve the error</li>
-<li>You can also refer to the <a href="../faq/faq.md">FAQ</a> and <a href="#251-known-installation-issues">Known Installation Issues</a></li>
+<li>You can also refer to the <a href="../faq/">FAQ</a> and <a href="#251-known-installation-issues">Known Installation Issues</a></li>
 <li>Once the error is resolved, re-run the step function <code>ASEA-MainStateMachine_sm</code> using <code>{"scope": "FULL","mode": "APPLY"}</code> as input</li>
 </ul>
 </li>

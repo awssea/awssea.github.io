@@ -179,7 +179,7 @@
 <li>Login to your AWS Organization Management account</li>
 <li>Pull your current config.json file from CodeCommit and save as a text file</li>
 <li>
-<p>Locate the python conversion script and review its readme <a href="../../reference-artifacts/Custom-Scripts/Update-Scripts/v1.3.8_to_v1.5.0">here</a></p>
+<p>Locate the python conversion script and review its readme <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/tree/main/reference-artifacts/Custom-Scripts/Update-Scripts/v1.3.8_to_v1.5.0">here</a></p>
 </li>
 <li>
 <p>To convert your configuration file execute: (completely offline process)</p>
@@ -304,7 +304,7 @@
 <p>Using the converted version of your config file (update-config.json)</p>
 <ul>
 <li>Validate you are happy with the <code>pool</code> names assigned to each vpc and subnet throughout the config file. Update as appropriate, pool names can be any alpha-numeric string, but a subnets pool must match one of its VPCs pools.</li>
-<li>Locate the python conversion script and review its readme <a href="../../reference-artifacts/Custom-Scripts/Update-Scripts/v1.3.8_to_v1.5.0">here</a></li>
+<li>Locate the python conversion script and review its readme <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/tree/main/reference-artifacts/Custom-Scripts/Update-Scripts/v1.3.8_to_v1.5.0">here</a></li>
 <li>To load DynamoDB with your CIDR ranges, execute: (online, requires credentials to the Organization Management account)</li>
 </ul>
 <p><code>python update.py --Region ca-central-1 --LoadDB --ConfigFile update-config.json --AcceleratorPrefix PBMMAccel-</code></p>
