@@ -224,7 +224,7 @@
 </ul>
 <h2 id="14-upgrade-process">1.4. Upgrade process</h2>
 <ul>
-<li>Before proceeding with your upgrade please review the General Upgrade Considerations <a href="./installation.md#31-considerations">in Section 3.1</a> of the Installation and Upgrade guide</li>
+<li>Before proceeding with your upgrade please review the General Upgrade Considerations <a href="../#31-considerations">in Section 3.1</a> of the Installation and Upgrade guide</li>
 <li>upgrades directly from v1.3.8 need to ensure they include the extra step required for v1.3.9 upgrades (removal of endpoints with periods)</li>
 <li>Login to your AWS Organization Management account, in your home or default region</li>
 <li>Place your <em>updated and validated</em> config file back in the root folder of your CodeCommit repository</li>
@@ -253,13 +253,13 @@
 <li>Select Rules under events in the left navigation pane</li>
 <li>Select the <code>PBMMAccel-MoveAccount_rule</code>, select <code>actions</code>, select <code>Enable</code></li>
 <li>Select the <code>PBMMAccel-PolicyChanges_rule</code>, select <code>actions</code>, select <code>Enable</code></li>
-<li>Follow the Standard Upgrade instructions in <a href="./installation.md#32-summary-of-upgrade-steps-all-versions">Section 3.2</a> of the Installation and Upgrade guide, repeated verbatim below for ease of reference</li>
+<li>Follow the Standard Upgrade instructions in <a href="../#32-summary-of-upgrade-steps-all-versions">Section 3.2</a> of the Installation and Upgrade guide, repeated verbatim below for ease of reference</li>
 </ul>
 <h2 id="15-32-summary-of-upgrade-steps-all-versions-copied-from-installation-guide">1.5. "3.2. Summary of Upgrade Steps (all versions)" <strong><em>(Copied from installation guide)</em></strong></h2>
 <ol>
 <li>Login to your Organization Management (root) AWS account with administrative privileges</li>
-<li>Either: a) Ensure a valid Github token is stored in secrets manager, or b) Ensure the latest release is in a valid branch of CodeCommit in the Organization Management account. See <a href="./installation.md#232-create-github-personal-access-token-and-store-in-secrets-manager">(section 2.3.2)</a> for more details.</li>
-<li>Review and implement any relevant tasks noted in the upgrade considerations in <a href="./installation.md#31-considerations">section 3.1</a> of the Installation and Upgrade guide</li>
+<li>Either: a) Ensure a valid Github token is stored in secrets manager, or b) Ensure the latest release is in a valid branch of CodeCommit in the Organization Management account. See <a href="../#232-create-github-personal-access-token-and-store-in-secrets-manager">(section 2.3.2)</a> for more details.</li>
+<li>Review and implement any relevant tasks noted in the upgrade considerations in <a href="../#31-considerations">section 3.1</a> of the Installation and Upgrade guide</li>
 <li>Update the config file in CodeCommit with new parameters and updated parameter types based on the version you are upgrading to (this is important as features are iterating rapidly)</li>
 <li>An automated script is available to help convert config files to the new v1.5.0 format</li>
 <li>Compare your running config file with the sample config file from the latest release</li>
