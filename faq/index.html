@@ -525,65 +525,6 @@
                 
 
 <h1 id="1-accelerator-basic-operation-and-frequently-asked-questions">1. Accelerator Basic Operation and Frequently asked Questions</h1>
-<ul>
-<li><a href="#1-accelerator-basic-operation-and-frequently-asked-questions">1. Accelerator Basic Operation and Frequently asked Questions</a></li>
-<li><a href="#11-operational-activities">1.1. Operational Activities</a><ul>
-<li><a href="#111-how-do-i-add-new-aws-accounts-to-my-aws-organization">1.1.1. How do I add new AWS accounts to my AWS Organization?</a></li>
-<li><a href="#112-i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed-the-state-machine-failed-during-the-load-organization-configuration-step-with-the-error-the-control-tower-account-account_name-is-in-a-failed-state-error">1.1.2. I tried to enroll a new account via Control Tower but it failed? The state machine failed during the "Load Organization Configuration" step with the error "The Control Tower account: ACCOUNT_NAME is in a failed state ERROR"?</a></li>
-<li><a href="#113-can-i-use-aws-organizations-for-all-tasks-i-currently-use-aws-organizations-for">1.1.3. Can I use AWS Organizations for all tasks I currently use AWS Organizations for?</a></li>
-<li><a href="#114-how-do-i-make-changes-to-items-i-defined-in-the-accelerator-configuration-file-during-installation">1.1.4. How do I make changes to items I defined in the Accelerator configuration file during installation?</a></li>
-<li><a href="#115-can-i-update-the-config-file-while-the-state-machine-is-running-when-will-those-changes-be-applied">1.1.5. Can I update the config file while the State Machine is running? When will those changes be applied?</a></li>
-<li><a href="#116-what-if-i-really-mess-up-the-configuration-file">1.1.6. What if I really mess up the configuration file?</a></li>
-<li><a href="#117-what-if-my-state-machine-fails-why-previous-solutions-had-complex-recovery-processes-whats-involved">1.1.7. What if my State Machine fails? Why? Previous solutions had complex recovery processes, what's involved?</a></li>
-<li><a href="#118-how-do-i-update-some-of-the-supplied-sample-configuration-items-found-in-reference-artifact-like-scps-and-iam-policies">1.1.8. How do I update some of the supplied sample configuration items found in reference-artifact, like SCPs and IAM policies?</a></li>
-<li><a href="#119-i-deployed-aws-managed-active-directory-mad-as-part-of-my-deployment-how-do-i-manage-active-directory-domain-users-groups-and-domain-policies-after-deployment">1.1.9. I deployed AWS Managed Active Directory (MAD) as part of my deployment, how do I manage Active Directory domain users, groups, and domain policies after deployment?</a></li>
-<li><a href="#1110-how-do-i-suspend-an-aws-account">1.1.10. How do I suspend an AWS account?</a></li>
-<li><a href="#1111-i-need-a-new-vpc-where-shall-i-define-it">1.1.11. I need a new VPC, where shall I define it?</a></li>
-<li><a href="#1112-how-do-i-modify-and-extend-the-accelerator-or-execute-my-own-code-after-the-accelerator-provisions-a-new-aws-account-or-the-state-machine-executes">1.1.12. How do I modify and extend the Accelerator or execute my own code after the Accelerator provisions a new AWS account or the state machine executes?</a></li>
-<li><a href="#1113-how-can-i-easily-access-my-virtual-machines-or-ec2-instances">1.1.13. How can I easily access my virtual machines or EC2 instances?</a></li>
-<li><a href="#1114-i-ran-the-state-machine-but-it-failed-when-it-tried-to-delete-the-default-vpc-the-state-machine-cannot-delete-the-default-vpc-error-vpc-has-dependencies-and-cannot-be-deleted">1.1.14. I ran the state machine but it failed when it tried to delete the default VPC? The state machine cannot delete the default VPC (Error: VPC has dependencies and cannot be deleted)</a></li>
-</ul>
-</li>
-<li><a href="#12-existing-accountsorganizations">1.2. Existing Accounts/Organizations</a><ul>
-<li><a href="#121-how-do-i-import-an-existing-aws-account-into-my-accelerator-managed-aws-organization-or-what-if-i-created-a-new-aws-account-with-a-different-organization-trust-role">1.2.1. How do I import an existing AWS account into my Accelerator managed AWS Organization (or what if I created a new AWS account with a different Organization trust role)?</a></li>
-<li><a href="#122-is-it-possible-to-deploy-the-accelerator-on-top-of-an-aws-organization-that-i-have-already-installed-the-aws-landing-zone-alz-solution-into">1.2.2. Is it possible to deploy the Accelerator on top of an AWS Organization that I have already installed the AWS Landing Zone (ALZ) solution into?</a></li>
-<li><a href="#123-what-if-i-want-to-move-an-account-from-an-aws-organization-that-has-the-alz-deployed-into-an-aws-organization-running-the-accelerator">1.2.3. What if I want to move an account from an AWS Organization that has the ALZ deployed into an AWS Organization running the Accelerator?</a></li>
-</ul>
-</li>
-<li><a href="#13-end-user-environment">1.3. End User Environment</a><ul>
-<li><a href="#131-is-there-anything-my-end-users-need-to-be-aware-of-why-do-some-of-my-end-users-struggle-with-cloudwatch-log-groups-errors">1.3.1. Is there anything my end users need to be aware of? Why do some of my end users struggle with CloudWatch Log groups errors?</a></li>
-<li><a href="#132-how-can-i-leverage-accelerator-deployed-objects-in-my-iac-do-i-need-to-manually-determine-the-arns-and-object-ids-of-accelerator-deployed-objects-to-leverage-them-in-my-iac">1.3.2. How can I leverage Accelerator deployed objects in my IaC? Do I need to manually determine the arn's and object id's of Accelerator deployed objects to leverage them in my IaC?</a></li>
-</ul>
-</li>
-<li><a href="#14-upgrades">1.4. Upgrades</a><ul>
-<li><a href="#141-can-i-upgrade-directly-to-the-latest-release-or-must-i-perform-upgrades-sequentially">1.4.1. Can I upgrade directly to the latest release, or must I perform upgrades sequentially?</a></li>
-<li><a href="#142-why-do-i-get-the-error-there-were-errors-while-comparing-the-configuration-changes-when-i-update-the-config-file">1.4.2. Why do I get the error "There were errors while comparing the configuration changes:" when I update the config file?</a></li>
-</ul>
-</li>
-<li><a href="#15-support-concerns">1.5. Support Concerns</a><ul>
-<li><a href="#151-the-accelerator-is-written-in-cdk-and-deploys-cloudformation-does-this-restrict-the-infrastructure-as-code-iac-tools-that-i-can-use">1.5.1. The Accelerator is written in CDK and deploys CloudFormation, does this restrict the Infrastructure as Code (IaC) tools that I can use?</a></li>
-<li><a href="#152-what-happens-if-aws-stops-enhancing-the-accelerator">1.5.2. What happens if AWS stops enhancing the Accelerator?</a></li>
-<li><a href="#153-what-level-of-support-will-the-asea-have-from-aws-support">1.5.3. What level of Support will the ASEA have from AWS Support?</a></li>
-<li><a href="#154-what-does-it-take-to-support-the-accelerator">1.5.4. What does it take to support the Accelerator?</a></li>
-<li><a href="#155-is-the-accelerator-only-designed-and-suitable-for-government-of-canada-or-pbmm-customers">1.5.5. Is the Accelerator only designed and suitable for Government of Canada or PBMM customers?</a></li>
-</ul>
-</li>
-<li><a href="#16-deployed-functionality">1.6. Deployed Functionality</a><ul>
-<li><a href="#161-i-wish-to-be-in-compliance-with-the-12-gc-tbs-guardrails-what-dont-you-cover-with-the-provided-sample-architecture">1.6.1. I wish to be in compliance with the 12 GC TBS Guardrails, what don't you cover with the provided sample architecture?</a></li>
-<li><a href="#162-does-the-alb-perform-ssl-offloading">1.6.2. Does the ALB perform SSL offloading?</a></li>
-<li><a href="#163-what-is-the-recommended-approach-to-manage-the-alb-certificates-deployed-by-the-accelerator">1.6.3. What is the recommended approach to manage the ALB certificates deployed by the Accelerator?</a></li>
-<li><a href="#164-why-do-we-have-rsyslog-servers-i-thought-everything-was-sent-to-cloudwatch">1.6.4. Why do we have rsyslog servers? I thought everything was sent to CloudWatch?</a></li>
-<li><a href="#165-can-you-deploy-the-solution-without-fortinet-firewall-licenses">1.6.5. Can you deploy the solution without Fortinet Firewall Licenses?</a></li>
-<li><a href="#166-i-installed-additional-software-on-my-accelerator-deployed-rdgw--rsyslog-host-where-did-it-go">1.6.6. I installed additional software on my Accelerator deployed RDGW / rsyslog host, where did it go?</a></li>
-<li><a href="#167-some-sample-configurations-provide-nacls-and-security-groups-is-that-enough">1.6.7. Some sample configurations provide NACLs and Security Groups. Is that enough?</a></li>
-<li><a href="#168-can-i-deploy-the-solution-as-the-account-root-user">1.6.8. Can I deploy the solution as the account root user?</a></li>
-<li><a href="#169-is-the-organizational-management-root-account-monitored-similarly-to-the-other-accounts-in-the-organization">1.6.9. Is the Organizational Management root account monitored similarly to the other accounts in the organization?</a></li>
-<li><a href="#1610-how-are-the-perimeter-firewall-configurations-and-licensing-managed-after-deployment">1.6.10. How are the perimeter firewall configurations and licensing managed after deployment?</a></li>
-<li><a href="#1611-can-the-fortinet-firewall-deployments-use-static-private-ip-address-assignments">1.6.11. Can the Fortinet Firewall deployments use static private IP address assignments?</a></li>
-<li><a href="#1612-ive-noticed-cloudtrail-logs-and-in-certain-situation-vpc-flow-logs-are-stored-in-the-centralized-log-archive-account-logging-bucket-twice">1.6.12. I've noticed CloudTrail logs and in certain situation VPC flow logs are stored in the centralized log-archive account logging bucket twice?</a></li>
-</ul>
-</li>
-</ul>
 <h2 id="11-operational-activities">1.1. Operational Activities</h2>
 <h3 id="111-how-do-i-add-new-aws-accounts-to-my-aws-organization">1.1.1. How do I add new AWS accounts to my AWS Organization?</h3>
 <ul>
