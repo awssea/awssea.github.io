@@ -80,7 +80,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../../workshops/index.md">Workshops</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../workshops/">Workshops</a>
                     </li>
                 </ul>
       </div>
@@ -232,7 +232,7 @@
 <p>While the central purpose of the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/README.md">AWS Secure Environment Accelerator</a> is to establish an <em>AWS Secure Environment Architecture</em> into an AWS account footprint, this amounts to an implementation detail as far as the <em>AWS Secure Environment Architecture</em> is concerned. The <em>AWS Secure Environment Architecture</em> is a standalone design, irrespective of how it was delivered into a customer AWS environment. It is nonetheless anticipated that most customers will choose to realize their <em>AWS Secure Environment Architecture</em> via the delivery mechanism of the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/README.md">AWS Secure Environment Accelerator tool</a>.</p>
 <p>Comprehensive details on the tool itself are available elsewhere:</p>
 <ol>
-<li><a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/operations/operations-troubleshooting-guide.md">AWS Secure Environment Accelerator tool Operations &amp; Troubleshooting Guide</a></li>
+<li><a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/operations/index.md">AWS Secure Environment Accelerator tool Operations &amp; Troubleshooting Guide</a></li>
 <li><a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/developer/developer-guide.md">AWS Secure Environment Accelerator tool Developer Guide</a></li>
 </ol>
 <p>Except where absolutely necessary, this document will refrain from referencing the <em>AWS Secure Environment Accelerator tool</em> further.</p>
@@ -334,7 +334,7 @@
 <p><img alt="Mandatory Accounts" src="images/accounts.png" /></p>
 <h3 id="431-organization-management-root">4.3.1. Organization Management (root)</h3>
 <p>As discussed above, the Organization Management (root) account functions as the root of the AWS Organization, the billing aggregator, attachment point for SCPs. Workloads are not intended to run in this account.</p>
-<p><strong>Note:</strong> Customers deploying the <em>AWS Secure Environment Architecture</em> via the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/README.md">AWS Secure Environment Accelerator</a> will deploy into this account. See the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/operations/operations-troubleshooting-guide.md">Operations Guide</a> for more details.</p>
+<p><strong>Note:</strong> Customers deploying the <em>AWS Secure Environment Architecture</em> via the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/README.md">AWS Secure Environment Accelerator</a> will deploy into this account. See the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/operations/index.md">Operations Guide</a> for more details.</p>
 <h3 id="432-perimeter">4.3.2. Perimeter</h3>
 <p>The perimeter account, and in particular the perimeter VPC therein, functions as the single point of ingress/egress from the PBMM cloud environment to the public internet and/or on-premises network. This provides a central point of network control through which all workload-generated traffic, ingress and egress, must transit. The perimeter VPC hosts next-generation firewall instances that provide security services such as virus scanning, malware protection, intrusion protection, TLS inspection, and web application firewall functionality. More details on can be found in the Networking section of this document.</p>
 <h3 id="433-shared-network">4.3.3. Shared Network</h3>

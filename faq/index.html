@@ -182,7 +182,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../workshops/index.md">Workshops</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../workshops/">Workshops</a>
                     </li>
                 </ul>
       </div>
@@ -698,7 +698,7 @@
 <h3 id="168-can-i-deploy-the-solution-as-the-account-root-user">1.6.8. Can I deploy the solution as the account root user?</h3>
 <p>No, you cannot install as the root user. The root user has no ability to assume roles which is a requirement to configure the sub-accounts and will prevent the deployment. As per the <a href="../installation/#231-general">installation instructions</a>, you require an IAM user with the <code>AdministratorAccess</code> policy attached.</p>
 <h3 id="169-is-the-organizational-management-root-account-monitored-similarly-to-the-other-accounts-in-the-organization">1.6.9. Is the Organizational Management root account monitored similarly to the other accounts in the organization?</h3>
-<p>Yes, all accounts including the Organization Management or root account have the same monitoring and logging services enabled. When supported, AWS security services like GuardDuty, Macie, and Security Hub have their delegated administrator account configured as the "security" account. These tools can be used within each local account (including the Organization Management account) within the organization to gain account level visibility or within the Security account for Organization wide visibility. For more information about monitoring and logging refer to <a href="../architectures/pbmm/architecture.md#7-logging-and-monitoring">architecture documentation</a>.</p>
+<p>Yes, all accounts including the Organization Management or root account have the same monitoring and logging services enabled. When supported, AWS security services like GuardDuty, Macie, and Security Hub have their delegated administrator account configured as the "security" account. These tools can be used within each local account (including the Organization Management account) within the organization to gain account level visibility or within the Security account for Organization wide visibility. For more information about monitoring and logging refer to <a href="../architectures/pbmm/#7-logging-and-monitoring">architecture documentation</a>.</p>
 <h3 id="1610-how-are-the-perimeter-firewall-configurations-and-licensing-managed-after-deployment">1.6.10. How are the perimeter firewall configurations and licensing managed after deployment?</h3>
 <p>While you deploy the perimeter firewalls with the Accelerator you will continue to manage firewall updates, configuration changes, and license renewals from the respective firewall management interface and not from the Accelerator config file. As these changes are not managed by the Accelerator you do not need to rerun the state machine to implement or track any of these changes. You can update the AMI of the 3rd party firewalls using the Accelerator, you must first remove the existing firewalls and redeploy them (as the Elastic IP's (EIP's) will block a parallel deployment) or deploy a second parallel firewall cluster and de-provision the first cluster when ready.</p>
 <h3 id="1611-can-the-fortinet-firewall-deployments-use-static-private-ip-address-assignments">1.6.11. Can the Fortinet Firewall deployments use static private IP address assignments?</h3>

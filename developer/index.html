@@ -82,7 +82,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../workshops/index.md">Workshops</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../workshops/">Workshops</a>
                     </li>
                 </ul>
       </div>
@@ -120,7 +120,7 @@
               
                 <h1 id="1-accelerator-developer-guide">1. Accelerator Developer Guide</h1>
 <p>This document is a reference document. Instead of reading through it in linear order, you can use it to look up specific issues as needed.</p>
-<p>It is important to read the <a href="/operations/index.md">Operations Guide</a> before reading this document. If you're interested in actively contributing to the project, you should also review the <a href="../CONTRIBUTING.md">Governance and Contributing Guide</a>.</p>
+<p>It is important to read the <a href="/operations/index.md">Operations Guide</a> before reading this document. If you're interested in actively contributing to the project, you should also review the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/CONTRIBUTING.md">Governance and Contributing Guide</a>.</p>
 <h1 id="2-table-of-contents">2. Table of Contents</h1>
 <!-- TOC depthFrom:2 depthTo:4 -->
 
@@ -237,7 +237,7 @@
 <h3 id="313-eslint">3.1.3. eslint</h3>
 <p>We use <a href="https://eslint.org/"><code>eslint</code></a> as a static analysis tool that checks our TypeScript code. A GitHub action makes sure that all the code in a pull requests adheres to the configured <code>eslint</code> rules. See <a href="#github-actions">Github Actions</a>.</p>
 <h2 id="32-cloudformation">3.2. CloudFormation</h2>
-<p>CloudFormation deploys both the Accelerator stacks and resources and the deployed stacks and resources. See <a href="../operations/operations-troubleshooting-guide.md">Operations Guide: System Overview</a> for the distinction between Accelerator resources and deployed resources.</p>
+<p>CloudFormation deploys both the Accelerator stacks and resources and the deployed stacks and resources. See <a href="../operations/">Operations Guide: System Overview</a> for the distinction between Accelerator resources and deployed resources.</p>
 <h2 id="33-cdk">3.3. CDK</h2>
 <p>AWS CDK defines the cloud resources in a familiar programming language. While AWS CDK supports TypeScript, JavaScript, Python, Java, and C#/.Net, the contributions should be made in Typescript, as outlined in the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/ae8282d4537320763736fa56e05b743ce1c02611/CONTRIBUTING.md#accelerator-development-first-principles">Accelerator Development First Principles</a>.</p>
 <p>Developers can use programming languages to define reusable cloud components known as Constructs. You compose these together into Stacks and Apps. Learn more at https://docs.aws.amazon.com/cdk/latest/guide/home.html</p>
@@ -248,7 +248,7 @@
 <li>Projects containing runtime code that is used by the CDK code to deploy Lambda functions;</li>
 <li>Projects containing reusable code; both for use by the CDK code and/or runtime code.</li>
 </ol>
-<p>The CDK code either deploys Accelerator-management resources or Accelerator-managed resources. See the <a href="../operations/operations-troubleshooting-guide.md">Operations Guide</a> for the distinction between Accelerator-management and Accelerator-managed resources.</p>
+<p>The CDK code either deploys Accelerator-management resources or Accelerator-managed resources. See the <a href="../operations/">Operations Guide</a> for the distinction between Accelerator-management and Accelerator-managed resources.</p>
 <p>The only language used in the project is TypeScript and exceptionally JavaScript. We do not write CloudFormation templates, only CDK code.</p>
 <p>When we want to enable functionality in a managed account we try to</p>
 <ol>
@@ -275,7 +275,7 @@
 <li><code>src/lib/custom-resources/**/runtime</code>: See <a href="#custom-resources">Custom Resources</a>;</li>
 </ul>
 <h2 id="42-installer-stack">4.2. Installer Stack</h2>
-<p>Read the <a href="../operations/operations-troubleshooting-guide.md#installer-stack">Operations Guide</a> first before reading this section. This section is a technical addition to the section in the Operations Guide.</p>
+<p>Read the <a href="../operations/#installer-stack">Operations Guide</a> first before reading this section. This section is a technical addition to the section in the Operations Guide.</p>
 <p>As stated in the Operations Guide, the <code>Installer</code> stack is responsible for installing the <code>Initial Setup</code> stack. It is an Accelerator-management resource. The main resource in the <code>Installer</code> stack is the <code>ASEA-Installer</code> CodePipeline. The CodePipeline uses this GitHub repository as source action and runs CDK in a CodeBuild step to deploy the <code>Initial Setup</code> stack.</p>
 <pre><code class="language-typescript">new codebuild.PipelineProject(stack, 'InstallerProject', {
   buildSpec: codebuild.BuildSpec.fromObject({
@@ -312,7 +312,7 @@
 <li><code>ENABLE_PREBUILT_PROJECT</code>: See <a href="#codebuild-and-prebuilt-docker-image">Prebuilt Docker Image</a>.</li>
 </ul>
 <h2 id="43-initial-setup-stack">4.3. Initial Setup Stack</h2>
-<p>Read <a href="../operations/operations-troubleshooting-guide.md#initial-setup-stack">Operations Guide</a> first before reading this section. This section is a technical addition to the section in the Operations Guide.</p>
+<p>Read <a href="../operations/#initial-setup-stack">Operations Guide</a> first before reading this section. This section is a technical addition to the section in the Operations Guide.</p>
 <p>As stated in the Operations Guide, the <code>Initial Setup</code> stack consists of a state machine, named <code>ASEA-MainStateMachine_sm</code>, which executes steps to create the Accelerator-managed stacks and resources in the managed accounts. It is an Accelerator-management resource.</p>
 <p>The <code>Initial Setup</code> stack is defined in the <code>src/core/cdk</code> folder.</p>
 <p>The <code>Initial Setup</code> stack is similar to the <code>Installer</code> stack, as in that it runs a CodeBuild project to deploy others stacks using CDK. In case of the <code>Initial Setup</code> stack</p>
@@ -359,7 +359,7 @@ RUN pnpm recursive run build --unsafe-perm
 <li><code>ACCELERATOR_EXECUTION_ROLE_NAME</code>: The name of the execution role in the Accelerator-managed accounts. This is the <code>PipelineRole</code> we created using stack sets.</li>
 </ul>
 <h2 id="44-phase-steps-and-phase-stacks">4.4. Phase Steps and Phase Stacks</h2>
-<p>Read <a href="../operations/operations-troubleshooting-guide.md#initial-setup-stack">Operations Guide</a> first before reading this section. This section is a technical addition to the <em>Deploy Phase X</em> sections in the Operations Guide.</p>
+<p>Read <a href="../operations/#initial-setup-stack">Operations Guide</a> first before reading this section. This section is a technical addition to the <em>Deploy Phase X</em> sections in the Operations Guide.</p>
 <p>The <code>Phase</code> stacks contain the Accelerator-managed resources. The reason the deployment of Accelerator-managed resources is split into different phases is because there cannot be cross account/region references between CloudFormation stacks. See <a href="#cross-accountregion-references">Cross-Account/Region References</a>.</p>
 <p>The <code>Phase</code> stacks are deployed by a CodeBuild project in the <code>Initial Setup</code> stack as stated in the previous paragraphs. The CodeBuild project executes the <code>codebuild-deploy.sh</code> script. See <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/src/core/cdk/src/initial-setup.ts#L132"><code>initial-setup.ts</code></a>.</p>
 <p>The <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/src/deployments/cdk/codebuild-deploy.sh"><code>codebuild-deploy.sh</code></a> script executes the <code>cdk.ts</code> file.</p>
@@ -397,7 +397,7 @@ export interface PhaseInput {
 </code></pre>
 <p>It is important to note that no configuration is hard-coded. The CloudFormation templates are generated by CDK and the CDK constructs are created according to the configuration file. Changes to the configuration will change the CDK construct tree and that will result in a different CloudFormation template that is deployed.</p>
 <p>The different phases are defined in <code>apps/phase-x.ts</code>. Historically we created all CDK constructs in the <code>phase-x.ts</code> files. After a while the <code>phase-x.ts</code> files started to get too big and we moved to separating the logic into separate deployments. Every logical component has a separate folder in the <code>deployments</code> folder. Every <code>deployment</code> consists of so-called steps. Separate steps are put in loaded in phases.</p>
-<p>For example, take the <code>deployments/defaults</code> deployment. The deployment consists of two steps, i.e. <code>step-1.ts</code> and <code>step-2.ts</code>. <code>deployments/defaults/step-1.ts</code> is created in <code>apps/phase-0.ts</code> and <code>deployments/defaults/step-2.ts</code> is created in <code>apps/phase-1.ts</code>. You can find more details about what happens in each phase in the <a href="../operations/operations-troubleshooting-guide.md">Operations Guide</a>.</p>
+<p>For example, take the <code>deployments/defaults</code> deployment. The deployment consists of two steps, i.e. <code>step-1.ts</code> and <code>step-2.ts</code>. <code>deployments/defaults/step-1.ts</code> is created in <code>apps/phase-0.ts</code> and <code>deployments/defaults/step-2.ts</code> is created in <code>apps/phase-1.ts</code>. You can find more details about what happens in each phase in the <a href="../operations/">Operations Guide</a>.</p>
 <p><code>apps/phase-0.ts</code></p>
 <pre><code class="language-typescript">export async function deploy({ acceleratorConfig, accountStacks, accounts, context }: PhaseInput) {
   // Create defaults, e.g. S3 buckets, EBS encryption keys
@@ -1128,6 +1128,8 @@ launchConfig.addOverride('Metadata.AWS::CloudFormation::Init', {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../workshops/" class="btn btn-neutral float-right" title="Workshops">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
       
         <a href="../faq/" class="btn btn-neutral" title="FAQ"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
@@ -1157,6 +1159,8 @@ launchConfig.addOverride('Metadata.AWS::CloudFormation::Init', {
     
       <span><a href="../faq/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../workshops/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
