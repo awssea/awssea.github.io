@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Amazon Web Services">
+  <link rel="canonical" href="https://awssea.github.io/about/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>About - AWS Secure Environment Accelerator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "About";
+    var mkdocs_page_input_path = "about/index.md";
+    var mkdocs_page_url = "/about/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> AWS Secure Environment Accelerator</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">About</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-specifically-does-the-accelerator-deploy-and-manage">What specifically does the Accelerator deploy and manage?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#creates-aws-account">Creates AWS Account</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creates-networking">Creates Networking</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cross-account-object-sharing">Cross-Account Object Sharing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#identity">Identity</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cloud-security-services">Cloud Security Services</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#other-security-capabilities">Other Security Capabilities</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#centralized-logging-and-alerting">Centralized Logging and Alerting</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#relationship-with-aws-landing-zone-solution-alz">Relationship with AWS Landing Zone Solution (ALZ)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#relationship-with-aws-control-tower">Relationship with AWS Control Tower</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#accelerator-installation-process-summary">Accelerator Installation Process (Summary)</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../documentation/">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation & Upgrades</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../operations/">Operations & Troubleshooting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developer/">Developer Guide</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/CONTRIBUTING.md">Contributing & Governanace</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../pbmm/index.md">Prescriptive PBMM Architecture</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../workshops.md">Workshops</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">AWS Secure Environment Accelerator</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>About</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="aws-secure-environment-accelerator">AWS Secure Environment Accelerator</h1>
+<p>The AWS Accelerator is a tool designed to help deploy and operate secure multi-account, multi-region AWS environments on an ongoing basis. The power of the solution is the configuration file that drives the architecture deployed by the tool. This enables extensive flexibility and for the completely automated deployment of a customized architecture within AWS without changing a single line of code.</p>
+<p>While flexible, the AWS Accelerator is delivered with a sample configuration file which deploys an opinionated and prescriptive architecture designed to help meet the security and operational requirements of many governments around the world. Tuning the parameters within the configuration file allows for the deployment of customized architectures and enables the solution to help meet the multitude of requirements of a broad range of governments and public sector organizations.</p>
+<p>The installation of the provided prescriptive architecture is reasonably simple, deploying a customized architecture does require extensive understanding of the AWS platform. The sample deployment specifically helps customers meet NIST 800-53 and/or CCCS Medium Cloud Control Profile (formerly PBMM).</p>
+<p><img alt="Diagram" src="./operations/img/ASEA-high-level-architecture.png" /></p>
+<h2 id="what-specifically-does-the-accelerator-deploy-and-manage">What specifically does the Accelerator deploy and manage?</h2>
+<p>A common misconception is that the AWS Secure Environment Accelerator only deploys security services, not true. The Accelerator is capable of deploying a complete end-to-end hybrid enterprise multi-region cloud environment.</p>
+<p>Additionally, while the Accelerator is initially responsible for deploying a prescribed architecture, it more importantly allows for organizations to operate, evolve, and maintain their cloud architecture and security controls over time and as they grow, with minimal effort, often using native AWS tools. Customers don't have to change the way they operate in AWS.</p>
+<p>Specifically the accelerator deploys and manages the following functionality, both at initial accelerator deployment and as new accounts are created, added, or onboarded in a completely automated but customizable manner:</p>
+<h3 id="creates-aws-account">Creates AWS Account</h3>
+<ul>
+<li>Core Accounts - as many or as few as your organization requires, using the naming you desire. These accounts are used to centralize core capabilities across the organization and provide <code>Control Panel</code> like capabilities across the environment. Common core accounts include:</li>
+<li>Shared Network</li>
+<li>Operations</li>
+<li>Perimeter</li>
+<li>Log Archive</li>
+<li>Security Tooling</li>
+<li>Workload Accounts - automated concurrent mass account creation or use AWS organizations to scale one account at a time. These accounts are used to host a customer's workloads and applications.</li>
+<li>Scalable to 1000's of AWS accounts</li>
+<li>Supports AWS Organizations nested <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_ous.html">ou's</a> and importing existing AWS accounts</li>
+<li>Performs 'account warming' to establish initial limits, when required</li>
+<li>Automatically submits limit increases, when required (complies with initial limits until increased)</li>
+<li>Leverages AWS Control Tower <strong>(NEW)</strong></li>
+</ul>
+<h3 id="creates-networking">Creates Networking</h3>
+<ul>
+<li>Transit Gateways and TGW route tables (incl. inter-region TGW peering)</li>
+<li>Centralized and/or Local (bespoke) VPC's</li>
+<li>Subnets, Route tables, NACLs, Security groups, NATGWs, IGWs, VGWs, CGWs</li>
+<li>VPC Endpoints (Gateway and Interface, Centralized or Local)</li>
+<li>Route 53 Private and Public Zones, Resolver Rules and Endpoints, VPC Endpoint Overloaded Zones</li>
+<li>All completely and individually customizable (per account, VPC, subnet, or OU)</li>
+<li>Layout and customize your VPCs, subnets, CIDRs and connectivity the way you want</li>
+<li>Static or Dynamic <strong>(NEW)</strong> VPC and subnet CIDR assignments</li>
+<li>Deletes default VPC's (worldwide)</li>
+<li>AWS Network Firewall <strong>(NEW)</strong></li>
+</ul>
+<h3 id="cross-account-object-sharing">Cross-Account Object Sharing</h3>
+<ul>
+<li>VPC and Subnet sharing, including account level re-tagging (Per account security group 'replication')</li>
+<li>VPC attachments and peering (local and cross-account)</li>
+<li>Zone sharing and VPC associations</li>
+<li>Managed Active Directory sharing, including R53 DNS resolver rule creation/sharing</li>
+<li>Automated TGW inter-region peering</li>
+<li>Populate Parameter Store with all <code>user</code> objects to be used by customers' IaC</li>
+<li>Deploy and share SSM documents (4 provided out-of-box, ELB Logging, S3 Encryption, Instance Profile remediation, Role remediation)</li>
+<li>customer can provide their own SSM documents for automated deployment and sharing</li>
+</ul>
+<h3 id="identity">Identity</h3>
+<ul>
+<li>Creates Directory services (Managed Active Directory and Active Directory Connectors)</li>
+<li>Creates Windows admin bastion host auto-scaling group</li>
+<li>Set Windows domain password policies</li>
+<li>Set IAM account password policies</li>
+<li>Creates Windows domain users and groups (initial installation only)</li>
+<li>Creates IAM Policies, Roles, Users, and Groups</li>
+<li>Fully integrates with and leverages AWS SSO for centralized and federated login</li>
+</ul>
+<h3 id="cloud-security-services">Cloud Security Services</h3>
+<ul>
+<li>Enables and configures the following AWS services, worldwide w/central designated admin account:</li>
+<li>Guardduty w/S3 protection</li>
+<li>Security Hub (Enables designated security standards, and disables individual controls)</li>
+<li>Firewall Manager</li>
+<li>CloudTrail w/Insights and S3 data plane logging</li>
+<li>Config Recorders/Aggregator</li>
+<li>Conformance Packs and Config rules (95 out-of-box NIST 800-53 rules, 2 custom rules, customizable per OU)</li>
+<li>Macie</li>
+<li>IAM Access Analyzer</li>
+<li>CloudWatch access from central designated admin account (and setting Log group retentions)</li>
+</ul>
+<h3 id="other-security-capabilities">Other Security Capabilities</h3>
+<ul>
+<li>Creates, deploys and applies Service Control Policies</li>
+<li>Creates Customer Managed KMS Keys (SSM, EBS, S3), EC2 key pairs, and secrets</li>
+<li>Enables account level default EBS encryption and S3 Block Public Access</li>
+<li>Configures Systems Manager Session Manager w/KMS encryption and centralized logging</li>
+<li>Creates and configures AWS budgets (customizable per ou and per account)</li>
+<li>Imports or requests certificates into AWS Certificate Manager</li>
+<li>Deploys both perimeter and account level ALB's w/Lambda health checks, certificates and TLS policies</li>
+<li>Deploys &amp; configures 3rd party firewall clusters and management instances (leverages marketplace)</li>
+<li>Gateway Load Balancer w/auto-scaling <strong>(NEW)</strong> and VPN IPSec BGP ECMP deployment options</li>
+<li>Protects Accelerator deployed and managed objects</li>
+<li>Sets Up SNS Alerting topics (High, Medium, Low, Blackhole priorities)</li>
+<li>Deploys CloudWatch Log Metrics and Alarms</li>
+<li>Deploys customer provided custom config rules (1 provided out-of-box, No EC2 Instance Profile)</li>
+</ul>
+<h3 id="centralized-logging-and-alerting">Centralized Logging and Alerting</h3>
+<ul>
+<li>Deploys an rsyslog auto-scaling cluster behind a NLB, all syslogs forwarded to CloudWatch Logs</li>
+<li>Centralized access to "Cloud Security Service" Consoles from designated AWS account</li>
+<li>Centralizes logging to a single centralized S3 bucket (enables, configures and centralizes)</li>
+<li>VPC Flow logs w/Enhanced metadata fields (also sent to CWL)</li>
+<li>Organizational Cost and Usage Reports</li>
+<li>CloudTrail Logs including S3 Data Plane Logs (also sent to CWL)</li>
+<li>All CloudWatch Logs (includes rsyslog logs)</li>
+<li>Config History and Snapshots</li>
+<li>Route 53 Public Zone Logs (also sent to CWL)</li>
+<li>GuardDuty Findings</li>
+<li>Macie Discovery results</li>
+<li>ALB Logs</li>
+<li>SSM Session Logs (also sent to CWL)</li>
+<li>Resolver Query Logs (also sent to CWL)</li>
+<li>Email alerting for CloudTrail Metric Alarms, Firewall Manager Events <strong>(NEW)</strong>, Security Hub Findings incl. Guardduty Findings <strong>(NEW)</strong></li>
+</ul>
+<h2 id="relationship-with-aws-landing-zone-solution-alz">Relationship with AWS Landing Zone Solution (ALZ)</h2>
+<p>The ALZ was an AWS Solution designed to deploy a multi-account AWS architecture for customers based on best practices and lessons learned from some of AWS' largest customers. The AWS Accelerator draws on design patterns from the Landing Zone, and re-uses several concepts and nomenclature, but it is not directly derived from it, nor does it leverage any code from the ALZ. The Accelerator is a standalone solution with no dependence on ALZ.</p>
+<h2 id="relationship-with-aws-control-tower">Relationship with AWS Control Tower</h2>
+<p>The AWS Secure Environment Accelerator now leverages AWS Control Tower! <strong>(NEW)</strong></p>
+<p>With the release of v1.5.0, the AWS Accelerator adds the capability to be deployed on top of AWS Control Tower. Customers get the benefits of the fully managed capabilities of AWS Control Tower combined with the power and flexibility of the Accelerators Networking and Security orchestration.</p>
+<h2 id="accelerator-installation-process-summary">Accelerator Installation Process (Summary)</h2>
+<p>This summarizes the installation process, the full installation document can be found in the documentation section below.</p>
+<ul>
+<li>Create a config.json (or config.yaml) file to represent your organizations requirements (<a href="/installation/customization-index.md">several samples provided</a>)</li>
+<li>Create a Secrets Manager Secret which contains a GitHub token that provides access to the Accelerator code repository</li>
+<li>Create a unique S3 input bucket in the management account of the region you wish to deploy the solution and place your config.json and any additional custom config files in the bucket</li>
+<li>Download and execute the latest <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/releases">release</a> installer CloudFormation template in your management accounts preferred 'primary' / 'home' region</li>
+<li>Wait for:</li>
+<li>CloudFormation to deploy and start the Code Pipeline (~5 mins)</li>
+<li>Code Pipeline to download the Accelerator codebase and install the Accelerator State Machine (~10 mins)</li>
+<li>The Accelerator State Machine to finish execution (~1.25 hrs Standalone version, ~2.25 hrs Control Tower Version)</li>
+<li>Perform required one-time <a href="/installation/index.md#26-post-installation">post installation</a> activities (configure AWS SSO, set firewall passwords, etc.)</li>
+<li>On an ongoing basis:</li>
+<li>Use AWS Organizations to create new AWS accounts, which will automatically be guardrailed by the Accelerator</li>
+<li>Update the config file in CodeCommit and run the Accelerator State Machine to:<ul>
+<li>deploy, configure and guardrail multiple accounts at the same time (~25 min Standalone, ~50 min/account Control Tower)</li>
+<li>change Accelerator configuration settings (~25 min)</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../documentation/" class="btn btn-neutral float-right" title="Documentation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../documentation/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
