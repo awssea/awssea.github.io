@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Amazon Web Services">
+  <link rel="canonical" href="https://awssea.github.io/architectures/pbmm/log-file-locations/">
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>AWS SEA Central Logging Structures - AWS Secure Environment Accelerator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../../css/theme.css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "AWS SEA Central Logging Structures";
+    var mkdocs_page_input_path = "architectures/pbmm/log-file-locations.md";
+    var mkdocs_page_url = "/architectures/pbmm/log-file-locations/";
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> AWS Secure Environment Accelerator</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../..">About</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../documentation/">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../install.md">Installation & Upgrades</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../ops.md">Operations & Troubleshooting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../faq.md">FAQ</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../dev.md">Developer Guide</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../gov.md">Contributing & Governanace</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../pbmm.md">Prescriptive PBMM Architecture</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../workshops.md">Workshops</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">AWS Secure Environment Accelerator</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>AWS SEA Central Logging Structures</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="aws-sea-central-logging-structures">AWS SEA Central Logging Structures</h1>
+<h2 id="accelerator-central-logging-buckets">Accelerator Central Logging Buckets:</h2>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Bucket Type</th>
+<th>Bucket Name</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AES Encrypted Bucket</td>
+<td>pbmmaccel-logarchive-phase0-aescacentral1-1py9vr4cdwuxu</td>
+<td>ALB Logs - ALB's do not support logging to a KMS bucket</td>
+</tr>
+<tr>
+<td>KMS Encrypted Bucket</td>
+<td>pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo</td>
+<td>All other AWS Accelerator initiated logs</td>
+</tr>
+<tr>
+<td>AES or KMS Encrypted</td>
+<td>aws-controltower-logs-123456789012-ca-central-1</td>
+<td>All Control Tower initiated logs</td>
+</tr>
+<tr>
+<td>AES or KMS Encrypted</td>
+<td>aws-controltower-s3-access-logs-123456789012-ca-central-1</td>
+<td>S3 Access logs for the Control Tower logs bucket</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="notes">Notes:</h3>
+<ul>
+<li>Every customer has two Accelerator logging buckets</li>
+<li>Control Tower installations have an additional two Control Tower logging buckets</li>
+<li>Customers could use any account name for their central logging account</li>
+<li>Bucket name format is: {Accel-Prefix}-{Account-Name}-{Accel-Phase}-xxx{Region}-{Random}</li>
+<li>{Accel-Prefix} defaults to 'asea' (previously 'pbmmaccel' for Canada)</li>
+<li>{Accel-Phase} should always be 'phase0'</li>
+<li>{region} should always be 'cacentral1' for Canada</li>
+<li>{account} is likely to be 'log-archive'</li>
+<li>xxx is either "aes" or "" (nothing)</li>
+</ul>
+<h2 id="accelerator-bucket-folders">Accelerator Bucket Folders:</h2>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Log Type</th>
+<th>Folder Path</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ELB (in AES bucket)</td>
+<td>{account#}/elb-{elbname}/AWSLogs/{account#}/*</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-aescacentral1-1py9vr4ucwuxu/123456789012/elb-Core-mydevacct1-alb/AWSLogs/123456789012/ELBAccessLogTestFile </li></ul><ul><li>s3://pbmmaccel-logarchive-phase0-aescacentral1-1py9vr4ucwuxu/123456789013/elb-Public-Prod-perimeter-alb/AWSLogs/123456789013/ELBAccessLogTestFile </li></ul></td>
+</tr>
+<tr>
+<td>VPC Flow Logs</td>
+<td>{account#}/{vpc-name}/AWSLogs/{account#}/vpcflowlogs/{region}/{year}/{month}/{day}/*</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo/123456789012/Test-East-lcl/AWSLogs/123456789012/vpcflowlogs/us-east-1/2020/08/31/123456789012_vpcflowlogs_us-east-1_fl-04af3543c74402594_20200831T1720Z_73d3922a.log.gz </li></ul></td>
+</tr>
+<tr>
+<td>Macie Reports</td>
+<td>{account#}/macietestobject</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo/123456789014/macie-test-object </li></ul></td>
+</tr>
+<tr>
+<td>Cost and Usage Reports</td>
+<td>{account#}/cur/Cost-and-Usage-Report/*</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo/123456789015/cur/Cost-and-Usage-Report/* </li></ul></td>
+</tr>
+<tr>
+<td>Config History*</td>
+<td>AWSLogs/{account#}/Config/{region}/{year}/{month}/{day}/ConfigHistory/*</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo/AWSLogs/123456789016/Config/ca-central-1/2020/8/31/ConfigHistory/123456789016_Config_ca-central-1_ConfigHistory_AWS::CloudFormation::Stack_20200831T011226Z_20200831T025845Z_1.json.gz </li></ul></td>
+</tr>
+<tr>
+<td>Config Snapshot*</td>
+<td>AWSLogs/{account#}/Config/{region}/{year}/{month}/{day}/ConfigSnapshot/*</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo/AWSLogs/123456789016/Config/ca-central-1/2020/8/30/ConfigSnapshot/123456789016_Config_ca-central-1_ConfigSnapshot_20200830T193058Z_5d173149-e6d0-41e4-af7f-031ff736f8c8.json.gz </li></ul></td>
+</tr>
+<tr>
+<td>GuardDuty</td>
+<td>AWSLogs/{account#}/GuardDuty/{region}/{year}/{month}/{day}/*</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo/AWSLogs/123456789014/GuardDuty/ca-central-1/2020/09/02/294c9171-4867-3774-9756-f6f6c209616f.jsonl.gz </li></ul></td>
+</tr>
+<tr>
+<td>CloudWatch Logs</td>
+<td>CloudWatchLogs/{year}/{month}/{day}/{hour}/*</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo/CloudWatchLogs/2020/08/30/00/PBMMAccel-Kinesis-Delivery-Stream-1-2020-08-30-00-53-33-35aeea4c-582a-444b-8afa-848567924094 </li></ul></td>
+</tr>
+<tr>
+<td>CloudTrail Digest***</td>
+<td>{org-id}/AWSLogs/{org-id}/{account#}/CloudTrail-Digest/{region}/{year}/{month}/{day}/*</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo/o-fxozgwu6rc/AWSLogs/o-fxozgwu6rc/123456789016/CloudTrail-Digest/ca-central-1/2020/08/30/123456789016_CloudTrail-Digest_ca-central-1_PBMMAccel-Org-Trail_ca-central-1_20200830T190938Z.json.gz </li></ul></td>
+</tr>
+<tr>
+<td>CloudTrail Insights**</td>
+<td>{org-id}/AWSLogs/{org-id}/{account#}/CloudTrail-Insights/{region}/{year}/{month}/{day}/*</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo/o-fxozgwu6rc/AWSLogs/o-fxozgwu6rc/123456789015/CloudTrail-Insight/ca-central-1/2020/09/23/123456789015_CloudTrail-Insight_ca-central-1_20200923T0516Z_KL5e9VCV2SS7IqzB.json.gz </li></ul></td>
+</tr>
+<tr>
+<td>CloudTrail***</td>
+<td>{org-id}/AWSLogs/{org-id}/{account#}/CloudTrail/{region}/{year}/{month}/{day}/*</td>
+<td><ul><li> s3://pbmmaccel-logarchive-phase0-cacentral1-1tr23emhncdzo/o-fxozgwu6rc/AWSLogs/o-fxozgwu6rc/123456789016/CloudTrail/ca-central-1/2020/08/30/123456789016_CloudTrail_ca-central-1_20200830T0115Z_3YQJxwt5qUaOzMtL.json.gz </li></ul></td>
+</tr>
+<tr>
+<td>CT S3 Access Logs</td>
+<td>{no folders}</td>
+<td><ul><li> s3://aws-controltower-s3-access-logs-123456789012-ca-central-1/2021-04-26-18-11-21-8647E1080048E5CB </li></ul></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="notes_1">Notes:</h3>
+<p>* Located in Control Tower bucket when installed, Control Tower adds the {org-id} (i.e. o-h9ho05hcxl/) as the top level folder
+** Only available in Accelerator Standalone deployments
+*** CloudTrail control plane logs located in Control Tower bucket when installed, Control Tower drops the {org-id} (i.e. o-h9ho05hcxl/) from the middle of the folder path. This may change when Control Tower migrates to Organization Trails. CloudTrail data plane logs remain in the Accelerator bucket.</p>
+<ul>
+<li>Account number is sometimes duplicated in path because logs replicated from another account always need to start with the source account number</li>
+<li>Macie reports will only appear in the {account#} for the central security account, and only if a customer schedules PII discovery reports</li>
+<li>All CloudWatch Logs from all accounts are mixed in the same folder, the embedded log format contains the source account information as documented here: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/ValidateLogEventFlow.html</li>
+<li>With the exception of CloudWatch Logs, all logs are in the original format provided by the log source/service.</li>
+</ul>
+<hr />
+<p><a href="../../..">...Return to Accelerator Table of Contents</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

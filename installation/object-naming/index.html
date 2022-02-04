@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Amazon Web Services">
+  <link rel="canonical" href="https://awssea.github.io/installation/object-naming/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Object naming - AWS Secure Environment Accelerator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Object naming";
+    var mkdocs_page_input_path = "installation/object-naming.md";
+    var mkdocs_page_url = "/installation/object-naming/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> AWS Secure Environment Accelerator</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">About</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../documentation/">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../install.md">Installation & Upgrades</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../ops.md">Operations & Troubleshooting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../faq.md">FAQ</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../dev.md">Developer Guide</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../gov.md">Contributing & Governanace</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../pbmm.md">Prescriptive PBMM Architecture</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../workshops.md">Workshops</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">AWS Secure Environment Accelerator</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Object naming</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h3 id="accelerator-object-naming">Accelerator Object Naming</h3>
+<ul>
+<li>Resources will have the 'Name' tag assigned, where Name={name}{suffix}</li>
+<li>No prefix or suffix will be applied to DNS records/zones (as that breaks them)</li>
+<li>When _ is not supported, a - will be used</li>
+<li>Stacks/stacksets/functions and <strong><em>non-end user</em></strong> accessed objects deployed in all accounts will also start with the {AcceleratorPrefix} prefix (i.e. "<strong><em>PBMMAccel-</em></strong>" or "<strong><em>ASEA-</em></strong>")</li>
+<li>The prefix does not apply to objects like VPC's, subnets, or TGW's which customers need to directly access. This is for objects deployed to build the customer accessible objects</li>
+<li>This prefix will be protected by SCP's so customers don't break 'managed' features</li>
+<li>Resources will have the tag 'Accelerator={AcceleratorName}' assigned when tags are supported</li>
+<li>Stacks will have the tag 'AcceleratorName={AcceleratorName}' assigned, which will often (but not always) be inherited by objects created by the stack (due to TGW duplicate tag issue)</li>
+</ul>
+<h3 id="defaults">Defaults</h3>
+<pre><code>- the default {AcceleratorName} is 'PBMM' before v1.5.0 and 'ASEA' after v1.5.0
+- the default {AcceleratorPrefix} is 'PBMMAccel-' before v1.5.0 and 'ASEA-' after v1.5.0
+</code></pre>
+<h3 id="suffixs"><strong><em>Suffix's</em></strong></h3>
+<table>
+<thead>
+<tr>
+<th>suffix</th>
+<th>object type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_vpc</td>
+<td>VPC</td>
+</tr>
+<tr>
+<td>_azN_net</td>
+<td>Subnet</td>
+</tr>
+<tr>
+<td>_azN_rt</td>
+<td>RouteTable</td>
+</tr>
+<tr>
+<td>_tgw</td>
+<td>Transit Gateway</td>
+</tr>
+<tr>
+<td>-key</td>
+<td>KMS key</td>
+</tr>
+<tr>
+<td>_pcx</td>
+<td>Peering Connection</td>
+</tr>
+<tr>
+<td>_sg</td>
+<td>Security Group</td>
+</tr>
+<tr>
+<td>_nacl</td>
+<td>NACL</td>
+</tr>
+<tr>
+<td>_alb</td>
+<td>Application Load Balancer</td>
+</tr>
+<tr>
+<td>_nlb</td>
+<td>Network Load Balancer</td>
+</tr>
+<tr>
+<td>_agw</td>
+<td>Appliance Gateway</td>
+</tr>
+<tr>
+<td>_vpce</td>
+<td>VPC Endpoint</td>
+</tr>
+<tr>
+<td>_AMI</td>
+<td>AMI</td>
+</tr>
+<tr>
+<td>_dhcp</td>
+<td>DHCP option set</td>
+</tr>
+<tr>
+<td>_snap</td>
+<td>snapshot</td>
+</tr>
+<tr>
+<td>_ebs</td>
+<td>Block storage</td>
+</tr>
+<tr>
+<td>_igw</td>
+<td>internet gateway</td>
+</tr>
+<tr>
+<td>_lgw</td>
+<td>Local gateway</td>
+</tr>
+<tr>
+<td>_nat</td>
+<td>NAT gateway</td>
+</tr>
+<tr>
+<td>_vpg</td>
+<td>Virtual private gateway</td>
+</tr>
+<tr>
+<td>_cgw</td>
+<td>Customer gateway</td>
+</tr>
+<tr>
+<td>_vpn</td>
+<td>VPN Connection</td>
+</tr>
+<tr>
+<td>_sm</td>
+<td>Step Functions</td>
+</tr>
+<tr>
+<td>_rule</td>
+<td>CW Event Rule</td>
+</tr>
+<tr>
+<td>_pl</td>
+<td>CodeBuild</td>
+</tr>
+</tbody>
+</table>
+<h3 id="no-suffix"><strong><em>No Suffix</em></strong></h3>
+<table>
+<thead>
+<tr>
+<th>suffix</th>
+<th>object type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>Stacks</td>
+</tr>
+<tr>
+<td>None</td>
+<td>CFN_Stack_Sets</td>
+</tr>
+<tr>
+<td>None</td>
+<td>Lambda</td>
+</tr>
+<tr>
+<td>None</td>
+<td>Cloud Trails</td>
+</tr>
+<tr>
+<td>None</td>
+<td>CWL Groups</td>
+</tr>
+<tr>
+<td>None</td>
+<td>Config Rules</td>
+</tr>
+<tr>
+<td>None</td>
+<td>OU</td>
+</tr>
+<tr>
+<td>None</td>
+<td>Service Control Policy</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

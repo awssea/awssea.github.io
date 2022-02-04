@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Amazon Web Services">
+  <link rel="canonical" href="https://awssea.github.io/installation/guides/public-facing-workload-via-fortigate/">
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>Public Facing Workload Configuration Sample - AWS Secure Environment Accelerator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../../css/theme.css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Public Facing Workload Configuration Sample";
+    var mkdocs_page_input_path = "installation/guides/public-facing-workload-via-fortigate.md";
+    var mkdocs_page_url = "/installation/guides/public-facing-workload-via-fortigate/";
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../../.." class="icon icon-home"> AWS Secure Environment Accelerator</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../..">About</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../../documentation/">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../install.md">Installation & Upgrades</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../ops.md">Operations & Troubleshooting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../faq.md">FAQ</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../dev.md">Developer Guide</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../gov.md">Contributing & Governanace</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../pbmm.md">Prescriptive PBMM Architecture</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../../workshops.md">Workshops</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../..">AWS Secure Environment Accelerator</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Public Facing Workload Configuration Sample</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="public-facing-workload-configuration-sample">Public Facing Workload Configuration Sample</h1>
+<p>This page describes the steps needed to configure a public facing web application that is deployed within a workload AWS Account in the Secure Environment Accelerator (SEA).</p>
+<p>The high-level steps are the following:
+1) Create a SSL public certificate in AWS Certificate Manager.
+2) Create a DNS entry for the web application.
+3) Create Application Load Balancer Target Groups for the web application
+4) Create an Application Load Balancer Rule to forward traffic to the Firewalls.
+5) Configure the Firewalls.</p>
+<p>The screenshots and steps in this page are specific to the Fortigate Firewalls.</p>
+<h2 id="perimeter-sea-aws-account">Perimeter SEA AWS Account</h2>
+<h3 id="ssl-certificate-configuration">SSL Certificate Configuration</h3>
+<p>1) Within the Perimeter SEA AWS Account, navigate to the Certificate Manager service.</p>
+<p>2) Follow the steps to request a new public certificate. This will be used to support https for the web application. Note that the SEA deploys 'example' certificates, but these should not be used at the perimeter. Here's an example showing a wildcard cert.</p>
+<p><img alt="Certificates" src="../img/public-facing-workload-via-fortigate/Picture3.png" /></p>
+<p>3) Navigate to the ALBs and select the Load Balancer that will support the incoming requests for the web application. In this example, it will be the 'Public-DevTest-perimeter-alb'. </p>
+<p><img alt="ALBDevTest" src="../img/public-facing-workload-via-fortigate/Picture4.png" /></p>
+<p>4) Select the 'Public-DevTest-perimeter-alb' ALB and click the <strong>View/edit certificates</strong> link button.</p>
+<p><img alt="ALBSSLConfigure" src="../img/public-facing-workload-via-fortigate/Picture5.png" /></p>
+<p>5) Click the <strong>+</strong> button and select the new SSL Certificate. Click <strong>Add</strong>.</p>
+<p>6) Return back to the ALBs and select the 'Public-DevTest-perimeter-alb' ALB. Select the default HTTPS listener and click <strong>Edit</strong></p>
+<p><img alt="ALBDevTest" src="../img/public-facing-workload-via-fortigate/Picture4.png" /></p>
+<p>7) Change the Default SSL certificate to the newly created public cert and update the settings.</p>
+<p><img alt="ALBDefaultSSL" src="../img/public-facing-workload-via-fortigate/Picture6.png" /></p>
+<hr />
+<h3 id="alb-target-group-configuration">ALB Target Group Configuration</h3>
+<p>1) Navigate to the EC2 Load Balancers and view the default Application Load Balancers (ALB).</p>
+<p><img alt="ALBs" src="../img/public-facing-workload-via-fortigate/Picture1.png" /></p>
+<p>2) List the ALB Target Groups</p>
+<p><img alt="ALB Target Groups" src="../img/public-facing-workload-via-fortigate/Picture2.png" /></p>
+<p>These are pairs of targets (one for each firewall) that direct traffic from the perimeter ALB to the firewall. The two pairs were created as part of the default configuration and provide health checks to the shared VPCs. For support a new web application, a new pair will be created. One for each firewall (i.e. one per AZ).</p>
+<p>1) Click the <strong>Create target group</strong> button. (Note: This will be repeated for each Firewall).</p>
+<p>2) Enter the following parameter values:
+   - Target group name: Public-DevTest-SampleApp-azA
+   - Protocol: HTTPS
+   - Port: (pick an unused port on the Firewall). Example 7006
+   - VPC: Perimeter_VPC</p>
+<p><img alt="ALB New Target Group" src="../img/public-facing-workload-via-fortigate/Picture7.png" /></p>
+<p>5) When Registering a target, pick the instance that aligns with the Availability Zone (AZ) that is being configured. Example: Firewall_az[A|B]. If creating 'Public-DevTest-SampleApp-<strong>azA</strong>', then choose Firewall instance 'Firewall_<strong>azA</strong>'.</p>
+<p><img alt="ALB New Target Group Register" src="../img/public-facing-workload-via-fortigate/Picture8.png" /></p>
+<p>6) Ensure that the port value is using the previous entered port value. Click the <strong>Include as pending below</strong>.</p>
+<p><img alt="ALB New Target Group Register Instance" src="../img/public-facing-workload-via-fortigate/Picture9.png" /></p>
+<p>7) Click the <strong>Create target group</strong> button when ready.</p>
+<p>8) Repeat for the additional firewalls.</p>
+<hr />
+<h3 id="alb-listener-rule-configuration">ALB Listener Rule Configuration</h3>
+<p>1) Create a DNS entry for the web application that resolves to the perimeter ALB being configured. For example: webapplication.mydomain.ca resolves to 'Public-DevTest-perimeter-alb-1616856287.ca-central-1.elb.amazonaws.com'</p>
+<p>2) Navigate to the ALBs and select the 'Public-DevTest-perimeter-alb' ALB. Click the <strong>View/edit rules</strong> link button.</p>
+<p><img alt="ALBDevTest" src="../img/public-facing-workload-via-fortigate/Picture4.png" /></p>
+<p>3) Click the <strong>+</strong> button to create a new rule. Then click the <strong>+ Insert Rule</strong> button. </p>
+<p><img alt="ALBNeRule" src="../img/public-facing-workload-via-fortigate/Picture10.png" /></p>
+<p>4) Configure a match condition on <strong>Host header...</strong>. enter the value of the DNS entry for the web application.</p>
+<p><img alt="ALBNeRuleHostHeader" src="../img/public-facing-workload-via-fortigate/Picture11.png" /></p>
+<p><img alt="ALBNeRuleHostHeader" src="../img/public-facing-workload-via-fortigate/Picture12.png" /></p>
+<p>5) Click the checkmark to update it.</p>
+<p>6) Click the <strong>+ Add action</strong> and select <strong>Forward to...</strong></p>
+<p><img alt="ALBNeRuleForwardTo" src="../img/public-facing-workload-via-fortigate/Picture13.png" /></p>
+<p>7) Configure both Targets using the ones previously created (one per firewall). Adjust for 50% load balanced traffic.</p>
+<p><img alt="ALBNeRuleForwardToTargetGroup" src="../img/public-facing-workload-via-fortigate/Picture14.png" /></p>
+<p><img alt="ALBNeRuleForwardToTargetGroupLB" src="../img/public-facing-workload-via-fortigate/Picture15.png" /></p>
+<p>8) Click the checkmark to update and then click the <strong>Save</strong> button.</p>
+<hr />
+<h2 id="fortigate-firewall-configuration">Fortigate Firewall Configuration</h2>
+<p>The following configuration will be executed per Firewall instance (twice with the default SEA configuration).</p>
+<p>1) Log in to the firewall instance.
+2) Switch the Virtual Domain (vdom) to <strong>FG-traffic</strong>.</p>
+<p><img alt="FGVdeom" src="../img/public-facing-workload-via-fortigate/Picture16.png" /></p>
+<ol>
+<li>Navigate to <strong>Policy &amp; Objects</strong> and select <strong>Addresses</strong></li>
+</ol>
+<p><img alt="FGVdeom" src="../img/public-facing-workload-via-fortigate/Picture17.png" /></p>
+<ol>
+<li>Create a new entry using the following parameter values:</li>
+<li>Name: Dev1-SampleWebApplication-ALB-FQDN</li>
+<li>Type: FQDN</li>
+<li>FQDN: (use the DNS value of the internal load balancer in front of the web application)</li>
+<li>Interface: tgw-vpn1</li>
+</ol>
+<p><img alt="FGNewAddress" src="../img/public-facing-workload-via-fortigate/Picture18.png" /></p>
+<ol>
+<li>After saving the entry, refresh the Address grid and verify that the row colour is white.</li>
+</ol>
+<p><img alt="FGAddress2" src="../img/public-facing-workload-via-fortigate/Picture19.png" /></p>
+<ol>
+<li>Navigate to <strong>Policy &amp; Objects</strong> and select <strong>Virtual IPs</strong></li>
+</ol>
+<p><img alt="FGVIPs" src="../img/public-facing-workload-via-fortigate/Picture20.png" /></p>
+<ol>
+<li>
+<p>Make note of the used ip address in the Details column. In the example above “100.96.250.22”.</p>
+</li>
+<li>
+<p>Click the CLI command icon in the top right corner. Note that the following must be done using the CLI.</p>
+</li>
+</ol>
+<p><img alt="FGVIPsCLI" src="../img/public-facing-workload-via-fortigate/Picture21.png" /></p>
+<p><img alt="FGVIPsCLI1" src="../img/public-facing-workload-via-fortigate/Picture22.png" /></p>
+<p>9) Update the following script template replacing values for the following:
+name, extip, mapped-addr, extport</p>
+<pre><code>config firewall vip
+edit &quot;Dev1-SampleWebApplication-ALB&quot;
+        set type fqdn
+        set extip 100.96.250.22
+        set extintf &quot;port1&quot;
+        set portforward enable
+        set mapped-addr &quot;Dev1-SampleWebApplication-ALB-FQDN&quot;
+        set extport 7006
+        set mappedport 443
+    next
+end
+</code></pre>
+<p><img alt="FGVIPsCLI2" src="../img/public-facing-workload-via-fortigate/Picture23.png" /></p>
+<p>10) Returning back to the UI interface shows the new entry.</p>
+<p><img alt="FGVIPsCLI3" src="../img/public-facing-workload-via-fortigate/Picture24.png" /></p>
+<p>11) Navigate to <strong>Policy &amp; Objects</strong> and select <strong>IPv4 Policy</strong> and expand <strong>public (port1)</strong></p>
+<p><img alt="FGIPv4Policy1" src="../img/public-facing-workload-via-fortigate/Picture25.png" /></p>
+<p>12) Locate the desired policy (ex: Dev-Test #8 in the example below). Right-click and click <strong>Edit</strong>.</p>
+<p><img alt="FGIPv4Policy2" src="../img/public-facing-workload-via-fortigate/Picture26.png" /></p>
+<p>13) Locate the <strong>Destination</strong> field entry and click the <strong>+</strong> button.</p>
+<p><img alt="FGIPv4Policy3" src="../img/public-facing-workload-via-fortigate/Picture27.png" /></p>
+<p>14) Locate the newly created VirtualIP entry (ex: Dev1-SampleWbApplication-ALB) and save the changes. NOTE: The entry is NOT the Address/FQDN entry.</p>
+<p><img alt="FGIPv4Policy4" src="../img/public-facing-workload-via-fortigate/Picture28.png" /></p>
+<p>15) After refreshing the page, the row background should be white, and the new destination is visible.</p>
+<p><img alt="FGIPv4Policy5" src="../img/public-facing-workload-via-fortigate/Picture29.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
