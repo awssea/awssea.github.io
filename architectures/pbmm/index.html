@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Amazon Web Services">
+  <link rel="canonical" href="https://awssea.github.io/architectures/pbmm/">
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>1. AWS Secure Environment Architecture - AWS Secure Environment Accelerator</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "1. AWS Secure Environment Architecture";
+    var mkdocs_page_input_path = "architectures/pbmm/index.md";
+    var mkdocs_page_url = "/architectures/pbmm/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> AWS Secure Environment Accelerator</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">About</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../documentation/">Documentation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../installation/">Installation & Upgrades</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operations/">Operations & Troubleshooting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../faq/">FAQ</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../developer/">Developer Guide</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../gov.md">Contributing & Governanace</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../pbmm/index.md">Prescriptive PBMM Architecture</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../../workshops.md">Workshops</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">AWS Secure Environment Accelerator</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>1. AWS Secure Environment Architecture</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="1-aws-secure-environment-architecture">1. AWS Secure Environment Architecture</h1>
+<p>The <em>AWS Secure Environment PBMM Architecture</em> is a comprehensive, multi-account AWS cloud architecture, initially designed for use within the Government of Canada for <a href="https://www.canada.ca/en/government/system/digital-government/modern-emerging-technologies/cloud-services/government-canada-security-control-profile-cloud-based-it-services.html#toc4">PBMM workloads</a>. The <em>AWS Secure Environment PBMM Architecture</em> has been designed to address central identity and access management, governance, data security, comprehensive logging, and network design/segmentation per Canadian Centre for Cyber Security ITSG-33 specifications (a NIST 800-53 variant).</p>
+<p>This document specifically does NOT talk about the tooling or mechanisms that can be used to deploy the architecture. While the AWS Secure Environment Accelerator (SEA) is one tool capable of deploying this architecture (along with many other architectures), customers can use whatever mechanism they deem appropriate to deploy it. This document does not discuss the AWS SEA tooling or architecture and is strictly focused on the resulting deployed solution created by using the provided sample PBMM Accelerator configuration file. This architecture document should stand on its own in depicting the <code>deployed</code> architecture. Users looking for information on the SEA tooling itself, should refer to the other SEA documents.</p>
+<p>It is anticipated we will offer multiple sample architectures with the AWS SEA solution, each having its own architecture document like this. As the SEA can produce hundreds of solutions, it does not make sense to repeat that content in this document.</p>
+<h1 id="2-table-of-contents">2. Table of Contents</h1>
+<!-- TOC depthFrom:1 depthTo:4 -->
+
+<ul>
+<li><a href="#1-aws-secure-environment-architecture">1. AWS Secure Environment Architecture</a></li>
+<li><a href="#2-table-of-contents">2. Table of Contents</a></li>
+<li><a href="#3-introduction">3. Introduction</a></li>
+<li><a href="#31-purpose-of-document">3.1. Purpose of Document</a></li>
+<li><a href="#32-overview">3.2. Overview</a></li>
+<li><a href="#33-document-convention">3.3. Document Convention</a><ul>
+<li><a href="#331-aws-account-numbers">3.3.1. AWS Account Numbers</a></li>
+<li><a href="#332-json-annotation">3.3.2. JSON Annotation</a></li>
+<li><a href="#333-ip-addresses">3.3.3. IP Addresses</a></li>
+</ul>
+</li>
+<li><a href="#34-department-naming">3.4. Department Naming</a></li>
+<li><a href="#35-relationship-to-aws-landing-zone">3.5. Relationship to AWS Landing Zone</a></li>
+<li><a href="#4-account-structure">4. Account Structure</a></li>
+<li><a href="#41-accounts">4.1. Accounts</a></li>
+<li><a href="#42-organization-management-root-aws-account">4.2. Organization Management (root) AWS Account</a><ul>
+<li><a href="#421-aws-sso">4.2.1. AWS SSO</a></li>
+<li><a href="#422-organizational-units">4.2.2. Organizational Units</a></li>
+<li><a href="#4221-core-ou">4.2.2.1. Core OU</a></li>
+<li><a href="#4222-central-ou">4.2.2.2. Central OU</a></li>
+<li><a href="#4223-functional-ou-sandbox">4.2.2.3. Functional OU: Sandbox</a></li>
+<li><a href="#4224-functional-ou-unclass">4.2.2.4. Functional OU: UnClass</a></li>
+<li><a href="#4225-functional-ou-dev">4.2.2.5. Functional OU: Dev</a></li>
+<li><a href="#4226-functional-ou-test">4.2.2.6. Functional OU: Test</a></li>
+<li><a href="#4227-functional-ou-prod">4.2.2.7. Functional OU: Prod</a></li>
+<li><a href="#4228-suspended-ou">4.2.2.8. Suspended OU</a></li>
+</ul>
+</li>
+<li><a href="#43-mandatory-accounts">4.3. Mandatory Accounts</a><ul>
+<li><a href="#431-organization-management-root">4.3.1. Organization Management (root)</a></li>
+<li><a href="#432-perimeter">4.3.2. Perimeter</a></li>
+<li><a href="#433-shared-network">4.3.3. Shared Network</a></li>
+<li><a href="#434-operations">4.3.4. Operations</a></li>
+<li><a href="#435-log-archive">4.3.5. Log Archive</a></li>
+<li><a href="#436-security">4.3.6. Security</a></li>
+<li><a href="#437-devops-account-andor-shared-team-accounts">4.3.7. DevOps account and/or Shared Team accounts</a></li>
+</ul>
+</li>
+<li><a href="#44-functional-accounts">4.4. Functional Accounts</a></li>
+<li><a href="#45-account-level-settings">4.5. Account Level Settings</a></li>
+<li><a href="#46-private-marketplace">4.6. Private Marketplace</a></li>
+<li><a href="#5-networking">5. Networking</a></li>
+<li><a href="#51-overview">5.1. Overview</a></li>
+<li><a href="#52-perimeter">5.2. Perimeter</a><ul>
+<li><a href="#521-ip-ranges">5.2.1. IP Ranges</a></li>
+</ul>
+</li>
+<li><a href="#53-shared-network">5.3. Shared Network</a><ul>
+<li><a href="#531-transit-gateway">5.3.1. Transit Gateway</a></li>
+<li><a href="#532-endpoint-vpc">5.3.2. Endpoint VPC</a></li>
+<li><a href="#533-endpoint-vpc-interface-endpoints">5.3.3. Endpoint VPC: Interface Endpoints</a></li>
+<li><a href="#534-endpoint-vpc-hybrid-dns">5.3.4. Endpoint VPC: Hybrid DNS</a></li>
+<li><a href="#5341-within-the-cloud">5.3.4.1. Within The Cloud</a></li>
+<li><a href="#5342-from-cloud-to-on-premises">5.3.4.2. From Cloud to On-Premises</a></li>
+<li><a href="#5343-from-on-premises-to-cloud">5.3.4.3. From On-Premises to Cloud</a></li>
+<li><a href="#535-workload-vpcs">5.3.5. Workload VPCs</a></li>
+<li><a href="#5351-security-groups">5.3.5.1. Security Groups</a></li>
+<li><a href="#5352-nacls">5.3.5.2. NACLs</a></li>
+<li><a href="#536-central-vpc">5.3.6. Central VPC</a></li>
+<li><a href="#5361-domain-joining">5.3.6.1. Domain Joining</a></li>
+<li><a href="#537-sandbox-vpc">5.3.7. Sandbox VPC</a></li>
+</ul>
+</li>
+<li><a href="#6-authorization-and-authentication">6. Authorization and Authentication</a></li>
+<li><a href="#61-relationship-to-the-organization-management-root-aws-account">6.1. Relationship to the Organization Management (root) AWS Account</a></li>
+<li><a href="#62-break-glass-accounts">6.2. Break Glass Accounts</a></li>
+<li><a href="#63-control-plane-access-via-aws-sso">6.3. Control Plane Access via AWS SSO</a><ul>
+<li><a href="#631-sso-user-roles">6.3.1. SSO User Roles</a></li>
+<li><a href="#632-principal-authorization">6.3.2. Principal Authorization</a></li>
+</ul>
+</li>
+<li><a href="#64-root-authorization">6.4. Root Authorization</a></li>
+<li><a href="#65-service-roles">6.5. Service Roles</a></li>
+<li><a href="#66-service-control-policies">6.6. Service Control Policies</a><ul>
+<li><a href="#661-pbmm-only">6.6.1. PBMM Only</a></li>
+<li><a href="#662-pbmm-unclass-only">6.6.2. PBMM Unclass Only</a></li>
+<li><a href="#663-pbmm-guardrails-parts-1-and-2">6.6.3. PBMM Guardrails (Parts 1 and 2)</a></li>
+<li><a href="#6631-encryption-at-rest">6.6.3.1. Encryption at Rest</a></li>
+<li><a href="#664-quarantine-deny-all">6.6.4. Quarantine Deny All</a></li>
+<li><a href="#665-quarantine-new-object">6.6.5. Quarantine New Object</a></li>
+</ul>
+</li>
+<li><a href="#7-logging-and-monitoring">7. Logging and Monitoring</a></li>
+<li><a href="#71-cloudtrail">7.1. CloudTrail</a></li>
+<li><a href="#72-vpc-flow-logs">7.2. VPC Flow Logs</a></li>
+<li><a href="#73-guardduty">7.3. GuardDuty</a></li>
+<li><a href="#74-config">7.4. Config</a></li>
+<li><a href="#75-cloudwatch-logs">7.5. Cloudwatch Logs</a></li>
+<li><a href="#76-securityhub">7.6. SecurityHub</a></li>
+<li><a href="#77-systems-manager-session-manager">7.7. Systems Manager Session Manager</a></li>
+</ul>
+<!-- /TOC -->
+
+<h1 id="3-introduction">3. Introduction</h1>
+<p>The <em>AWS Secure Environment Architecture</em> has been built with the following design principles:</p>
+<ol>
+<li>Maximize agility, scalability, and availability</li>
+<li>Enable the full capability of the AWS cloud</li>
+<li>Be adaptable to evolving technological capabilities in the underlying platform being used in the <em>AWS Secure Environment Architecture</em></li>
+<li>Allow for seamless auto-scaling and provide unbounded bandwidth as bandwidth requirements increase (or decrease) based on actual customer load (a key aspect of the value proposition of cloud computing)</li>
+<li>Design for high availability: the design stretches across two physical AWS Availability Zones (AZ), such that the loss of any one AZ does not impact application availability. The design can be easily extended to a third availability zone.</li>
+<li>Operate as least privilege: all principals in the accounts are intended to operate with the lowest-feasible permission set.</li>
+</ol>
+<h2 id="31-purpose-of-document">3.1. Purpose of Document</h2>
+<p>This document is intended to outline the technical measures that are delivered by the <em>AWS Secure Environment Architecture</em> that make it suitable for PBMM workloads. An explicit <strong>non-goal</strong> of this document is to explain the delivery architecture of the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/README.md">AWS Secure Environment Accelerator tool</a> itself, an open-source software project built by AWS.</p>
+<p>While the central purpose of the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/README.md">AWS Secure Environment Accelerator</a> is to establish an <em>AWS Secure Environment Architecture</em> into an AWS account footprint, this amounts to an implementation detail as far as the <em>AWS Secure Environment Architecture</em> is concerned. The <em>AWS Secure Environment Architecture</em> is a standalone design, irrespective of how it was delivered into a customer AWS environment. It is nonetheless anticipated that most customers will choose to realize their <em>AWS Secure Environment Architecture</em> via the delivery mechanism of the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/README.md">AWS Secure Environment Accelerator tool</a>.</p>
+<p>Comprehensive details on the tool itself are available elsewhere:</p>
+<ol>
+<li><a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/operations/operations-troubleshooting-guide.md">AWS Secure Environment Accelerator tool Operations &amp; Troubleshooting Guide</a></li>
+<li><a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/developer/developer-guide.md">AWS Secure Environment Accelerator tool Developer Guide</a></li>
+</ol>
+<p>Except where absolutely necessary, this document will refrain from referencing the <em>AWS Secure Environment Accelerator tool</em> further.</p>
+<h2 id="32-overview">3.2. Overview</h2>
+<p>The central features of the <em>AWS Secure Environment Architecture</em> are as follows:</p>
+<ul>
+<li><strong>AWS Organization with multiple-accounts:</strong> An <a href="https://aws.amazon.com/organizations/">AWS Organization</a> is a grouping construct for a number of separate AWS accounts that are controlled by a single customer entity. This provides consolidated billing, organizational units, and facilitates the deployment of pan-Organizational guardrails such as CloudTrail logs and Service Control Policies. The separate accounts provide strong control-plane and data-plane isolation between workloads and/or environments.</li>
+<li><strong>Encryption:</strong> AWS KMS with customer-managed CMKs is used extensively for any data stored at rest, in S3 buckets, EBS volumes, RDS encryption.</li>
+<li><strong>Service Control Policies:</strong> <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_type-auth.html#orgs_manage_policies_scp">SCPs</a> provide a guardrail mechanism principally used to deny entire categories of API operations at an AWS account, OU, or Organization level. These can be used to ensure workloads are deployed only in prescribed regions, ensure only whitelisted services are used, or prevent the disablement of detective/preventative controls. Prescriptive SCPs are provided.</li>
+<li><strong>Centralized, Isolated Networking:</strong> <a href="https://aws.amazon.com/vpc/">Virtual Private Clouds</a> (VPCs) are used to create data-plane isolation between workloads, centralized in a shared-network account. Connectivity to on-prem environments, internet egress, shared resources and AWS APIs are mediated at a central point of ingress/egress via the use of <a href="https://aws.amazon.com/transit-gateway/">Transit Gateway</a>, <a href="https://docs.aws.amazon.com/vpn/latest/s2svpn/VPC_VPN.html">Site-to-Site VPN</a>, Next-Gen Firewalls, and <a href="https://aws.amazon.com/directconnect/">AWS Direct Connect</a> (where applicable).</li>
+<li><strong>Centralized DNS Management:</strong> <a href="https://aws.amazon.com/route53/">Amazon Route 53</a> is used to provide unified public and private hosted zones across the cloud environment. Inbound and Outbound Route 53 Resolvers extend this unified view of DNS to on-premises networks.</li>
+<li><strong>Comprehensive Logging:</strong> CloudTrail logs are enabled Organization-wide to provide auditability across the cloud environment. CloudWatch Logs, for applications, as well as VPC flow logs, are centralized and deletion is prevented via SCPs.</li>
+<li><strong>Detective Security Controls:</strong> Potential security threats are surfaced across the cloud environment via automatic deployment of detective security controls such as GuardDuty, AWS Config, and Security Hub.</li>
+<li><strong>Single-Sign-On</strong>: AWS SSO is used to provide AD-authenticated IAM role assumption into accounts across the Organization for authorized principals.</li>
+</ul>
+<h2 id="33-document-convention">3.3. Document Convention</h2>
+<p>Several conventions are used throughout this document to aid understanding.</p>
+<h3 id="331-aws-account-numbers">3.3.1. AWS Account Numbers</h3>
+<p>AWS account numbers are decimal-digit pseudorandom identifiers with 12 digits (e.g. <code>651278770121</code>). This document will use the convention that an AWS Organization Management (root) account has the account ID <code>123456789012</code>, and child accounts are given by <code>111111111111</code>, <code>222222222222</code>, etc.</p>
+<p>For example the following ARN would refer to a VPC subnet in the <code>ca-central-1</code> region in the Organization Management (root) account:</p>
+<pre><code>arn:aws:ec2:ca-central-1:123456789012:subnet/subnet-024759b61fc305ea3
+</code></pre>
+<h3 id="332-json-annotation">3.3.2. JSON Annotation</h3>
+<p>Throughout the document, JSON snippets may be annotated with comments (starting with <code>//</code>). The JSON language itself does not define comments as part of the specification; these must be removed prior to use in most situations, including the AWS Console and APIs.</p>
+<p>For example:</p>
+<pre><code class="language-jsonc">{
+  &quot;Effect&quot;: &quot;Allow&quot;,
+  &quot;Principal&quot;: {
+    &quot;AWS&quot;: &quot;arn:aws:iam::123456789012:root&quot; // Trust the Organization Management (root) account.
+  },
+  &quot;Action&quot;: &quot;sts:AssumeRole&quot;
+}
+</code></pre>
+<p>The above is not valid JSON without first removing the comment on the fourth line.</p>
+<h3 id="333-ip-addresses">3.3.3. IP Addresses</h3>
+<p>The design makes use of <a href="https://tools.ietf.org/html/rfc1918">RFC1918</a> addresses (e.g. <code>10.1.0.0/16</code>) and <a href="https://tools.ietf.org/html/rfc6598">RFC6598</a> (e.g. <code>100.96.250.0/23</code>) for various networks; these will be labeled accordingly. Any specific range or IP shown is purely for illustration purposes only.</p>
+<h2 id="34-department-naming">3.4. Department Naming</h2>
+<p>This document will make no reference to specific Government of Canada departments. Where naming is required (e.g. in domain names), this document will use a placeholder name as needed; e.g. <code>dept.gc.ca</code>.</p>
+<h2 id="35-relationship-to-aws-landing-zone">3.5. Relationship to AWS Landing Zone</h2>
+<p>AWS Landing Zone is an AWS Solution designed to deploy multi-account cloud architectures for customers. The <em>AWS Secure Environment Architecture</em> draws on design patterns from Landing Zone, and re-uses several concepts and nomenclature, but it is not directly derived from it. An earlier internal release of the <em>AWS Secure Environment Architecture</em> presupposed the existence of an AWS Landing Zone in the Organization; this requirement has since been removed as of release <code>v1.1.0</code>.</p>
+<h1 id="4-account-structure">4. Account Structure</h1>
+<p>AWS accounts are a strong isolation boundary; by default there is zero control plane or data plane access from one AWS account to another. AWS Organizations is a service that provides centralized billing across a fleet of accounts, and optionally, some integration-points for cross-account guardrails and cross-account resource sharing. The <em>AWS Secure Environment Architecture</em> uses these features of AWS Organizations to realize its design.</p>
+<h2 id="41-accounts">4.1. Accounts</h2>
+<p>The <em>AWS Secure Environment Architecture</em> includes the following AWS accounts.</p>
+<p>Note that the account structure is strictly a control plane concept - nothing about this structure implies anything about the network design or network flows.</p>
+<p><img alt="Organizations Diagram" src="images/organization_structure.drawio.png" /></p>
+<h2 id="42-organization-management-root-aws-account">4.2. Organization Management (root) AWS Account</h2>
+<p>The AWS Organization resides in the Organization Management (root) AWS account. This account is not used for workloads (to the full extent possible) - it functions primarily as a billing aggregator, and a gateway to the entire cloud footprint for a high-trust principal. There exists a trust relationship between child AWS accounts in the Organization and the Organization Management (root) account; i.e. the child accounts have a role of this form:</p>
+<pre><code class="language-jsonc">{
+  &quot;Role&quot;: {
+    &quot;Path&quot;: &quot;/&quot;,
+    &quot;RoleName&quot;: &quot;AWSCloudFormationStackSetExecutionRole&quot;,
+    &quot;Arn&quot;: &quot;arn:aws:iam::111111111111:role/AWSCloudFormationStackSetExecutionRole&quot;, // Child account.
+    &quot;AssumeRolePolicyDocument&quot;: {
+      &quot;Version&quot;: &quot;2012-10-17&quot;,
+      &quot;Statement&quot;: [
+        {
+          &quot;Effect&quot;: &quot;Allow&quot;,
+          &quot;Principal&quot;: {
+            &quot;AWS&quot;: &quot;arn:aws:iam::123456789012:root&quot; // Organization Management (root) account may assume this role.
+          },
+          &quot;Action&quot;: &quot;sts:AssumeRole&quot;
+        }
+      ]
+    }
+  }
+}
+</code></pre>
+<p>Note that this is a different role name than the default installed by AWS Organizations (<code>OrganizationAccountAccessRole</code>).</p>
+<h3 id="421-aws-sso">4.2.1. AWS SSO</h3>
+<p>AWS SSO resides in the Organization Management (root) account in the organization, due to a current requirement of the AWS SSO service. This service deploys IAM roles into the accounts in the Organization. More details on SSO are available in the <strong>Authentication and Authorization</strong> section.</p>
+<h3 id="422-organizational-units">4.2.2. Organizational Units</h3>
+<p>Underneath the root of the Organization, Organizational Units (OUs) provide an optional mechanism for grouping accounts into logical collections. Aside from the benefit of the grouping itself, these collections serve as the attachment points for SCPs (preventative API-blocking controls), and Resource Access Manager sharing (cross-account resource sharing).</p>
+<p><img alt="OUs" src="images/ous.png" /></p>
+<p>Example use cases are as follows:</p>
+<ul>
+<li>An SCP is attached to the core OU to prevent the deletion of Transit Gateway resources in the associated accounts.</li>
+<li>The shared network account uses RAM sharing to share the development line-of-business VPC with a development OU. This makes the VPC available to a functional account in that OU used by developers, despite residing logically in the shared network account.</li>
+</ul>
+<p>OUs may be nested (to a total depth of five), with SCPs and RAM sharing applied at the desired level. A typical <em>AWS Secure Environment Architecture</em> environment will have the following OUs:</p>
+<h4 id="4221-core-ou">4.2.2.1. Core OU</h4>
+<p>This OU houses all administrative accounts, such as the core landing zone accounts. No application accounts or application workloads are intended to exist within this OU. This OU also contains the centralized networking infrastructure in the <code>SharedNetwork</code> account.</p>
+<h4 id="4222-central-ou">4.2.2.2. Central OU</h4>
+<p>This OU houses accounts containing centralized resources, such as a shared AWS Directory Service (Microsoft AD) instance. Other shared resources such as software development tooling (source control, testing infrastructure), or asset repositories should be created in this OU.</p>
+<h4 id="4223-functional-ou-sandbox">4.2.2.3. Functional OU: Sandbox</h4>
+<p>This OU contains a set of Sandbox accounts used by development teams for proof of concept / prototyping work. These accounts are isolated at a network level and are not connected to the VPCs hosting development, test and production workloads. These accounts have direct internet access via an internet gateway (IGW). They do not route through the Perimeter Security services VPC for internet access.</p>
+<h4 id="4224-functional-ou-unclass">4.2.2.4. Functional OU: UnClass</h4>
+<p>Accounts in this OU host unclassified application solutions. These accounts have internet access via the Perimeter firewall. This is an appropriate place to do cross-account unclassified collaboration with other departments or entities, or test services that are not available in the Canadian region.</p>
+<h4 id="4225-functional-ou-dev">4.2.2.5. Functional OU: Dev</h4>
+<p>Accounts in this OU host development tools and line of business application solutions that are part of approved releases and projects. These accounts have internet access via the Perimeter firewall.</p>
+<h4 id="4226-functional-ou-test">4.2.2.6. Functional OU: Test</h4>
+<p>Accounts in this OU host test tools and line of business application solutions that are part of approved releases and projects. These accounts have internet access via the Perimeter firewall.</p>
+<h4 id="4227-functional-ou-prod">4.2.2.7. Functional OU: Prod</h4>
+<p>Accounts in this OU host production tools and line of business application solutions that are part of approved releases and projects. These accounts have internet access via the Perimeter firewall. Accounts in this OU are locked down with only specific Operations and Security personnel having access.</p>
+<h4 id="4228-suspended-ou">4.2.2.8. Suspended OU</h4>
+<p>A suspended OU is created to act as a container for end-of-life accounts or accounts with suspected credential leakage. The <code>DenyAll</code> SCP is applied, which prevents all control-plane API operations from taking place by any account principal.</p>
+<h2 id="43-mandatory-accounts">4.3. Mandatory Accounts</h2>
+<p>The <em>AWS Secure Environment Architecture</em> is an opinionated design, which partly manifests in the accounts that are deemed mandatory within the Organization. The following accounts are assumed to exist, and each has an important function with respect to the goals of the overall Architecture (mandatory in red)</p>
+<p><img alt="Mandatory Accounts" src="images/accounts.png" /></p>
+<h3 id="431-organization-management-root">4.3.1. Organization Management (root)</h3>
+<p>As discussed above, the Organization Management (root) account functions as the root of the AWS Organization, the billing aggregator, attachment point for SCPs. Workloads are not intended to run in this account.</p>
+<p><strong>Note:</strong> Customers deploying the <em>AWS Secure Environment Architecture</em> via the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/README.md">AWS Secure Environment Accelerator</a> will deploy into this account. See the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/operations/operations-troubleshooting-guide.md">Operations Guide</a> for more details.</p>
+<h3 id="432-perimeter">4.3.2. Perimeter</h3>
+<p>The perimeter account, and in particular the perimeter VPC therein, functions as the single point of ingress/egress from the PBMM cloud environment to the public internet and/or on-premises network. This provides a central point of network control through which all workload-generated traffic, ingress and egress, must transit. The perimeter VPC hosts next-generation firewall instances that provide security services such as virus scanning, malware protection, intrusion protection, TLS inspection, and web application firewall functionality. More details on can be found in the Networking section of this document.</p>
+<h3 id="433-shared-network">4.3.3. Shared Network</h3>
+<p>The shared network account hosts the vast majority of the AWS-side of the networking resources throughout the <em>AWS Secure Environment Architecture</em>. Workload-scoped VPCs (<code>Dev</code>, <code>Test</code>, <code>Prod</code>, etc) are defined here, and shared via RAM sharing to the respective OUs in the Organization. A Transit Gateway provides connectivity from the workloads to the internet or on-prem, without permitting cross-environment (AKA "East:West traffic") traffic (e.g. there is no Transit Gateway route from the <code>Dev</code> VPC to the <code>Prod</code> VPC). More details on can be found in the Networking section of this document.</p>
+<h3 id="434-operations">4.3.4. Operations</h3>
+<p>The operations account provides a central location for the cloud team to provide cloud operation services to other AWS accounts within the Organization and is where an organizations cloud operations team "hangs out" or delivers tooling applicable across all accounts in the organization. It provides ViewOnly access to CloudWatch logs and metrics across the organization. It's where centralized Systems Manager Session Manager Automation (remediation) documents are located. It's where organizations centralize backup automation (if automated), SSM inventory and patch jobs, and where AWS Managed Active Directory would typically be deployed and accessible to all workloads in the organization. In some AWS documentation this is referred to as the Shared Services account.</p>
+<h3 id="435-log-archive">4.3.5. Log Archive</h3>
+<p>The log archive account provides a central aggregation and secure storage point for all audit logs created within the AWS Organization. This account contains a centralized location for copies of every account’s Audit and Configuration compliance logs. It also provides a storage location for any other audit/compliance logs, as well as application/OS logs.</p>
+<p>The AWS CloudTrail service provides a full audit history of all actions taken against AWS services, including users logging into accounts. We recommend access to this account be restricted to auditors or security teams for compliance and forensic investigations related to account activity. Additional CloudTrail trails for operational use can be created in each account.</p>
+<h3 id="436-security">4.3.6. Security</h3>
+<p>The security account is restricted to authorized security and compliance personnel, and related security or audit tools. This is an aggregation point for security services, including AWS Security Hub, and serves as the Organization Management (root) for Amazon Guard Duty. A trust relationship with a readonly permission policy exists between every Organization account and the security account for audit and compliance purposes.</p>
+<h3 id="437-devops-account-andor-shared-team-accounts">4.3.7. DevOps account and/or Shared Team accounts</h3>
+<p>Used to deliver CI/CD capabilities - two patterns are depicted in the architecture <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/docs/architectures/AWS_Diagrams_Account_Network_VPC.md">diagrams</a> - The first has a single org wide central CI/CD tooling account, the other has a CI/CD and shared tooling account per major application team/grouping of teams/applications. Which is used will depend entirely on the org size, maturity model, delegation model of the organization and their team structures. We would generally still recommend CI/CD tooling in each developer account (i.e. using Code Commit) and when certain branch names were leveraged, causes the branch/PR to be automatically pulled into the centralized CI/CD tooling account and the approvals and promotion process which will push the code through the SDLC cycle to Test and Prod accounts, etc. Refer to <a href="https://aws.amazon.com/blogs/devops/aws-building-a-secure-cross-account-continuous-delivery-pipeline/">this</a> blog for more details on automating this pattern.</p>
+<h2 id="44-functional-accounts">4.4. Functional Accounts</h2>
+<p>Functional accounts are created on demand, and placed into an appropriate OU in the Organization structure. The purpose of functional accounts is to provide a secure and managed environment where project teams can use AWS resources. They provide an isolated control plane so that the actions of one team in one account cannot inadvertently affect the work of other teams in other accounts.</p>
+<p>Functional accounts will gain access to the RAM shared resources of their respective parent OU. Accounts created for <code>systemA</code> and <code>systemB</code> in the <code>Dev</code> OU would have control plane isolation from each other; however these would both have access to the <code>Dev</code> VPC (shared from the <code>SharedNetwork</code> account).</p>
+<p>Data plane isolation within the same VPC is achieved by default, by using appropriate security groups whenever ingress is warranted. For example, the app tier of <code>systemA</code> should only permit ingress from the <code>systemA-web</code> security group, not an overly broad range such as <code>0.0.0.0/0</code>, or even the VPC range.</p>
+<h2 id="45-account-level-settings">4.5. Account Level Settings</h2>
+<p>The <em>AWS Secure Environment Architecture</em> recommends the enabling of certain account-wide features on account creation. Namely, these include:</p>
+<ol>
+<li><a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-options">S3 Public Access Block</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default">By-default encryption of EBS volumes</a>.</li>
+</ol>
+<h2 id="46-private-marketplace">4.6. Private Marketplace</h2>
+<p>The <em>AWS Secure Environment Architecture</em> recommends that the AWS Private Marketplace is enabled for the Organization. Private Marketplace helps administrators govern which products they want their users to run on AWS by making it possible to see only products that comply with their organization's procurement policy. When Private Marketplace is enabled, it will replace the standard AWS Marketplace for all users.</p>
+<p><img alt="PMP" src="images/pmp.png" /></p>
+<h1 id="5-networking">5. Networking</h1>
+<h2 id="51-overview">5.1. Overview</h2>
+<p>The <em>AWS Secure Environment Architecture</em> networking is built on a principle of centralized on-premises and Internet ingress/egress, while enforcing data plane isolation between workloads in different environments. Connectivity to on-prem environments, internet egress, shared resources and AWS APIs are mediated at a central point of ingress/egress via the use of a <a href="https://aws.amazon.com/transit-gateway/">Transit Gateway</a>. Consider the following overall network diagram:</p>
+<p><img alt="Mandatory Accounts" src="images/network_architecture.drawio.png" /></p>
+<p>All functional accounts use RAM-shared networking infrastructure as depicted above. The workload VPCs (Dev, Test, Prod, etc) are hosted in the Shared Network account and made available to the appropriate OU in the Organization.</p>
+<h2 id="52-perimeter">5.2. Perimeter</h2>
+<p>The perimeter VPC hosts the Organization's perimeter security services. The Perimeter VPC is used to control the flow of traffic between AWS Accounts and external networks for IaaS workloads: both public (internet) and in some cases private (access to on-premises datacenters). This VPC hosts Next Generation Firewalls (NGFW) that provide perimeter security services including virus scanning / malware protection, Intrusion Protection services, TLS Inspection and Web Application Firewall protection. If applicable, this VPC also hosts reverse proxy servers.</p>
+<p>Note that this VPC is in its own isolated account, separate from Shared Network, in order to facilitate networking and security 'separation of duties'. Internal networking teams may administer the cloud networks in Shared Network without being granted permission to administer the security perimeter itself.</p>
+<h3 id="521-ip-ranges">5.2.1. IP Ranges</h3>
+<ul>
+<li><strong>Primary Range</strong>: The <em>AWS Secure Environment Architecture</em> recommends that the perimeter VPC have a primary range in the <a href="https://tools.ietf.org/html/rfc1918">RFC1918</a> block (e.g. <code>10.7.4.0/22</code>), used only for subnets dedicated to 'detonation' purposes. This primary range, in an otherwise-unused <a href="https://tools.ietf.org/html/rfc1918">RFC1918</a> range, is not intended to be routable outside of the VPC, and is reserved for future use with malware detonation capabilities of NGFW devices.</li>
+<li><strong>Secondary Range</strong>: This VPC should also have a secondary range in the <a href="https://tools.ietf.org/html/rfc6598">RFC6598</a> block (e.g. <code>100.96.250.0/23</code>) used for the overlay network (NGFW devices inside VPN tunnel) for all other subnets. This secondary range is assigned by an external entity (e.g. Shared Services Canada), and should be carefully selected in order to co-exist with <em>AWS Secure Environment Architecture</em> deployments that exist at peer organizations; for instance other government departments that maintain a relationship with the same shared entity in a carrier-grade NAT topology. Although this is a 'secondary' range in VPC parlance, this VPC CIDR should be interpreted as the more 'significant' of the two with respect to Transit Gateway routing; the Transit Gateway will only ever interact with this 'secondary' range.</li>
+</ul>
+<p><img alt="Endpoints" src="images/perimeter.drawio.png" /></p>
+<p>This VPC has four subnets per AZ, each of which hosts a port used by the NGFW devices, which are deployed in an HA pair. The purpose of these subnets is as follows.</p>
+<ul>
+<li><strong>Detonation</strong>: This is an unused subnet reserved for future use with malware detonation capabilities of the NGFW devices.</li>
+<li>e.g. <code>10.7.4.0/24</code> - not routable except local.</li>
+<li><strong>Proxy</strong>: This subnet hosts reverse proxy services for web and other protocols. It also contains the <a href="https://aws.amazon.com/premiumsupport/knowledge-center/ec2-systems-manager-vpc-endpoints/">three interface endpoints</a> necessary for AWS Systems Manager Session Manager, which enables SSH-less CLI access to authorized and authenticated principals in the perimeter account.</li>
+<li>e.g. <code>100.96.251.64/26</code></li>
+<li><strong>On-Premises</strong>: This subnet hosts the private interfaces of the firewalls, corresponding to connections from the on-premises network.</li>
+<li>e.g. <code>100.96.250.192/26</code></li>
+<li><strong>FW-Management</strong>: This subnet is used to host management tools and the management of the Firewalls itself.</li>
+<li>e.g. <code>100.96.251.160/27</code> - a smaller subnet is permissible due to modest IP requirements for management instances.</li>
+<li><strong>Public</strong>: This subnet is the public-access zone for the perimeter VPC. It hosts the public interface of the firewalls, as well as application load balancers that are used to balance traffic across the firewall pair. There is one Elastic IPv4 address per public subnet that corresponds to the IPSec Customer Gateway (CGW) for the VPN connections into the Transit Gateway in Shared Networking.</li>
+<li>e.g. <code>100.96.250.0/26</code></li>
+</ul>
+<p>Outbound internet connections (for software updates, etc.) can be initiated from within the workload VPCs, and use the transparent proxy feature of the next-gen Firewalls.</p>
+<p><strong>Note on VPN Tunnel Redundancy</strong>: Each NGFW device manifests as a unique CGW on the AWS side (shared network account) of the IPSec VPNs. Moreover, there are <strong>two</strong> <em>Site-to-Site VPNs</em> in this architecture, each with one active tunnel (and one inactive tunnel); taken together, the pair is redundant. In many hybrid networking configurations, a single <em>Site-to-Site VPN</em> resource is used with dual active tunnels. Customers may receive the following email notification from the AWS VPC service team:</p>
+<blockquote>
+<p>You're receiving this message because you have at least one VPN Connection in the ca-central-1 Region, for which your VPN Customer Gateway is not using both tunnels. This mode of operation is not recommended as you may experience connectivity issues if your active tunnel fails.</p>
+</blockquote>
+<p>This message may be disregarded, as it is premised on a traditional hybrid configuration with dual tunnels. Customers may create a VPN support case (in shared network account) requesting that these informational emails are disabled.</p>
+<h2 id="53-shared-network">5.3. Shared Network</h2>
+<p>The shared network account, and the AWS networking resources therein, form the core of the cloud networking infrastructure across the account structure. Rather than the individual accounts defining their own networks, these are instead centralized here and shared out to the relevant OUs. Principals in a Dev OU will have access to a Dev VPC, Test OU will have access to a Test VPC and so on - all of which are owned by this account.</p>
+<p>You can share AWS Transit Gateways, Subnets, AWS License Manager configurations, and Amazon Route 53 Resolver rules resources with AWS Resource Access Manager (RAM). The RAM service eliminates the need to create duplicate resources in multiple accounts, reducing the operational overhead of managing those resources in every single account.</p>
+<h3 id="531-transit-gateway">5.3.1. Transit Gateway</h3>
+<p>The Transit Gateway is a central hub that performs several core functions within the Shared Network account.</p>
+<ol>
+<li>Routing of permitted flows; for example a Workload to On-premises via the Perimeter VPC.</li>
+<li>All routing tables in SharedNetwork VPCs send <code>0.0.0.0/0</code> traffic to the TGW, where its handling will be determined by the TGW Route Table (TGW-RT) that its attachment is associated with. For example:<ul>
+<li>an HTTP request to <code>registry.hub.docker.com</code> from the Test VPC will go to the TGW</li>
+<li>The Segregated TGW RT will direct that traffic to the Perimeter VPC via the IPsec VPNs</li>
+<li>The request will be proxied to the internet, via GC-CAP if appropriate</li>
+<li>The return traffic will again transit the IPsec VPNs</li>
+<li>The <code>10.3.0.0/16</code> bound response traffic will arrive at the Core TGW RT, where a propagation in that TGW RT will direct the response back to the Test VPC.</li>
+</ul>
+</li>
+<li>Defining separate routing domains that prohibit undesired east-west flows at the network level; for example, by prohibiting Dev to Prod traffic. For example:</li>
+<li>All routing tables in SharedNetwork VPCs send <code>0.0.0.0/0</code> traffic to the TGW, which defines where the next permissible hop is. For example, <code>10.2.0.0/16</code> Dev traffic destined for the <code>10.0.4.0/16</code> Prod VPC will be blocked by the blackhole route in the Segregated TGW RT.</li>
+<li>Enabling centralization of shared resources; namely a shared Microsoft AD installation in the Central VPC, and access to shared VPC Endpoints in the Endpoint VPC.</li>
+<li>The Central VPC, and the Endpoint VPC are routable from Workload VPCs. This provides an economical way to share Organization wide resources that are nonetheless isolated into their own VPCs. For example:<ul>
+<li>a <code>git</code> request in the <code>Dev</code> VPC to <code>git.private-domain.ca</code> resolves to a <code>10.1.0.0/16</code> address in the <code>Central</code> VPC.</li>
+<li>The request from the <code>Dev</code> VPC will go to the TGW due to the VPC routing table associated with that subnet</li>
+<li>The TGW will send the request to the <code>Central</code> VPC via an entry in the Segregated TGW RT</li>
+<li>The <code>git</code> response will go to the TGW due to the VPC routing table associated with that subnet</li>
+<li>The Shared TGW RT will direct the response back to the <code>Dev</code> VPC</li>
+</ul>
+</li>
+</ol>
+<p>The four TGW RTs exist to serve the following main functions:</p>
+<ul>
+<li><strong>Segregated TGW RT</strong>: Used as the association table for the workload VPCs; prevents east-west traffic, except to shared resources.</li>
+<li><strong>Core TGW RT</strong>: Used for internet/on-premises response traffic, and Endpoint VPC egress.</li>
+<li><strong>Shared TGW RT</strong>: Used to provide <code>Central</code> VPC access east-west for the purposes of response traffic to shared workloads</li>
+<li><strong>Standalone TGW RT</strong>: Reserved for future use. Prevents TGW routing except to the Endpoint VPC.</li>
+</ul>
+<p>Note that a unique BGP ASN will need to be available for the TGW.</p>
+<h3 id="532-endpoint-vpc">5.3.2. Endpoint VPC</h3>
+<p>DNS functionality for the network architecture is centralized in the Endpoint VPC. It is recommended that the Endpoint VPC use a <a href="https://tools.ietf.org/html/rfc1918">RFC1918</a> range - e.g. <code>10.7.0.0/22</code> with sufficient capacity to support 60+ AWS services and future endpoint expansion, and inbound and outbound resolvers (all figures per AZ).</p>
+<p><img alt="Endpoints" src="images/dns.drawio.png" /></p>
+<h3 id="533-endpoint-vpc-interface-endpoints">5.3.3. Endpoint VPC: Interface Endpoints</h3>
+<p>The endpoint VPC hosts VPC Interface Endpoints (VPCEs) and associated Route 53 private hosted zones for all applicable services in the <code>ca-central-1</code> region. This permits traffic destined for an eligible AWS service; for example SQS, to remain entirely within the SharedNetwork account rather than transiting via the IPv4 public endpoint for the service:</p>
+<p><img alt="Endpoints" src="images/endpoints.png" /></p>
+<p>From within an associated workload VPC such as <code>Dev</code>, the service endpoint (e.g. <code>sqs.ca-central-1.amazonaws.com</code>) will resolve to an IP in the <code>Endpoint</code> VPC:</p>
+<pre><code class="language-bash">sh-4.2$ nslookup sqs.ca-central-1.amazonaws.com
+Server:         10.2.0.2                  # Dev VPC's .2 resolver.
+Address:        10.2.0.2#53
+
+Non-authoritative answer:
+Name:   sqs.ca-central-1.amazonaws.com
+Address: 10.7.1.190                       # IP in Endpoint VPC - AZ-a.
+Name:   sqs.ca-central-1.amazonaws.com
+Address: 10.7.0.135                       # IP in Endpoint VPC - AZ-b.
+</code></pre>
+<p>This cross-VPC resolution of the service-specific private hosted zone functions via the association of each VPC to each private hosted zone, as depicted above.</p>
+<h3 id="534-endpoint-vpc-hybrid-dns">5.3.4. Endpoint VPC: Hybrid DNS</h3>
+<p>The Endpoint VPC also hosts the common DNS infrastructure used to resolve DNS queries:</p>
+<ul>
+<li>within the cloud</li>
+<li>from the cloud to on-premises</li>
+<li>from on-premises to the cloud</li>
+</ul>
+<h4 id="5341-within-the-cloud">5.3.4.1. Within The Cloud</h4>
+<p>In-cloud DNS resolution applies beyond the DNS infrastructure that is put in place to support the Interface Endpoints for the AWS services in-region. Other DNS zones, associated with the Endpoint VPC, are resolvable the same way via an association to workload VPCs.</p>
+<h4 id="5342-from-cloud-to-on-premises">5.3.4.2. From Cloud to On-Premises</h4>
+<p>DNS Resolution from the cloud to on-premises is handled via the use of a Route 53 Outbound Endpoint, deployed in the Endpoint VPC, with an associated Resolver rule that forwards DNS traffic to the outbound endpoint. Each VPC is associated to this rule.</p>
+<p><img alt="Endpoints" src="images/resolver-rule.png" /></p>
+<h4 id="5343-from-on-premises-to-cloud">5.3.4.3. From On-Premises to Cloud</h4>
+<p>Conditional forwarding from on-premises networks is made possible via the use of a Route 53 Inbound Endpoint. On-prem networks send resolution requests for relevant domains to the endpoints deployed in the Endpoint VPC:</p>
+<p><img alt="Endpoints" src="images/inbound-resolver.png" /></p>
+<h3 id="535-workload-vpcs">5.3.5. Workload VPCs</h3>
+<p>The workload VPCs are where line of business applications ultimately reside, segmented by environment (<code>Dev</code>, <code>Test</code>, <code>Prod</code>, etc). It is recommended that the Workload VPC use a <a href="https://tools.ietf.org/html/rfc1918">RFC1918</a> range (e.g. <code>10.2.0.0/16</code> for <code>Dev</code>, <code>10.3.0.0/16</code> for <code>Test</code>, etc).</p>
+<p><img alt="Endpoints" src="images/workload.drawio.png" /></p>
+<p>Note that security groups are recommended as the primary data-plane isolation mechanism between applications that may coexist in the same VPC. It is anticipated that unrelated applications would coexist in their respective tiers without ever permitting east-west traffic flows.</p>
+<p>The following subnets are defined by the <em>AWS Secure Environment Architecture</em>:</p>
+<ul>
+<li><strong>TGW subnet</strong>: This subnet hosts the elastic-network interfaces for the TGW attachment. A <code>/27</code> subnet is sufficient.</li>
+<li><strong>Web subnet</strong>: This subnet hosts front-end or otherwise 'client' facing infrastructure. A <code>/20</code> or larger subnet is recommended to facilitate auto-scaling.</li>
+<li><strong>App subnet</strong>: This subnet hosts app-tier code (EC2, containers, etc). A <code>/19</code> or larger subnet is recommended to facilitate auto-scaling.</li>
+<li><strong>Data subnet</strong>: This subnet hosts data-tier code (RDS instances, ElastiCache instances). A <code>/21</code> or larger subnet is recommended.</li>
+<li><strong>Mgmt subnet</strong>: This subnet hosts bastion or other management instances. A <code>/21</code> or larger subnet is recommended.</li>
+</ul>
+<p>Each subnet is associated with a Common VPC Route Table, as depicted above. Gateway Endpoints for relevant services (Amazon S3, Amazon DynamoDB) are installed in the Common route tables of all Workload VPCs. Aside from local traffic or gateway-bound traffic, <code>0.0.0.0/0</code> is always destined for the TGW.</p>
+<h4 id="5351-security-groups">5.3.5.1. Security Groups</h4>
+<p>Security Groups are instance level firewalls, and represent a foundational unit of network segmentation across AWS networking. Security groups are stateful, and support ingress/egress rules based on protocols and source/destinations. While CIDR ranges are supported by the latter, it is preferable to instead use other security groups as source/destinations. This permits a higher level of expressiveness that is not coupled to particular CIDR choices and works well with autoscaling; e.g.</p>
+<blockquote>
+<p>"permit port 3306 traffic from the <code>App</code> tier to the <code>Data</code> tier"</p>
+</blockquote>
+<p>versus</p>
+<blockquote>
+<p>"permit port 3306 traffic from <code>10.0.1.0/24</code> to <code>10.0.2.0/24</code>.</p>
+</blockquote>
+<p>Security group egress rules are often used in 'allow all' mode (<code>0.0.0.0/0</code>), with the focus primarily being on consistently whitelisting required ingress traffic. This ensures day to day activities like patching, access to DNS, or to directory services access can function on instances without friction. The provided sample security groups in the workload accounts offers a good balance that considers both security, ease of operations, and frictionless development. They allow developers to focus on developing, enabling them to simply use the pre-created security constructs for their workloads, and avoid the creation of wide-open security groups. Developers can equally choose to create more appropriate least-privilege security groups more suitable for their application, if they are skilled in this area. It is expected as an application is promoted through the SDLC cycle from Dev through Test to Prod, these security groups will be further refined by the extended customers teams to further reduce privilege, as appropriate. It is expected that each customer will review and tailor their Security Groups based on their own security requirements.</p>
+<h4 id="5352-nacls">5.3.5.2. NACLs</h4>
+<p>Network Access-Control Lists (NACLs) are stateless constructs used sparingly as a defense-in-depth measure in this architecture. AWS generally discourages the use of NACLs given the added complexity and management burden, given the availability and ease of use provided by security groups. Each network flow often requires four NACL entries (egress from ephemeral, ingress to destination, egress from destination, ingress to ephemeral). The architecture recommends NACLs as a segmentation mechanism for <code>Data</code> subnets; i.e. <code>DENY</code> all inbound traffic to such a subnet except that which originates in the <code>App</code> subnet for the same VPC. As with security groups, we encourage customers to review and tailor their NACLs based on their own security requirements.</p>
+<h3 id="536-central-vpc">5.3.6. Central VPC</h3>
+<p>The Central VPC is a network for localizing operational infrastructure that may be needed across the Organization, such as code repositories, artifact repositories, and notably, the managed Directory Service (Microsoft AD). Instances that are domain joined will connect to this AD domain - a network flow that is made possible from anywhere in the network structure due to the inclusion of the Central VPC in all relevant association TGW RTs.</p>
+<p>It is recommended that the Central VPC use a <a href="https://tools.ietf.org/html/rfc1918">RFC1918</a> range (e.g. <code>10.1.0.0/16</code>) for the purposes of routing from the workload VPCs, and a secondary range from the <a href="https://tools.ietf.org/html/rfc6598">RFC6598</a> block (e.g. <code>100.96.252.0/23</code>) to support the Microsoft AD workload.</p>
+<p>Note that this VPC also contains a peering relationship to the <code>ForSSO</code> VPC in the Organization Management (root) account. This exists purely to support connectivity from an AD-Connector instance in the Organization Management (root) account, which in turn enables AWS SSO for federated login to the AWS control plane.</p>
+<p><img alt="Central" src="images/central.drawio.png" /></p>
+<h4 id="5361-domain-joining">5.3.6.1. Domain Joining</h4>
+<p>An EC2 instance deployed in the Workload VPCs can join the domain corresponding to the Microsoft AD in <code>Central</code> provided the following conditions are all true:</p>
+<ol>
+<li>The instance needs a network path to the Central VPC (given by the Segregated TGW RT), and appropriate security group assignment</li>
+<li>The Microsoft AD should be 'shared' with the account the EC2 instance resides in (The <em>AWS Secure Environment Architecture</em> recommends these directories are shared to workload accounts)</li>
+<li>The instance has the AWS managed policies <code>AmazonSSMManagedInstanceCore</code> and <code>AmazonSSMDirectoryServiceAccess</code> attached to its IAM role, or runs under a role with at least the permission policies given by the combination of these two managed policies.</li>
+<li>The EC2's VPC has an associated resolver rule that directs DNS queries for the AD domain to the Central VPC.</li>
+</ol>
+<h3 id="537-sandbox-vpc">5.3.7. Sandbox VPC</h3>
+<p>A sandbox VPC, not depicted, may be included in the <em>AWS Secure Environment Architecture</em>. This is <strong>not</strong> connected to the Transit Gateway, Perimeter VPC, on-premises network, or other common infrastructure. It contains its own Internet Gateway, and is an entirely separate VPC with respect to the rest of the <em>AWS Secure Environment Architecture</em>.</p>
+<p>The sandbox VPC should be used exclusively for time-limited experimentation, particularly with out-of-region services, and never used for any line of business workload or data.</p>
+<h1 id="6-authorization-and-authentication">6. Authorization and Authentication</h1>
+<p>The <em>AWS Secure Environment Architecture</em> makes extensive use of AWS authorization and authentication primitives from the Identity and Access Management (IAM) service as a means to enforce the guardrail objectives of the <em>AWS Secure Environment Architecture</em>, and govern access to the set of accounts that makes up the Organization.</p>
+<h2 id="61-relationship-to-the-organization-management-root-aws-account">6.1. Relationship to the Organization Management (root) AWS Account</h2>
+<p>AWS accounts, as a default position, are entirely self-contained with respect to IAM principals - their Users, Roles, Groups are independent and scoped only to themselves. Accounts created by AWS Organizations deploy a default role with a trust policy back to the Organization Management (root). By default, this role is named the <code>OrganizationAccountAccessRole</code>; by contrast, the <em>AWS Secure Environment Architecture</em> allows customers to customize this role by defining it in <code>organization-admin-role</code> (default: <code>AWSCloudFormationStackSetAdministrationRole</code>).</p>
+<pre><code class="language-jsonc">{
+  &quot;Role&quot;: {
+    &quot;Path&quot;: &quot;/&quot;,
+    &quot;RoleName&quot;: &quot;AWSCloudFormationStackSetExecutionRole&quot;,
+    &quot;Arn&quot;: &quot;arn:aws:iam::111111111111:role/AWSCloudFormationStackSetExecutionRole&quot;, // Child account.
+    &quot;AssumeRolePolicyDocument&quot;: {
+      &quot;Version&quot;: &quot;2012-10-17&quot;,
+      &quot;Statement&quot;: [
+        {
+          &quot;Effect&quot;: &quot;Allow&quot;,
+          &quot;Principal&quot;: {
+            &quot;AWS&quot;: &quot;arn:aws:iam::123456789012:root&quot; // Organization Management (root) account may assume this role.
+          },
+          &quot;Action&quot;: &quot;sts:AssumeRole&quot;
+        }
+      ]
+    }
+  }
+}
+</code></pre>
+<p>As discussed, the AWS Organization resides in the Organization Management (root) account. This account is not used for workloads and is primarily a gateway to the entire cloud footprint for a high-trust principal. This is realized via the role defined in <code>organization-admin-role</code> (default: <code>AWSCloudFormationStackSetAdministrationRole</code>). It is therefore crucial that the Organization Management (root) account root credentials be handled with extreme diligence, and with a U2F hardware key enabled as a second-factor (and stored in a secure location such as a safe).</p>
+<h2 id="62-break-glass-accounts">6.2. Break Glass Accounts</h2>
+<p>Given the Organizational-wide trust relationship to the role defined in <code>organization-admin-role</code> (default: <code>AWSCloudFormationStackSetAdministrationRole</code>) and its broad exclusion from SCPs (discussed below), the assumption of this role grants 'super admin' status, and is thus an extremely high privilege operation. The ability to assume this role should be considered a 'break glass' capability - to be used only in extraordinary circumstances. Access to this role can be granted by IAM Users or IAM Roles in the Organization Management (root) account (via SSO) - as with the Organization Management (root) account credentials, these should be handled with extreme diligence, and with a U2F hardware key enabled as a second-factor (and stored in a secure location such as a safe).</p>
+<p><strong>TBD: This role was locked down starting in v1.2.5 - Add further details here /TODO</strong></p>
+<h2 id="63-control-plane-access-via-aws-sso">6.3. Control Plane Access via AWS SSO</h2>
+<p>The vast majority of end-users of the AWS cloud within the Organization will never use or interact with the Organization Management (root) account, or indeed the root users of any child account in the Organization. The <em>AWS Secure Environment Architecture</em> recommends instead that AWS SSO be provisioned in the Organization Management (root) account (a rare case where Organization Management (root) account deployment is mandated).</p>
+<p>Users will login to AWS via the web-based endpoint for the AWS SSO service:</p>
+<p><img alt="SSO" src="images/sso.drawio.png" /></p>
+<p>Via an AWS Directory Connector deployed in the Organization Management (root) account, AWS SSO will authenticate the user based on the underlying Microsoft AD installation (in the Central account). Based on group membership, the user will be presented with a set of roles to assume into those accounts. For example, a developer may be placed into groups that permit <code>Admin</code> access in the <code>Dev</code> account and <code>Readonly</code> access in <code>Test</code>; meanwhile an IT Director may have high-privilege access to most, or all, accounts. In effect, AWS SSO adds SAML IdP capabilities to the AWS Managed Microsoft AD, with the AWS Console acting as a service-provider (SP) in SAML parlance. Other SAML-aware SPs may also be used with AWS SSO.</p>
+<h3 id="631-sso-user-roles">6.3.1. SSO User Roles</h3>
+<p>AWS SSO creates an identity provider (IdP) in each account in the Organization. The roles used by end users have a trust policy to this IdP. When a user authenticates to AWS SSO (via the underlying AD Connector) and selects a role to assume based on their group membership, the SSO service provides the user with temporary security credentials unique to the role session. In such a scenario, the user has no long-term credentials (e.g. password, or access keys) and instead uses their temporary security credentials.</p>
+<p>Users, via their AD group membership, are ultimately assigned to SSO User Roles via the use of AWS SSO Permission Sets. A permission set is an assignment of a particular permission policy to a set of accounts. For example:</p>
+<p>An organization might decide to use <strong>AWS Managed Policies for Job Functions</strong> that are located within the SSO service as the baseline for role-based-access-control (RBAC) separation within an AWS account. This enables job function policies such as:</p>
+<ul>
+<li><strong>Administrator</strong> - This policy grants almost all actions for all AWS services and for all resources in the account.</li>
+<li><strong>Developer Power User</strong> - This user performs application development tasks and can create and configure resources and services that support AWS aware application development.</li>
+<li><strong>Database Administrator</strong> - This policy grants permissions to create, configure, and maintain databases. It includes access to AWS database services, such as Amazon DynamoDB, Amazon Relational Database Service (RDS), and Amazon Redshift.</li>
+<li><strong>View-Only User</strong> - This policy grants <code>List*</code>, <code>Describe*</code>, <code>Get*</code>, <code>View*</code>, and <code>Lookup*</code> access to resources for most AWS services.</li>
+</ul>
+<h3 id="632-principal-authorization">6.3.2. Principal Authorization</h3>
+<p>Having assumed a role, a user’s permission-level within an AWS account with respect to any API operation is governed by the IAM policy evaluation logic flow (<a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html">detailed here</a>):</p>
+<p><img alt="IAM-policy" src="images/iam-policy-evaluation.png" /></p>
+<p>Having an <code>Allow</code> to a particular API operation from the Role (i.e. Session Policy) does not necessarily imply that API operation will succeed. As depicted above, <strong>Deny</strong> may result due to another evaluation stage in the logic; for example a restrictive permission boundary or an explicit <code>Deny</code> at the Resource or SCP (account) level. SCPs are used extensively as a guardrailing mechanism in the <em>AWS Secure Environment Architecture</em>, and are discussed in a later section.</p>
+<h2 id="64-root-authorization">6.4. Root Authorization</h2>
+<p>Root credentials for individual accounts in an AWS organization may be created on demand via a password reset process on the unique account email address; however, the <em>AWS Secure Environment Architecture</em> specifically denies this via SCP. Root credentials authorize all actions for all AWS services and for all resources in the account (except anything denied by SCPs). There are some actions which only root has the capability to perform which are found within the <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html">AWS online documentation</a>. These are typically rare operations (e.g. creation of X.509 keys), and should not be required in the normal course of business. Any root credentials, if ever they need to be created, should be handled with extreme diligence, with U2F MFA enabled.</p>
+<h2 id="65-service-roles">6.5. Service Roles</h2>
+<p>A service role is an IAM Role that a service assumes to perform actions in an account on the user’s behalf. When a user sets up AWS service environments, the user must define an IAM Role for the service to assume. This service role must include all the permissions that are required for the service to access the AWS resources that it needs. Service roles provide access only within a single account and cannot be used to grant access to services in other accounts. Users can create, modify, and delete a service role from within the IAM service. For example, a user can create a role that allows Amazon Redshift to access an Amazon S3 bucket on the user’s behalf and then load data from that bucket into an Amazon Redshift cluster. In the case of SSO, during the process in which AWS SSO is enabled, the AWS Organizations service grants AWS SSO the necessary permissions to create subsequent IAM Roles.</p>
+<h2 id="66-service-control-policies">6.6. Service Control Policies</h2>
+<p>Service Control Policies are a key preventative control recommended by the <em>AWS Secure Environment Architecture</em>. It is crucial to note that SCPs, by themselves, never <em>grant</em> permissions. They are most often used to <code>Deny</code> certain actions at a root, OU, or account level within an AWS Organization. Since <code>Deny</code> always overrides <code>Allow</code> in the IAM policy evaluation logic, SCPs can have a powerful effect on all principals in an account, and can wholesale deny entire categories of actions irrespective of the permission policy attached to the principal itself - even the root user of the account.</p>
+<p>SCPs follow an inheritance pattern from the root of the Organization:</p>
+<p><img alt="SCPs" src="images/scp-venn.png" /></p>
+<p>In order for any principal to be able to perform an action A, it is necessary (but not sufficient) that there is an <code>Allow</code> on action A from all levels of the hierarchy down to the account, and no explicit <code>Deny</code> anywhere. This is discussed in further detail in <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps-about.html">How SCPs Work</a>.</p>
+<p>The <em>AWS Secure Environment Architecture</em> recommends the following SCPs in the Organization:</p>
+<h3 id="661-pbmm-only">6.6.1. PBMM Only</h3>
+<p>This is a comprehensive policy whose main goal is to provide a PBMM-compliant cloud environment, namely prohibiting any non-centralized networking, and mandating data residency in Canada. It should be attached to all non-<code>Unclass</code> OUs.</p>
+<table>
+<thead>
+<tr>
+<th>Policy Statement ID (SID)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DenyNetworkPBMMONLY</code></td>
+<td>Prevents the creation of any networking infrastructure in the workload accounts such as VPCs, NATs, VPC peers, etc.</td>
+</tr>
+<tr>
+<td><code>DenyAllOutsideCanadaPBMMONLY</code></td>
+<td>Prevents the use of any service in any non-Canadian AWS region with the exception of services that are considered global; e.g. CloudFront, IAM, STS, etc</td>
+</tr>
+<tr>
+<td><code>ScopeSpecificGlobalActionsToCanadaUSE1</code></td>
+<td>Within services that are exempted from <code>DenyAllOutsideCanadaPBMMONLY</code>, scope the use of those services to the <code>us-east-1</code> region</td>
+</tr>
+</tbody>
+</table>
+<h3 id="662-pbmm-unclass-only">6.6.2. PBMM Unclass Only</h3>
+<p>This is broadly similar to <code>PBMM Only</code>; however it relaxes the requirement for Canadian region usage, and does not prohibit network infrastructure creation (e.g. VPCs, IGWs). This is appropriate for OUs in which AWS service experimentation is taking place.</p>
+<table>
+<thead>
+<tr>
+<th>Policy Statement ID (SID)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DenyUnclass</code></td>
+<td>Prevents the deletion of KMS encryption keys and IAM password policies</td>
+</tr>
+<tr>
+<td><code>DenyAllOutsideCanadaUS</code></td>
+<td>Prevents the use of any service in any region that is not <code>ca-central-1</code> or <code>us-east-1</code>, with the exception of services that are considered global; e.g. CloudFront, IAM, STS, etc</td>
+</tr>
+</tbody>
+</table>
+<h3 id="663-pbmm-guardrails-parts-1-and-2">6.6.3. PBMM Guardrails (Parts 1 and 2)</h3>
+<p>PBMM Guardrails apply across the Organization. These guardrails protect key infrastructure, mandate encryption at rest, and prevent other non-PBMM configurations. Note that this guardrail is split into two parts due to a current limitation of SCP sizing, but logically it should be considered a single policy.</p>
+<table>
+<thead>
+<tr>
+<th>Policy Statement ID (SID)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DenyTag1</code></td>
+<td>Prevents modification of any protected security group</td>
+</tr>
+<tr>
+<td><code>DenyTag2</code></td>
+<td>Prevents modification of any protected IAM resource</td>
+</tr>
+<tr>
+<td><code>DenyS3</code></td>
+<td>Prevents modification of any S3 bucket used for Accelerator purposes</td>
+</tr>
+<tr>
+<td><code>ProtectCloudFormation</code></td>
+<td>Prevents modification of any CloudFormation stack used for Accelerator tool purposes</td>
+</tr>
+<tr>
+<td><code>DenyAlarmDeletion</code></td>
+<td>Prevents modification of any cloudwatch alarm used to alert on significant control plane events</td>
+</tr>
+<tr>
+<td><code>ProtectKeyRoles</code></td>
+<td>Prevents any IAM operation on Accelerator tool IAM roles</td>
+</tr>
+<tr>
+<td><code>DenySSMDel</code></td>
+<td>Prevents modification of any ssm resource used for Accelerator tool purposes</td>
+</tr>
+<tr>
+<td><code>DenyLogDel</code></td>
+<td>Prevents the deletion of any log resource in Cloudwatch Logs</td>
+</tr>
+<tr>
+<td><code>DenyLeaveOrg</code></td>
+<td>Prevents an account from leaving the Organization</td>
+</tr>
+<tr>
+<td><code>DenyLambdaDel</code></td>
+<td>Prevents the modification of any guardrail Lambda function</td>
+</tr>
+<tr>
+<td><code>BlockOther</code></td>
+<td>Prevents miscellaneous operations; e.g. Deny <code>ds:DisableSso</code></td>
+</tr>
+<tr>
+<td><code>BlockMarketplacePMP</code></td>
+<td>Prevents the modification or creation of a cloud private marketplace</td>
+</tr>
+<tr>
+<td><code>DenyRoot</code></td>
+<td>Prevents the use of the root user in an account</td>
+</tr>
+<tr>
+<td><code>EnforceEbsEncryption</code></td>
+<td>Enforces the use of volume level encryption in running instances</td>
+</tr>
+<tr>
+<td><code>EnforceEBSVolumeEncryption</code></td>
+<td>Enforces the use of volume level encryption with EBS</td>
+</tr>
+<tr>
+<td><code>EnforceRdsEncryption</code></td>
+<td>Enforces the use of RDS encryption</td>
+</tr>
+<tr>
+<td><code>EnforceAuroraEncryption</code></td>
+<td>Enforces the use of Aurora encryption</td>
+</tr>
+<tr>
+<td><code>DenyRDGWRole</code></td>
+<td>Prevents the modification of a role used for Remote Desktop Gateway</td>
+</tr>
+<tr>
+<td><code>DenyGDSHFMAAChange</code></td>
+<td>Prevents the modification of GuardDuty &amp; Security Hub</td>
+</tr>
+</tbody>
+</table>
+<h4 id="6631-encryption-at-rest">6.6.3.1. Encryption at Rest</h4>
+<p>Note that the <code>*Encryption*</code> SCP statements above, taken together, mandate encryption at rest for block storage volumes used in EC2 and RDS instances.</p>
+<h3 id="664-quarantine-deny-all">6.6.4. Quarantine Deny All</h3>
+<p>This policy can be attached to an account to 'quarantine' it - to prevent any AWS operation from taking place. This is useful in the case of an account with credentials which are believed to have been compromised.</p>
+<table>
+<thead>
+<tr>
+<th>Policy Statement ID (SID)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DenyAllAWSServicesExceptBreakglassRoles</code></td>
+<td>Blanket denial on all AWS control plane operations for all non-break-glass roles</td>
+</tr>
+</tbody>
+</table>
+<h3 id="665-quarantine-new-object">6.6.5. Quarantine New Object</h3>
+<p>This policy is applied to new accounts upon creation. After the installation of guardrails, it is removed. In the meantime, it prevents all AWS control plane operations except by principals required to deploy guardrails.</p>
+<table>
+<thead>
+<tr>
+<th>Policy Statement ID (SID)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DenyAllAWSServicesExceptBreakglassRoles</code></td>
+<td>Blanket denial on all AWS control plane operations for all non-break-glass roles</td>
+</tr>
+</tbody>
+</table>
+<h1 id="7-logging-and-monitoring">7. Logging and Monitoring</h1>
+<p>The <em>AWS Secure Environment Architecture</em> recommends the following detective controls across the Organization. These controls, taken together, provide a comprehensive picture of the full set of control plane and data plane operations across the set of accounts.</p>
+<h2 id="71-cloudtrail">7.1. CloudTrail</h2>
+<p>A CloudTrail Organizational trail should be deployed into the Organization. For each account, this captures management events and optionally S3 data plane events taking place by every principal in the account. These records are sent to an S3 bucket in the log archive account, and the trail itself cannot be modified or deleted by any principal in any child account. This provides an audit trail for detective purposes in the event of the need for forensic analysis into account usage. The logs themselves provide an integrity guarantee: every hour, CloudTrail produces a digest of that hour's logs files, and signs with its own private key. The authenticity of the logs may be verified using the corresponding public key. This process is <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html">detailed here</a>.</p>
+<h2 id="72-vpc-flow-logs">7.2. VPC Flow Logs</h2>
+<p>VPC Flow Logs capture information about the IP traffic going to and from network interfaces in an AWS Account VPC such as source and destination IPs, protocol, ports, and success/failure of the flow. The <em>AWS Secure Environment Architecture</em> recommends enabling <code>ALL</code> (i.e. both accepted and rejected traffic) logs for all VPCs in the Shared Network account with an S3 destination in the log-archive account. More details about VPC Flow Logs are <a href="https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html">available here</a>.</p>
+<p>Note that certain categories of network flows are not captured, including traffic to and from Traffic to and from <code>169.254.169.254</code> for instance metadata, and DNS traffic with an Amazon VPC resolver.</p>
+<h2 id="73-guardduty">7.3. GuardDuty</h2>
+<p>Amazon GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior to protect your AWS accounts and workloads. The service uses machine learning, anomaly detection, and integrated threat intelligence to identify and prioritize potential threats. GuardDuty uses a number of data sources including VPC Flow Logs and CloudTrail logs.</p>
+<p>The <em>AWS Secure Environment Architecture</em> recommends enabling GuardDuty <a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html">at the Organization level</a>, and delegating the security account as the GuardDuty Administrative account. The GuardDuty Administrative account should be auto-enabled to add new accounts as they come online. Note that this should be done in every region as a defense in depth measure, with the understanding that the PBMM SCP will prevent service usage in all other regions.</p>
+<h2 id="74-config">7.4. Config</h2>
+<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html">AWS Config</a> provides a detailed view of the resources associated with each account in the AWS Organization, including how they are configured, how they are related to one another, and how the configurations have changed on a recurring basis. Resources can be evaluated on the basis of their compliance with Config Rules - for example, a Config Rule might continually examine EBS volumes and check that they are encrypted.</p>
+<p>Config may be <a href="https://docs.aws.amazon.com/organizations/latest/userguide/services-that-can-integrate-config.html">enabled at the Organization</a> level - this provides an overall view of the compliance status of all resources across the Organization.</p>
+<p><em>Note: At the time of writing, the Config Multi-Account Multi-Region Data Aggregation sits in the Organization Management (root) account. The <em>AWS Secure Environment Architecture</em> will recommend that this be situated in the security account, once that becomes easily-configurable in Organizations.</em></p>
+<h2 id="75-cloudwatch-logs">7.5. Cloudwatch Logs</h2>
+<p>CloudWatch Logs is AWS' logging aggregator service, used to monitor, store, and access log files from EC2 instances, AWS CloudTrail, Route 53, and other sources. The <em>AWS Secure Environment Architecture</em> recommends that log subscriptions are created for all log groups in all workload accounts, and streamed into S3 in the log-archive account (via Kinesis) for analysis and long-term audit purposes.</p>
+<h2 id="76-securityhub">7.6. SecurityHub</h2>
+<p>The primary dashboard for Operators to assess the security posture of the AWS footprint is the centralized AWS Security Hub service. Security Hub should be configured to aggregate findings from Amazon GuardDuty, AWS Config and IAM Access Analyzers. Events from security integrations are correlated and displayed on the Security Hub dashboard as 'findings' with a severity level (informational, low, medium, high, critical).</p>
+<p>The <em>AWS Secure Environment Architecture</em> recommends that certain Security Hub frameworks be enabled, specifically:</p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html">AWS Foundational Security Best Practices v1.0.0</a></li>
+<li><a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-pci-controls.html">PCI DSS v3.2.1</a></li>
+<li><a href="https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-cis-controls.html">CIS AWS Foundations Benchmark v1.2.0</a></li>
+</ul>
+<p>These frameworks will perform checks against the accounts via Config Rules that are evaluated against the AWS Config resources in scope. See the above links for a definition of the associated controls.</p>
+<h2 id="77-systems-manager-session-manager">7.7. Systems Manager Session Manager</h2>
+<p>Session Manager is a fully managed AWS Systems Manager capability that lets you manage your Amazon Elastic Compute Cloud (Amazon EC2) instances, on-premises instances, and virtual machines (VMs) through an interactive one-click browser-based shell or through the AWS Command Line Interface (AWS CLI). Session Manager provides secure and auditable instance management without the need to open inbound ports, maintain bastion hosts, or manage SSH keys. Session Manager also makes it easy to comply with corporate policies that require controlled access to instances, strict security practices, and fully auditable logs with instance access details, while still providing end users with simple one-click cross-platform access to your managed instances.<sup><a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html">1</a></sup></p>
+<p>The <em>AWS Secure Environment Architecture</em> recommends that you choose to store session log data in a centralized S3 bucket for auditing purposes and encrypt with Key Management Service (KMS). In addition, session log data should also be configured to be sent to Amazon CloudWatch Logs with KMS encryption using your AWS KMS key.</p>
+<hr />
+<p><a href="../..">...Return to Accelerator Table of Contents</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

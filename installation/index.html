@@ -108,15 +108,15 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../ops.md">Operations & Troubleshooting</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../operations/">Operations & Troubleshooting</a>
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../faq.md">FAQ</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../faq/">FAQ</a>
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../dev.md">Developer Guide</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../developer/">Developer Guide</a>
                     </li>
                 </ul>
                 <ul>
@@ -124,7 +124,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../pbmm.md">Prescriptive PBMM Architecture</a>
+                    <li class="toctree-l1"><a class="" href="../pbmm/index.md">Prescriptive PBMM Architecture</a>
                     </li>
                 </ul>
                 <ul>
@@ -166,7 +166,7 @@
               
                 <h1 id="1-accelerator-installation-and-upgrade-guide">1. Accelerator Installation and Upgrade Guide</h1>
 <p><strong><em>We encourage customers installing the Accelerator to get the support of their local AWS account team (SA, TAM, CSM, Proserve) to assist with the installation of the Accelerator, as the Accelerator leverages, deploys, or orchestrates over 30 different AWS services.</em></strong></p>
-<p><em>Users are strongly encouraged to also read the <a href="../operations/operations-troubleshooting-guide/">Accelerator Operations/Troubleshooting Guide</a> before installation. The Operations/Troubleshooting Guide provides details as to what is being performed at each stage of the installation process, including detailed troubleshooting guidance.</em></p>
+<p><em>Users are strongly encouraged to also read the <a href="../operations/operations-troubleshooting-guide.md">Accelerator Operations/Troubleshooting Guide</a> before installation. The Operations/Troubleshooting Guide provides details as to what is being performed at each stage of the installation process, including detailed troubleshooting guidance.</em></p>
 <p>These installation instructions assume one of the prescribed architectures is being deployed.</p>
 <h2 id="2-installation">2. Installation</h2>
 <h2 id="21-prerequisites">2.1. Prerequisites</h2>
@@ -516,7 +516,7 @@
 <li>For new stack deployments, when the stack deployment completes, the Accelerator state machine will automatically execute (in Code Pipeline). When upgrading you must manually <code>Release Change</code> to start the pipeline.</li>
 <li><strong>While the pipeline is running:</strong><ul>
 <li>review the list of <a href="#251-known-installation-issues">Known Installation Issues</a> in section 2.5.1 below</li>
-<li>review the Accelerator Basic Operation and Frequently Asked Questions <a href="../faq/faq/">(FAQ) Document</a></li>
+<li>review the Accelerator Basic Operation and Frequently Asked Questions <a href="../faq/faq.md">(FAQ) Document</a></li>
 </ul>
 </li>
 <li>Once the pipeline completes (~10 mins), the main state machine, named <code>ASEA-MainStateMachine_sm</code>, will start in Step Functions</li>
@@ -529,8 +529,8 @@
 <li>
 <p>If the state machine <strong>fails</strong>:</p>
 <ul>
-<li>Refer to the <a href="../operations/operations-troubleshooting-guide/#4-troubleshooting">Troubleshooting Guide</a> for instructions on how to inspect and retrieve the error</li>
-<li>You can also refer to the <a href="../faq/faq/">FAQ</a> and <a href="#251-known-installation-issues">Known Installation Issues</a></li>
+<li>Refer to the <a href="../operations/operations-troubleshooting-guide.md#4-troubleshooting">Troubleshooting Guide</a> for instructions on how to inspect and retrieve the error</li>
+<li>You can also refer to the <a href="../faq/faq.md">FAQ</a> and <a href="#251-known-installation-issues">Known Installation Issues</a></li>
 <li>Once the error is resolved, re-run the step function <code>ASEA-MainStateMachine_sm</code> using <code>{"scope": "FULL","mode": "APPLY"}</code> as input</li>
 </ul>
 </li>
@@ -959,6 +959,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../operations/" class="btn btn-neutral float-right" title="Operations & Troubleshooting">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
       
         <a href="../documentation/" class="btn btn-neutral" title="Documentation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
@@ -988,6 +990,8 @@
     
       <span><a href="../documentation/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../operations/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
