@@ -297,10 +297,92 @@
   
   
   
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" data-md-state="indeterminate" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          Architectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Architectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Architectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" data-md-state="indeterminate" type="checkbox" id="__nav_8_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1">
+          PBMM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PBMM" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          PBMM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../architectures/pbmm/" class="md-nav__link">
-        Prescriptive PBMM Architecture
+        Prescriptive Architecture Overview
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectures/pbmm/diagrams/" class="md-nav__link">
+        Architecture Diagrams
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -355,106 +437,6 @@
 <p>This document is a reference document. Instead of reading through it in linear order, you can use it to look up specific issues as needed.</p>
 <p>It is important to read the <a href="/operations/index.md">Operations Guide</a> before reading this document. If you're interested in actively contributing to the project, you should also review the <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/CONTRIBUTING.md">Governance and Contributing Guide</a>.</p>
 <h1 id="2-table-of-contents">2. Table of Contents</h1>
-<!-- TOC depthFrom:2 depthTo:4 -->
-
-<ul>
-<li><a href="#1-accelerator-developer-guide">1. Accelerator Developer Guide</a></li>
-<li><a href="#2-table-of-contents">2. Table of Contents</a></li>
-<li><a href="#3-technology-stack">3. Technology Stack</a></li>
-<li><a href="#31-typescript-and-nodejs">3.1. TypeScript and NodeJS</a><ul>
-<li><a href="#311-pnpm">3.1.1. pnpm</a></li>
-<li><a href="#312-prettier">3.1.2. prettier</a></li>
-<li><a href="#313-eslint">3.1.3. eslint</a></li>
-</ul>
-</li>
-<li><a href="#32-cloudformation">3.2. CloudFormation</a></li>
-<li><a href="#33-cdk">3.3. CDK</a></li>
-<li><a href="#4-development">4. Development</a></li>
-<li><a href="#41-project-structure">4.1. Project Structure</a></li>
-<li><a href="#42-installer-stack">4.2. Installer Stack</a></li>
-<li><a href="#43-initial-setup-stack">4.3. Initial Setup Stack</a><ul>
-<li><a href="#431-codebuild-and-prebuilt-docker-image">4.3.1. CodeBuild and Prebuilt Docker Image</a></li>
-<li><a href="#432-passing-data-to-phase-steps-and-phase-stacks">4.3.2. Passing Data to Phase Steps and Phase Stacks</a></li>
-</ul>
-</li>
-<li><a href="#44-phase-steps-and-phase-stacks">4.4. Phase Steps and Phase Stacks</a></li>
-<li><a href="#45-store-outputs-to-ssm-parameter-store">4.5. Store outputs to SSM Parameter Store</a><ul>
-<li><a href="#451-phases-and-deployments">4.5.1. Phases and Deployments</a></li>
-<li><a href="#452-passing-outputs-between-phases">4.5.2. Passing Outputs between Phases</a></li>
-<li><a href="#453-decoupling-configuration-from-constructs">4.5.3. Decoupling Configuration from Constructs</a></li>
-</ul>
-</li>
-<li><a href="#46-libraries--tools">4.6. Libraries &amp; Tools</a><ul>
-<li><a href="#461-cdk-assume-role-plugin">4.6.1. CDK Assume Role Plugin</a></li>
-<li><a href="#462-cdk-api">4.6.2. CDK API</a></li>
-<li><a href="#463-aws-sdk-wrappers">4.6.3. AWS SDK Wrappers</a></li>
-<li><a href="#464-configuration-file-parsing">4.6.4. Configuration File Parsing</a></li>
-<li><a href="#4641-acceleratornametagger">4.6.4.1. <code>AcceleratorNameTagger</code></a></li>
-<li><a href="#4642-acceleratorstack">4.6.4.2. <code>AcceleratorStack</code></a></li>
-<li><a href="#4643-name-generator">4.6.4.3. Name Generator</a></li>
-<li><a href="#4644-accountstacks">4.6.4.4. <code>AccountStacks</code></a></li>
-<li><a href="#4645-vpc-and-importedvpc">4.6.4.5. <code>Vpc</code> and <code>ImportedVpc</code></a></li>
-<li><a href="#4646-limiter">4.6.4.6. <code>Limiter</code></a></li>
-<li><a href="#465-creating-stack-outputs">4.6.5. Creating Stack Outputs</a></li>
-<li><a href="#4651-adding-tags-to-shared-resources-in-destination-account">4.6.5.1. Adding Tags to Shared Resources in Destination Account</a></li>
-<li><a href="#466-custom-resources">4.6.6. Custom Resources</a></li>
-<li><a href="#4661-externalizing-aws-sdk">4.6.6.1. Externalizing <code>aws-sdk</code></a></li>
-<li><a href="#4662-cfn-response">4.6.6.2. cfn-response</a></li>
-<li><a href="#4663-cfn-tags">4.6.6.3. cfn-tags</a></li>
-<li><a href="#4664-webpack-base">4.6.6.4. webpack-base</a></li>
-</ul>
-</li>
-<li><a href="#47-workarounds">4.7. Workarounds</a><ul>
-<li><a href="#471-stacks-with-same-name-in-different-regions">4.7.1. Stacks with Same Name in Different Regions</a></li>
-</ul>
-</li>
-<li><a href="#48-local-development">4.8. Local Development</a><ul>
-<li><a href="#481-installer-stack">4.8.1. Installer Stack</a></li>
-<li><a href="#482-initial-setup-stack">4.8.2. Initial Setup Stack</a></li>
-<li><a href="#483-phase-stacks">4.8.3. Phase Stacks</a></li>
-</ul>
-</li>
-<li><a href="#49-testing">4.9. Testing</a><ul>
-<li><a href="#491-validating-immutable-property-changes-and-logical-id-changes">4.9.1. Validating Immutable Property Changes and Logical ID Changes</a></li>
-<li><a href="#492-upgrade-cdk">4.9.2. Upgrade CDK</a></li>
-</ul>
-</li>
-<li><a href="#5-best-practices">5. Best Practices</a></li>
-<li><a href="#51-typescript-and-nodejs">5.1. TypeScript and NodeJS</a><ul>
-<li><a href="#511-handle-unhandled-promises">5.1.1. Handle Unhandled Promises</a></li>
-</ul>
-</li>
-<li><a href="#52-cloudformation">5.2. CloudFormation</a><ul>
-<li><a href="#521-cross-accountregion-references">5.2.1. Cross-Account/Region References</a></li>
-<li><a href="#522-resource-names-and-logical-ids">5.2.2. Resource Names and Logical IDs</a></li>
-<li><a href="#523-changing-logical-ids">5.2.3. Changing Logical IDs</a></li>
-<li><a href="#524-changing-immutable-properties">5.2.4. Changing (Immutable) Properties</a></li>
-</ul>
-</li>
-<li><a href="#53-cdk">5.3. CDK</a><ul>
-<li><a href="#531-logical-ids">5.3.1. Logical IDs</a></li>
-<li><a href="#532-moving-resources-between-nested-stacks">5.3.2. Moving Resources between Nested Stacks</a></li>
-<li><a href="#533-l1-vs-l2-constructs">5.3.3. L1 vs. L2 Constructs</a></li>
-<li><a href="#534-cdk-code-dependency-on-lambda-function-code">5.3.4. CDK Code Dependency on Lambda Function Code</a></li>
-<li><a href="#535-custom-resource">5.3.5. Custom Resource</a></li>
-<li><a href="#536-escape-hatches">5.3.6. Escape Hatches</a></li>
-<li><a href="#5361-autoscaling-group-metadata">5.3.6.1. AutoScaling Group Metadata</a></li>
-<li><a href="#5362-secret-secretvalue">5.3.6.2. Secret <code>SecretValue</code></a></li>
-</ul>
-</li>
-<li><a href="#6-contributing-guidelines">6. Contributing Guidelines</a></li>
-<li><a href="#61-how-to">6.1. How-to</a></li>
-<li><a href="#62-adding-new-functionality">6.2. Adding New Functionality?</a></li>
-<li><a href="#63-create-a-cdk-lambda-function-with-lambda-runtime-code">6.3. Create a CDK Lambda Function with Lambda Runtime Code</a></li>
-<li><a href="#64-create-a-custom-resource">6.4. Create a Custom Resource</a></li>
-<li><a href="#65-run-all-unit-tests">6.5. Run All Unit Tests</a></li>
-<li><a href="#66-accept-unit-test-snapshot-changes">6.6. Accept Unit Test Snapshot Changes</a></li>
-<li><a href="#67-validate-code-with-prettier">6.7. Validate Code with Prettier</a></li>
-<li><a href="#68-format-code-with-prettier">6.8. Format Code with Prettier</a></li>
-<li><a href="#69-validate-code-with-tslint">6.9. Validate Code with <code>tslint</code></a></li>
-</ul>
-<!-- /TOC -->
-
 <h1 id="3-technology-stack">3. Technology Stack</h1>
 <p>We use TypeScript, NodeJS, CDK and CloudFormation. You can find some more information in the sections below.</p>
 <h2 id="31-typescript-and-nodejs">3.1. TypeScript and NodeJS</h2>
@@ -1383,13 +1365,13 @@ launchConfig.addOverride('Metadata.AWS::CloudFormation::Init', {
       
       
         
-        <a href="../architectures/pbmm/" class="md-footer__link md-footer__link--next" aria-label="Next: Prescriptive PBMM Architecture" rel="next">
+        <a href="../architectures/pbmm/" class="md-footer__link md-footer__link--next" aria-label="Next: Prescriptive Architecture Overview" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Prescriptive PBMM Architecture
+              Prescriptive Architecture Overview
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -252,40 +252,9 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Operations & Troubleshooting
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         Operations & Troubleshooting
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#11-table-of-contents" class="md-nav__link">
-    1.1. Table of Contents
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -328,10 +297,92 @@
   
   
   
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" data-md-state="indeterminate" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          Architectures
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Architectures" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          Architectures
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" data-md-state="indeterminate" type="checkbox" id="__nav_8_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1">
+          PBMM
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="PBMM" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          PBMM
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="../architectures/pbmm/" class="md-nav__link">
-        Prescriptive PBMM Architecture
+        Prescriptive Architecture Overview
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architectures/pbmm/diagrams/" class="md-nav__link">
+        Architecture Diagrams
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -371,21 +422,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#11-table-of-contents" class="md-nav__link">
-    1.1. Table of Contents
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -398,80 +434,6 @@
                 
 
 <h1 id="1-operations-troubleshooting-guide">1. Operations &amp; Troubleshooting Guide</h1>
-<h2 id="11-table-of-contents">1.1. Table of Contents</h2>
-<!-- TOC depthFrom:1 depthTo:4 -->
-
-<ul>
-<li><a href="#1-operations--troubleshooting-guide">1. Operations &amp; Troubleshooting Guide</a></li>
-<li><a href="#11-table-of-contents">1.1. Table of Contents</a></li>
-<li><a href="#2-purpose">2. Purpose</a></li>
-<li><a href="#3-system-overview">3. System Overview</a></li>
-<li><a href="#31-installer-stack">3.1. Installer Stack</a></li>
-<li><a href="#32-initial-setup-stack">3.2. Initial Setup Stack</a><ul>
-<li><a href="#321-get-or-create-configuration-from-s3">3.2.1. Get or Create Configuration from S3</a></li>
-<li><a href="#322-get-baseline-from-configuration">3.2.2. Get Baseline from Configuration</a></li>
-<li><a href="#323-compare-configurations">3.2.3. Compare Configurations</a></li>
-<li><a href="#324-load-landing-zone-configuration">3.2.4. Load Landing Zone Configuration</a></li>
-<li><a href="#325-add-execution-role-to-service-catalog">3.2.5. Add Execution Role to Service Catalog</a></li>
-<li><a href="#326-create-landing-zone-account">3.2.6. Create Landing Zone Account</a></li>
-<li><a href="#327-organizational-unit-ou-validation">3.2.7. Organizational Unit (OU) Validation</a></li>
-<li><a href="#328-load-organization-configuration">3.2.8. Load Organization Configuration</a></li>
-<li><a href="#329-install-cloudformation-role-in-root">3.2.9. Install CloudFormation Role in root</a></li>
-<li><a href="#3210-create-organization-account">3.2.10. Create Organization Account</a></li>
-<li><a href="#3211-load-organizational-units">3.2.11. Load Organizational Units</a></li>
-<li><a href="#3212-load-accounts">3.2.12. Load Accounts</a></li>
-<li><a href="#3213-install-execution-roles">3.2.13. Install Execution Roles</a></li>
-<li><a href="#3214-delete-default-vpcs">3.2.14. Delete Default VPCs</a></li>
-<li><a href="#3215-load-limits">3.2.15. Load Limits</a></li>
-<li><a href="#3216-enable-trusted-access-for-services">3.2.16. Enable Trusted Access for Services</a></li>
-<li><a href="#3217-store-all-phase-outputs">3.2.17. Store All Phase Outputs</a></li>
-<li><a href="#3218-deploy-phase--1-negative-one">3.2.18. Deploy Phase -1 (Negative one)</a></li>
-<li><a href="#3219-store-phase--1-output">3.2.19. Store Phase -1 Output</a></li>
-<li><a href="#3220-deploy-phase-0">3.2.20. Deploy Phase 0</a></li>
-<li><a href="#3221-store-phase-0-output">3.2.21. Store Phase 0 Output</a></li>
-<li><a href="#3222-verify-files">3.2.22. Verify Files</a></li>
-<li><a href="#3223-create-config-recorders">3.2.23. Create Config Recorders</a></li>
-<li><a href="#3224-add-scps-to-organization">3.2.24. Add SCPs to Organization</a></li>
-<li><a href="#3225-deploy-phase-1">3.2.25. Deploy Phase 1</a></li>
-<li><a href="#3226-store-phase-1-output">3.2.26. Store Phase 1 Output</a></li>
-<li><a href="#3227-account-default-settings">3.2.27. Account Default Settings</a></li>
-<li><a href="#3228-deploy-phase-2">3.2.28. Deploy Phase 2</a></li>
-<li><a href="#3229-store-phase-2-output">3.2.29. Store Phase 2 Output</a></li>
-<li><a href="#3230-deploy-phase-3">3.2.30. Deploy Phase 3</a></li>
-<li><a href="#3231-store-phase-3-output">3.2.31. Store Phase 3 Output</a></li>
-<li><a href="#3232-deploy-phase-4">3.2.32. Deploy Phase 4</a></li>
-<li><a href="#3233-store-phase-4-output">3.2.33. Store Phase 4 Output</a></li>
-<li><a href="#3234-associate-hosted-zones-step-removed-in-v121">3.2.34. Associate Hosted Zones (Step removed in v1.2.1)</a></li>
-<li><a href="#3235-add-tags-to-shared-resources">3.2.35. Add Tags to Shared Resources</a></li>
-<li><a href="#3236-enable-directory-sharing">3.2.36. Enable Directory Sharing</a></li>
-<li><a href="#3237-deploy-phase-5">3.2.37. Deploy Phase 5</a></li>
-<li><a href="#3238-create-ad-connector">3.2.38. Create AD Connector</a></li>
-<li><a href="#3239-store-commit-id">3.2.39. Store Commit ID</a></li>
-<li><a href="#3240-detach-quarantine-scp">3.2.40. Detach Quarantine SCP</a></li>
-</ul>
-</li>
-<li><a href="#4-troubleshooting">4. Troubleshooting</a></li>
-<li><a href="#41-components">4.1. Components</a><ul>
-<li><a href="#411-state-machine">4.1.1. State Machine</a></li>
-<li><a href="#412-codebuild">4.1.2. CodeBuild</a></li>
-<li><a href="#413-cloudformation">4.1.3. CloudFormation</a></li>
-<li><a href="#414-custom-resource">4.1.4. Custom Resource</a></li>
-<li><a href="#415-cloudwatch">4.1.5. CloudWatch</a></li>
-<li><a href="#416-codepipeline">4.1.6. CodePipeline</a></li>
-</ul>
-</li>
-<li><a href="#42-examples">4.2. Examples</a><ul>
-<li><a href="#421-example-1">4.2.1. Example 1</a></li>
-<li><a href="#422-example-2">4.2.2. Example 2:</a></li>
-<li><a href="#423-example-3">4.2.3. Example 3:</a></li>
-</ul>
-</li>
-<li><a href="#5-how-to">5. How-to</a></li>
-<li><a href="#51-restart-the-state-machine">5.1. Restart the State Machine</a></li>
-<li><a href="#52-switch-to-a-managed-account">5.2. Switch To a Managed Account</a></li>
-</ul>
-<!-- /TOC -->
-
 <h1 id="2-purpose">2. Purpose</h1>
 <p>This document is targeted at individuals installing or executing the AWS Secure Environment Accelerator. It is intended to guide individuals who are executing the Accelerator by providing an understanding as to what happens at each point throughout execution and to assist in troubleshooting state machine failures and/or errors. This is one component of the provided documenation package and should be read after the Installation Guide, but before the Developer Guide.</p>
 <h1 id="3-system-overview">3. System Overview</h1>

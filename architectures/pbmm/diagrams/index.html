@@ -12,21 +12,21 @@
         <meta name="author" content="Amazon Web Services">
       
       
-        <link rel="canonical" href="https://awssea.github.io/developer/release-process/">
+        <link rel="canonical" href="https://awssea.github.io/architectures/pbmm/diagrams/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.9">
     
     
       
-        <title>AWS Internal - Accelerator Release Process - AWS Secure Environment Accelerator</title>
+        <title>Architecture Diagrams - AWS Secure Environment Accelerator</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.2b4465f4.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2b4465f4.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -40,7 +40,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#aws-internal-accelerator-release-process" class="md-skip">
+        <a href="#aws-accelerator-prescriptive-sample-architecture-diagrams" class="md-skip">
           Skip to content
         </a>
       
@@ -78,7 +78,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="AWS Secure Environment Accelerator" class="md-header__button md-logo" aria-label="AWS Secure Environment Accelerator" data-md-component="logo">
+    <a href="../../.." title="AWS Secure Environment Accelerator" class="md-header__button md-logo" aria-label="AWS Secure Environment Accelerator" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AWS Internal - Accelerator Release Process
+              Architecture Diagrams
             
           </span>
         </div>
@@ -164,7 +164,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="AWS Secure Environment Accelerator" class="md-nav__button md-logo" aria-label="AWS Secure Environment Accelerator" data-md-component="logo">
+    <a href="../../.." title="AWS Secure Environment Accelerator" class="md-nav__button md-logo" aria-label="AWS Secure Environment Accelerator" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -183,7 +183,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -198,7 +198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../faq/" class="md-nav__link">
+      <a href="../../../faq/" class="md-nav__link">
         FAQ
       </a>
     </li>
@@ -213,7 +213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
+      <a href="../../../about/" class="md-nav__link">
         About
       </a>
     </li>
@@ -228,7 +228,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../installation/" class="md-nav__link">
+      <a href="../../../installation/" class="md-nav__link">
         Installation & Upgrades
       </a>
     </li>
@@ -243,7 +243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/" class="md-nav__link">
+      <a href="../../../operations/" class="md-nav__link">
         Operations & Troubleshooting
       </a>
     </li>
@@ -258,7 +258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../../developer/" class="md-nav__link">
         Developer Guide
       </a>
     </li>
@@ -286,14 +286,16 @@
 
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" data-md-state="indeterminate" type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
       
       
       
@@ -314,12 +316,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" data-md-state="indeterminate" type="checkbox" id="__nav_8_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" checked>
       
       
       
@@ -342,7 +346,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../architectures/pbmm/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         Prescriptive Architecture Overview
       </a>
     </li>
@@ -354,11 +358,73 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../architectures/pbmm/diagrams/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Architecture Diagrams
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Architecture Diagrams
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#shared-vpc-architecture" class="md-nav__link">
+    Shared VPC Architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spoke-vpc-architecture" class="md-nav__link">
+    Spoke VPC Architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpc-and-security-group-patterns" class="md-nav__link">
+    VPC and Security Group Patterns
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-perimeter-patterns" class="md-nav__link">
+    Additional Perimeter Patterns
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -385,7 +451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../workshops/" class="md-nav__link">
+      <a href="../../../workshops/" class="md-nav__link">
         Workshops
       </a>
     </li>
@@ -419,8 +485,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#creating-a-new-accelerator-code-release" class="md-nav__link">
-    Creating a new Accelerator Code Release
+  <a href="#shared-vpc-architecture" class="md-nav__link">
+    Shared VPC Architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spoke-vpc-architecture" class="md-nav__link">
+    Spoke VPC Architecture
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpc-and-security-group-patterns" class="md-nav__link">
+    VPC and Security Group Patterns
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-perimeter-patterns" class="md-nav__link">
+    Additional Perimeter Patterns
   </a>
   
 </li>
@@ -438,58 +525,23 @@
               
                 
 
-<h1 id="aws-internal-accelerator-release-process">AWS Internal - Accelerator Release Process</h1>
-<h2 id="creating-a-new-accelerator-code-release">Creating a new Accelerator Code Release</h2>
-<ol>
-<li>Ensure <code>main</code> branch is in a suitable state</li>
-<li>Disable branch protection for both the <code>main</code> branch and for the <code>release/</code> branches</li>
-<li>
-<p>Create a version branch with <a href="https://semver.org/">SemVer</a> semantics and a <code>release/</code> prefix: e.g. <code>release/v1.0.5</code> or <code>release/v1.0.5-b</code></p>
-</li>
-<li>
-<p>On latest <code>main</code>, run: <code>git checkout -b release/vX.Y.Z</code></p>
-</li>
-<li>
-<p><strong>Important:</strong> Certain git operations are ambiguous if tags and branches have the same name. Using the <code>release/</code> prefix reserves the actual version name for the tag itself; i.e. every <code>release/vX.Y.Z</code> branch will have a corresponding <code>vX.Y.Z</code> tag.</p>
-</li>
-<li>
-<p>Push that branch to GitHub (if created locally)</p>
-</li>
-<li>
-<p><code>git push origin release/vX.Y.Z</code></p>
-</li>
-<li>
-<p>The release workflow will run, and create a <strong>DRAFT</strong> release if successful with all commits since the last tagged release.</p>
-</li>
-<li>Prune the commits that have been added to the release notes (e.g. remove any low-information commits)</li>
-<li>Publish the release - this creates the git tag in the repo and marks the release as latest. It also bumps the <code>version</code> key in several project <code>package.json</code> files.</li>
-<li>
-<p>Re-enable branch protection for both the <code>main</code> branch and for the <code>release/</code> branches</p>
-</li>
-<li>
-<p>Note: The <code>Publish</code> operation will run <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/.github/workflows/publish.yml">the following GitHub Action</a>, which merges the <code>release/vX.Y.Z</code> branch to <code>main</code>. <strong>Branch Protection in GitHub will cause this to fail</strong>, and why we are momentarily disabling branch protection.</p>
-</li>
-<li>
-<p>A successful run of this workflow will automatically kick off the "Generate Documentation" workflow. This workflow may also be initiated at any time manually via the GitHub Actions UI (since it is configured as a <code>workflow_dispatch</code> action).</p>
-</li>
-<li>
-<p>once the documentation is generated, add the ZIP file to the release assets, named <code>AWS-SEA-Documentation-vXXX.zip</code></p>
-</li>
-<li>
-<p>Rename the <code>AcceleratorInstaller.template.json</code> to <code>AcceleratorInstaller</code>XXX<code>.template.json</code> replacing XXX with the version number without punctuation (i.e. <code>AcceleratorInstaller121b.template.json</code>).</p>
-<ul>
-<li>Repeat for <code>AcceleratorInstaller-CodeCommit.template-vXXX.json</code>.</li>
-</ul>
-</li>
-<li>
-<p>Add the Accelerator configuration file schema documentation ZIP to the release assets, named <code>AWS-SEA-Config-Schema-vXXX-DRAFT.zip</code>.</p>
-</li>
-<li>
-<p>Add the Accelerator <strong><em>Alpha</em></strong> GUI ZIP to the release assets, named <code>AWS-SEA-GUI-mockup-DoNotUse-vXXX-alpha.zip</code>.</p>
-</li>
-</ol>
+<h1 id="aws-accelerator-prescriptive-sample-architecture-diagrams">AWS Accelerator Prescriptive Sample Architecture Diagrams</h1>
+<h2 id="shared-vpc-architecture">Shared VPC Architecture</h2>
+<p><img alt="ASEA1 Diagram" src="../../images/ASEA1.png" /></p>
+<p><img alt="ASEA2 Diagram" src="../../images/ASEA2.png" /></p>
+<h2 id="spoke-vpc-architecture">Spoke VPC Architecture</h2>
+<p><img alt="ASEA3 Diagram" src="../../images/ASEA-Spoke.png" /></p>
+<h2 id="vpc-and-security-group-patterns">VPC and Security Group Patterns</h2>
+<p><img alt="ASEA4 Diagram" src="../../images/ASEA3.png" /></p>
+<p><img alt="ASEA5 Diagram" src="../../images/ASEA4.png" /></p>
+<p><img alt="ASEA6 Diagram" src="../../images/ASEA5.png" /></p>
+<h2 id="additional-perimeter-patterns">Additional Perimeter Patterns</h2>
+<p><img alt="ASEA7 Diagram" src="../../images/perimeter-NFW.png" /></p>
+<p><img alt="ASEA8 Diagram" src="../../images/perimeter-NFW-flows.png" /></p>
+<p><img alt="ASEA9 Diagram" src="../../images/perimeter-GWLB.png" /></p>
+<p><img alt="ASEA10 Diagram" src="../../images/perimeter-NFW-GWLB.png" /></p>
 <hr />
-<p><a href="../..">...Return to Accelerator Table of Contents</a></p>
+<p><a href="./">...Return to Accelerator Table of Contents</a></p>
 
               
             </article>
@@ -499,6 +551,41 @@
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Prescriptive Architecture Overview" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Prescriptive Architecture Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../../workshops/" class="md-footer__link md-footer__link--next" aria-label="Next: Workshops" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Workshops
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -515,10 +602,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.expand", "navigation.tracking", "navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.expand", "navigation.tracking", "navigation.sections"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
     
     
-      <script src="../../assets/javascripts/bundle.960e086b.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.960e086b.min.js"></script>
       
     
   </body>
