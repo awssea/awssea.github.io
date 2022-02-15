@@ -21,7 +21,27 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://awssea.github.io/architectures/pbmm/accounts/</loc>
+         <lastmod>2022-02-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://awssea.github.io/architectures/pbmm/auth/</loc>
+         <lastmod>2022-02-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://awssea.github.io/architectures/pbmm/log-file-locations/</loc>
+         <lastmod>2022-02-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://awssea.github.io/architectures/pbmm/logging/</loc>
+         <lastmod>2022-02-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://awssea.github.io/architectures/pbmm/network/</loc>
          <lastmod>2022-02-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
