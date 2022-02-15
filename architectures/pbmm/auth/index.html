@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#6-authorization-and-authentication" class="md-skip">
+        <a href="#authorization-and-authentication" class="md-skip">
           Skip to content
         </a>
       
@@ -369,8 +369,6 @@
           
         
           
-            
-          
         
       
       
@@ -434,6 +432,8 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           Authentication & Authorization
@@ -450,6 +450,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -458,51 +460,99 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#6-authorization-and-authentication" class="md-nav__link">
-    6. Authorization and Authentication
+  <a href="#relationship-to-the-organization-management-root-aws-account" class="md-nav__link">
+    Relationship to the Organization Management (root) AWS Account
   </a>
   
-    <nav class="md-nav" aria-label="6. Authorization and Authentication">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#break-glass-accounts" class="md-nav__link">
+    Break Glass Accounts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-plane-access-via-aws-sso" class="md-nav__link">
+    Control Plane Access via AWS SSO
+  </a>
+  
+    <nav class="md-nav" aria-label="Control Plane Access via AWS SSO">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#61-relationship-to-the-organization-management-root-aws-account" class="md-nav__link">
-    6.1. Relationship to the Organization Management (root) AWS Account
+  <a href="#sso-user-roles" class="md-nav__link">
+    SSO User Roles
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#62-break-glass-accounts" class="md-nav__link">
-    6.2. Break Glass Accounts
+  <a href="#principal-authorization" class="md-nav__link">
+    Principal Authorization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-authorization" class="md-nav__link">
+    Root Authorization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-roles" class="md-nav__link">
+    Service Roles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-control-policies" class="md-nav__link">
+    Service Control Policies
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Control Policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pbmm-only" class="md-nav__link">
+    PBMM Only
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#63-control-plane-access-via-aws-sso" class="md-nav__link">
-    6.3. Control Plane Access via AWS SSO
+  <a href="#pbmm-unclass-only" class="md-nav__link">
+    PBMM Unclass Only
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#64-root-authorization" class="md-nav__link">
-    6.4. Root Authorization
+  <a href="#pbmm-guardrails-parts-1-and-2" class="md-nav__link">
+    PBMM Guardrails (Parts 1 and 2)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#65-service-roles" class="md-nav__link">
-    6.5. Service Roles
+  <a href="#quarantine-deny-all" class="md-nav__link">
+    Quarantine Deny All
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#66-service-control-policies" class="md-nav__link">
-    6.6. Service Control Policies
+  <a href="#quarantine-new-object" class="md-nav__link">
+    Quarantine New Object
   </a>
   
 </li>
@@ -594,6 +644,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -602,51 +654,99 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#6-authorization-and-authentication" class="md-nav__link">
-    6. Authorization and Authentication
+  <a href="#relationship-to-the-organization-management-root-aws-account" class="md-nav__link">
+    Relationship to the Organization Management (root) AWS Account
   </a>
   
-    <nav class="md-nav" aria-label="6. Authorization and Authentication">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#break-glass-accounts" class="md-nav__link">
+    Break Glass Accounts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#control-plane-access-via-aws-sso" class="md-nav__link">
+    Control Plane Access via AWS SSO
+  </a>
+  
+    <nav class="md-nav" aria-label="Control Plane Access via AWS SSO">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#61-relationship-to-the-organization-management-root-aws-account" class="md-nav__link">
-    6.1. Relationship to the Organization Management (root) AWS Account
+  <a href="#sso-user-roles" class="md-nav__link">
+    SSO User Roles
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#62-break-glass-accounts" class="md-nav__link">
-    6.2. Break Glass Accounts
+  <a href="#principal-authorization" class="md-nav__link">
+    Principal Authorization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-authorization" class="md-nav__link">
+    Root Authorization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-roles" class="md-nav__link">
+    Service Roles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-control-policies" class="md-nav__link">
+    Service Control Policies
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Control Policies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pbmm-only" class="md-nav__link">
+    PBMM Only
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#63-control-plane-access-via-aws-sso" class="md-nav__link">
-    6.3. Control Plane Access via AWS SSO
+  <a href="#pbmm-unclass-only" class="md-nav__link">
+    PBMM Unclass Only
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#64-root-authorization" class="md-nav__link">
-    6.4. Root Authorization
+  <a href="#pbmm-guardrails-parts-1-and-2" class="md-nav__link">
+    PBMM Guardrails (Parts 1 and 2)
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#65-service-roles" class="md-nav__link">
-    6.5. Service Roles
+  <a href="#quarantine-deny-all" class="md-nav__link">
+    Quarantine Deny All
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#66-service-control-policies" class="md-nav__link">
-    6.6. Service Control Policies
+  <a href="#quarantine-new-object" class="md-nav__link">
+    Quarantine New Object
   </a>
   
 </li>
@@ -673,11 +773,9 @@
 </a>
 
 
-  <h1>Authentication & Authorization</h1>
-
-<h2 id="6-authorization-and-authentication">6. Authorization and Authentication<a class="headerlink" href="#6-authorization-and-authentication" title="Permanent link">&para;</a></h2>
+<h1 id="authorization-and-authentication">Authorization and Authentication<a class="headerlink" href="#authorization-and-authentication" title="Permanent link">&para;</a></h1>
 <p>The <em>AWS Secure Environment Architecture</em> makes extensive use of AWS authorization and authentication primitives from the Identity and Access Management (IAM) service as a means to enforce the guardrail objectives of the <em>AWS Secure Environment Architecture</em>, and govern access to the set of accounts that makes up the Organization.</p>
-<h3 id="61-relationship-to-the-organization-management-root-aws-account">6.1. Relationship to the Organization Management (root) AWS Account<a class="headerlink" href="#61-relationship-to-the-organization-management-root-aws-account" title="Permanent link">&para;</a></h3>
+<h2 id="relationship-to-the-organization-management-root-aws-account">Relationship to the Organization Management (root) AWS Account<a class="headerlink" href="#relationship-to-the-organization-management-root-aws-account" title="Permanent link">&para;</a></h2>
 <p>AWS accounts, as a default position, are entirely self-contained with respect to IAM principals - their Users, Roles, Groups are independent and scoped only to themselves. Accounts created by AWS Organizations deploy a default role with a trust policy back to the Organization Management (root). By default, this role is named the <code>OrganizationAccountAccessRole</code>; by contrast, the <em>AWS Secure Environment Architecture</em> allows customers to customize this role by defining it in <code>organization-admin-role</code> (default: <code>AWSCloudFormationStackSetAdministrationRole</code>).</p>
 <pre><code class="language-jsonc">{
   &quot;Role&quot;: {
@@ -700,15 +798,15 @@
 }
 </code></pre>
 <p>As discussed, the AWS Organization resides in the Organization Management (root) account. This account is not used for workloads and is primarily a gateway to the entire cloud footprint for a high-trust principal. This is realized via the role defined in <code>organization-admin-role</code> (default: <code>AWSCloudFormationStackSetAdministrationRole</code>). It is therefore crucial that the Organization Management (root) account root credentials be handled with extreme diligence, and with a U2F hardware key enabled as a second-factor (and stored in a secure location such as a safe).</p>
-<h3 id="62-break-glass-accounts">6.2. Break Glass Accounts<a class="headerlink" href="#62-break-glass-accounts" title="Permanent link">&para;</a></h3>
+<h2 id="break-glass-accounts">Break Glass Accounts<a class="headerlink" href="#break-glass-accounts" title="Permanent link">&para;</a></h2>
 <p>Given the Organizational-wide trust relationship to the role defined in <code>organization-admin-role</code> (default: <code>AWSCloudFormationStackSetAdministrationRole</code>) and its broad exclusion from SCPs (discussed below), the assumption of this role grants 'super admin' status, and is thus an extremely high privilege operation. The ability to assume this role should be considered a 'break glass' capability - to be used only in extraordinary circumstances. Access to this role can be granted by IAM Users or IAM Roles in the Organization Management (root) account (via SSO) - as with the Organization Management (root) account credentials, these should be handled with extreme diligence, and with a U2F hardware key enabled as a second-factor (and stored in a secure location such as a safe).</p>
 <p><strong>TBD: This role was locked down starting in v1.2.5 - Add further details here /TODO</strong></p>
-<h3 id="63-control-plane-access-via-aws-sso">6.3. Control Plane Access via AWS SSO<a class="headerlink" href="#63-control-plane-access-via-aws-sso" title="Permanent link">&para;</a></h3>
+<h2 id="control-plane-access-via-aws-sso">Control Plane Access via AWS SSO<a class="headerlink" href="#control-plane-access-via-aws-sso" title="Permanent link">&para;</a></h2>
 <p>The vast majority of end-users of the AWS cloud within the Organization will never use or interact with the Organization Management (root) account, or indeed the root users of any child account in the Organization. The <em>AWS Secure Environment Architecture</em> recommends instead that AWS SSO be provisioned in the Organization Management (root) account (a rare case where Organization Management (root) account deployment is mandated).</p>
 <p>Users will login to AWS via the web-based endpoint for the AWS SSO service:</p>
 <p><img alt="SSO" src="../images/sso.drawio.png" /></p>
 <p>Via an AWS Directory Connector deployed in the Organization Management (root) account, AWS SSO will authenticate the user based on the underlying Microsoft AD installation (in the Central account). Based on group membership, the user will be presented with a set of roles to assume into those accounts. For example, a developer may be placed into groups that permit <code>Admin</code> access in the <code>Dev</code> account and <code>Readonly</code> access in <code>Test</code>; meanwhile an IT Director may have high-privilege access to most, or all, accounts. In effect, AWS SSO adds SAML IdP capabilities to the AWS Managed Microsoft AD, with the AWS Console acting as a service-provider (SP) in SAML parlance. Other SAML-aware SPs may also be used with AWS SSO.</p>
-<h4 id="631-sso-user-roles">6.3.1. SSO User Roles<a class="headerlink" href="#631-sso-user-roles" title="Permanent link">&para;</a></h4>
+<h3 id="sso-user-roles">SSO User Roles<a class="headerlink" href="#sso-user-roles" title="Permanent link">&para;</a></h3>
 <p>AWS SSO creates an identity provider (IdP) in each account in the Organization. The roles used by end users have a trust policy to this IdP. When a user authenticates to AWS SSO (via the underlying AD Connector) and selects a role to assume based on their group membership, the SSO service provides the user with temporary security credentials unique to the role session. In such a scenario, the user has no long-term credentials (e.g. password, or access keys) and instead uses their temporary security credentials.</p>
 <p>Users, via their AD group membership, are ultimately assigned to SSO User Roles via the use of AWS SSO Permission Sets. A permission set is an assignment of a particular permission policy to a set of accounts. For example:</p>
 <p>An organization might decide to use <strong>AWS Managed Policies for Job Functions</strong> that are located within the SSO service as the baseline for role-based-access-control (RBAC) separation within an AWS account. This enables job function policies such as:</p>
@@ -718,21 +816,21 @@
 <li><strong>Database Administrator</strong> - This policy grants permissions to create, configure, and maintain databases. It includes access to AWS database services, such as Amazon DynamoDB, Amazon Relational Database Service (RDS), and Amazon Redshift.</li>
 <li><strong>View-Only User</strong> - This policy grants <code>List*</code>, <code>Describe*</code>, <code>Get*</code>, <code>View*</code>, and <code>Lookup*</code> access to resources for most AWS services.</li>
 </ul>
-<h4 id="632-principal-authorization">6.3.2. Principal Authorization<a class="headerlink" href="#632-principal-authorization" title="Permanent link">&para;</a></h4>
+<h3 id="principal-authorization">Principal Authorization<a class="headerlink" href="#principal-authorization" title="Permanent link">&para;</a></h3>
 <p>Having assumed a role, a user’s permission-level within an AWS account with respect to any API operation is governed by the IAM policy evaluation logic flow (<a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html">detailed here</a>):</p>
 <p><img alt="IAM-policy" src="../images/iam-policy-evaluation.png" /></p>
 <p>Having an <code>Allow</code> to a particular API operation from the Role (i.e. Session Policy) does not necessarily imply that API operation will succeed. As depicted above, <strong>Deny</strong> may result due to another evaluation stage in the logic; for example a restrictive permission boundary or an explicit <code>Deny</code> at the Resource or SCP (account) level. SCPs are used extensively as a guardrailing mechanism in the <em>AWS Secure Environment Architecture</em>, and are discussed in a later section.</p>
-<h3 id="64-root-authorization">6.4. Root Authorization<a class="headerlink" href="#64-root-authorization" title="Permanent link">&para;</a></h3>
+<h2 id="root-authorization">Root Authorization<a class="headerlink" href="#root-authorization" title="Permanent link">&para;</a></h2>
 <p>Root credentials for individual accounts in an AWS organization may be created on demand via a password reset process on the unique account email address; however, the <em>AWS Secure Environment Architecture</em> specifically denies this via SCP. Root credentials authorize all actions for all AWS services and for all resources in the account (except anything denied by SCPs). There are some actions which only root has the capability to perform which are found within the <a href="https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html">AWS online documentation</a>. These are typically rare operations (e.g. creation of X.509 keys), and should not be required in the normal course of business. Any root credentials, if ever they need to be created, should be handled with extreme diligence, with U2F MFA enabled.</p>
-<h3 id="65-service-roles">6.5. Service Roles<a class="headerlink" href="#65-service-roles" title="Permanent link">&para;</a></h3>
+<h2 id="service-roles">Service Roles<a class="headerlink" href="#service-roles" title="Permanent link">&para;</a></h2>
 <p>A service role is an IAM Role that a service assumes to perform actions in an account on the user’s behalf. When a user sets up AWS service environments, the user must define an IAM Role for the service to assume. This service role must include all the permissions that are required for the service to access the AWS resources that it needs. Service roles provide access only within a single account and cannot be used to grant access to services in other accounts. Users can create, modify, and delete a service role from within the IAM service. For example, a user can create a role that allows Amazon Redshift to access an Amazon S3 bucket on the user’s behalf and then load data from that bucket into an Amazon Redshift cluster. In the case of SSO, during the process in which AWS SSO is enabled, the AWS Organizations service grants AWS SSO the necessary permissions to create subsequent IAM Roles.</p>
-<h3 id="66-service-control-policies">6.6. Service Control Policies<a class="headerlink" href="#66-service-control-policies" title="Permanent link">&para;</a></h3>
+<h2 id="service-control-policies">Service Control Policies<a class="headerlink" href="#service-control-policies" title="Permanent link">&para;</a></h2>
 <p>Service Control Policies are a key preventative control recommended by the <em>AWS Secure Environment Architecture</em>. It is crucial to note that SCPs, by themselves, never <em>grant</em> permissions. They are most often used to <code>Deny</code> certain actions at a root, OU, or account level within an AWS Organization. Since <code>Deny</code> always overrides <code>Allow</code> in the IAM policy evaluation logic, SCPs can have a powerful effect on all principals in an account, and can wholesale deny entire categories of actions irrespective of the permission policy attached to the principal itself - even the root user of the account.</p>
 <p>SCPs follow an inheritance pattern from the root of the Organization:</p>
 <p><img alt="SCPs" src="../images/scp-venn.png" /></p>
 <p>In order for any principal to be able to perform an action A, it is necessary (but not sufficient) that there is an <code>Allow</code> on action A from all levels of the hierarchy down to the account, and no explicit <code>Deny</code> anywhere. This is discussed in further detail in <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps-about.html">How SCPs Work</a>.</p>
 <p>The <em>AWS Secure Environment Architecture</em> recommends the following SCPs in the Organization:</p>
-<h4 id="661-pbmm-only">6.6.1. PBMM Only<a class="headerlink" href="#661-pbmm-only" title="Permanent link">&para;</a></h4>
+<h3 id="pbmm-only">PBMM Only<a class="headerlink" href="#pbmm-only" title="Permanent link">&para;</a></h3>
 <p>This is a comprehensive policy whose main goal is to provide a PBMM-compliant cloud environment, namely prohibiting any non-centralized networking, and mandating data residency in Canada. It should be attached to all non-<code>Unclass</code> OUs.</p>
 <table>
 <thead>
@@ -756,7 +854,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="662-pbmm-unclass-only">6.6.2. PBMM Unclass Only<a class="headerlink" href="#662-pbmm-unclass-only" title="Permanent link">&para;</a></h4>
+<h3 id="pbmm-unclass-only">PBMM Unclass Only<a class="headerlink" href="#pbmm-unclass-only" title="Permanent link">&para;</a></h3>
 <p>This is broadly similar to <code>PBMM Only</code>; however it relaxes the requirement for Canadian region usage, and does not prohibit network infrastructure creation (e.g. VPCs, IGWs). This is appropriate for OUs in which AWS service experimentation is taking place.</p>
 <table>
 <thead>
@@ -776,7 +874,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="663-pbmm-guardrails-parts-1-and-2">6.6.3. PBMM Guardrails (Parts 1 and 2)<a class="headerlink" href="#663-pbmm-guardrails-parts-1-and-2" title="Permanent link">&para;</a></h4>
+<h3 id="pbmm-guardrails-parts-1-and-2">PBMM Guardrails (Parts 1 and 2)<a class="headerlink" href="#pbmm-guardrails-parts-1-and-2" title="Permanent link">&para;</a></h3>
 <p>PBMM Guardrails apply across the Organization. These guardrails protect key infrastructure, mandate encryption at rest, and prevent other non-PBMM configurations. Note that this guardrail is split into two parts due to a current limitation of SCP sizing, but logically it should be considered a single policy.</p>
 <table>
 <thead>
@@ -864,9 +962,9 @@
 </tr>
 </tbody>
 </table>
-<h5 id="6631-encryption-at-rest">6.6.3.1. Encryption at Rest<a class="headerlink" href="#6631-encryption-at-rest" title="Permanent link">&para;</a></h5>
+<h4 id="encryption-at-rest">Encryption at Rest<a class="headerlink" href="#encryption-at-rest" title="Permanent link">&para;</a></h4>
 <p>Note that the <code>*Encryption*</code> SCP statements above, taken together, mandate encryption at rest for block storage volumes used in EC2 and RDS instances.</p>
-<h4 id="664-quarantine-deny-all">6.6.4. Quarantine Deny All<a class="headerlink" href="#664-quarantine-deny-all" title="Permanent link">&para;</a></h4>
+<h3 id="quarantine-deny-all">Quarantine Deny All<a class="headerlink" href="#quarantine-deny-all" title="Permanent link">&para;</a></h3>
 <p>This policy can be attached to an account to 'quarantine' it - to prevent any AWS operation from taking place. This is useful in the case of an account with credentials which are believed to have been compromised.</p>
 <table>
 <thead>
@@ -882,7 +980,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="665-quarantine-new-object">6.6.5. Quarantine New Object<a class="headerlink" href="#665-quarantine-new-object" title="Permanent link">&para;</a></h4>
+<h3 id="quarantine-new-object">Quarantine New Object<a class="headerlink" href="#quarantine-new-object" title="Permanent link">&para;</a></h3>
 <p>This policy is applied to new accounts upon creation. After the installation of guardrails, it is removed. In the meantime, it prevents all AWS control plane operations except by principals required to deploy guardrails.</p>
 <table>
 <thead>
