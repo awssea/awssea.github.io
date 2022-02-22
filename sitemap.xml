@@ -86,6 +86,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://awssea.github.io/guides/fortigate/</loc>
+         <lastmod>2022-02-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://awssea.github.io/guides/fortigate/public-facing-workload-via-fortigate/</loc>
          <lastmod>2022-02-22</lastmod>
          <changefreq>daily</changefreq>
