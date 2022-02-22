@@ -116,6 +116,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://awssea.github.io/installation/install/</loc>
+         <lastmod>2022-02-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://awssea.github.io/installation/multi-file-config-capabilities/</loc>
          <lastmod>2022-02-22</lastmod>
          <changefreq>daily</changefreq>
