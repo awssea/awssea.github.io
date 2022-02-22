@@ -156,7 +156,22 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://awssea.github.io/operations/common-tasks/</loc>
+         <lastmod>2022-02-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://awssea.github.io/operations/operations-import-ALZAccount/</loc>
+         <lastmod>2022-02-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://awssea.github.io/operations/system-overview/</loc>
+         <lastmod>2022-02-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://awssea.github.io/operations/troubleshooting/</loc>
          <lastmod>2022-02-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
