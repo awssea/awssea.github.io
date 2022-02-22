@@ -12,21 +12,21 @@
         <meta name="author" content="Amazon Web Services">
       
       
-        <link rel="canonical" href="https://awssea.github.io/architectures/pbmm/diagrams/">
+        <link rel="canonical" href="https://awssea.github.io/installation/design/">
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.9">
     
     
       
-        <title>Architecture Diagrams - AWS Secure Environment Accelerator</title>
+        <title>Design Decisions - AWS Secure Environment Accelerator</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.2b4465f4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2b4465f4.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.e6a45f82.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
         
       
     
@@ -40,9 +40,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/pdf-print.css">
+      <link rel="stylesheet" href="../../css/pdf-print.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#prescriptive-sample-architecture-diagrams" class="md-skip">
+        <a href="#design-notes" class="md-skip">
           Skip to content
         </a>
       
@@ -80,7 +80,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="AWS Secure Environment Accelerator" class="md-header__button md-logo" aria-label="AWS Secure Environment Accelerator" data-md-component="logo">
+    <a href="../.." title="AWS Secure Environment Accelerator" class="md-header__button md-logo" aria-label="AWS Secure Environment Accelerator" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture Diagrams
+              Design Decisions
             
           </span>
         </div>
@@ -178,7 +178,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="AWS Secure Environment Accelerator" class="md-nav__button md-logo" aria-label="AWS Secure Environment Accelerator" data-md-component="logo">
+    <a href="../.." title="AWS Secure Environment Accelerator" class="md-nav__button md-logo" aria-label="AWS Secure Environment Accelerator" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -209,7 +209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -224,7 +224,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../faq/" class="md-nav__link">
+      <a href="../../faq/" class="md-nav__link">
         FAQ
       </a>
     </li>
@@ -239,7 +239,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../about/" class="md-nav__link">
+      <a href="../../about/" class="md-nav__link">
         About
       </a>
     </li>
@@ -252,14 +252,16 @@
 
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
       
       
       
@@ -279,7 +281,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../installation/">Installation & Upgrades</a>
+          <a href="../">Installation & Upgrades</a>
           
             <label for="__nav_4">
               <span class="md-nav__icon md-icon"></span>
@@ -302,7 +304,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/upgrades/" class="md-nav__link">
+      <a href="../upgrades/" class="md-nav__link">
         Upgrades
       </a>
     </li>
@@ -316,7 +318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../installation/existing-orgs/" class="md-nav__link">
+      <a href="../existing-orgs/" class="md-nav__link">
         Existing Orgs & Accounts
       </a>
     </li>
@@ -328,11 +330,52 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../installation/design/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Design Decisions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Design Decisions
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accelerator-design-constraints-decisions" class="md-nav__link">
+    Accelerator Design Constraints / Decisions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -371,7 +414,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../operations/">Operations & Troubleshooting</a>
+          <a href="../../operations/">Operations & Troubleshooting</a>
           
         </div>
       
@@ -449,7 +492,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../guides/fortigate/">Fortigate</a>
+          <a href="../../guides/fortigate/">Fortigate</a>
           
             <label for="__nav_6_1">
               <span class="md-nav__icon md-icon"></span>
@@ -472,7 +515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../guides/fortigate/public-facing-workload-via-fortigate/" class="md-nav__link">
+      <a href="../../guides/fortigate/public-facing-workload-via-fortigate/" class="md-nav__link">
         Expose Public Facing Workload
       </a>
     </li>
@@ -530,7 +573,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../../developer/">Developer Guide</a>
+          <a href="../../developer/">Developer Guide</a>
           
             <label for="__nav_7">
               <span class="md-nav__icon md-icon"></span>
@@ -553,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../developer/development/" class="md-nav__link">
+      <a href="../../developer/development/" class="md-nav__link">
         Development Guide
       </a>
     </li>
@@ -567,7 +610,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../developer/tech-stack/" class="md-nav__link">
+      <a href="../../developer/tech-stack/" class="md-nav__link">
         Tech Stack
       </a>
     </li>
@@ -581,7 +624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../developer/best-practices/" class="md-nav__link">
+      <a href="../../developer/best-practices/" class="md-nav__link">
         Best Practices
       </a>
     </li>
@@ -595,7 +638,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../developer/contributing-guidelines/" class="md-nav__link">
+      <a href="../../developer/contributing-guidelines/" class="md-nav__link">
         How to Contribute
       </a>
     </li>
@@ -609,7 +652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../developer/release-process/" class="md-nav__link">
+      <a href="../../developer/release-process/" class="md-nav__link">
         Release Process
       </a>
     </li>
@@ -629,16 +672,14 @@
 
   
   
-    
-  
   
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
       
       
       
@@ -663,14 +704,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
       
       
       
@@ -694,7 +733,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../">PBMM</a>
+          <a href="../../architectures/pbmm/">PBMM</a>
           
             <label for="__nav_8_1">
               <span class="md-nav__icon md-icon"></span>
@@ -717,7 +756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../accounts/" class="md-nav__link">
+      <a href="../../architectures/pbmm/accounts/" class="md-nav__link">
         Account Structure
       </a>
     </li>
@@ -731,7 +770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../network/" class="md-nav__link">
+      <a href="../../architectures/pbmm/network/" class="md-nav__link">
         Networking
       </a>
     </li>
@@ -745,7 +784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../auth/" class="md-nav__link">
+      <a href="../../architectures/pbmm/auth/" class="md-nav__link">
         Authentication & Authorization
       </a>
     </li>
@@ -759,7 +798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logging/" class="md-nav__link">
+      <a href="../../architectures/pbmm/logging/" class="md-nav__link">
         Logging and Monitoring
       </a>
     </li>
@@ -771,73 +810,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Architecture Diagrams
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../architectures/pbmm/diagrams/" class="md-nav__link">
         Architecture Diagrams
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#shared-vpc-architecture" class="md-nav__link">
-    Shared VPC Architecture
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spoke-vpc-architecture" class="md-nav__link">
-    Spoke VPC Architecture
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vpc-and-security-group-patterns" class="md-nav__link">
-    VPC and Security Group Patterns
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-perimeter-patterns" class="md-nav__link">
-    Additional Perimeter Patterns
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -864,7 +841,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../workshops/" class="md-nav__link">
+      <a href="../../workshops/" class="md-nav__link">
         Workshops
       </a>
     </li>
@@ -894,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../schema/" class="md-nav__link">
+      <a href="../../schema/" class="md-nav__link">
         Configuration File Schema
       </a>
     </li>
@@ -928,29 +905,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shared-vpc-architecture" class="md-nav__link">
-    Shared VPC Architecture
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spoke-vpc-architecture" class="md-nav__link">
-    Spoke VPC Architecture
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vpc-and-security-group-patterns" class="md-nav__link">
-    VPC and Security Group Patterns
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-perimeter-patterns" class="md-nav__link">
-    Additional Perimeter Patterns
+  <a href="#accelerator-design-constraints-decisions" class="md-nav__link">
+    Accelerator Design Constraints / Decisions
   </a>
   
 </li>
@@ -967,26 +923,29 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/aws-samples/aws-secure-environment-accelerator/edit/master/docs/architectures/pbmm/diagrams.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/aws-samples/aws-secure-environment-accelerator/edit/master/docs/installation/design.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
 
-<h1 id="prescriptive-sample-architecture-diagrams">Prescriptive Sample Architecture Diagrams<a class="headerlink" href="#prescriptive-sample-architecture-diagrams" title="Permanent link">&para;</a></h1>
-<h2 id="shared-vpc-architecture">Shared VPC Architecture<a class="headerlink" href="#shared-vpc-architecture" title="Permanent link">&para;</a></h2>
-<p><img alt="ASEA1 Diagram" src="../../images/ASEA1.png" /></p>
-<p><img alt="ASEA2 Diagram" src="../../images/ASEA2.png" /></p>
-<h2 id="spoke-vpc-architecture">Spoke VPC Architecture<a class="headerlink" href="#spoke-vpc-architecture" title="Permanent link">&para;</a></h2>
-<p><img alt="ASEA3 Diagram" src="../../images/ASEA-Spoke.png" /></p>
-<h2 id="vpc-and-security-group-patterns">VPC and Security Group Patterns<a class="headerlink" href="#vpc-and-security-group-patterns" title="Permanent link">&para;</a></h2>
-<p><img alt="ASEA4 Diagram" src="../../images/ASEA3.png" /></p>
-<p><img alt="ASEA5 Diagram" src="../../images/ASEA4.png" /></p>
-<p><img alt="ASEA6 Diagram" src="../../images/ASEA5.png" /></p>
-<h2 id="additional-perimeter-patterns">Additional Perimeter Patterns<a class="headerlink" href="#additional-perimeter-patterns" title="Permanent link">&para;</a></h2>
-<p><img alt="ASEA7 Diagram" src="../../images/perimeter-NFW.png" /></p>
-<p><img alt="ASEA8 Diagram" src="../../images/perimeter-NFW-flows.png" /></p>
-<p><img alt="ASEA9 Diagram" src="../../images/perimeter-GWLB.png" /></p>
-<p><img alt="ASEA10 Diagram" src="../../images/perimeter-NFW-GWLB.png" /></p>
+<h1 id="design-notes">Design Notes<a class="headerlink" href="#design-notes" title="Permanent link">&para;</a></h1>
+<h2 id="accelerator-design-constraints-decisions">Accelerator Design Constraints / Decisions<a class="headerlink" href="#accelerator-design-constraints-decisions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The Organization Management (root) account does NOT have any preventative controls to protect the integrity of the Accelerator codebase, deployed objects or guardrails. Do not delete, modify, or change anything in the Organization Management (root) account unless you are certain as to what you are doing. More specifically, do NOT delete, or change <em>any</em> buckets in the Organization Management (root) account.</li>
+<li>While generally protected, do not delete/update/change s3 buckets with cdk-asea-, or asea- in <em>any</em> sub-accounts.</li>
+<li>ALB automated deployments only supports Forward and not redirect rules.</li>
+<li>The Accelerator deploys SNS topics to send email alerts and notifications. Given email is not a secure transport mechanism, we have chosen not to enable SNS encryption on these topics at this time.</li>
+<li>AWS generally discourages cross-account KMS key usage. As the Accelerator centralizes logs across an entire organization as a security best practice, this is an exception/example of a unique situation where cross-account KMS key access is required.</li>
+<li>The Accelerator aggregates all logs in the log-archive account using Kinesis Data and Kinesis Firehose as aggregation tools where the logs could persist for up to 24 hours. These logs are encrypted with Customer Managed KMS keys once stored in S3 (ELB logs only support AES256). These logs are also encrypted in transit using TLS encryption. At this time, we have not enabled Kinesis at-rest encryption, we will reconsider this decision based on customer feedback.</li>
+<li>AWS Config Aggregator is deployed in the Organization Management (root) account as enablement through Organizations is simpler to implement. AWS Organizations only supported deploying the Aggregator in the Organization Management (root) account and not in a designated administrative account when we implemented this feature. We have a backlog item to update the code to move the Aggregator to the security account.</li>
+<li>An Organization CloudTrail is deployed, which is created in the primary region in the Organization Management (root) AWS account. All AWS account CloudTrails are centralized into this single CloudWatch Log Group. Starting in v1.1.9 this is where we deploy the CloudWatch Alarms which trigger for ALL accounts in the organization. Security Hub will erroneously report that the only account and/or region that is compliant with certain rules is the primary region of the Organization Management (root) account. We are working with the Security Hub team to rectify this situation in future Security Hub/Accelerator releases (resolved in Accelerator v1.5.0).</li>
+<li>Only 1 auto-deployed MAD in any mandatory-account is supported today.</li>
+<li>VPC Endpoints have no Name tags applied as CloudFormation does not currently support tagging VPC Endpoints.</li>
+<li>If the Organization Management (root) account coincidentally already has an ADC with the same domain name, we do not create/deploy a new ADC. You must manually create a new ADC (it won't cause issues).</li>
+<li>3rd party firewall updates are to be performed using the firewall OS based update capabilities. To update the AMI using the Accelerator, you must first remove the firewalls and then redeploy them (as the EIP's will block a parallel deployment), or deploy a second parallel FW cluster and de-provision the first cluster when ready.</li>
+<li>When adding more than 100 accounts to an OU which uses shared VPC's, you must <em>first</em> increase the Quota <code>Participant accounts per VPC</code> in the shared VPC owner account (i.e. shared-network). Trapping this quota before the SM fails has been added to the backlog.</li>
+<li>The default limit for Directory Sharing is 125 accounts for an Enterprise Managed Active Directory (MAD), a quota increase needs to be manually requested through support from the account containing the MAD before this limit is reached. Standard MAD has a sharing limit of 5 accounts (and only supports a small quota increase). The MAD sharing limit is not available in the Service Quota's tools.</li>
+</ul>
 
               
             </article>
@@ -1000,7 +959,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../logging/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Logging and Monitoring" rel="prev">
+        <a href="../existing-orgs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Existing Orgs &amp; Accounts" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1009,20 +968,20 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Logging and Monitoring
+              Existing Orgs & Accounts
             </div>
           </div>
         </a>
       
       
         
-        <a href="../../../workshops/" class="md-footer__link md-footer__link--next" aria-label="Next: Workshops" rel="next">
+        <a href="../../operations/" class="md-footer__link md-footer__link--next" aria-label="Next: 1. Operations &amp; Troubleshooting Guide" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Workshops
+              1. Operations & Troubleshooting Guide
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1047,10 +1006,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tracking", "navigation.sections", "navigation.instant", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tracking", "navigation.sections", "navigation.instant", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.960e086b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.960e086b.min.js"></script>
       
     
   </body>

@@ -106,6 +106,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://awssea.github.io/installation/design/</loc>
+         <lastmod>2022-02-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://awssea.github.io/installation/existing-orgs/</loc>
+         <lastmod>2022-02-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://awssea.github.io/installation/multi-file-config-capabilities/</loc>
          <lastmod>2022-02-22</lastmod>
          <changefreq>daily</changefreq>
@@ -117,6 +127,11 @@
     </url>
     <url>
          <loc>https://awssea.github.io/installation/sm_inputs/</loc>
+         <lastmod>2022-02-22</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://awssea.github.io/installation/upgrades/</loc>
          <lastmod>2022-02-22</lastmod>
          <changefreq>daily</changefreq>
     </url>
