@@ -814,7 +814,7 @@
   
   
     <li class="md-nav__item">
-      <a href="https://awssea.github.io/output-docs/en/index.html" class="md-nav__link">
+      <a href="../../../schema/" class="md-nav__link">
         Configuration File Schema
       </a>
     </li>
@@ -971,7 +971,7 @@
 <p>The <em>AWS Secure Environment Architecture</em> makes extensive use of AWS authorization and authentication primitives from the Identity and Access Management (IAM) service as a means to enforce the guardrail objectives of the <em>AWS Secure Environment Architecture</em>, and govern access to the set of accounts that makes up the Organization.</p>
 <h2 id="relationship-to-the-organization-management-root-aws-account">Relationship to the Organization Management (root) AWS Account<a class="headerlink" href="#relationship-to-the-organization-management-root-aws-account" title="Permanent link">&para;</a></h2>
 <p>AWS accounts, as a default position, are entirely self-contained with respect to IAM principals - their Users, Roles, Groups are independent and scoped only to themselves. Accounts created by AWS Organizations deploy a default role with a trust policy back to the Organization Management (root). By default, this role is named the <code>OrganizationAccountAccessRole</code>; by contrast, the <em>AWS Secure Environment Architecture</em> allows customers to customize this role by defining it in <code>organization-admin-role</code> (default: <code>AWSCloudFormationStackSetAdministrationRole</code>).</p>
-<pre><code class="language-jsonc">{
+<pre><code class="language-json">{
   &quot;Role&quot;: {
     &quot;Path&quot;: &quot;/&quot;,
     &quot;RoleName&quot;: &quot;AWSCloudFormationStackSetExecutionRole&quot;,
