@@ -238,10 +238,61 @@
   
   
   
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../about/">About</a>
+          
+            <label for="__nav_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
-        About
+      <a href="../../pricing/sample_pricing/" class="md-nav__link">
+        Pricing
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -268,6 +319,8 @@
         
           
             
+          
+        
           
         
           
@@ -541,6 +594,20 @@
     <li class="md-nav__item">
       <a href="../design/" class="md-nav__link">
         Design Decisions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../services-list/" class="md-nav__link">
+        Deployed Services List
       </a>
     </li>
   
@@ -1166,10 +1233,49 @@
   
   
   
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      
+      
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_11">
+          Contributing & Governance
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Contributing & Governance" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          Contributing & Governance
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
       <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/CONTRIBUTING.md" class="md-nav__link">
-        Contributing & Governance
+        None
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1395,6 +1501,7 @@
 <h2 id="production-deployment-planning">Production Deployment Planning<a class="headerlink" href="#production-deployment-planning" title="Permanent link">&para;</a></h2>
 <h3 id="general_1">General<a class="headerlink" href="#general_1" title="Permanent link">&para;</a></h3>
 <p><strong>For any deployment of the Accelerator which is intended to be used for production workloads, you must evaluate all these decisions carefully. Failure to understand these choices could cause challenges down the road. If this is a "test" or "internal" deployment of the Accelerator which will not be used for production workloads, you can leave the default config values.</strong></p>
+<p><strong>Config file <a href="../../schema/">schema</a>) documentation</strong> (Draft)</p>
 <h3 id="ou-structure-planning">OU Structure Planning<a class="headerlink" href="#ou-structure-planning" title="Permanent link">&para;</a></h3>
 <p>Plan your OU and core account structure carefully. By default, we suggest: <code>Security, Infrastructure, Central, Sandbox, Dev, Test, Prod</code>.</p>
 <ul>
@@ -1673,8 +1780,8 @@
 <li>If required, place the firewall configuration and license files in the folder and path defined in the config file</li>
 <li>For AWS Network Firewall: <code>nfw/nfw-example-policy.json</code></li>
 <li>For Fortinet: <code>firewall/firewall-example.txt</code>, <code>firewall/license1.lic</code> and <code>firewall/license2.lic</code><ul>
-<li>We have made several samples available <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/tree/main/reference-artifacts/Third-Party">here</a>: <code>./reference-artifacts/Third-Party/</code></li>
-<li>Both samples comprise an active / active firewall pair. Until recently we only brought up one tunnel per firewall, you now also have an example which brings up both tunnels per firewall</li>
+<li>We have made a sample available <a href="../../reference-artifacts/Third-Party">here</a>: <code>./reference-artifacts/Third-Party/</code></li>
+<li>the samples configures an active / active firewall pair with two tunnels per firewall</li>
 <li>If you updated your perimeter VPC subnet names, you must also make these changes in your firewall-example.txt file</li>
 <li>If you don't have any license files, update the config file with an empty array (<code>"license": []</code>). Do NOT use the following: <code>[""]</code>.</li>
 </ul>
