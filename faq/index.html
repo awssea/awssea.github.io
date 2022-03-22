@@ -1062,15 +1062,13 @@
 <ul>
 <li>** <strong>IMPORTANT:</strong> When creating the new AWS account using AWS Organizations, you need to specify the role name provided in the Accelerator configuration file <code>global-options\organization-admin-role</code>, otherwise we cannot bootstrap the account. In Control Tower installations, this <strong>MUST</strong> be set to <strong><em><code>AWSControlTowerExecution</code></em></strong>, for customers who installed prior to v1.2.5 this value is <strong><em><code>AWSCloudFormationStackSetExecutionRole</code></em></strong> and after v1.2.5 we were recommending using the role <strong><em><code>OrganizationAccountAccessRole</code></em></strong> as this role is used by default by AWS Organizations if no role name is specified when creating AWS accounts through the AWS console or cli.</li>
 <li>On account creation we will apply a quarantine SCP which prevents the account from being used by anyone until the Accelerator has applied the appropriate guardrails</li>
-<li>
-<p>Moving the account into the appropriate OU triggers the state machine and the application of the guardrails to the account, once complete, we will remove the quarantine SCP.</p>
-</li>
-<li>
-<p><strong>NOTE:</strong> Accounts CANNOT be moved between OU's to maintain compliance, so select the proper top-level OU with care</p>
-</li>
+<li>Moving the account into the appropriate OU triggers the state machine and the application of the guardrails to the account, once complete, we will remove the quarantine SCP.<ul>
+<li><strong>NOTE:</strong> Accounts CANNOT be moved between OU's to maintain compliance, so select the proper top-level OU with care</li>
 <li>In AWS Organizations, select ALL the newly created AWS accounts and move them all (preferably at once) to the correct destination OU (assuming the same OU for all accounts)</li>
 <li>In case you need to move accounts to multiple OU's we have added a 2 minute delay before triggering the State Machine</li>
 <li>Any accounts moved after the 2 minute window will NOT be properly ingested, and will need to be ingested on a subsequent State Machine Execution.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Option 3</strong></p>
 <p>Create your account using Account Factory in the AWS Control Tower console.</p>
