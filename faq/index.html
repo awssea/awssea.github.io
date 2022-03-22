@@ -210,7 +210,7 @@
   
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
-        Index
+        About
       </a>
     </li>
   
@@ -315,9 +315,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
@@ -498,9 +496,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
@@ -596,9 +592,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
@@ -726,9 +720,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
@@ -872,9 +864,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
@@ -918,9 +908,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
@@ -1060,8 +1048,8 @@
 <h2 id="operational-activities">Operational Activities<a class="headerlink" href="#operational-activities" title="Permanent link">&para;</a></h2>
 <h4 id="how-do-i-add-new-aws-accounts-to-my-aws-organization">How do I add new AWS accounts to my AWS Organization?<a class="headerlink" href="#how-do-i-add-new-aws-accounts-to-my-aws-organization" title="Permanent link">&para;</a></h4>
 <p>We offer three options and all can be used in the same Accelerator deployment. All options work with AWS Control Tower, ensuring the account is both ingested into Control Tower and all Accelerator guardrails are automatically applied:</p>
-<p><strong>Option 1</strong>
-Users can simply add the following five lines to the configuration file <code>workload-account-configs</code> section and rerun the state machine. The majority of the account configuration will be picked up from the ou the AWS account has been assigned. You can also add additional account specific configuration, or override items like the default ou budget with an account specific budget. This mechanism is often used by customers that wish to programmatically create AWS accounts using the Accelerator and allows for adding many new accounts at one time.</p>
+<p><strong>Option 1</strong></p>
+<p>Users can simply add the following five lines to the configuration file <code>workload-account-configs</code> section and rerun the state machine. The majority of the account configuration will be picked up from the ou the AWS account has been assigned. You can also add additional account specific configuration, or override items like the default ou budget with an account specific budget. This mechanism is often used by customers that wish to programmatically create AWS accounts using the Accelerator and allows for adding many new accounts at one time.</p>
 <pre><code class="language-json">&quot;fun-acct&quot;: {
   &quot;account-name&quot;: &quot;TheFunAccount&quot;,
   &quot;email&quot;: &quot;myemail+aseaT-funacct@example.com&quot;,
@@ -1069,8 +1057,8 @@ Users can simply add the following five lines to the configuration file <code>wo
   &quot;ou&quot;: &quot;Sandbox&quot;
 }
 </code></pre>
-<p><strong>Option 2</strong>
-We've heard consistent feedback that our customers wish to use native AWS services and do not want to do things differently once security controls, guardrails, or accelerators are applied to their environment. In this regard, simply create your new AWS account in AWS Organizations as you did before**, either by a) using the AWS Console or b) by using standard AWS account creation API's, CLI or 3rd party tools like Terraform.</p>
+<p><strong>Option 2</strong></p>
+<p>We've heard consistent feedback that our customers wish to use native AWS services and do not want to do things differently once security controls, guardrails, or accelerators are applied to their environment. In this regard, simply create your new AWS account in AWS Organizations as you did before**, either by a) using the AWS Console or b) by using standard AWS account creation API's, CLI or 3rd party tools like Terraform.</p>
 <ul>
 <li>** <strong>IMPORTANT:</strong> When creating the new AWS account using AWS Organizations, you need to specify the role name provided in the Accelerator configuration file <code>global-options\organization-admin-role</code>, otherwise we cannot bootstrap the account. In Control Tower installations, this <strong>MUST</strong> be set to <strong><em><code>AWSControlTowerExecution</code></em></strong>, for customers who installed prior to v1.2.5 this value is <strong><em><code>AWSCloudFormationStackSetExecutionRole</code></em></strong> and after v1.2.5 we were recommending using the role <strong><em><code>OrganizationAccountAccessRole</code></em></strong> as this role is used by default by AWS Organizations if no role name is specified when creating AWS accounts through the AWS console or cli.</li>
 <li>On account creation we will apply a quarantine SCP which prevents the account from being used by anyone until the Accelerator has applied the appropriate guardrails</li>
@@ -1080,8 +1068,8 @@ We've heard consistent feedback that our customers wish to use native AWS servic
 <li>In case you need to move accounts to multiple OU's we have added a 2 minute delay before triggering the State Machine</li>
 <li>Any accounts moved after the 2 minute window will NOT be properly ingested, and will need to be ingested on a subsequent State Machine Execution.</li>
 </ul>
-<p><strong>Option 3</strong>
-Create your account using Account Factory in the AWS Control Tower console.</p>
+<p><strong>Option 3</strong></p>
+<p>Create your account using Account Factory in the AWS Control Tower console.</p>
 <p>No matter the mechanism you choose, new accounts will automatically be blocked from use until fully guardrailed, the Accelerator will automatically execute, and accounts will automatically be ingested into AWS Control Tower.</p>
 <h4 id="i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed-the-state-machine-failed-during-the-load-organization-configuration-step-with-the-error-the-control-tower-account-account_name-is-in-a-failed-state-error">I tried to enroll a new account via Control Tower but it failed? The state machine failed during the "Load Organization Configuration" step with the error "The Control Tower account: ACCOUNT_NAME is in a failed state ERROR"?<a class="headerlink" href="#i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed-the-state-machine-failed-during-the-load-organization-configuration-step-with-the-error-the-control-tower-account-account_name-is-in-a-failed-state-error" title="Permanent link">&para;</a></h4>
 <p>If account enrollment fails within Control Tower, you will need to follow the troubleshooting steps <a href="https://docs.aws.amazon.com/controltower/latest/userguide/troubleshooting.html">here</a>. A common reason for this is not having the <code>ControlTowerExectution</code> role created in the account you are trying to enroll. Even after you successfully enroll the account, it is possible the state machine will fail at <code>Load Organization Configuration</code>. If you look at the cloudwatch logs you will see the error message:</p>
@@ -1523,6 +1511,11 @@ Create your account using Account Factory in the AWS Control Tower console.</p>
           </div>
         </div>
         
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
       </main>
       
         <footer class="md-footer">
@@ -1530,7 +1523,7 @@ Create your account using Account Factory in the AWS Control Tower console.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Index" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: About" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1539,7 +1532,7 @@ Create your account using Account Factory in the AWS Control Tower console.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Index
+              About
             </div>
           </div>
         </a>
@@ -1577,7 +1570,7 @@ Create your account using Account Factory in the AWS Control Tower console.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.sections", "navigation.instant", "navigation.indexes"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.instant", "navigation.indexes", "navigation.top"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.22074ed6.min.js"}</script>
     
     
       <script src="../assets/javascripts/bundle.960e086b.min.js"></script>
