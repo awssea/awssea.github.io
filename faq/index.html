@@ -1059,10 +1059,9 @@
 <h1 id="accelerator-basic-operation-and-frequently-asked-questions">Accelerator Basic Operation and Frequently asked Questions<a class="headerlink" href="#accelerator-basic-operation-and-frequently-asked-questions" title="Permanent link">&para;</a></h1>
 <h2 id="operational-activities">Operational Activities<a class="headerlink" href="#operational-activities" title="Permanent link">&para;</a></h2>
 <h4 id="how-do-i-add-new-aws-accounts-to-my-aws-organization">How do I add new AWS accounts to my AWS Organization?<a class="headerlink" href="#how-do-i-add-new-aws-accounts-to-my-aws-organization" title="Permanent link">&para;</a></h4>
-<p>We offer four options and all can be used in the same Accelerator deployment. All options work with AWS Control Tower, ensuring the account is both ingested into Control Tower and all Accelerator guardrails are automatically applied:</p>
-<ol>
-<li>Users can simply add the following five lines to the configuration file <code>workload-account-configs</code> section and rerun the state machine. The majority of the account configuration will be picked up from the ou the AWS account has been assigned. You can also add additional account specific configuration, or override items like the default ou budget with an account specific budget. This mechanism is often used by customers that wish to programmatically create AWS accounts using the Accelerator and allows for adding many new accounts at one time.</li>
-</ol>
+<p>We offer three options and all can be used in the same Accelerator deployment. All options work with AWS Control Tower, ensuring the account is both ingested into Control Tower and all Accelerator guardrails are automatically applied:</p>
+<p><strong>Option 1</strong>
+Users can simply add the following five lines to the configuration file <code>workload-account-configs</code> section and rerun the state machine. The majority of the account configuration will be picked up from the ou the AWS account has been assigned. You can also add additional account specific configuration, or override items like the default ou budget with an account specific budget. This mechanism is often used by customers that wish to programmatically create AWS accounts using the Accelerator and allows for adding many new accounts at one time.</p>
 <pre><code class="language-json">&quot;fun-acct&quot;: {
   &quot;account-name&quot;: &quot;TheFunAccount&quot;,
   &quot;email&quot;: &quot;myemail+aseaT-funacct@example.com&quot;,
@@ -1070,26 +1069,20 @@
   &quot;ou&quot;: &quot;Sandbox&quot;
 }
 </code></pre>
-<ol>
-<li>
-<p>We've heard consistent feedback that our customers wish to use native AWS services and do not want to do things differently once security controls, guardrails, or accelerators are applied to their environment. In this regard, simply create your new AWS account in AWS Organizations as you did before**, either by a) using the AWS Console or b) by using standard AWS account creation API's, CLI or 3rd party tools like Terraform.</p>
-</li>
-<li>
-<p>** <strong>IMPORTANT:</strong> When creating the new AWS account using AWS Organizations, you need to specify the role name provided in the Accelerator configuration file <code>global-options\organization-admin-role</code>, otherwise we cannot bootstrap the account. In Control Tower installations, this <strong>MUST</strong> be set to <strong><em><code>AWSControlTowerExecution</code></em></strong>, for customers who installed prior to v1.2.5 this value is <strong><em><code>AWSCloudFormationStackSetExecutionRole</code></em></strong> and after v1.2.5 we were recommending using the role <strong><em><code>OrganizationAccountAccessRole</code></em></strong> as this role is used by default by AWS Organizations if no role name is specified when creating AWS accounts through the AWS console or cli.</p>
-</li>
+<p><strong>Option 2</strong>
+We've heard consistent feedback that our customers wish to use native AWS services and do not want to do things differently once security controls, guardrails, or accelerators are applied to their environment. In this regard, simply create your new AWS account in AWS Organizations as you did before**, either by a) using the AWS Console or b) by using standard AWS account creation API's, CLI or 3rd party tools like Terraform.</p>
+<ul>
+<li>** <strong>IMPORTANT:</strong> When creating the new AWS account using AWS Organizations, you need to specify the role name provided in the Accelerator configuration file <code>global-options\organization-admin-role</code>, otherwise we cannot bootstrap the account. In Control Tower installations, this <strong>MUST</strong> be set to <strong><em><code>AWSControlTowerExecution</code></em></strong>, for customers who installed prior to v1.2.5 this value is <strong><em><code>AWSCloudFormationStackSetExecutionRole</code></em></strong> and after v1.2.5 we were recommending using the role <strong><em><code>OrganizationAccountAccessRole</code></em></strong> as this role is used by default by AWS Organizations if no role name is specified when creating AWS accounts through the AWS console or cli.</li>
 <li>On account creation we will apply a quarantine SCP which prevents the account from being used by anyone until the Accelerator has applied the appropriate guardrails</li>
 <li>Moving the account into the appropriate OU triggers the state machine and the application of the guardrails to the account, once complete, we will remove the quarantine SCP.</li>
 <li><strong>NOTE:</strong> Accounts CANNOT be moved between OU's to maintain compliance, so select the proper top-level OU with care</li>
 <li>In AWS Organizations, select ALL the newly created AWS accounts and move them all (preferably at once) to the correct destination OU (assuming the same OU for all accounts)</li>
 <li>In case you need to move accounts to multiple OU's we have added a 2 minute delay before triggering the State Machine</li>
-<li>
-<p>Any accounts moved after the 2 minute window will NOT be properly ingested, and will need to be ingested on a subsequent State Machine Execution.</p>
-</li>
-<li>
-<p>Create your account using Account Factory in the AWS Control Tower console.
-  No matter the mechanism you choose, new accounts will automatically be blocked from use until fully guardrailed, the Accelerator will automatically execute, and accounts will automatically be ingested into AWS Control Tower.</p>
-</li>
-</ol>
+<li>Any accounts moved after the 2 minute window will NOT be properly ingested, and will need to be ingested on a subsequent State Machine Execution.</li>
+</ul>
+<p><strong>Option 3</strong>
+Create your account using Account Factory in the AWS Control Tower console.</p>
+<p>No matter the mechanism you choose, new accounts will automatically be blocked from use until fully guardrailed, the Accelerator will automatically execute, and accounts will automatically be ingested into AWS Control Tower.</p>
 <h4 id="i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed-the-state-machine-failed-during-the-load-organization-configuration-step-with-the-error-the-control-tower-account-account_name-is-in-a-failed-state-error">I tried to enroll a new account via Control Tower but it failed? The state machine failed during the "Load Organization Configuration" step with the error "The Control Tower account: ACCOUNT_NAME is in a failed state ERROR"?<a class="headerlink" href="#i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed-the-state-machine-failed-during-the-load-organization-configuration-step-with-the-error-the-control-tower-account-account_name-is-in-a-failed-state-error" title="Permanent link">&para;</a></h4>
 <p>If account enrollment fails within Control Tower, you will need to follow the troubleshooting steps <a href="https://docs.aws.amazon.com/controltower/latest/userguide/troubleshooting.html">here</a>. A common reason for this is not having the <code>ControlTowerExectution</code> role created in the account you are trying to enroll. Even after you successfully enroll the account, it is possible the state machine will fail at <code>Load Organization Configuration</code>. If you look at the cloudwatch logs you will see the error message:</p>
 <pre><code class="language-text">There were errors while loading the configuration: The Control Tower account: ACCOUNT_NAME is in a failed state ERROR.
