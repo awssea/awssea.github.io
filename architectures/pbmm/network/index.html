@@ -1158,16 +1158,26 @@
 <p><img alt="Endpoints" src="../images/perimeter.drawio.png" /></p>
 <p>This VPC has four subnets per AZ, each of which hosts a port used by the NGFW devices, which are deployed in an HA pair. The purpose of these subnets is as follows.</p>
 <ul>
-<li><strong>Detonation</strong>: This is an unused subnet reserved for future use with malware detonation capabilities of the NGFW devices.</li>
+<li><strong>Detonation</strong>: This is an unused subnet reserved for future use with malware detonation capabilities of the NGFW devices.<ul>
 <li>e.g. <code>10.7.4.0/24</code> - not routable except local.</li>
-<li><strong>Proxy</strong>: This subnet hosts reverse proxy services for web and other protocols. It also contains the <a href="https://aws.amazon.com/premiumsupport/knowledge-center/ec2-systems-manager-vpc-endpoints/">three interface endpoints</a> necessary for AWS Systems Manager Session Manager, which enables SSH-less CLI access to authorized and authenticated principals in the perimeter account.</li>
+</ul>
+</li>
+<li><strong>Proxy</strong>: This subnet hosts reverse proxy services for web and other protocols. It also contains the <a href="https://aws.amazon.com/premiumsupport/knowledge-center/ec2-systems-manager-vpc-endpoints/">three interface endpoints</a> necessary for AWS Systems Manager Session Manager, which enables SSH-less CLI access to authorized and authenticated principals in the perimeter account.<ul>
 <li>e.g. <code>100.96.251.64/26</code></li>
-<li><strong>On-Premises</strong>: This subnet hosts the private interfaces of the firewalls, corresponding to connections from the on-premises network.</li>
+</ul>
+</li>
+<li><strong>On-Premises</strong>: This subnet hosts the private interfaces of the firewalls, corresponding to connections from the on-premises network.<ul>
 <li>e.g. <code>100.96.250.192/26</code></li>
-<li><strong>FW-Management</strong>: This subnet is used to host management tools and the management of the Firewalls itself.</li>
+</ul>
+</li>
+<li><strong>FW-Management</strong>: This subnet is used to host management tools and the management of the Firewalls itself.<ul>
 <li>e.g. <code>100.96.251.160/27</code> - a smaller subnet is permissible due to modest IP requirements for management instances.</li>
-<li><strong>Public</strong>: This subnet is the public-access zone for the perimeter VPC. It hosts the public interface of the firewalls, as well as application load balancers that are used to balance traffic across the firewall pair. There is one Elastic IPv4 address per public subnet that corresponds to the IPSec Customer Gateway (CGW) for the VPN connections into the Transit Gateway in Shared Networking.</li>
+</ul>
+</li>
+<li><strong>Public</strong>: This subnet is the public-access zone for the perimeter VPC. It hosts the public interface of the firewalls, as well as application load balancers that are used to balance traffic across the firewall pair. There is one Elastic IPv4 address per public subnet that corresponds to the IPSec Customer Gateway (CGW) for the VPN connections into the Transit Gateway in Shared Networking.<ul>
 <li>e.g. <code>100.96.250.0/26</code></li>
+</ul>
+</li>
 </ul>
 <p>Outbound internet connections (for software updates, etc.) can be initiated from within the workload VPCs, and use the transparent proxy feature of the next-gen Firewalls.</p>
 <p><strong>Note on VPN Tunnel Redundancy</strong>: Each NGFW device manifests as a unique CGW on the AWS side (shared network account) of the IPSec VPNs. Moreover, there are <strong>two</strong> <em>Site-to-Site VPNs</em> in this architecture, each with one active tunnel (and one inactive tunnel); taken together, the pair is redundant. In many hybrid networking configurations, a single <em>Site-to-Site VPN</em> resource is used with dual active tunnels. Customers may receive the following email notification from the AWS VPC service team:</p>
@@ -1181,7 +1191,7 @@
 <h3 id="transit-gateway">Transit Gateway<a class="headerlink" href="#transit-gateway" title="Permanent link">&para;</a></h3>
 <p>The Transit Gateway is a central hub that performs several core functions within the Shared Network account.</p>
 <ol>
-<li>Routing of permitted flows; for example a Workload to On-premises via the Perimeter VPC.</li>
+<li>Routing of permitted flows; for example a Workload to On-premises via the Perimeter VPC.<ul>
 <li>All routing tables in SharedNetwork VPCs send <code>0.0.0.0/0</code> traffic to the TGW, where its handling will be determined by the TGW Route Table (TGW-RT) that its attachment is associated with. For example:<ul>
 <li>an HTTP request to <code>registry.hub.docker.com</code> from the Test VPC will go to the TGW</li>
 <li>The Segregated TGW RT will direct that traffic to the Perimeter VPC via the IPsec VPNs</li>
@@ -1190,15 +1200,21 @@
 <li>The <code>10.3.0.0/16</code> bound response traffic will arrive at the Core TGW RT, where a propagation in that TGW RT will direct the response back to the Test VPC.</li>
 </ul>
 </li>
-<li>Defining separate routing domains that prohibit undesired east-west flows at the network level; for example, by prohibiting Dev to Prod traffic. For example:</li>
+</ul>
+</li>
+<li>Defining separate routing domains that prohibit undesired east-west flows at the network level; for example, by prohibiting Dev to Prod traffic. For example:<ul>
 <li>All routing tables in SharedNetwork VPCs send <code>0.0.0.0/0</code> traffic to the TGW, which defines where the next permissible hop is. For example, <code>10.2.0.0/16</code> Dev traffic destined for the <code>10.0.4.0/16</code> Prod VPC will be blocked by the blackhole route in the Segregated TGW RT.</li>
-<li>Enabling centralization of shared resources; namely a shared Microsoft AD installation in the Central VPC, and access to shared VPC Endpoints in the Endpoint VPC.</li>
+</ul>
+</li>
+<li>Enabling centralization of shared resources; namely a shared Microsoft AD installation in the Central VPC, and access to shared VPC Endpoints in the Endpoint VPC.<ul>
 <li>The Central VPC, and the Endpoint VPC are routable from Workload VPCs. This provides an economical way to share Organization wide resources that are nonetheless isolated into their own VPCs. For example:<ul>
 <li>a <code>git</code> request in the <code>Dev</code> VPC to <code>git.private-domain.ca</code> resolves to a <code>10.1.0.0/16</code> address in the <code>Central</code> VPC.</li>
 <li>The request from the <code>Dev</code> VPC will go to the TGW due to the VPC routing table associated with that subnet</li>
 <li>The TGW will send the request to the <code>Central</code> VPC via an entry in the Segregated TGW RT</li>
 <li>The <code>git</code> response will go to the TGW due to the VPC routing table associated with that subnet</li>
 <li>The Shared TGW RT will direct the response back to the <code>Dev</code> VPC</li>
+</ul>
+</li>
 </ul>
 </li>
 </ol>

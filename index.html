@@ -1154,12 +1154,14 @@
 <p>Specifically the accelerator deploys and manages the following functionality, both at initial accelerator deployment and as new accounts are created, added, or onboarded in a completely automated but customizable manner:</p>
 <h3 id="creates-aws-account">Creates AWS Account<a class="headerlink" href="#creates-aws-account" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Core Accounts - as many or as few as your organization requires, using the naming you desire. These accounts are used to centralize core capabilities across the organization and provide <code>Control Panel</code> like capabilities across the environment. Common core accounts include:</li>
+<li>Core Accounts - as many or as few as your organization requires, using the naming you desire. These accounts are used to centralize core capabilities across the organization and provide <code>Control Panel</code> like capabilities across the environment. Common core accounts include:<ul>
 <li>Shared Network</li>
 <li>Operations</li>
 <li>Perimeter</li>
 <li>Log Archive</li>
 <li>Security Tooling</li>
+</ul>
+</li>
 <li>Workload Accounts - automated concurrent mass account creation or use AWS organizations to scale one account at a time. These accounts are used to host a customer's workloads and applications.</li>
 <li>Scalable to 1000's of AWS accounts</li>
 <li>Supports AWS Organizations nested <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_ous.html">ou's</a> and importing existing AWS accounts</li>
@@ -1188,8 +1190,10 @@
 <li>Managed Active Directory sharing, including R53 DNS resolver rule creation/sharing</li>
 <li>Automated TGW inter-region peering</li>
 <li>Populate Parameter Store with all <code>user</code> objects to be used by customers' IaC</li>
-<li>Deploy and share SSM documents (4 provided out-of-box, ELB Logging, S3 Encryption, Instance Profile remediation, Role remediation)</li>
+<li>Deploy and share SSM documents (4 provided out-of-box, ELB Logging, S3 Encryption, Instance Profile remediation, Role remediation)<ul>
 <li>customer can provide their own SSM documents for automated deployment and sharing</li>
+</ul>
+</li>
 </ul>
 <h3 id="identity">Identity<a class="headerlink" href="#identity" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1203,7 +1207,7 @@
 </ul>
 <h3 id="cloud-security-services">Cloud Security Services<a class="headerlink" href="#cloud-security-services" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Enables and configures the following AWS services, worldwide w/central designated admin account:</li>
+<li>Enables and configures the following AWS services, worldwide w/central designated admin account:<ul>
 <li>Guardduty w/S3 protection</li>
 <li>Security Hub (Enables designated security standards, and disables individual controls)</li>
 <li>Firewall Manager</li>
@@ -1214,6 +1218,8 @@
 <li>IAM Access Analyzer</li>
 <li>CloudWatch access from central designated admin account (and setting Log group retentions)</li>
 </ul>
+</li>
+</ul>
 <h3 id="other-security-capabilities">Other Security Capabilities<a class="headerlink" href="#other-security-capabilities" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Creates, deploys and applies Service Control Policies</li>
@@ -1223,8 +1229,10 @@
 <li>Creates and configures AWS budgets (customizable per ou and per account)</li>
 <li>Imports or requests certificates into AWS Certificate Manager</li>
 <li>Deploys both perimeter and account level ALB's w/Lambda health checks, certificates and TLS policies</li>
-<li>Deploys &amp; configures 3rd party firewall clusters and management instances (leverages marketplace)</li>
+<li>Deploys &amp; configures 3rd party firewall clusters and management instances (leverages marketplace)<ul>
 <li>Gateway Load Balancer w/auto-scaling <strong>(NEW)</strong> and VPN IPSec BGP ECMP deployment options</li>
+</ul>
+</li>
 <li>Protects Accelerator deployed and managed objects</li>
 <li>Sets Up SNS Alerting topics (High, Medium, Low, Blackhole priorities)</li>
 <li>Deploys CloudWatch Log Metrics and Alarms</li>
@@ -1234,7 +1242,7 @@
 <ul>
 <li>Deploys an rsyslog auto-scaling cluster behind a NLB, all syslogs forwarded to CloudWatch Logs</li>
 <li>Centralized access to "Cloud Security Service" Consoles from designated AWS account</li>
-<li>Centralizes logging to a single centralized S3 bucket (enables, configures and centralizes)</li>
+<li>Centralizes logging to a single centralized S3 bucket (enables, configures and centralizes)<ul>
 <li>VPC Flow logs w/Enhanced metadata fields (also sent to CWL)</li>
 <li>Organizational Cost and Usage Reports</li>
 <li>CloudTrail Logs including S3 Data Plane Logs (also sent to CWL)</li>
@@ -1246,6 +1254,8 @@
 <li>ALB Logs</li>
 <li>SSM Session Logs (also sent to CWL)</li>
 <li>Resolver Query Logs (also sent to CWL)</li>
+</ul>
+</li>
 <li>Email alerting for CloudTrail Metric Alarms, Firewall Manager Events <strong>(NEW)</strong>, Security Hub Findings incl. Guardduty Findings <strong>(NEW)</strong></li>
 </ul>
 <h2 id="relationship-with-aws-landing-zone-solution-alz">Relationship with AWS Landing Zone Solution (ALZ)<a class="headerlink" href="#relationship-with-aws-landing-zone-solution-alz" title="Permanent link">&para;</a></h2>
@@ -1260,16 +1270,20 @@
 <li>Create a Secrets Manager Secret which contains a GitHub token that provides access to the Accelerator code repository</li>
 <li>Create a unique S3 input bucket in the management account of the region you wish to deploy the solution and place your config.json and any additional custom config files in the bucket</li>
 <li>Download and execute the latest <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/releases">release</a> installer CloudFormation template in your management accounts preferred 'primary' / 'home' region</li>
-<li>Wait for:</li>
+<li>Wait for:<ul>
 <li>CloudFormation to deploy and start the Code Pipeline (~5 mins)</li>
 <li>Code Pipeline to download the Accelerator codebase and install the Accelerator State Machine (~10 mins)</li>
 <li>The Accelerator State Machine to finish execution (~1.25 hrs Standalone version, ~2.25 hrs Control Tower Version)</li>
+</ul>
+</li>
 <li>Perform required one-time <a href="/installation/index.md#26-post-installation">post installation</a> activities (configure AWS SSO, set firewall passwords, etc.)</li>
-<li>On an ongoing basis:</li>
+<li>On an ongoing basis:<ul>
 <li>Use AWS Organizations to create new AWS accounts, which will automatically be guardrailed by the Accelerator</li>
 <li>Update the config file in CodeCommit and run the Accelerator State Machine to:<ul>
 <li>deploy, configure and guardrail multiple accounts at the same time (~25 min Standalone, ~50 min/account Control Tower)</li>
 <li>change Accelerator configuration settings (~25 min)</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

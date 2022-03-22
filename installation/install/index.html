@@ -1301,8 +1301,10 @@
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <h3 id="general">General<a class="headerlink" href="#general" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Management or root AWS Organization account (the AWS Accelerator cannot be deployed in an AWS sub-account)</li>
+<li>Management or root AWS Organization account (the AWS Accelerator cannot be deployed in an AWS sub-account)<ul>
 <li>No additional AWS accounts need to be pre-created before Accelerator installation</li>
+</ul>
+</li>
 <li>If required, a limit increase to support your desired number of new AWS sub-accounts (default limit is 10 sub-accounts)</li>
 <li>Valid Accelerator configuration file, updated to reflect your requirements (see below)</li>
 <li>Determine your primary or Accelerator <code>control</code> or <code>home</code> region, this is the AWS region in which you will most often operate</li>
@@ -1521,7 +1523,7 @@
 <h3 id="aws-internal-employee-accounts-only">AWS Internal (Employee) Accounts Only<a class="headerlink" href="#aws-internal-employee-accounts-only" title="Permanent link">&para;</a></h3>
 <p>If deploying to an internal AWS employee account and installing the solution with a 3rd party firewall, you need to enable Private Marketplace (PMP) before starting:</p>
 <ol>
-<li>In the Organization Management account go here: https://aws.amazon.com/marketplace/privatemarketplace/create</li>
+<li>In the Organization Management account go here: <a href="https://aws.amazon.com/marketplace/privatemarketplace/create">https://aws.amazon.com/marketplace/privatemarketplace/create</a></li>
 <li>Click <code>Create a Private Marketplace</code>, and wait for activation to complete</li>
 <li>Go to the "Account Groups" sub-menu, click <code>Create account group</code></li>
 <li>Enter an Account Group Title (i.e. <code>Default</code>) and <code>Add</code> the Management (root) account number in <code>Associate AWS account</code></li>
@@ -1715,13 +1717,15 @@
 <li>Navigate to AWS Single Sign-On, click <code>Enable SSO</code></li>
 <li>Set the SSO directory to AD ("Settings" =&gt; "Identity Source" =&gt; "Identity Source" =&gt; click <code>Change</code>, Select Active Directory, and select your domain from the list)</li>
 <li>Under "Identity Source" section, Click <code>Edit</code> beside "Attribute mappings", then set the <code>email</code> attribute to: <code>${dir:email}</code> and click <code>Save Changes</code></li>
-<li>Configure Multi-factor authentication, we recommend the following minimum settings:</li>
+<li>Configure Multi-factor authentication, we recommend the following minimum settings:<ul>
 <li>Every time they sign in (always-on)</li>
 <li>Security key and built-in authenticators</li>
 <li>Authenticator apps</li>
 <li>Require them to provide a one-time password sent by email to sign in</li>
 <li>Users can add and manage their own MFA devices</li>
-<li>Create all the default permission sets and any desired custom permission sets</li>
+</ul>
+</li>
+<li>Create all the default permission sets and any desired custom permission sets<ul>
 <li>e.g. Select <code>AWS accounts</code> from the side bar, select "Permission sets" tab then <code>Create permission set</code><ul>
 <li><code>Use an existing job function policy</code> =&gt; Next</li>
 <li>Select job function policy <code>AdministratorAccess</code></li>
@@ -1729,22 +1733,30 @@
 <li>repeat for each default permission set and any required custom permission sets</li>
 </ul>
 </li>
+</ul>
+</li>
 <li>For Control Tower based installations, remove the orphaned Permission Sets from each AWS accounts (select the account, expand Permission Sets, click Remove for each)</li>
-<li>Map MAD groups to permission sets and accounts</li>
+<li>Map MAD groups to permission sets and accounts<ul>
 <li>Select <code>AWS accounts</code> from the side bar and select <code>AWS organization</code> tab</li>
 <li>Select the accounts you want to map to each MAD group and click <code>Assign users</code></li>
 <li>Select your DNS domain e.g. <code>example.local</code>, and search for the group you would like to assign (e.g. <code>aws-</code> for the pre-created groups) and click <code>Search connected directory</code></li>
 <li>Select the desired group <code>aws-log-archive-View</code></li>
 <li>Select the permission set you would like to assign to the MAD group to (e.g. <code>ViewOnlyAccess</code>)</li>
 <li>Click <code>Finish</code> (Note: if it fails during provisioning, simply select the failed accounts and click on "Retry changes")</li>
-<li>AWS SSO should be the primary mechanism for all access to all AWS accounts in your Organization, to determine or update the login page for your organization:</li>
+</ul>
+</li>
+<li>AWS SSO should be the primary mechanism for all access to all AWS accounts in your Organization, to determine or update the login page for your organization:<ul>
 <li>Click on <code>Dashboard</code> within the AWS SSO console and note the <code>User portal URL</code></li>
 <li>Share this url with all your users</li>
 <li>NOTE: the url prefix can only be changed ONCE (ever) using the settings tab, so update with caution</li>
-<li>Any pre-created AWS MAD users passwords are available in secrets manager in the AWS management account. To reset these passwords login to the Operations account through AWS SSO, then:</li>
-<li>Navigate to "Directory Service" , select the directory =&gt; Actions =&gt; Reset user password</li>
+</ul>
+</li>
 <li>
-<p>Users can change their passwords from any MAD domain connected instance</p>
+<p>Any pre-created AWS MAD users passwords are available in secrets manager in the AWS management account. To reset these passwords login to the Operations account through AWS SSO, then:</p>
+<ul>
+<li>Navigate to "Directory Service" , select the directory =&gt; Actions =&gt; Reset user password</li>
+<li>Users can change their passwords from any MAD domain connected instance</li>
+</ul>
 </li>
 <li>
 <p>Configure the new alb-forwarding feature (added in v1.5.0)</p>
@@ -1777,7 +1789,7 @@
         &quot;hosts&quot;: [&quot;aws.amazon.com&quot;],
         &quot;priority&quot;: 30
       }
-    }
+ }
 }
 </code></pre>
 

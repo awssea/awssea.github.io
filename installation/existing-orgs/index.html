@@ -1011,10 +1011,12 @@
 <h1 id="existing-organizations-accounts">Existing Organizations / Accounts<a class="headerlink" href="#existing-organizations-accounts" title="Permanent link">&para;</a></h1>
 <h2 id="considerations-importing-existing-aws-accounts-deploying-into-existing-aws-organizations">Considerations: Importing existing AWS Accounts / Deploying Into Existing AWS Organizations<a class="headerlink" href="#considerations-importing-existing-aws-accounts-deploying-into-existing-aws-organizations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The Accelerator <em>can</em> be installed into existing AWS Organizations</li>
+<li>The Accelerator <em>can</em> be installed into existing AWS Organizations<ul>
 <li>our early adopters have all successfully deployed into existing organizations</li>
+</ul>
+</li>
 <li>Existing AWS accounts <em>can</em> also be imported into an Accelerator managed Organization</li>
-<li>Caveats:</li>
+<li>Caveats:<ul>
 <li>Per AWS Best Practices, the Accelerator deletes the default VPC's in all AWS accounts, worldwide. The inability to delete default VPC's in pre-existing accounts will fail the installation/account import process. Ensure default VPC's can or are deleted before importing existing accounts. On failure, either rectify the situation, or remove the account from Accelerator management and rerun the state machine</li>
 <li>The Accelerator will NOT alter existing (legacy) constructs (e.g. VPC's, EBS volumes, etc.). For imported and pre-existing accounts, objects the Accelerator prevents from being created using preventative guardrails will continue to exist and not conform to the prescriptive security guidance<ul>
 <li>Existing workloads should be migrated to Accelerator managed VPC's and legacy VPC's deleted to gain the full governance benefits of the Accelerator (centralized flow logging, centralized ingress/egress, no IGW's, Session Manager access, existing non-encrypted EBS volumes, etc.)</li>
@@ -1026,41 +1028,55 @@
 <li>We've tried to ensure all customer deployments are smooth. Given the breadth and depth of the AWS service offerings and the flexibility in the available deployment options, there may be scenarios that cause deployments into existing Organizations to initially fail. In these situations, simply rectify the conflict and re-run the state machine.</li>
 <li>If the Firewall Manager administrative account is already set for your organization, it needs to be unset before starting a deployment.</li>
 </ul>
+</li>
+</ul>
 <h2 id="process-to-import-existing-aws-accounts-into-an-accelerator-managed-organization">Process to import existing AWS accounts into an Accelerator managed Organization<a class="headerlink" href="#process-to-import-existing-aws-accounts-into-an-accelerator-managed-organization" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Newly invited AWS accounts in an Organization will land in the root ou</li>
 <li>Unlike newly created AWS accounts which immediately have a Deny-All SCP applied, imported accounts are not locked down as we do not want to break existing workloads (these account are already running without Accelerator guardrails)</li>
-<li>In AWS Organizations, select ALL the newly invited AWS accounts and move them all (preferably at once) to the correct destination OU (assuming the same OU for all accounts)</li>
+<li>In AWS Organizations, select ALL the newly invited AWS accounts and move them all (preferably at once) to the correct destination OU (assuming the same OU for all accounts)<ul>
 <li>In case you need to move accounts to multiple OU's we have added a 2 minute delay before triggering the State Machine</li>
 <li>Any accounts moved after the 2 minute window will NOT be properly ingested, and will need to be ingested on a subsequent State Machine Execution</li>
+</ul>
+</li>
 <li>This will first trigger an automated update to the config file and then trigger the state machine after a 2 minute delay, automatically importing the moved accounts into the Accelerator per the destination OU configuration</li>
 <li>As previously documented, accounts CANNOT be moved between OU's to maintain compliance, so select the proper top-level OU with care</li>
-<li>If you need to customize each of the accounts configurations, you can manually update the configuration file either before or after you move the account to the correct ou</li>
+<li>If you need to customize each of the accounts configurations, you can manually update the configuration file either before or after you move the account to the correct ou<ul>
 <li>if before, you also need to include the standard 4 account config file parameters, if after, you can simply add your new custom parameters to the account entry the Accelerator creates</li>
 <li>if you add your imported accounts to the config file, moving the first account to the correct ou will trigger the state machine after a 2 minutes delay. If you don't move all accounts to their correct ou's within 2 minutes, your state machine will fail. Simply finish moving all accounts to their correct OU's and then rerun the state machine.</li>
-<li>If additional accounts are moved into OUs while the state machine is executing, they will not trigger another state machine execution, those accounts will only be ingested on the next execution of the state machine</li>
+</ul>
+</li>
+<li>If additional accounts are moved into OUs while the state machine is executing, they will not trigger another state machine execution, those accounts will only be ingested on the next execution of the state machine<ul>
 <li>customers can either manually initiate the state machine once the current execution completes, or, the currently running state machine can be stopped and restarted to capture all changes at once</li>
 <li>Are you unsure if an account had its guardrails applied? The message sent to the state machine Status SNS topic (and corresponding email address) on a successful state machine execution provides a list of all successfully processed accounts.</li>
+</ul>
+</li>
 <li>The state machine is both highly parallel and highly resilient, stopping the state machine should not have any negative impact. Importing 1 or 10 accounts generally takes about the same amount of time for the Accelerator to process, so it may be worth stopping the current execution and rerunning to capture all changes in a single execution.</li>
 <li>We have added a 2 min delay before triggering the state machine, allowing customers to make multiple changes within a short timeframe and have them all captured automatically in the same state machine execution.</li>
 </ul>
 <h2 id="deploying-the-accelerator-into-an-existing-organization">Deploying the Accelerator into an existing Organization<a class="headerlink" href="#deploying-the-accelerator-into-an-existing-organization" title="Permanent link">&para;</a></h2>
 <ul>
 <li>As stated above, if the ALZ was previously deployed into the Organization, please work with your AWS account team to find the best mechanism to uninstall the ALZ solution</li>
-<li>Ensure all existing sub-accounts have the role name defined in <code>organization-admin-role</code> installed and set to trust the Organization Management (root) AWS Organization account</li>
+<li>Ensure all existing sub-accounts have the role name defined in <code>organization-admin-role</code> installed and set to trust the Organization Management (root) AWS Organization account<ul>
 <li>prior to v1.2.5, this role must be named: <code>AWSCloudFormationStackSetExecutionRole</code></li>
 <li>if using the default role (<code>AWSCloudFormationStackSetExecutionRole</code>) we have provided a CloudFormation stack which can be executed in each sub-account to simplify this process</li>
+</ul>
+</li>
 <li>As stated above, we recommend starting with new AWS accounts for the mandatory functions (shared-network, perimeter, security, log-archive accounts).</li>
-<li>To better ensure a clean initial deployment, we also recommend the installation be completed while ignoring most of your existing AWS sub-accounts, importing them post installation:</li>
+<li>To better ensure a clean initial deployment, we also recommend the installation be completed while ignoring most of your existing AWS sub-accounts, importing them post installation:<ul>
 <li>create a new OU (i.e. <code>Imported-Accounts</code>), placing most of the existing accounts into this OU temporarily, and adding this OU name to the <code>global-options\ignored-ous</code> config parameter;</li>
 <li>any remaining accounts must be in the correct ou, per the Accelerator config file;</li>
 <li>install the Accelerator;</li>
 <li>import the skipped accounts into the Accelerator using the above import process, paying attention to the below notes</li>
-<li>NOTES:</li>
+</ul>
+</li>
+<li>NOTES:<ul>
 <li>Do NOT move any accounts from any <code>ignored-ous</code> to the root ou, they will immediately be quarantined with a Deny-All SCP, they need to be moved directly to their destination ou</li>
 <li>As stated above, when importing accounts, there may be situations we are not able to fully handle<ul>
 <li>If doing a mass import, we suggest you take a quick look and if the solution is not immediately obvious, move the account which caused the failure back to ignored-ous and continue importing the remainder of your accounts. Once you have the majority imported, you can circle back and import outstanding problem accounts with the ability to focus on each individual issue</li>
 <li>The challenge could be as simple as someone has instances running in a default VPC, which may require some cleanup effort before we can import (coming soon, you will be able to exclude single account/region combinations from default VPC deletion to gain the benefits of the rest of the guardrails while you migrate workloads out of the default VPC)</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

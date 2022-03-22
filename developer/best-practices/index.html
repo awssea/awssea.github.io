@@ -1205,16 +1205,18 @@
   process.exit(1);
 });
 </code></pre>
-<p>This prevents unhandled promise rejection errors by NodeJS. Please read https://medium.com/dailyjs/how-to-prevent-your-node-js-process-from-crashing-5d40247b8ab2 for more information.</p>
+<p>This prevents unhandled promise rejection errors by NodeJS. Please read <a href="https://medium.com/dailyjs/how-to-prevent-your-node-js-process-from-crashing-5d40247b8ab2">https://medium.com/dailyjs/how-to-prevent-your-node-js-process-from-crashing-5d40247b8ab2</a> for more information.</p>
 <h2 id="cloudformation">CloudFormation<a class="headerlink" href="#cloudformation" title="Permanent link">&para;</a></h2>
 <h3 id="cross-accountregion-references">Cross-Account/Region References<a class="headerlink" href="#cross-accountregion-references" title="Permanent link">&para;</a></h3>
 <p>When managing multiple AWS accounts, the Accelerator may need permissions to modify resources in the managed accounts. For example, a transit gateway could be created in a shared network account and it need to be shared to the perimeter account to create a VPN connection.</p>
 <p>In a single-account environment we would could just:</p>
 <ol>
 <li>create a single stack and use <code>!Ref</code> to refer to the transit gateway;</li>
-<li>or deploy two stacks</li>
+<li>or deploy two stacks<ul>
 <li>one stack that contains the transit gateway and creates a CloudFormation exported output that contains the transit gateway ID;</li>
 <li>another stack that imports the exported output value from the previous stack and uses it to create a VPN connection.</li>
+</ul>
+</li>
 </ol>
 <p>In a multi-account environment this is not possible and we had to find a way to share outputs across accounts and regions.</p>
 <p>See <a href="#passing-outputs-between-phases">Passing Outputs Between Phases</a>.</p>

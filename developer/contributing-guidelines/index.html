@@ -1095,27 +1095,43 @@
 <h2 id="adding-new-functionality">Adding New Functionality?<a class="headerlink" href="#adding-new-functionality" title="Permanent link">&para;</a></h2>
 <p>Before making a change or adding new functionality you have to verify what kind of functionality is being added.</p>
 <ul>
-<li>Is it an Accelerator-management change?</li>
+<li>Is it an Accelerator-management change?<ul>
 <li>Is the change related to the <code>Installer</code> stack?<ul>
-<li>Is the change CDK related?</li>
+<li>Is the change CDK related?<ul>
 <li>Make the change in <code>src/installer/cdk</code>.</li>
-<li>Is the change runtime related?</li>
+</ul>
+</li>
+<li>Is the change runtime related?<ul>
 <li>Make the change in <code>src/installer/cdk/assets</code>.</li>
 </ul>
 </li>
+</ul>
+</li>
 <li>Is the change related to the <code>Initial Setup</code> stack?<ul>
-<li>Is the change CDK related?</li>
+<li>Is the change CDK related?<ul>
 <li>Make the change in <code>src/core/cdk</code></li>
-<li>Is the change runtime related?</li>
+</ul>
+</li>
+<li>Is the change runtime related?<ul>
 <li>Make the change in <code>src/core/runtime</code></li>
 </ul>
 </li>
-<li>Is it an Accelerator-managed change?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Is it an Accelerator-managed change?<ul>
 <li>Is the change related to the <code>Phase</code> stacks?<ul>
-<li>Is the change CDK related?</li>
+<li>Is the change CDK related?<ul>
 <li>Make the change in <code>src/deployments/cdk</code></li>
-<li>Is the change runtime related?</li>
+</ul>
+</li>
+<li>Is the change runtime related?<ul>
 <li>Make the change in <code>src/deployments/runtime</code></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

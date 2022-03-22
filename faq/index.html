@@ -1163,10 +1163,8 @@
 <li>Modify SCP method (not desired)</li>
 <li>
 <p>Leverage the UnManaged OU</p>
-</li>
-<li>
-<p>validate your config file contains the value: <code>"ignored-ous": ["UnManaged"]</code></p>
 <ul>
+<li>validate your config file contains the value: <code>"ignored-ous": ["UnManaged"]</code><ul>
 <li>the state machine must be executed at least once after this value is added to the config file</li>
 </ul>
 </li>
@@ -1194,6 +1192,8 @@
 </ul>
 </li>
 <li>Deleted accounts will continue to appear under the <code>Suspended</code> OU for 90-days</li>
+</ul>
+</li>
 </ol>
 <h4 id="i-need-a-new-vpc-where-shall-i-define-it">I need a new VPC, where shall I define it?<a class="headerlink" href="#i-need-a-new-vpc-where-shall-i-define-it" title="Permanent link">&para;</a></h4>
 <p>You can define a VPC in one of four major sections of the Accelerator configuration file:</p>

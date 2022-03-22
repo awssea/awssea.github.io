@@ -991,7 +991,7 @@
 <p>1) Within the Perimeter SEA AWS Account, navigate to the Certificate Manager service.</p>
 <p>2) Follow the steps to request a new public certificate. This will be used to support https for the web application. Note that the SEA deploys 'example' certificates, but these should not be used at the perimeter. Here's an example showing a wildcard cert.</p>
 <p><img alt="Certificates" src="../img/public-facing-workload-via-fortigate/Picture3.png" /></p>
-<p>3) Navigate to the ALBs and select the Load Balancer that will support the incoming requests for the web application. In this example, it will be the 'Public-DevTest-perimeter-alb'. </p>
+<p>3) Navigate to the ALBs and select the Load Balancer that will support the incoming requests for the web application. In this example, it will be the 'Public-DevTest-perimeter-alb'.</p>
 <p><img alt="ALBDevTest" src="../img/public-facing-workload-via-fortigate/Picture4.png" /></p>
 <p>4) Select the 'Public-DevTest-perimeter-alb' ALB and click the <strong>View/edit certificates</strong> link button.</p>
 <p><img alt="ALBSSLConfigure" src="../img/public-facing-workload-via-fortigate/Picture5.png" /></p>
@@ -1025,7 +1025,7 @@
 <p>1) Create a DNS entry for the web application that resolves to the perimeter ALB being configured. For example: webapplication.mydomain.ca resolves to 'Public-DevTest-perimeter-alb-1616856287.ca-central-1.elb.amazonaws.com'</p>
 <p>2) Navigate to the ALBs and select the 'Public-DevTest-perimeter-alb' ALB. Click the <strong>View/edit rules</strong> link button.</p>
 <p><img alt="ALBDevTest" src="../img/public-facing-workload-via-fortigate/Picture4.png" /></p>
-<p>3) Click the <strong>+</strong> button to create a new rule. Then click the <strong>+ Insert Rule</strong> button. </p>
+<p>3) Click the <strong>+</strong> button to create a new rule. Then click the <strong>+ Insert Rule</strong> button.</p>
 <p><img alt="ALBNeRule" src="../img/public-facing-workload-via-fortigate/Picture10.png" /></p>
 <p>4) Configure a match condition on <strong>Host header...</strong>. enter the value of the DNS entry for the web application.</p>
 <p><img alt="ALBNeRuleHostHeader" src="../img/public-facing-workload-via-fortigate/Picture11.png" /></p>
@@ -1048,8 +1048,12 @@
 </ol>
 <p><img alt="FGVdeom" src="../img/public-facing-workload-via-fortigate/Picture17.png" /></p>
 <ol>
-<li>Create a new entry using the following parameter values:</li>
-<li>Name: Dev1-SampleWebApplication-ALB-FQDN</li>
+<li>
+<p>Create a new entry using the following parameter values:</p>
+</li>
+<li>
+<p>Name: Dev1-SampleWebApplication-ALB-FQDN</p>
+</li>
 <li>Type: FQDN</li>
 <li>FQDN: (use the DNS value of the internal load balancer in front of the web application)</li>
 <li>Interface: tgw-vpn1</li>

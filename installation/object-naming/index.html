@@ -959,12 +959,16 @@
 <h1 id="object-naming">Object Naming<a class="headerlink" href="#object-naming" title="Permanent link">&para;</a></h1>
 <h3 id="accelerator-object-naming">Accelerator Object Naming<a class="headerlink" href="#accelerator-object-naming" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Resources will have the 'Name' tag assigned, where Name={name}{suffix}</li>
+<li>Resources will have the 'Name' tag assigned, where Name={name}{suffix}<ul>
 <li>No prefix or suffix will be applied to DNS records/zones (as that breaks them)</li>
 <li>When _ is not supported, a - will be used</li>
-<li>Stacks/stacksets/functions and <strong><em>non-end user</em></strong> accessed objects deployed in all accounts will also start with the {AcceleratorPrefix} prefix (i.e. "<strong><em>PBMMAccel-</em></strong>" or "<strong><em>ASEA-</em></strong>")</li>
+</ul>
+</li>
+<li>Stacks/stacksets/functions and <strong><em>non-end user</em></strong> accessed objects deployed in all accounts will also start with the {AcceleratorPrefix} prefix (i.e. "<strong><em>PBMMAccel-</em></strong>" or "<strong><em>ASEA-</em></strong>")<ul>
 <li>The prefix does not apply to objects like VPC's, subnets, or TGW's which customers need to directly access. This is for objects deployed to build the customer accessible objects</li>
 <li>This prefix will be protected by SCP's so customers don't break 'managed' features</li>
+</ul>
+</li>
 <li>Resources will have the tag 'Accelerator={AcceleratorName}' assigned when tags are supported</li>
 <li>Stacks will have the tag 'AcceleratorName={AcceleratorName}' assigned, which will often (but not always) be inherited by objects created by the stack (due to TGW duplicate tag issue)</li>
 </ul>

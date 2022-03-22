@@ -939,32 +939,44 @@
 <h2 id="state-machine-behavior">State Machine Behavior<a class="headerlink" href="#state-machine-behavior" title="Permanent link">&para;</a></h2>
 <p>Accelerator v1.3.0 makes a significant change to the manner in which the state machine operates. These changes include:</p>
 <ol>
-<li>Reducing the <code>default scope</code> of execution of the state machine to only target newly created AWS accounts and AWS accounts listed in the mandatory accounts section of the config file.</li>
+<li>Reducing the <code>default scope</code> of execution of the state machine to only target newly created AWS accounts and AWS accounts listed in the mandatory accounts section of the config file.<ul>
 <li><code>default scope</code> refers to running the state machine without any input parameters;</li>
 <li>This new default scope disallows any changes to the config file outside new accounts;</li>
 <li>NOTE: it is critical that accounts for which others are dependant upon, MUST be located within the <code>mandatory-account-configs</code> section of the config file (i.e. management, log-archive, security, operations, shared-network, perimeter, etc.).</li>
-<li>The state machine now accepts a new input parameter, <code>scope</code>, which accepts the following values: <code>FULL</code> | <code>NEW-ACCOUNTS</code> | <code>GLOBAL-OPTIONS</code> | <code>ACCOUNT</code> | <code>OU</code>.</li>
+</ul>
+</li>
+<li>The state machine now accepts a new input parameter, <code>scope</code>, which accepts the following values: <code>FULL</code> | <code>NEW-ACCOUNTS</code> | <code>GLOBAL-OPTIONS</code> | <code>ACCOUNT</code> | <code>OU</code>.<ul>
 <li>when the <code>scope</code> parameter is supplied, you must also supply the <code>mode</code> parameter. At this time <code>mode</code> only accepts the value <code>APPLY</code>. To be specific <code>"mode":"APPLY"</code> is mandatory when running the state machine with the <code>"scope":</code> parameter.</li>
-<li>Starting the state machine with <code>{"scope":"FULL","mode":"APPLY"}</code> makes the state machine execute as it did in v1.2.6 and below.</li>
+</ul>
+</li>
+<li>Starting the state machine with <code>{"scope":"FULL","mode":"APPLY"}</code> makes the state machine execute as it did in v1.2.6 and below.<ul>
 <li>The state machine targets all AWS accounts and allows changes across any section of the config file;</li>
 <li>The blocks and overrides described in section 1.4 above remain valid;</li>
 <li><code>FULL</code> mode must be run at least once immediately after any Accelerator version upgrade. Code Pipeline automatically starts the state machine with <code>{"scope":"FULL","mode":"APPLY"}</code>. If the state machine fails for any reason after upgrade, the state machine must be restarted with these parameters until a successful execution of the state machine has completed.</li>
+</ul>
+</li>
 <li>Starting the state machine with <code>{"scope":"NEW-ACCOUNTS","mode":"APPLY"}</code> is the same as operating the state machine with the <code>default scope</code> as described in the first bullet</li>
-<li>Starting the state machine with <code>{"scope":"GLOBAL-OPTIONS","mode":"APPLY"}</code> restricts changes to the config file to the <code>global-options</code> section.</li>
+<li>Starting the state machine with <code>{"scope":"GLOBAL-OPTIONS","mode":"APPLY"}</code> restricts changes to the config file to the <code>global-options</code> section.<ul>
 <li>If any other portion of the config file was updated or changed, the state machine will fail;</li>
 <li>The global options scope executes the state machine on the entire managed account footprint.</li>
-<li>Starting the state machine with <code>{"scope":"OU","targetOus":[X],"mode":"APPLY"}</code> restricts changes to the config file to the specified <code>organizational-units</code> section(s) defined by <code>targetOus</code>.</li>
+</ul>
+</li>
+<li>Starting the state machine with <code>{"scope":"OU","targetOus":[X],"mode":"APPLY"}</code> restricts changes to the config file to the specified <code>organizational-units</code> section(s) defined by <code>targetOus</code>.<ul>
 <li>When <code>scope=OU</code>, <code>targetOus</code> becomes a mandatory parameter;</li>
 <li><code>X</code> can be any one or more valid OU names, or the value <code>"ALL"</code>;</li>
 <li>When <code>["ALL"]</code> is specified, the state machine targets all AWS accounts, but only allows changes to the <code>organizational-units</code> section of the config file;</li>
 <li>When OUs are specified (i.e. <code>["Dev","Test"]</code>), the state machine only targets mandatory accounts plus accounts in the specified OUs (Dev, Test), and only allows changes to the specified OUs sections (Dev, Test) of the config file;</li>
 <li>If any other portion of the config file was updated or changed, the state machine will fail.</li>
-<li>Starting the state machine with <code>{"scope":"ACCOUNT","targetAccounts":[X],"mode":"APPLY"}</code> restricts changes to the config file to the specified <code>xxx-account-configs</code> section(s) defined by <code>targetAccounts</code>.</li>
+</ul>
+</li>
+<li>Starting the state machine with <code>{"scope":"ACCOUNT","targetAccounts":[X],"mode":"APPLY"}</code> restricts changes to the config file to the specified <code>xxx-account-configs</code> section(s) defined by <code>targetAccounts</code>.<ul>
 <li>When <code>scope=ACCOUNT</code>, <code>targetAccounts</code> becomes a mandatory parameter;</li>
 <li><code>X</code> can be any one or more valid account numbers, the value <code>"NEW"</code>, or the value <code>"ALL"</code>;</li>
 <li>When <code>["ALL"]</code> is specified, the state machine targets all AWS accounts, but only allows changes to the <code>xxx-account-configs</code> sections of the config file;</li>
 <li>When specific accounts and/or <code>NEW</code> is specified (i.e. <code>["NEW", "123456789012", "234567890123"]</code>), the state machine only targets mandatory accounts plus the listed accounts and any newly created accounts. It also only allows changes to the specified accounts sections (New, 123456789012, 234567890123) of the config file;</li>
 <li>If any other portion of the config file was updated or changed, the state machine will fail.</li>
+</ul>
+</li>
 </ol>
 <p>Starting in v1.3.0, we recommend running the state machine with the parameters that most tightly scope the state machines execution to your planned changes and minimizing the use of <code>FULL</code> scope execution.</p>
 <ul>
@@ -976,17 +988,17 @@
 <h1 id="accelerator-state-machine-inputs"><strong>Accelerator State Machine Inputs</strong><a class="headerlink" href="#accelerator-state-machine-inputs" title="Permanent link">&para;</a></h1>
 <h2 id="rebuild-dynamodb-table-contents">Rebuild DynamoDB table contents<a class="headerlink" href="#rebuild-dynamodb-table-contents" title="Permanent link">&para;</a></h2>
 <p>With the exception of the Outputs table, the contents of the Accelerator DynamoDB tables are rebuilt on every state machine execution. We recently started depending on the Outputs DynamoDB tables to ensure the parameters in parameter store are consistently maintained in the same order as objects are created and deleted. Should the CONTENTS of the tables be destroyed or corrupted, customers can force a rebuild of the CloudFormation Outputs in DynamoDB by starting the state machine with the parameter:</p>
-<pre><code>{ &quot;storeAllOutputs&quot;: true }
+<pre><code class="language-json">{ &quot;storeAllOutputs&quot;: true }
 </code></pre>
 <p>This should be completed BEFORE running the state machine with a corrupt or empty DynamoDB table or the Accelerator is likely to reorder a customers parameters. If the DynamoDB tables were completely destroyed, they must be recreated before running the state machine with this parameter.</p>
 <h2 id="bypass-all-config-file-validation-checks">Bypass <strong>ALL</strong> config file validation checks<a class="headerlink" href="#bypass-all-config-file-validation-checks" title="Permanent link">&para;</a></h2>
 <p>This parameter should be specified with extreme caution, as it bypasses all config file validation. The state machine typically has protections enabled preventing customers from making breaking changes to the config file. Under certain conditions with the support of a trained expert, bypassing these checks is required. Start the state machine with the parameter:</p>
-<pre><code>{ &quot;overrideComparison&quot;: true }
+<pre><code class="language-json">{ &quot;overrideComparison&quot;: true }
 </code></pre>
 <p><strong><em>Customers are encouraged to use the specific override variables below, rather than the all-inclusive override, to ensure they only bypasses intended config changes.</em></strong></p>
 <h2 id="bypassing-specific-config-file-validation-checks">Bypassing SPECIFIC config file validation checks<a class="headerlink" href="#bypassing-specific-config-file-validation-checks" title="Permanent link">&para;</a></h2>
 <p>Providing any one or more of the following flags will only override the specified check(s):</p>
-<pre><code> {
+<pre><code class="language-json"> {
    &quot;configOverrides&quot;: {
      'ov-global-options': true,
      'ov-del-accts': true,
@@ -995,7 +1007,7 @@
      'ov-acct-ou': true,
      'ov-acct-vpc': true,
      'ov-acct-subnet': true,
-     'ov-acct-vpc-optin': true,
+  'ov-acct-vpc-optin': true,
      'ov-tgw': true,
      'ov-mad': true,
      'ov-ou-vpc': true,
@@ -1004,7 +1016,7 @@
      'ov-share-to-accounts': true,
      'ov-nacl': true,
      'ov-nfw': true
-    }
+ }
  }
 </code></pre>
 <h2 id="generate-verbose-logging-within-state-machine">Generate verbose logging within state machine<a class="headerlink" href="#generate-verbose-logging-within-state-machine" title="Permanent link">&para;</a></h2>
@@ -1013,22 +1025,22 @@
 <li>parameter is optional</li>
 <li>parameter defaults to 0</li>
 </ul>
-<pre><code>{&quot;scope&quot;:&quot;FULL&quot;, &quot;mode&quot;:&quot;APPLY&quot;, &quot;verbose&quot;:&quot;1&quot;}
+<pre><code class="language-json">{&quot;scope&quot;:&quot;FULL&quot;, &quot;mode&quot;:&quot;APPLY&quot;, &quot;verbose&quot;:&quot;1&quot;}
 </code></pre>
 <h2 id="state-machine-scoping-inputs">State Machine scoping inputs<a class="headerlink" href="#state-machine-scoping-inputs" title="Permanent link">&para;</a></h2>
 <p>Summary of inputs, per section 1.1 above:</p>
-<pre><code>{&quot;scope&quot;:&quot;FULL&quot;, &quot;mode&quot;:&quot;APPLY&quot;}
+<pre><code class="language-json">{&quot;scope&quot;:&quot;FULL&quot;, &quot;mode&quot;:&quot;APPLY&quot;}
 </code></pre>
-<pre><code>{&quot;scope&quot;:&quot;NEW-ACCOUNTS&quot;, &quot;mode&quot;:&quot;APPLY&quot;}
+<pre><code class="language-json">{&quot;scope&quot;:&quot;NEW-ACCOUNTS&quot;, &quot;mode&quot;:&quot;APPLY&quot;}
 </code></pre>
-<pre><code>{&quot;scope&quot;:&quot;GLOBAL-OPTIONS&quot;, &quot;mode&quot;:&quot;APPLY&quot;}
+<pre><code class="language-json">{&quot;scope&quot;:&quot;GLOBAL-OPTIONS&quot;, &quot;mode&quot;:&quot;APPLY&quot;}
 </code></pre>
-<pre><code>{&quot;scope&quot;:&quot;OU&quot;, &quot;targetOus&quot;:[&quot;ou-name&quot;, &quot;ou-name&quot;], &quot;mode&quot;:&quot;APPLY&quot;}
+<pre><code class="language-json">{&quot;scope&quot;:&quot;OU&quot;, &quot;targetOus&quot;:[&quot;ou-name&quot;, &quot;ou-name&quot;], &quot;mode&quot;:&quot;APPLY&quot;}
 </code></pre>
-<pre><code>{&quot;scope&quot;:&quot;ACCOUNT&quot;, &quot;targetAccounts&quot;:[&quot;123456789012&quot;,&quot;234567890123&quot;], &quot;mode&quot;:&quot;APPLY&quot;}
+<pre><code class="language-json">{&quot;scope&quot;:&quot;ACCOUNT&quot;, &quot;targetAccounts&quot;:[&quot;123456789012&quot;,&quot;234567890123&quot;], &quot;mode&quot;:&quot;APPLY&quot;}
 </code></pre>
 <h2 id="example-of-combined-inputs">Example of combined inputs<a class="headerlink" href="#example-of-combined-inputs" title="Permanent link">&para;</a></h2>
-<pre><code>{&quot;scope&quot;: &quot;FULL&quot;, &quot;mode&quot;: &quot;APPLY&quot;, &quot;configOverrides&quot;: {&quot;ov-ou-vpc&quot;: true, &quot;ov-ou-subnet&quot;: true, &quot;ov-acct-vpc&quot;: true }}
+<pre><code class="language-json">{&quot;scope&quot;: &quot;FULL&quot;, &quot;mode&quot;: &quot;APPLY&quot;, &quot;configOverrides&quot;: {&quot;ov-ou-vpc&quot;: true, &quot;ov-ou-subnet&quot;: true, &quot;ov-acct-vpc&quot;: true }}
 </code></pre>
 
               

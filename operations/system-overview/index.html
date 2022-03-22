@@ -1613,8 +1613,10 @@
 <ul>
 <li>the Accelerator codebase was pulled from GitHub</li>
 <li>the Accelerator codebase was deployed/installed in the Organization Management (root) AWS account</li>
-<li>parameter store <code>/accelerator/version</code> was updated with the new version information</li>
+<li>parameter store <code>/accelerator/version</code> was updated with the new version information<ul>
 <li>this provides a full history of all Accelerator versions and upgrades</li>
+</ul>
+</li>
 <li>the newly installed Accelerator state machine is started</li>
 </ul>
 <p>At this time the resources deployed by the Installer Stack are no longer required. The Installer stack <strong>could</strong> be removed (which would remove the Code Pipeline) with no impact on Accelerator functionality.</p>
@@ -1635,16 +1637,24 @@
 </ol>
 <p>The stack additionally consists of the following resources:</p>
 <ul>
-<li>AWS::CodeBuild::Project</li>
+<li>AWS::CodeBuild::Project<ul>
 <li><code>ASEA-Deploy</code> or <code>ASEA-DeployPrebuilt</code></li>
-<li>AWS::CodeCommit::Repository</li>
+</ul>
+</li>
+<li>AWS::CodeCommit::Repository<ul>
 <li><code>ASEA-Config-Repo</code></li>
-<li>AWS::IAM::Role</li>
+</ul>
+</li>
+<li>AWS::IAM::Role<ul>
 <li><code>ASEA-L-SFN-MasterRole</code></li>
 <li><code>ASEA-L-SFN-Execution</code></li>
-<li>AWS::Lambda::Function</li>
+</ul>
+</li>
+<li>AWS::Lambda::Function<ul>
 <li>A Lambda function for every Lambda function step in the state machine.</li>
-<li>AWS::StepFunctions::StateMachine</li>
+</ul>
+</li>
+<li>AWS::StepFunctions::StateMachine<ul>
 <li><code>ASEA-ALZCreateAccount_sm</code>: See <a href="#create-landing-zone-account"><em>Create Landing Zone Account</em></a>;</li>
 <li><code>ASEA-OrgCreateAccount_sm</code>: See <a href="#create-organization-account"><em>Create Organization Account</em></a>;</li>
 <li><code>ASEA-InstallCfnRoleMaster_sm</code>: See <a href="#install-cloudformation-role-in-root">Install CloudFormation Execution Role</a>;</li>
@@ -1654,6 +1664,8 @@
 <li><code>ASEA-CreateConfigRecorder_sfn</code>: See <a href=""><em>Create Config Recorders</em></a>;</li>
 <li><code>ASEA-CreateAdConnector_sm</code>: See <a href="#create-ad-connector"><em>Create AD Connector</em></a>;</li>
 <li><code>ASEA-StoreOutputs_sm</code>: See <a href=""><em>Share Outputs</em></a> - new in v1.2.1.</li>
+</ul>
+</li>
 </ul>
 <p><em>Note: Most resources have a random suffix to their name. This is because we use CDK to deploy the resources. See <a href="">https://docs.aws.amazon.com/cdk/latest/guide/identifiers.html#identifiers_logical_ids</a></em></p>
 <h3 id="get-or-create-configuration-from-s3">Get or Create Configuration from S3<a class="headerlink" href="#get-or-create-configuration-from-s3" title="Permanent link">&para;</a></h3>
@@ -1714,7 +1726,7 @@
 <li>an organizational unit that is used by the Accelerator can not be found;</li>
 <li>an account is present in the Accelerator configuration but does not exist in AWS Organizations;</li>
 <li>an account has a name, email address or organizational unit that is different from the Accelerator configuration.</li>
-<li><strong> returns accounts that have not been created </strong></li>
+<li><strong>returns accounts that have not been created</strong></li>
 <li>duplicates some validation functionality</li>
 </ul>
 <h3 id="install-cloudformation-role-in-root">Install CloudFormation Role in root<a class="headerlink" href="#install-cloudformation-role-in-root" title="Permanent link">&para;</a></h3>
@@ -1749,7 +1761,7 @@
 <p>This step only executes on the first run of the state machine after it has been upgraded to v1.2.0 or above. This step exists solely to support upgrades from Accelerator versions prior to v1.2.0 and can be removed when no existing customers are running versions older than v1.2.0. This steps populates the DynamoDB Outputs table with the outputs from previous executions which were previously stored in S3 (and at one time even stored in secrets manager).</p>
 <h3 id="deploy-phase-1-negative-one">Deploy Phase -1 (Negative one)<a class="headerlink" href="#deploy-phase-1-negative-one" title="Permanent link">&para;</a></h3>
 <ul>
-<li>The following resources are deployed in phase -1:</li>
+<li>The following resources are deployed in phase -1:<ul>
 <li>Creating required roles for macie custom resources</li>
 <li>Creating required roles for guardDuty custom resources</li>
 <li>Creating required roles for securityHub custom resources</li>
@@ -1761,6 +1773,8 @@
 <li>Creating required roles for TransitGatewayAcceptPeeringAttachment custom resource</li>
 <li>Creating required roles for createLogsMetricFilter custom resource</li>
 <li>Creating required roles for SnsSubscriberLambda custom resource</li>
+</ul>
+</li>
 </ul>
 <h3 id="store-phase-1-output">Store Phase -1 Output<a class="headerlink" href="#store-phase-1-output" title="Permanent link">&para;</a></h3>
 <p>This step calls a Lambda function that stores the outputs from the deployed stacks in sub-accounts in the DynamoDB table <code>ASEA-Outputs</code> in AWS Secrets Manager in the root account.</p>
@@ -1775,16 +1789,22 @@
 <li>create an AWS log bucket with encryption key;</li>
 <li>create the central log services bucket with encryption key;</li>
 <li>create the Accelerator configuration bucket with encryption key;</li>
-<li>copy artifacts to the Accelerator configuration bucket:</li>
+<li>copy artifacts to the Accelerator configuration bucket:<ul>
 <li>SCPs;</li>
 <li>firewall configuration;</li>
+</ul>
+</li>
 <li>account warming (step 1);</li>
 <li>set password policy (step 1);</li>
-<li>create IAM users (step 1):</li>
+<li>create IAM users (step 1):<ul>
 <li>create passwords and store in Secrets Manager;</li>
-<li>create MAD deployment (step 1):</li>
+</ul>
+</li>
+<li>create MAD deployment (step 1):<ul>
 <li>create passwords and store in Secrets Manager;</li>
 <li>create service-linked role;</li>
+</ul>
+</li>
 <li>create <code>rsyslog</code> deployment (step 1);</li>
 <li>create firewalls (step 1);</li>
 <li>create budgets (step 1);</li>
@@ -1820,7 +1840,7 @@
 <h3 id="deploy-phase-1">Deploy Phase 1<a class="headerlink" href="#deploy-phase-1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Create S3 Bucket in all accounts and replicate to Log Account Bucket</li>
-<li>Deploy VPC:</li>
+<li>Deploy VPC:<ul>
 <li>Vpc</li>
 <li>Subnets</li>
 <li>Subnet sharing (RAM)</li>
@@ -1831,6 +1851,8 @@
 <li>Gateway endpoints</li>
 <li>Transit Gateway Attachments</li>
 <li>IAM Role required for VPC Peering Auto accept</li>
+</ul>
+</li>
 <li>Firewall images subscription check</li>
 <li>Creates the customer gateways for the EIPs of the firewall</li>
 <li>Create IAM Roles, Users in account based on configuration</li>
@@ -1911,9 +1933,11 @@
 <p>This step calls a Lambda function that shares Managed Active Directory according to the Accelerator configuration. The directory is shared from the source account to the target account. The directory will be accepted in the target account.</p>
 <h3 id="deploy-phase-5">Deploy Phase 5<a class="headerlink" href="#deploy-phase-5" title="Permanent link">&para;</a></h3>
 <ul>
-<li>create Remote Desktop Gateway;</li>
+<li>create Remote Desktop Gateway;<ul>
 <li>create launch configuration;</li>
 <li>create autoscaling group;</li>
+</ul>
+</li>
 <li>enable central logging to S3 (step 2);</li>
 <li>Create CloudWatch Events for moveAccount, policyChanges and createAccount</li>
 <li>Creates CloudWatch Alarms</li>

@@ -974,11 +974,15 @@
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>The upgrade from v1.3.8 to v1.5.0 is generally the same as any previous Accelerator upgrades, with a couple of key differences:</p>
 <ul>
-<li>the magnitude of this release has resulted in a requirement for significant updates to the config file</li>
+<li>the magnitude of this release has resulted in a requirement for significant updates to the config file<ul>
 <li>we have provided a script to <em>assist</em> with this process. A manual verification of the changes and customer custom updates are often still required.</li>
-<li>we are re-aligning the OU structure with AWS guidance and that of AWS Control Tower (optional, but highly recommended)</li>
+</ul>
+</li>
+<li>we are re-aligning the OU structure with AWS guidance and that of AWS Control Tower (optional, but highly recommended)<ul>
 <li>the core OU is being split into a "Security" OU and an "Infrastructure" OU</li>
-<li>we've added the capability to manage your IP addresses in DynamoDB, rather than with the config file</li>
+</ul>
+</li>
+<li>we've added the capability to manage your IP addresses in DynamoDB, rather than with the config file<ul>
 <li>this includes the ability to dynamically allocate CIDR ranges to VPCs and subnets</li>
 <li>more information on this features design can be found on this <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/issues/494">ticket</a></li>
 <li>the config file conversion script will:<ul>
@@ -988,6 +992,8 @@
 </li>
 <li>you can change your IP address mechanism for any vpc at any time</li>
 <li>customers can mix and match IP address management mechanisms as they choose (<code>provided</code>, <code>lookup</code>, and <code>dynamic</code>)</li>
+</ul>
+</li>
 </ul>
 <h2 id="upgrade-caveats">Upgrade Caveats<a class="headerlink" href="#upgrade-caveats" title="Permanent link">&para;</a></h2>
 <ol>
@@ -1025,29 +1031,25 @@
 <li>Pull your current config.json file from CodeCommit and save as a text file</li>
 <li>
 <p>Locate the python conversion script and review its readme <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/tree/main/reference-artifacts/Custom-Scripts/Update-Scripts/v1.3.8_to_v1.5.0">here</a></p>
-</li>
-<li>
-<p>To convert your configuration file execute: (completely offline process)</p>
+<ul>
+<li>To convert your configuration file execute: (completely offline process)</li>
+</ul>
 <p><code>python update.py --Region ca-central-1 --LoadConfig --ConfigFile config.json</code></p>
-</li>
-<li>
-<p>This will output a new config file named: <code>update-config.json</code></p>
-</li>
+<ul>
+<li>This will output a new config file named: <code>update-config.json</code></li>
 <li>Save <em>both</em> the original v13.8 and the new v1.5.0 config files for future reference/use</li>
-<li>
-<p>After conversion, we recommend running the updated config file back prettier to simplify file comparisons</p>
+<li>After conversion, we recommend running the updated config file back prettier to simplify file comparisons</li>
+</ul>
 </li>
 <li>
 <p>While the conversion script often does much of the heavy lifting, we still require customers to manually verify the changes and make manual adjustments as appropriate:</p>
-</li>
-<li>
-<p>If you use a relatively standard config file you MAY not need to make any changes manually</p>
-</li>
+<ul>
+<li>If you use a relatively standard config file you MAY not need to make any changes manually</li>
 <li>
 <p>Ensure the value of <code>account-name</code> for the Organization Management account matches the actual account name of the Organization management account (the account key is generally either <code>management</code> or <code>master</code>).</p>
 </li>
 <li>
-<p>we recommend you change your <code>rdgw-instance-type</code> and <code>rsyslog-instance-type</code> from t2.<em> to t3.</em> (they will auto-replace on the next instance refresh) (Optional).</p>
+<p>we recommend you change your <code>rdgw-instance-type</code> and <code>rsyslog-instance-type</code> from t2.<em>to t3.</em> (they will auto-replace on the next instance refresh) (Optional).</p>
 </li>
 <li>optionally remove the <code>"API_GW_EXECUTION_LOGGING_ENABLED"</code> config rule throughout, as it overlaps with an identical Security Hub config rule.</li>
 <li>we added the capability to deploy a Config aggregator in any of the central services accounts (i.e. Log-archive, Security, Operations), by adding <code>"config-aggr": true</code> to <em>either</em>: <code>central-security-services</code>, <code>central-operations-services</code>, or <code>central-log-services</code>. The existing aggregator in the Org management account will remain. Do <strong>not</strong> set it in all 3 sections, as AWS only supports a maximum of 3 config aggregators.</li>
@@ -1067,18 +1069,26 @@
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 <h2 id="upgrade-process">Upgrade process<a class="headerlink" href="#upgrade-process" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Before proceeding with your upgrade please review the General Upgrade Considerations <a href="../#31-considerations">in Section 3.1</a> of the Installation and Upgrade guide</li>
+<li>Before proceeding with your upgrade please review the General Upgrade Considerations <a href="../#31-considerations">in Section 3.1</a> of the Installation and Upgrade guide<ul>
 <li>upgrades directly from v1.3.8 need to ensure they include the extra step required for v1.3.9 upgrades (removal of endpoints with periods)</li>
+</ul>
+</li>
 <li>Login to your AWS Organization Management account, in your home or default region</li>
-<li>Place your <em>updated and validated</em> config file back in the root folder of your CodeCommit repository</li>
+<li>Place your <em>updated and validated</em> config file back in the root folder of your CodeCommit repository<ul>
 <li>json, yaml and multi-part config files continue to be supported</li>
-<li>Change to the us-east-1 region and open CloudWatch</li>
+</ul>
+</li>
+<li>Change to the us-east-1 region and open CloudWatch<ul>
 <li>Select Rules under events in the left navigation pane</li>
 <li>Select the <code>PBMMAccel-MoveAccount_rule</code>, select <code>actions</code>, select <code>Disable</code></li>
 <li>Select the <code>PBMMAccel-PolicyChanges_rule</code>, select <code>actions</code>, select <code>Disable</code></li>
-<li>Open AWS Organizations</li>
+</ul>
+</li>
+<li>Open AWS Organizations<ul>
 <li>Select the <code>core</code> OU and rename it to <code>Security</code> (case sensitive) (i.e. Actions, Rename)</li>
 <li>In the <code>Root</code> ou, create a new OU named `Infrastructure (case sensitive) (i.e. Actions, Create new)</li>
 <li>Expand the <code>Security</code> OU, select all EXCEPT the <code>security</code>, <code>log-archive</code>, and Organization <code>Management</code> account<ul>
@@ -1094,10 +1104,14 @@
 <li>Detach the policy from ALL OUs</li>
 </ul>
 </li>
-<li>Change to the us-east-1 region and open CloudWatch</li>
+</ul>
+</li>
+<li>Change to the us-east-1 region and open CloudWatch<ul>
 <li>Select Rules under events in the left navigation pane</li>
 <li>Select the <code>PBMMAccel-MoveAccount_rule</code>, select <code>actions</code>, select <code>Enable</code></li>
 <li>Select the <code>PBMMAccel-PolicyChanges_rule</code>, select <code>actions</code>, select <code>Enable</code></li>
+</ul>
+</li>
 <li>Follow the Standard Upgrade instructions in <a href="../#32-summary-of-upgrade-steps-all-versions">Section 3.2</a> of the Installation and Upgrade guide, repeated verbatim below for ease of reference</li>
 </ul>
 <h2 id="32-summary-of-upgrade-steps-all-versions-copied-from-installation-guide">"3.2. Summary of Upgrade Steps (all versions)" <strong><em>(Copied from installation guide)</em></strong><a class="headerlink" href="#32-summary-of-upgrade-steps-all-versions-copied-from-installation-guide" title="Permanent link">&para;</a></h2>
@@ -1122,13 +1136,15 @@
 </li>
 <li>
 <p>Update the Installer CloudFormation stack using the template downloaded in step 5, updating the <code>GithubBranch</code> to the latest release (eg. <code>release/v1.5.0</code>)</p>
-</li>
+<ul>
 <li>Go to AWS CloudFormation and select the stack: <code>PBMMAccel-what-you-provided</code></li>
 <li>Select Update, select Replace current template, Select Upload a template file</li>
 <li>Select Choose File and select the template you downloaded in step 6 (<code>AcceleratorInstallerXYZ.template.json</code> or <code>AcceleratorInstallerXXX-CodeCommit.template.json</code>)</li>
 <li>Select Next, Update <code>GithubBranch</code> parameter to <code>release/vX.Y.Z</code> where X.Y.Z represents the latest release</li>
 <li>Click Next, Next, I acknowledge, Update</li>
 <li>Wait for the CloudFormation stack to update (<code>Update_Complete</code> status) (Requires manual refresh)</li>
+</ul>
+</li>
 <li>Go To Code Pipeline and Release the PBMMAccel-InstallerPipeline</li>
 </ol>
 <h2 id="post-upgrade-follow-up-tasks-for-v150-upgrade">Post Upgrade Follow-up Tasks for v1.5.0 Upgrade<a class="headerlink" href="#post-upgrade-follow-up-tasks-for-v150-upgrade" title="Permanent link">&para;</a></h2>
@@ -1136,10 +1152,8 @@
 <li>Once the State Machine finishes in AWS Organizations, delete the <code>PBMMAccel-Guardrails-Part-2</code> SCP, as we do not remove policies from Organizations given they could be used by customers for other purposes.</li>
 <li>
 <p>Optionally, populate DynamoDB with your allocated CIDR ranges:</p>
-</li>
-<li>
-<p>You <em>must</em> perform the following steps if you plan to:</p>
 <ul>
+<li>You <em>must</em> perform the following steps if you plan to:<ul>
 <li>move from <code>"cidr-src": "provided"</code> to <code>"cidr-src": "lookup"</code> for your existing cidr blocks; or</li>
 <li>dynamically assign CIDR ranges to new VPCs using pools that overlap with existing VPC's currently defined in your config file.</li>
 </ul>
@@ -1152,17 +1166,18 @@
 <li>Locate the python conversion script and review its readme <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/tree/main/reference-artifacts/Custom-Scripts/Update-Scripts/v1.3.8_to_v1.5.0">here</a></li>
 <li>To load DynamoDB with your CIDR ranges, execute: (online, requires credentials to the Organization Management account)</li>
 </ul>
-<p><code>python update.py --Region ca-central-1 --LoadDB --ConfigFile update-config.json --AcceleratorPrefix PBMMAccel-</code></p>
-<ul>
-<li>Note the use of the --LoadDB switch, the UPDATED config filename, and that the Accelerator prefix is specified</li>
-<li>If you run this command using your v1.3.8 or v1.3.9 config file, the <code>\cidr\pool:</code> values will be improperly assigned in DynamoDB.</li>
-<li>In the Organization Management account, in DynamoDB, select Items, and Verify that the tables have been properly populated.</li>
-<li>the script should have populated the following two DynamoDB tables: <code>PBMMAccel-cidr-vpc-assign</code> and <code>PBMMAccel-cidr-subnet-assign</code> with all your existing vpc and subnet assignments.</li>
-</ul>
 </li>
-<li>
-<p>if you plan to dynamically assign CIDR ranges for any new VPCs, you need to manually create the CIDR pools by adding new item(s) to the DynamoDB Table <code>PBMMAccel-cidr-pool</code>. The <code>PBMMAccel-cidr-pool</code> table stores CIDR ranges to select from for new CIDR assignments. This table works together with the other two DynamoDB tables to track, assign and maintain non-overlapping CIDR ranges based on a pool name and region.
-    <details><summary>Sample DynamoDB JSON to add an entry to the <code>PBMMAccel-cidr-pool</code> table:</summary></p>
+</ul>
+<p><code>python update.py --Region ca-central-1 --LoadDB --ConfigFile update-config.json --AcceleratorPrefix PBMMAccel-</code></p>
+<pre><code>- Note the use of the --LoadDB switch, the UPDATED config filename, and that the Accelerator prefix is specified
+    - If you run this command using your v1.3.8 or v1.3.9 config file, the `\cidr\pool:` values will be improperly assigned in DynamoDB.
+- In the Organization Management account, in DynamoDB, select Items, and Verify that the tables have been properly populated.
+    - the script should have populated the following two DynamoDB tables: `PBMMAccel-cidr-vpc-assign` and `PBMMAccel-cidr-subnet-assign` with all your existing vpc and subnet assignments.
+</code></pre>
+<ul>
+<li>if you plan to dynamically assign CIDR ranges for any new VPCs, you need to manually create the CIDR pools by adding new item(s) to the DynamoDB Table <code>PBMMAccel-cidr-pool</code>. The <code>PBMMAccel-cidr-pool</code> table stores CIDR ranges to select from for new CIDR assignments. This table works together with the other two DynamoDB tables to track, assign and maintain non-overlapping CIDR ranges based on a pool name and region.
+<details><summary>Sample DynamoDB JSON to add an entry to the <code>PBMMAccel-cidr-pool</code> table:</summary></li>
+</ul>
 <p><code>json
   {
     "id": {
@@ -1178,22 +1193,18 @@
       "S": "main"
     }
   }</code></p>
-<ul>
-<li>where <code>id</code> is any unique text, <code>cidr</code> is the main cidr block from which VPC cidrs are taken. <code>region</code> is the AWS region where the pool is used. <code>pool</code> is the name of the pool</li>
-</ul>
+<pre><code>- where `id` is any unique text, `cidr` is the main cidr block from which VPC cidrs are taken. `region` is the AWS region where the pool is used. `pool` is the name of the pool
+</code></pre>
 </details>
 </li>
 </ul>
 <p>NOTES:</p>
-<ul>
-<li>You can populate the <code>cidr-pools</code> section of the config file/DynamoDB with values that overlap with the existing assigned ranges in your config file. In this situation, it is CRITICAL that you execute this entire process, to avoid issueing duplicate or overlapping CIDR ranges with those already issued. Alternatively, leverage new unique ranges when populating the <code>cidr-pools</code>.</li>
-<li><code>cidr-pools</code> only needs to be populated when a vpc has a <code>cidr-src</code> set to <code>dynamic</code>.</li>
-<li>Optionally, change all the <code>cidr-src</code> values throughout your config file to <code>lookup</code>, and remove all the <code>cidr\value</code> fields. Once changed, CIDR values will be provided by DynamoDB. Switching to <code>lookup</code> requires completion of the previous optional step to first load DynamoDB.<ul>
-<li>run the state machine with the input parameters <code>{"scope": "FULL","mode": "APPLY","verbose": "0"}</code></li>
-<li>during the state machine execution, the Accelerator will compare the values returned by DynamoDB with the values from the previous successful state machine execution. If the DynamoDB values were incorrectly populated, the state machine will catch it with a comparison failure message and gracefully fail.</li>
-</ul>
-</li>
-</ul>
+<pre><code>- You can populate the `cidr-pools` section of the config file/DynamoDB with values that overlap with the existing assigned ranges in your config file. In this situation, it is CRITICAL that you execute this entire process, to avoid issueing duplicate or overlapping CIDR ranges with those already issued. Alternatively, leverage new unique ranges when populating the `cidr-pools`.
+- `cidr-pools` only needs to be populated when a vpc has a `cidr-src` set to `dynamic`.
+- Optionally, change all the `cidr-src` values throughout your config file to `lookup`, and remove all the `cidr\value` fields. Once changed, CIDR values will be provided by DynamoDB. Switching to `lookup` requires completion of the previous optional step to first load DynamoDB.
+    - run the state machine with the input parameters `{"scope": "FULL","mode": "APPLY","verbose": "0"}`
+    - during the state machine execution, the Accelerator will compare the values returned by DynamoDB with the values from the previous successful state machine execution. If the DynamoDB values were incorrectly populated, the state machine will catch it with a comparison failure message and gracefully fail.
+</code></pre>
 
               
             </article>

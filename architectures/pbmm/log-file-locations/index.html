@@ -913,15 +913,15 @@
       
         <li class="md-nav__item">
   <a href="#accelerator-central-logging-buckets" class="md-nav__link">
-    Accelerator Central Logging Buckets:
+    Accelerator Central Logging Buckets
   </a>
   
-    <nav class="md-nav" aria-label="Accelerator Central Logging Buckets:">
+    <nav class="md-nav" aria-label="Accelerator Central Logging Buckets">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
-    Notes:
+    Notes
   </a>
   
 </li>
@@ -933,15 +933,15 @@
       
         <li class="md-nav__item">
   <a href="#accelerator-bucket-folders" class="md-nav__link">
-    Accelerator Bucket Folders:
+    Accelerator Bucket Folders
   </a>
   
-    <nav class="md-nav" aria-label="Accelerator Bucket Folders:">
+    <nav class="md-nav" aria-label="Accelerator Bucket Folders">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#notes_1" class="md-nav__link">
-    Notes:
+    Notes
   </a>
   
 </li>
@@ -969,7 +969,7 @@
 
 
 <h1 id="aws-sea-central-logging-structures">AWS SEA Central Logging Structures<a class="headerlink" href="#aws-sea-central-logging-structures" title="Permanent link">&para;</a></h1>
-<h2 id="accelerator-central-logging-buckets">Accelerator Central Logging Buckets:<a class="headerlink" href="#accelerator-central-logging-buckets" title="Permanent link">&para;</a></h2>
+<h2 id="accelerator-central-logging-buckets">Accelerator Central Logging Buckets<a class="headerlink" href="#accelerator-central-logging-buckets" title="Permanent link">&para;</a></h2>
 <hr />
 <table>
 <thead>
@@ -1003,19 +1003,21 @@
 </tbody>
 </table>
 <hr />
-<h3 id="notes">Notes:<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
+<h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Every customer has two Accelerator logging buckets</li>
 <li>Control Tower installations have an additional two Control Tower logging buckets</li>
 <li>Customers could use any account name for their central logging account</li>
-<li>Bucket name format is: {Accel-Prefix}-{Account-Name}-{Accel-Phase}-xxx{Region}-{Random}</li>
+<li>Bucket name format is: {Accel-Prefix}-{Account-Name}-{Accel-Phase}-xxx{Region}-{Random}<ul>
 <li>{Accel-Prefix} defaults to 'asea' (previously 'pbmmaccel' for Canada)</li>
 <li>{Accel-Phase} should always be 'phase0'</li>
 <li>{region} should always be 'cacentral1' for Canada</li>
 <li>{account} is likely to be 'log-archive'</li>
 <li>xxx is either "aes" or "" (nothing)</li>
 </ul>
-<h2 id="accelerator-bucket-folders">Accelerator Bucket Folders:<a class="headerlink" href="#accelerator-bucket-folders" title="Permanent link">&para;</a></h2>
+</li>
+</ul>
+<h2 id="accelerator-bucket-folders">Accelerator Bucket Folders<a class="headerlink" href="#accelerator-bucket-folders" title="Permanent link">&para;</a></h2>
 <hr />
 <table>
 <thead>
@@ -1089,14 +1091,14 @@
 </tbody>
 </table>
 <hr />
-<h3 id="notes_1">Notes:<a class="headerlink" href="#notes_1" title="Permanent link">&para;</a></h3>
+<h3 id="notes_1">Notes<a class="headerlink" href="#notes_1" title="Permanent link">&para;</a></h3>
 <p>* Located in Control Tower bucket when installed, Control Tower adds the {org-id} (i.e. o-h9ho05hcxl/) as the top level folder
 ** Only available in Accelerator Standalone deployments
 *** CloudTrail control plane logs located in Control Tower bucket when installed, Control Tower drops the {org-id} (i.e. o-h9ho05hcxl/) from the middle of the folder path. This may change when Control Tower migrates to Organization Trails. CloudTrail data plane logs remain in the Accelerator bucket.</p>
 <ul>
 <li>Account number is sometimes duplicated in path because logs replicated from another account always need to start with the source account number</li>
 <li>Macie reports will only appear in the {account#} for the central security account, and only if a customer schedules PII discovery reports</li>
-<li>All CloudWatch Logs from all accounts are mixed in the same folder, the embedded log format contains the source account information as documented here: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/ValidateLogEventFlow.html</li>
+<li>All CloudWatch Logs from all accounts are mixed in the same folder, the embedded log format contains the source account information as documented here: <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/ValidateLogEventFlow.html">https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/ValidateLogEventFlow.html</a></li>
 <li>With the exception of CloudWatch Logs, all logs are in the original format provided by the log source/service.</li>
 </ul>
 <hr />

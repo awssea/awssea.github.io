@@ -985,18 +985,16 @@
 <li>Disable branch protection for both the <code>main</code> branch and for the <code>release/</code> branches</li>
 <li>
 <p>Create a version branch with <a href="https://semver.org/">SemVer</a> semantics and a <code>release/</code> prefix: e.g. <code>release/v1.0.5</code> or <code>release/v1.0.5-b</code></p>
-</li>
-<li>
-<p>On latest <code>main</code>, run: <code>git checkout -b release/vX.Y.Z</code></p>
-</li>
-<li>
-<p><strong>Important:</strong> Certain git operations are ambiguous if tags and branches have the same name. Using the <code>release/</code> prefix reserves the actual version name for the tag itself; i.e. every <code>release/vX.Y.Z</code> branch will have a corresponding <code>vX.Y.Z</code> tag.</p>
+<ul>
+<li>On latest <code>main</code>, run: <code>git checkout -b release/vX.Y.Z</code></li>
+<li><strong>Important:</strong> Certain git operations are ambiguous if tags and branches have the same name. Using the <code>release/</code> prefix reserves the actual version name for the tag itself; i.e. every <code>release/vX.Y.Z</code> branch will have a corresponding <code>vX.Y.Z</code> tag.</li>
+</ul>
 </li>
 <li>
 <p>Push that branch to GitHub (if created locally)</p>
-</li>
-<li>
-<p><code>git push origin release/vX.Y.Z</code></p>
+<ul>
+<li><code>git push origin release/vX.Y.Z</code></li>
+</ul>
 </li>
 <li>
 <p>The release workflow will run, and create a <strong>DRAFT</strong> release if successful with all commits since the last tagged release.</p>
@@ -1005,15 +1003,15 @@
 <li>Publish the release - this creates the git tag in the repo and marks the release as latest. It also bumps the <code>version</code> key in several project <code>package.json</code> files.</li>
 <li>
 <p>Re-enable branch protection for both the <code>main</code> branch and for the <code>release/</code> branches</p>
-</li>
-<li>
-<p>Note: The <code>Publish</code> operation will run <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/.github/workflows/publish.yml">the following GitHub Action</a>, which merges the <code>release/vX.Y.Z</code> branch to <code>main</code>. <strong>Branch Protection in GitHub will cause this to fail</strong>, and why we are momentarily disabling branch protection.</p>
+<ul>
+<li>Note: The <code>Publish</code> operation will run <a href="https://github.com/aws-samples/aws-secure-environment-accelerator/blob/main/.github/workflows/publish.yml">the following GitHub Action</a>, which merges the <code>release/vX.Y.Z</code> branch to <code>main</code>. <strong>Branch Protection in GitHub will cause this to fail</strong>, and why we are momentarily disabling branch protection.</li>
+</ul>
 </li>
 <li>
 <p>A successful run of this workflow will automatically kick off the "Generate Documentation" workflow. This workflow may also be initiated at any time manually via the GitHub Actions UI (since it is configured as a <code>workflow_dispatch</code> action).</p>
-</li>
-<li>
-<p>once the documentation is generated, add the ZIP file to the release assets, named <code>AWS-SEA-Documentation-vXXX.zip</code></p>
+<ul>
+<li>once the documentation is generated, add the ZIP file to the release assets, named <code>AWS-SEA-Documentation-vXXX.zip</code></li>
+</ul>
 </li>
 <li>
 <p>Rename the <code>AcceleratorInstaller.template.json</code> to <code>AcceleratorInstaller</code>XXX<code>.template.json</code> replacing XXX with the version number without punctuation (i.e. <code>AcceleratorInstaller121b.template.json</code>).</p>
@@ -1028,8 +1026,6 @@
 <p>Add the Accelerator <strong><em>Alpha</em></strong> GUI ZIP to the release assets, named <code>AWS-SEA-GUI-mockup-DoNotUse-vXXX-alpha.zip</code>.</p>
 </li>
 </ol>
-<hr />
-<p><a href="../..">...Return to Accelerator Table of Contents</a></p>
 
               
             </article>

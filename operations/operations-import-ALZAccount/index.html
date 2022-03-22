@@ -447,7 +447,7 @@
         
           <li class="md-nav__item">
   <a href="#confirm-the-alz-codepipeline-is-executing-successfully" class="md-nav__link">
-    Confirm the ALZ CodePipeline is executing successfully.
+    Confirm the ALZ CodePipeline is executing successfully
   </a>
   
 </li>
@@ -1254,7 +1254,7 @@
         
           <li class="md-nav__item">
   <a href="#confirm-the-alz-codepipeline-is-executing-successfully" class="md-nav__link">
-    Confirm the ALZ CodePipeline is executing successfully.
+    Confirm the ALZ CodePipeline is executing successfully
   </a>
   
 </li>
@@ -1495,25 +1495,35 @@
 <h3 id="switch-the-alz-linked-account-payment-method-to-invoicing">Switch the ALZ linked account payment method to invoicing<a class="headerlink" href="#switch-the-alz-linked-account-payment-method-to-invoicing" title="Permanent link">&para;</a></h3>
 <p>If working with your AWS account team (TAM/SA) they will reach out to an internal team within AWS to have the linked account payment method switched to invoicing.  This way the customer doesn’t have to enter a credit card when making the account standalone in the upcoming steps.</p>
 <h3 id="confirm-console-access-to-the-alz-linked-account-and-also-to-the-email-account">Confirm console access to the ALZ linked account and also to the email account<a class="headerlink" href="#confirm-console-access-to-the-alz-linked-account-and-also-to-the-email-account" title="Permanent link">&para;</a></h3>
-<p>Confirm you have access to login as root to the ALZ linked account AWS console.  Confirm you have access to the email account associated to the ALZ linked account.  The upcoming steps will first make the account standalone (remove from ALZ organizations) so you need to make sure you have root access to the account.  If required, you can reset the password following: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_change-root.html</p>
+<p>Confirm you have access to login as root to the ALZ linked account AWS console.  Confirm you have access to the email account associated to the ALZ linked account.  The upcoming steps will first make the account standalone (remove from ALZ organizations) so you need to make sure you have root access to the account.  If required, you can reset the password following: <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_change-root.html">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_change-root.html</a></p>
 <h3 id="if-an-enterprise-support-es-customer-then-confirm-es-is-enabled-on-the-alz-linked-account">If an Enterprise Support (ES) customer, then confirm ES is enabled on the ALZ linked account<a class="headerlink" href="#if-an-enterprise-support-es-customer-then-confirm-es-is-enabled-on-the-alz-linked-account" title="Permanent link">&para;</a></h3>
 <p>If the ALZ management account is on Enterprise Support (ES), then make sure ES is enabled on the linked account being migrated to the ASEA. If its not, then raise a support case to activate ES on the linked account. This is to make sure an ES support case can be created and escalated during step 2 if any unforeseen issue occurs.</p>
-<h3 id="confirm-the-alz-codepipeline-is-executing-successfully">Confirm the ALZ CodePipeline is executing successfully.<a class="headerlink" href="#confirm-the-alz-codepipeline-is-executing-successfully" title="Permanent link">&para;</a></h3>
-<p>Make sure the ALZ CodePipeline is still running successfully. Execute the ALZ CodePipeline from the management account to make sure it runs successfully.
-- AWS Console -&gt; CodePipeline
-- Select “AWS-Landing-Zone-CodePipeline”
-- Select “Release Change”
-- Click on the pipeline and confirm it successfully runs through to completion</p>
+<h3 id="confirm-the-alz-codepipeline-is-executing-successfully">Confirm the ALZ CodePipeline is executing successfully<a class="headerlink" href="#confirm-the-alz-codepipeline-is-executing-successfully" title="Permanent link">&para;</a></h3>
+<p>Make sure the ALZ CodePipeline is still running successfully. Execute the ALZ CodePipeline from the management account to make sure it runs successfully.</p>
+<ul>
+<li>AWS Console -&gt; CodePipeline</li>
+<li>Select “AWS-Landing-Zone-CodePipeline”</li>
+<li>Select “Release Change”</li>
+<li>Click on the pipeline and confirm it successfully runs through to completion</li>
+</ul>
 <h3 id="confirm-cli-access-and-setup-python-and-the-aws-python-sdk-boto3">Confirm CLI access and setup Python and the AWS Python SDK (boto3)<a class="headerlink" href="#confirm-cli-access-and-setup-python-and-the-aws-python-sdk-boto3" title="Permanent link">&para;</a></h3>
-<p>Confirm SSO temporary command line access from the management account with AdminAccess.
-- SSO login → Select linked account → “Command line or programmatic access”
-  - Select Option 2 and add to your AWS credentials file under “[default]“
-  - This is required as the python script in step 3 takes a “profile” parameter
-- Confirm you have the AWS CLI tool installed.
-  - https://aws.amazon.com/cli/
-  - Confirm by running a command such as “aws s3 ls”
-- Confirm you have python3 and the AWS python library (boto3) installed which is required in step 2 to confirm the account has been disassociated from the landing zone correctly.
-  - https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html</p>
+<p>Confirm SSO temporary command line access from the management account with AdminAccess.</p>
+<ul>
+<li>SSO login → Select linked account → “Command line or programmatic access”<ul>
+<li>Select Option 2 and add to your AWS credentials file under “[default]“</li>
+<li>This is required as the python script in step 3 takes a “profile” parameter</li>
+</ul>
+</li>
+<li>Confirm you have the AWS CLI tool installed.<ul>
+<li><a href="https://aws.amazon.com/cli/">https://aws.amazon.com/cli/</a></li>
+<li>Confirm by running a command such as “aws s3 ls”</li>
+</ul>
+</li>
+<li>Confirm you have python3 and the AWS python library (boto3) installed which is required in step 2 to confirm the account has been disassociated from the landing zone correctly.<ul>
+<li><a href="https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html">https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="landing-zone-disassociate-the-account-from-the-alz">Landing Zone - Disassociate the account from the ALZ<a class="headerlink" href="#landing-zone-disassociate-the-account-from-the-alz" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Login to the ALZ management account, and go to “Service Catalog” -&gt; “Provisioned products”</li>
@@ -1528,19 +1538,23 @@
 <h3 id="confirm-the-product-successfully-terminates">Confirm the product successfully terminates<a class="headerlink" href="#confirm-the-product-successfully-terminates" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The provisioned product entry will show a status of “Under change”</li>
-<li>You can also verify by going to CloudFormation→Stacks and you will see “DELETE IN PROGRESS” for the AVM Template stack being deleted. </li>
+<li>You can also verify by going to CloudFormation→Stacks and you will see “DELETE IN PROGRESS” for the AVM Template stack being deleted.<ul>
 <li>Go to the Resources tab to see the deleted resources associated to this stack.</li>
+</ul>
+</li>
 <li>Once the provisioned product no longer says “Under change” move to the next step.  </li>
 <li>Please note, this can take 1-2 hours.</li>
 </ul>
 <h3 id="go-to-the-linked-account-assume-role">Go to the linked account (assume role)<a class="headerlink" href="#go-to-the-linked-account-assume-role" title="Permanent link">&para;</a></h3>
 <ul>
-<li>From the management account, assume the role “AWSCloudFormationStackSetExecutionRole” to the linked account</li>
+<li>From the management account, assume the role “AWSCloudFormationStackSetExecutionRole” to the linked account<ul>
 <li>or optionally, SSO with console access to that account</li>
+</ul>
+</li>
 </ul>
 <h3 id="under-cloudformation-verify-that-the-alz-stacks-stacksets-from-alz-mgmt-were-deleted">Under “CloudFormation” verify that the ALZ Stacks (StackSets from ALZ mgmt) were deleted<a class="headerlink" href="#under-cloudformation-verify-that-the-alz-stacks-stacksets-from-alz-mgmt-were-deleted" title="Permanent link">&para;</a></h3>
 <ul>
-<li>There should be no stack left in the linked account with the prefix “StackSet-AWS-Landing-Zone-Baseline*".  For example:</li>
+<li>There should be no stack left in the linked account with the prefix “StackSet-AWS-Landing-Zone-Baseline*".  For example:<ul>
 <li>StackSet-AWS-Landing-Zone-Baseline-CentralizedLoggingSpoke-</li>
 <li>StackSet-AWS-Landing-Zone-Baseline-EnableConfigRules-</li>
 <li>StackSet-AWS-Landing-Zone-Baseline-EnableNotifications-</li>
@@ -1551,15 +1565,19 @@
 <li>StackSet-AWS-Landing-Zone-Baseline-SecurityRoles-</li>
 <li>StackSet-AWS-Landing-Zone-Baseline-EnableCloudTrail-</li>
 </ul>
+</li>
+</ul>
 <h3 id="verify-that-the-account-is-ready-to-be-invited-and-baselined-by-the-asea">Verify that the account is ready to be invited and baselined by the ASEA<a class="headerlink" href="#verify-that-the-account-is-ready-to-be-invited-and-baselined-by-the-asea" title="Permanent link">&para;</a></h3>
 <ul>
 <li>You need to ensure that resources don’t exist in the default VPC, there is no config recorder channel, no CloudTrail Trail and STS is active in all regions.</li>
-<li>This can be done manually, but ideally use this python script that can be run as well to automate the verification</li>
-<li>https://github.com/paulbayer/Inventory_Scripts/blob/mainline/ALZ_CheckAccount.py</li>
+<li>This can be done manually, but ideally use this python script that can be run as well to automate the verification<ul>
+<li><a href="https://github.com/paulbayer/Inventory_Scripts/blob/mainline/ALZ_CheckAccount.py">https://github.com/paulbayer/Inventory_Scripts/blob/mainline/ALZ_CheckAccount.py</a></li>
 <li>mkdir test; cd test</li>
-<li>git clone https://github.com/paulbayer/Inventory_Scripts.git</li>
+<li>git clone <a href="https://github.com/paulbayer/Inventory_Scripts.git">https://github.com/paulbayer/Inventory_Scripts.git</a></li>
 <li>python3 ALZ_CheckAccount.py -a LINKED ACCOUNT_HERE -p default</li>
-<li>It will run through 5 steps and output the following.   If you were to run this script before the “terminate” step above is complete you would have warnings in steps 2 and 3 below.</li>
+</ul>
+</li>
+<li>It will run through 5 steps and output the following.   If you were to run this script before the “terminate” step above is complete you would have warnings in steps 2 and 3 below.<ul>
 <li>Step 0 completed without issues</li>
 <li>Checking account 111122223333 for default VPCs in any region</li>
 <li>Step 1 completed with no issues</li>
@@ -1573,18 +1591,22 @@
 <li>Step 5 completed with no issues</li>
 <li>We've found NO issues that would hinder the adoption of this account ****  </li>
 </ul>
+</li>
+</ul>
 <h2 id="landing-zone-alz-remove-the-account-from-the-alz-organizations-and-make-standalone">Landing Zone (ALZ) - Remove the account from the ALZ organizations and make standalone<a class="headerlink" href="#landing-zone-alz-remove-the-account-from-the-alz-organizations-and-make-standalone" title="Permanent link">&para;</a></h2>
 <p>Removing the account from the ALZ organizations and making it standalone is required so it can be invited into the ASEA organization.</p>
 <h3 id="read-the-following-summaryconsiderations">Read the following summary/considerations<a class="headerlink" href="#read-the-following-summaryconsiderations" title="Permanent link">&para;</a></h3>
 <ul>
-<li>https://aws.amazon.com/premiumsupport/knowledge-center/organizations-move-accounts/</li>
+<li><a href="https://aws.amazon.com/premiumsupport/knowledge-center/organizations-move-accounts/">https://aws.amazon.com/premiumsupport/knowledge-center/organizations-move-accounts/</a></li>
 </ul>
 <h3 id="verify-access">Verify access<a class="headerlink" href="#verify-access" title="Permanent link">&para;</a></h3>
 <ul>
-<li>As stated in the previous sections, verify you have a mechanism to access the account post leaving the ALZ organization</li>
+<li>As stated in the previous sections, verify you have a mechanism to access the account post leaving the ALZ organization<ul>
 <li>Former SSO roles will no longer function nor will the “AWSCloudFormationStackSetExecutionRole” role as it will have a trust relationship to the ALZ management account.</li>
 <li>Confirm the root credentials have been recovered and are usable</li>
 <li>As an alternative, confirm access with a new role/IAM user with Admin permissions on the account</li>
+</ul>
+</li>
 </ul>
 <h3 id="verify-billing-flipped-to-invoicing">Verify billing flipped to invoicing<a class="headerlink" href="#verify-billing-flipped-to-invoicing" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1594,8 +1616,8 @@
 <ul>
 <li>Follow the instructions on the following link to remove the account</li>
 <li>The short version is select the account from the ALZ mgmt account Organizations and select "remove"</li>
-<li>https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html</li>
-<li>https://aws.amazon.com/blogs/security/aws-organizations-now-supports-self-service-removal-of-accounts-from-an-organization</li>
+<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html</a></li>
+<li><a href="https://aws.amazon.com/blogs/security/aws-organizations-now-supports-self-service-removal-of-accounts-from-an-organization">https://aws.amazon.com/blogs/security/aws-organizations-now-supports-self-service-removal-of-accounts-from-an-organization</a></li>
 <li>Note, when moving the account standalone do not select Enterprise Support.  You shouldn't get a popup dialog asking for a Credit Card and the Support level since the account should have been moved to invoicing.  Support can be reenabled on the linked account once it’s invited into the ASEA organization.</li>
 </ul>
 <h2 id="accelerator-invite-the-account-into-its-organization">Accelerator - Invite the account into its organization<a class="headerlink" href="#accelerator-invite-the-account-into-its-organization" title="Permanent link">&para;</a></h2>
@@ -1603,15 +1625,15 @@
 <ul>
 <li>Follow the instructions on the following link to invite the account</li>
 <li>The short version is go to the ASEA mgmt account organizations and select "Add an account" -&gt; "Invite existing account" -&gt; "enter the linked account account ID"</li>
-<li>https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html</li>
+<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html</a></li>
 </ul>
 <h3 id="in-the-former-alz-account-accept-the-invitation">In the former ALZ account, Accept the invitation<a class="headerlink" href="#in-the-former-alz-account-accept-the-invitation" title="Permanent link">&para;</a></h3>
 <ul>
-<li>https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html#orgs_manage_accounts_accept-decline-invite</li>
+<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html#orgs_manage_accounts_accept-decline-invite">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html#orgs_manage_accounts_accept-decline-invite</a></li>
 </ul>
 <h3 id="keep-the-linked-account-at-the-root-level-of-the-organizations">Keep the linked account at the root level of the Organizations<a class="headerlink" href="#keep-the-linked-account-at-the-root-level-of-the-organizations" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Verify access to the linked account using your root login credentials </li>
+<li>Verify access to the linked account using your root login credentials</li>
 <li>If you had created an IAM role/user with Admin permissions, then verify access as well</li>
 </ul>
 <h3 id="activate-enterprise-support-es-on-this-linked-account">Activate Enterprise Support (ES) on this linked account<a class="headerlink" href="#activate-enterprise-support-es-on-this-linked-account" title="Permanent link">&para;</a></h3>
@@ -1628,35 +1650,41 @@
 <li>Login to the linked account which just joined the organization.  </li>
 <li>Create a new Organization Admin role, as defined in the customers config file: "organization-admin-role": "OrganizationAccountAccessRole".</li>
 <li>With newer customers the default is "OrganizationAccountAccessRole, with older customers it is "AWSCloudFormationStackSetExecutionRole".  </li>
-<li>If "AWSCloudFormationStackSetExecutionRole" then you can edit the trust relationship directly</li>
-<li>Go to IAM -&gt; Role -&gt; AWSCloudFormationStackSetExecutionRole </li>
+<li>If "AWSCloudFormationStackSetExecutionRole" then you can edit the trust relationship directly<ul>
+<li>Go to IAM -&gt; Role -&gt; AWSCloudFormationStackSetExecutionRole</li>
 <li>Update the trust relationship to have the management account ID of the ASEA (instead of the account ID of the previous ALZ)</li>
+</ul>
+</li>
 <li>Verify that you can assume this role from the management account into the linked account</li>
 </ul>
 <h2 id="accelerator-move-the-linked-account-from-the-top-level-root-ou-into-the-appropriate-ou-managed-by-the-asea">Accelerator - Move the linked account from the top level root OU into the appropriate OU managed by the ASEA<a class="headerlink" href="#accelerator-move-the-linked-account-from-the-top-level-root-ou-into-the-appropriate-ou-managed-by-the-asea" title="Permanent link">&para;</a></h2>
 <h3 id="plan-what-ou-this-account-will-be-moved-into">Plan what OU this account will be moved into<a class="headerlink" href="#plan-what-ou-this-account-will-be-moved-into" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Option 1 - Create a new OU and move the account into that OU </li>
+<li>Option 1 - Create a new OU and move the account into that OU<ul>
 <li>Before the migration, the team would have created a new OU (ie-similar to the sandbox OU).</li>
 <li>This would be needed if they need to isolate this account from TGW attachments/Networking and want to keep it isolated.</li>
-<li>The state machine will run and start to baseline the account. </li>
+<li>The state machine will run and start to baseline the account.</li>
 <li>It will create a new VPC and deploy resources using CFN such as Config, CloudTrail, etc.</li>
 <li>Note, if the OU is setup similar to the sandbox OU it does not provide access to the shared VPCs that have the TGW attachments.</li>
 <li>Creating a new OU also requires adding that new OU and the OU persona to the config file in advance of the next state machine execution.  </li>
-<li>Option 2 - Move account into an existing OU (ie-prod)</li>
-<li>The state machine will run and start to baseline the account. </li>
+</ul>
+</li>
+<li>Option 2 - Move account into an existing OU (ie-prod)<ul>
+<li>The state machine will run and start to baseline the account.</li>
 <li>It will create a new VPC and deploy resources using CFN such as Config, CloudTrail, etc.</li>
 <li>The customers existing VPC will remain, as a 2nd DETACHED VPC.  </li>
 <li>Mote. if it is non-compliant to security rules, it remains non-compliant and needs to be cleaned up and brought into compliance</li>
 <li>If the VPC is compliant and it has unique IP addresses, it could be attached to the TGW.</li>
 </ul>
+</li>
+</ul>
 <h3 id="move-the-account-from-the-root-ou-to-the-correct-ou">Move the account from the root OU to the correct OU<a class="headerlink" href="#move-the-account-from-the-root-ou-to-the-correct-ou" title="Permanent link">&para;</a></h3>
 <ul>
 <li>THIS CANNOT BE EASILY UNDONE - MAKE SURE YOU MOVE TO THE CORRECT OU</li>
-<li>Follow the instructions on the following link to move the account to the correct OU </li>
+<li>Follow the instructions on the following link to move the account to the correct OU</li>
 <li>The short version is go to the ASEA management account organizations and "select the account" -&gt; "actions" -&gt; "move" -&gt; "select the correct OU"</li>
 <li>NOTE: The ASEA state machine will automatically start within 1-2 minutes of the account being moved into the OU</li>
-<li>https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_ous.html#move_account_to_ou</li>
+<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_ous.html#move_account_to_ou">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_ous.html#move_account_to_ou</a></li>
 <li>Verify that the ASEA main state machine (under AWS-&gt;Step Functions) is triggered and runs cleanly (~30-45 minutes)</li>
 </ul>
 <h2 id="accelerator-asea-verify-access-control-with-roles-sso-etc">Accelerator (ASEA) - Verify access control with roles, SSO, etc<a class="headerlink" href="#accelerator-asea-verify-access-control-with-roles-sso-etc" title="Permanent link">&para;</a></h2>
@@ -1671,7 +1699,7 @@
 <ul>
 <li>Close all the linked accounts “as is” without making them standalone</li>
 <li>This will be the ALZ core linked accounts, but you might have some remaining workload accounts you decided not to migrate to the ASEA.</li>
-<li>https://aws.amazon.com/premiumsupport/knowledge-center/close-aws-account</li>
+<li><a href="https://aws.amazon.com/premiumsupport/knowledge-center/close-aws-account">https://aws.amazon.com/premiumsupport/knowledge-center/close-aws-account</a></li>
 <li>The management account will remain with organizations and the core accounts will show as suspended for 90 days.</li>
 </ul>
 <h3 id="close-down-the-alz-management-account">Close down the ALZ management account<a class="headerlink" href="#close-down-the-alz-management-account" title="Permanent link">&para;</a></h3>
