@@ -1062,8 +1062,12 @@
 <ul>
 <li>** <strong>IMPORTANT:</strong> When creating the new AWS account using AWS Organizations, you need to specify the role name provided in the Accelerator configuration file <code>global-options\organization-admin-role</code>, otherwise we cannot bootstrap the account. In Control Tower installations, this <strong>MUST</strong> be set to <strong><em><code>AWSControlTowerExecution</code></em></strong>, for customers who installed prior to v1.2.5 this value is <strong><em><code>AWSCloudFormationStackSetExecutionRole</code></em></strong> and after v1.2.5 we were recommending using the role <strong><em><code>OrganizationAccountAccessRole</code></em></strong> as this role is used by default by AWS Organizations if no role name is specified when creating AWS accounts through the AWS console or cli.</li>
 <li>On account creation we will apply a quarantine SCP which prevents the account from being used by anyone until the Accelerator has applied the appropriate guardrails</li>
-<li>Moving the account into the appropriate OU triggers the state machine and the application of the guardrails to the account, once complete, we will remove the quarantine SCP.</li>
-<li><strong>NOTE:</strong> Accounts CANNOT be moved between OU's to maintain compliance, so select the proper top-level OU with care</li>
+<li>
+<p>Moving the account into the appropriate OU triggers the state machine and the application of the guardrails to the account, once complete, we will remove the quarantine SCP.</p>
+</li>
+<li>
+<p><strong>NOTE:</strong> Accounts CANNOT be moved between OU's to maintain compliance, so select the proper top-level OU with care</p>
+</li>
 <li>In AWS Organizations, select ALL the newly created AWS accounts and move them all (preferably at once) to the correct destination OU (assuming the same OU for all accounts)</li>
 <li>In case you need to move accounts to multiple OU's we have added a 2 minute delay before triggering the State Machine</li>
 <li>Any accounts moved after the 2 minute window will NOT be properly ingested, and will need to be ingested on a subsequent State Machine Execution.</li>
@@ -1077,36 +1081,34 @@
 </code></pre>
 <p>This is because the Accelerator checks that there are no errors with Control Tower before continuing. In some cases Control Tower can leave an orphaned Service Catalog product in an <strong>Error</strong> state. You need to cleanup Control Towers Service Catalogs Provisioned Products so there are no products remaining in an error or tainted state before you can successfully re-run the state machine.</p>
 <h4 id="can-i-use-aws-organizations-for-all-tasks-i-currently-use-aws-organizations-for">Can I use AWS Organizations for all tasks I currently use AWS Organizations for?<a class="headerlink" href="#can-i-use-aws-organizations-for-all-tasks-i-currently-use-aws-organizations-for" title="Permanent link">&para;</a></h4>
+<p>In AWS Organizations you can continue to:</p>
 <ul>
-<li>In AWS Organizations you can continue to:</li>
 <li>create and rename AWS accounts</li>
 <li>move AWS accounts between ou's</li>
 <li>create, delete and rename ou's, including support for nested ou's</li>
 <li>create, rename, modify, apply and remove SCP's</li>
-<li>What can't I do:</li>
+</ul>
+<p>What can't I do:</p>
+<ul>
 <li>modify Accelerator or Control Tower controlled SCP's</li>
-<li>add/remove SCP's on top-level OU's (these are Accelerator and/or Control Tower controlled)<ul>
+<li>add/remove SCP's on top-level OU's (these are Accelerator and/or Control Tower controlled)</li>
 <li>users can change SCP's on non-top-level ou's and non-Accelerator controlled accounts as they please</li>
-</ul>
-</li>
 <li>add/remove SCP's on specific accounts that have Accelerator controlled SCPs</li>
-<li>move an AWS account between top-level ou's (i.e. <code>Sandbox</code> to <code>Prod</code> is a security violation)<ul>
+<li>move an AWS account between top-level ou's (i.e. <code>Sandbox</code> to <code>Prod</code> is a security violation)</li>
 <li>moving between <code>Prod/sub-ou-1</code> to <code>Prod/sub-ou2</code> or <code>Prod/sub-ou2/sub-ou2a/sub-ou2ab</code> is fully supported</li>
-</ul>
-</li>
 <li>create a top-level ou (need to validate, as they require config file entries)</li>
 <li>remove quarantine SCP from newly created accounts</li>
 <li>we do not support forward slashes (<code>/</code>) in ou names, even though the AWS platform does</li>
-<li>More details:</li>
+</ul>
+<p>More details:</p>
+<ul>
 <li>If an AWS account is renamed, an account email is changed, or an OU is renamed, on the next state machine execution, the config file will automatically be updated.</li>
 <li>If you edit an Accelerator controlled SCP through Organizations, we will reset it per what is defined in the Accelerator configuration files.</li>
 <li>If you add/remove an SCP from a top-level ou or Accelerator controlled account, we will put them back as defined in the Accelerator configuration file.</li>
 <li>If you move an account between top-level ou's, we will put it back to its original designated top-level ou.</li>
 <li>The Accelerator fully supports nested ou's, customers can create any depth ou structure in AWS Organizations and add/remove/change SCP's <em>below</em> the top-level as they desire or move accounts between these ou's without restriction. Users can create ou's to the full AWS ou structure/depth</li>
-<li>Except for the Quarantine SCP applied to specific accounts, we do not 'control' SCP's below the top level, customers can add/create/customize SCP's<ul>
+<li>Except for the Quarantine SCP applied to specific accounts, we do not 'control' SCP's below the top level, customers can add/create/customize SCP's</li>
 <li>as of v1.3.3 customers can optionally control account level SCP's through the configuration file</li>
-</ul>
-</li>
 </ul>
 <h4 id="how-do-i-make-changes-to-items-i-defined-in-the-accelerator-configuration-file-during-installation">How do I make changes to items I defined in the Accelerator configuration file during installation?<a class="headerlink" href="#how-do-i-make-changes-to-items-i-defined-in-the-accelerator-configuration-file-during-installation" title="Permanent link">&para;</a></h4>
 <p>Simply update your configuration file in CodeCommit and rerun the state machine! In most cases, it is that simple.</p>
