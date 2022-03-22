@@ -1663,14 +1663,10 @@
 <h1 id="accelerator-basic-operation-and-frequently-asked-questions">Accelerator Basic Operation and Frequently asked Questions<a class="headerlink" href="#accelerator-basic-operation-and-frequently-asked-questions" title="Permanent link">&para;</a></h1>
 <h2 id="operational-activities">Operational Activities<a class="headerlink" href="#operational-activities" title="Permanent link">&para;</a></h2>
 <h3 id="how-do-i-add-new-aws-accounts-to-my-aws-organization">How do I add new AWS accounts to my AWS Organization?<a class="headerlink" href="#how-do-i-add-new-aws-accounts-to-my-aws-organization" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
 <p>We offer four options and all can be used in the same Accelerator deployment. All options work with AWS Control Tower, ensuring the account is both ingested into Control Tower and all Accelerator guardrails are automatically applied:</p>
-</li>
-<li>
-<p>Users can simply add the following five lines to the configuration file <code>workload-account-configs</code> section and rerun the state machine. The majority of the account configuration will be picked up from the ou the AWS account has been assigned. You can also add additional account specific configuration, or override items like the default ou budget with an account specific budget. This mechanism is often used by customers that wish to programmatically create AWS accounts using the Accelerator and allows for adding many new accounts at one time.</p>
-</li>
-</ul>
+<ol>
+<li>Users can simply add the following five lines to the configuration file <code>workload-account-configs</code> section and rerun the state machine. The majority of the account configuration will be picked up from the ou the AWS account has been assigned. You can also add additional account specific configuration, or override items like the default ou budget with an account specific budget. This mechanism is often used by customers that wish to programmatically create AWS accounts using the Accelerator and allows for adding many new accounts at one time.</li>
+</ol>
 <p><code>json
   "fun-acct": {
     "account-name": "TheFunAccount",
@@ -1692,10 +1688,10 @@
 </ul>
 </li>
 <li>
-<p>Create your account using Account Factory in the AWS Control Tower console.</p>
+<p>Create your account using Account Factory in the AWS Control Tower console.
+  No matter the mechanism you choose, new accounts will automatically be blocked from use until fully guardrailed, the Accelerator will automatically execute, and accounts will automatically be ingested into AWS Control Tower.</p>
 </li>
 </ol>
-<p>No matter the mechanism you choose, new accounts will automatically be blocked from use until fully guardrailed, the Accelerator will automatically execute, and accounts will automatically be ingested into AWS Control Tower.</p>
 <h3 id="i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed-the-state-machine-failed-during-the-load-organization-configuration-step-with-the-error-the-control-tower-account-account_name-is-in-a-failed-state-error">I tried to enroll a new account via Control Tower but it failed? The state machine failed during the "Load Organization Configuration" step with the error "The Control Tower account: ACCOUNT_NAME is in a failed state ERROR"?<a class="headerlink" href="#i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed-the-state-machine-failed-during-the-load-organization-configuration-step-with-the-error-the-control-tower-account-account_name-is-in-a-failed-state-error" title="Permanent link">&para;</a></h3>
 <p>If account enrollment fails within Control Tower, you will need to follow the troubleshooting steps <a href="https://docs.aws.amazon.com/controltower/latest/userguide/troubleshooting.html">here</a>. A common reason for this is not having the <code>ControlTowerExectution</code> role created in the account you are trying to enroll. Even after you successfully enroll the account, it is possible the state machine will fail at <code>Load Organization Configuration</code>. If you look at the cloudwatch logs you will see the error message:</p>
 <pre><code class="language-text">There were errors while loading the configuration: The Control Tower account: ACCOUNT_NAME is in a failed state ERROR.
@@ -1861,7 +1857,7 @@
 <li>Install AWS CLI v2 on your PC - available <a href="https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html">here</a> (uninstall CLIv1 first, if installed)</li>
 <li>Install the SSM plugin on your PC - available <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html">here</a></li>
 <li>Get AWS temporary credentials from AWS SSO for the account your workload resides (i.e. Ops account when accessing the ASEA-RDGW instance) by selecting “Command line or programmatic access” instead of “Management Console” and paste them into a command prompt<ul>
-<li>i.e. via logging in here: https://xxxxxxx.awsapps.com/start or</li>
+<li>i.e. via logging in here: <a href="https://xxxxxxx.awsapps.com/start">https://xxxxxxx.awsapps.com/start</a> or</li>
 <li>This <a href="https://aws.amazon.com/blogs/developer/aws-cli-v2-now-supports-aws-single-sign-on/">blog</a> describes the process to use SSO to get credentials for the AWS CLI directly without the GUI</li>
 </ul>
 </li>
