@@ -1159,7 +1159,7 @@
 <p>No matter the mechanism you choose, new accounts will automatically be blocked from use until fully guardrailed, the Accelerator will automatically execute, and accounts will automatically be ingested into AWS Control Tower.</p>
 </details>
 <details class="faq">
-<summary>I tried to enroll a new account via Control Tower but it failed? The state machine failed during the "Load Organization Configuration" step with the error "The Control Tower account: ACCOUNT_NAME is in a failed state ERROR"?</summary>
+<summary>I tried to enroll a new account via Control Tower but it failed?</summary>
 <h4 id="i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed">I tried to enroll a new account via Control Tower but it failed?<a class="headerlink" href="#i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed" title="Permanent link">&para;</a></h4>
 <p>The state machine failed during the "Load Organization Configuration" step with the error "The Control Tower account: ACCOUNT_NAME is in a failed state ERROR"?</p>
 <p>If account enrollment fails within Control Tower, you will need to follow the troubleshooting steps <a href="https://docs.aws.amazon.com/controltower/latest/userguide/troubleshooting.html">here</a>. A common reason for this is not having the <code>ControlTowerExectution</code> role    created in the account you are trying to enroll. Even after you successfully enroll the account, it is possible the state machine will fail at <code>Load Organization Configuration</code>. If you look at the cloudwatch logs you will see the error message:</p>
