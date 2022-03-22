@@ -263,6 +263,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -402,6 +412,76 @@
     <li class="md-nav__item">
       <a href="../../installation/services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1031,14 +1111,14 @@
 <h4 id="json-annotation">JSON Annotation<a class="headerlink" href="#json-annotation" title="Permanent link">&para;</a></h4>
 <p>Throughout the document, JSON snippets may be annotated with comments (starting with <code>//</code>). The JSON language itself does not define comments as part of the specification; these must be removed prior to use in most situations, including the AWS Console and APIs.</p>
 <p>For example:</p>
-<pre><code class="language-jsonc">{
+<div class="highlight"><pre><span></span><code>{
   &quot;Effect&quot;: &quot;Allow&quot;,
   &quot;Principal&quot;: {
     &quot;AWS&quot;: &quot;arn:aws:iam::123456789012:root&quot; // Trust the Organization Management (root) account.
   },
   &quot;Action&quot;: &quot;sts:AssumeRole&quot;
 }
-</code></pre>
+</code></pre></div>
 <p>The above is not valid JSON without first removing the comment on the fourth line.</p>
 <h4 id="ip-addresses">IP Addresses<a class="headerlink" href="#ip-addresses" title="Permanent link">&para;</a></h4>
 <p>The design makes use of <a href="https://tools.ietf.org/html/rfc1918">RFC1918</a> addresses (e.g. <code>10.1.0.0/16</code>) and <a href="https://tools.ietf.org/html/rfc6598">RFC6598</a> (e.g. <code>100.96.250.0/23</code>) for various networks; these will be labeled accordingly. Any specific range or IP shown is purely for illustration purposes only.</p>

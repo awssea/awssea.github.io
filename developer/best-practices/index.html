@@ -263,6 +263,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -402,6 +412,76 @@
     <li class="md-nav__item">
       <a href="../../installation/services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1200,11 +1280,11 @@
 <h2 id="typescript-and-nodejs">TypeScript and NodeJS<a class="headerlink" href="#typescript-and-nodejs" title="Permanent link">&para;</a></h2>
 <h3 id="handle-unhandled-promises">Handle Unhandled Promises<a class="headerlink" href="#handle-unhandled-promises" title="Permanent link">&para;</a></h3>
 <p>Entry point TypeScript files -- files that start execution instead of just defining methods and classes -- should have the following code snippet at the start of the file.</p>
-<pre><code class="language-typescript">process.on('unhandledRejection', (reason, _) =&gt; {
-  console.error(reason);
-  process.exit(1);
-});
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nx">process</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;unhandledRejection&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">reason</span><span class="p">,</span> <span class="nx">_</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">reason</span><span class="p">);</span>
+  <span class="nx">process</span><span class="p">.</span><span class="nx">exit</span><span class="p">(</span><span class="mf">1</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
 <p>This prevents unhandled promise rejection errors by NodeJS. Please read <a href="https://medium.com/dailyjs/how-to-prevent-your-node-js-process-from-crashing-5d40247b8ab2">https://medium.com/dailyjs/how-to-prevent-your-node-js-process-from-crashing-5d40247b8ab2</a> for more information.</p>
 <h2 id="cloudformation">CloudFormation<a class="headerlink" href="#cloudformation" title="Permanent link">&para;</a></h2>
 <h3 id="cross-accountregion-references">Cross-Account/Region References<a class="headerlink" href="#cross-accountregion-references" title="Permanent link">&para;</a></h3>
@@ -1247,24 +1327,24 @@
 <li>updating network interfaces for an <code>AWS::EC2::Instance</code>. Not only will this cause the instance to re-create, it will also fail to attach the network interfaces to the new EC2 instance. CloudFormation creates the new EC2 instance first before deleting the old one. It will try to attach the network interfaces to the new instance, but the network interfaces are still attached to the old instance and CloudFormation will fail.</li>
 </ul>
 <p>For some named resources, like <code>AWS::AutoScaling::LaunchConfiguration</code> and <code>AWS::Budgets::Budget</code>, we append a hash to the name of the resource that is based on its properties. This way when an immutable property is changed, the name will also change, and the resource will be replaced successfully. See for example <code>src/lib/cdk-constructs/src/autoscaling/launch-configuration.ts</code> and <code>src/lib/cdk-constructs/src//billing/budget.ts</code>.</p>
-<pre><code class="language-typescript">export type LaunchConfigurationProps = autoscaling.CfnLaunchConfigurationProps;
+<div class="highlight"><pre><span></span><code><span class="k">export</span> <span class="kr">type</span> <span class="nx">LaunchConfigurationProps</span> <span class="o">=</span> <span class="nx">autoscaling</span><span class="p">.</span><span class="nx">CfnLaunchConfigurationProps</span><span class="p">;</span>
 
-/**
- * Wrapper around CfnLaunchConfiguration. The construct adds a hash to the launch configuration name that is based on
- * the launch configuration properties. The hash makes sure the launch configuration gets replaced correctly by
- * CloudFormation.
- */
-export class LaunchConfiguration extends autoscaling.CfnLaunchConfiguration {
-  constructor(scope: cdk.Construct, id: string, props: LaunchConfigurationProps) {
-    super(scope, id, props);
+<span class="cm">/**</span>
+<span class="cm"> * Wrapper around CfnLaunchConfiguration. The construct adds a hash to the launch configuration name that is based on</span>
+<span class="cm"> * the launch configuration properties. The hash makes sure the launch configuration gets replaced correctly by</span>
+<span class="cm"> * CloudFormation.</span>
+<span class="cm"> */</span>
+<span class="k">export</span> <span class="kd">class</span> <span class="nx">LaunchConfiguration</span> <span class="k">extends</span> <span class="nx">autoscaling</span><span class="p">.</span><span class="nx">CfnLaunchConfiguration</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">scope</span>: <span class="kt">cdk.Construct</span><span class="p">,</span> <span class="nx">id</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">props</span>: <span class="kt">LaunchConfigurationProps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">props</span><span class="p">);</span>
 
-    if (props.launchConfigurationName) {
-      const hash = hashSum({ ...props, path: this.node.path });
-      this.launchConfigurationName = `${props.launchConfigurationName}-${hash}`;
-    }
-  }
-}
-</code></pre>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">launchConfigurationName</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">hash</span> <span class="o">=</span> <span class="nx">hashSum</span><span class="p">({</span> <span class="p">...</span><span class="nx">props</span><span class="p">,</span> <span class="nx">path</span>: <span class="kt">this.node.path</span> <span class="p">});</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">launchConfigurationName</span> <span class="o">=</span> <span class="sb">`</span><span class="si">${</span><span class="nx">props</span><span class="p">.</span><span class="nx">launchConfigurationName</span><span class="si">}</span><span class="sb">-</span><span class="si">${</span><span class="nx">hash</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="cdk">CDK<a class="headerlink" href="#cdk" title="Permanent link">&para;</a></h2>
 <p>CDK makes heavy use of CloudFormation so all best practices that apply to CloudFormation also apply to CDK.</p>
 <h3 id="logical-ids">Logical IDs<a class="headerlink" href="#logical-ids" title="Permanent link">&para;</a></h3>
@@ -1273,20 +1353,20 @@ export class LaunchConfiguration extends autoscaling.CfnLaunchConfiguration {
 <h3 id="moving-resources-between-nested-stacks">Moving Resources between Nested Stacks<a class="headerlink" href="#moving-resources-between-nested-stacks" title="Permanent link">&para;</a></h3>
 <p>In some cases we use nested stacks to overcome <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html">the limit of 200 CloudFormation resources per stack</a>.</p>
 <p>In the code snippet below you can see how we generate a dynamic amount of nested stack based on the amount of interface endpoints we construct. The <code>InterfaceEndpoint</code> construct contains CloudFormation resources so we have to be careful to not exceed the limit of 200 CloudFormation resources per nested stack. That is why we limit the amount of interface endpoints to 30 per nested stack.</p>
-<pre><code class="language-typescript">let endpointCount = 0;
-let endpointStackIndex = 0;
-let endpointStack;
-for (const endpoint of endpointConfig.endpoints) {
-  if (!endpointStack || endpointCount &gt;= 30) {
-    endpointStack = new NestedStack(accountStack, `Endpoint${endpointStackIndex++}`);
-    endpointCount = 0;
-  }
-  new InterfaceEndpoint(endpointStack, pascalCase(endpoint), {
-    serviceName: endpoint,
-  });
-  endpointCount++;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span> <span class="nx">endpointCount</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">endpointStackIndex</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">endpointStack</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">endpoint</span> <span class="k">of</span> <span class="nx">endpointConfig</span><span class="p">.</span><span class="nx">endpoints</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">endpointStack</span> <span class="o">||</span> <span class="nx">endpointCount</span> <span class="o">&gt;=</span> <span class="mf">30</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">endpointStack</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">NestedStack</span><span class="p">(</span><span class="nx">accountStack</span><span class="p">,</span> <span class="sb">`Endpoint</span><span class="si">${</span><span class="nx">endpointStackIndex</span><span class="o">++</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+    <span class="nx">endpointCount</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="ow">new</span> <span class="nx">InterfaceEndpoint</span><span class="p">(</span><span class="nx">endpointStack</span><span class="p">,</span> <span class="nx">pascalCase</span><span class="p">(</span><span class="nx">endpoint</span><span class="p">),</span> <span class="p">{</span>
+    <span class="nx">serviceName</span>: <span class="kt">endpoint</span><span class="p">,</span>
+  <span class="p">});</span>
+  <span class="nx">endpointCount</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>We have to be careful here though. Suppose the configuration file contains 40 interface endpoints. The first 30 interface endpoints will be created in the first nested stack; the next 10 interface endpoints will be created in the second nested stack. Suppose now that we remove the first nested endpoint from the configuration file. This will cause the 31st interface endpoint to become the 30th interface endpoint in the list and it will cause the interface endpoint to be moved from the second nested stack to the first nested stack. This will cause the stack updates to fail since CloudFormation will first try to create the interface endpoint in the first nested stack before removing it from the second nested stack. We do currently not support changes to the interface endpoint configuration because of this behavior.</p>
 <h3 id="l1-vs-l2-constructs">L1 vs. L2 Constructs<a class="headerlink" href="#l1-vs-l2-constructs" title="Permanent link">&para;</a></h3>
 <p>See <a href="https://docs.aws.amazon.com/cdk/latest/guide/constructs.html#constructs_lib">AWS Construct library</a> for an explanation on L1 and L2 constructs.</p>
@@ -1298,45 +1378,45 @@ for (const endpoint of endpointConfig.endpoints) {
 <p>This workspace's <code>package.json</code> file needs a <code>prepare</code> script that compiles the runtime code. See <a href="https://docs.npmjs.com/misc/scripts"><code>npm-scripts</code></a>.</p>
 <p>The <code>package.json</code> file also needs a <code>name</code> and a <code>main</code> entry that points to the compiled code.</p>
 <p><code>runtime/package.json</code></p>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;lambda-fn-runtime&quot;,
-  &quot;main&quot;: &quot;dist/index.js&quot;,
-  &quot;scripts&quot;: {
-    &quot;prepare&quot;: &quot;webpack-cli --config webpack.config.ts&quot;
-  }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;lambda-fn-runtime&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;main&quot;</span><span class="p">:</span> <span class="s2">&quot;dist/index.js&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;prepare&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack-cli --config webpack.config.ts&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Now when another workspace depends on our Lambda function runtime code workspace, the <code>prepare</code> script will run and it will compile the Lambda function runtime code.</p>
 <p>Next, we add the dependency to the new workspace to the workspace that contains the CDK code using <code>pnpm</code> or by adding it to <code>package.json</code>.</p>
 <p><code>cdk/package.json</code></p>
-<pre><code class="language-json">{
-  &quot;devDependencies&quot;: {
-    &quot;lambda-fn-runtime&quot;: &quot;workspace:^0.0.1&quot;
-  }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;lambda-fn-runtime&quot;</span><span class="p">:</span> <span class="s2">&quot;workspace:^0.0.1&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>In the CDK code we can now resolve the path to the compiled code using the <code>NodeJS</code> <code>modules</code> API. See <a href="https://nodejs.org/api/modules.html#modules_require_resolve_request_options">NodeJS <code>modules</code> API</a>.</p>
 <p><code>cdk/src/index.ts</code></p>
-<pre><code class="language-typescript">class LambdaFun extends cdk.Construct {
-  constructor(scope: cdk.Construct, id: string) {
-    super(scope, id);
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nx">LambdaFun</span> <span class="k">extends</span> <span class="nx">cdk</span><span class="p">.</span><span class="nx">Construct</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">scope</span>: <span class="kt">cdk.Construct</span><span class="p">,</span> <span class="nx">id</span>: <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">id</span><span class="p">);</span>
 
-    // Find the runtime package folder and resolves the `main` entry of `package.json`.
-    // In our case this is `node_modules/lambda-fn-runtime/dist/index.js`.
-    const runtimeMain = resolve.require('lambda-fn-runtime');
+    <span class="c1">// Find the runtime package folder and resolves the `main` entry of `package.json`.</span>
+    <span class="c1">// In our case this is `node_modules/lambda-fn-runtime/dist/index.js`.</span>
+    <span class="kd">const</span> <span class="nx">runtimeMain</span> <span class="o">=</span> <span class="nx">resolve</span><span class="p">.</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lambda-fn-runtime&#39;</span><span class="p">);</span>
 
-    // Find the directory containing our `index.js` file.
-    // In our case this is `node_modules/lambda-fn-runtime/dist`.
-    const runtimeDir = path.dirname(lambdaPath);
+    <span class="c1">// Find the directory containing our `index.js` file.</span>
+    <span class="c1">// In our case this is `node_modules/lambda-fn-runtime/dist`.</span>
+    <span class="kd">const</span> <span class="nx">runtimeDir</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">lambdaPath</span><span class="p">);</span>
 
-    new lambda.Function(this, 'Resource', {
-      runtime: lambda.Runtime.NODEJS_14_X,
-      code: lambda.Code.fromAsset(runtimeDir),
-      handler: 'index.handler', // The `handler` function in `index.js`
-    });
-  }
-}
-</code></pre>
+    <span class="ow">new</span> <span class="nx">lambda</span><span class="p">.</span><span class="nb">Function</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;Resource&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">runtime</span>: <span class="kt">lambda.Runtime.NODEJS_14_X</span><span class="p">,</span>
+      <span class="nx">code</span>: <span class="kt">lambda.Code.fromAsset</span><span class="p">(</span><span class="nx">runtimeDir</span><span class="p">),</span>
+      <span class="nx">handler</span><span class="o">:</span> <span class="s1">&#39;index.handler&#39;</span><span class="p">,</span> <span class="c1">// The `handler` function in `index.js`</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>You now have a CDK Lambda function that uses the compiled Lambda function runtime code.</p>
 <blockquote>
 <p><em>Note</em>: The runtime code needs to recompile every time it changes since the <code>prepare</code> script only runs when the runtime workspace is installed.</p>
@@ -1351,74 +1431,74 @@ for (const endpoint of endpointConfig.endpoints) {
 <p>The second type of custom resources requires a custom Lambda function runtime as described in the previous section. For example <a href="../../../../src/lib/custom-resources/cdk-acm-import-certificate"><code>acm-import-certificate</code></a> is backed by a custom Lambda function.</p>
 <p>Only a single Lambda function is created per custom resource, account and region. This is achieved by creating only a single Lambda function in the construct tree.</p>
 <p><code>src/lib/custom-resources/custom-resource/cdk/index.ts</code></p>
-<pre><code class="language-typescript">class CustomResource extends cdk.Construct {
-  constructor(scope: cdk.Construct, id: string, props: CustomResourceProps) {
-    super(scope, id);
+<div class="highlight"><pre><span></span><code><span class="kd">class</span> <span class="nx">CustomResource</span> <span class="k">extends</span> <span class="nx">cdk</span><span class="p">.</span><span class="nx">Construct</span> <span class="p">{</span>
+  <span class="kr">constructor</span><span class="p">(</span><span class="nx">scope</span>: <span class="kt">cdk.Construct</span><span class="p">,</span> <span class="nx">id</span>: <span class="kt">string</span><span class="p">,</span> <span class="nx">props</span>: <span class="kt">CustomResourceProps</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">id</span><span class="p">);</span>
 
-    new cdk.CustomResource(this, 'Resource', {
-      resourceType: 'Custom::CustomResource',
-      serviceToken: this.lambdaFunction.functionArn,
-    });
-  }
+    <span class="ow">new</span> <span class="nx">cdk</span><span class="p">.</span><span class="nx">CustomResource</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;Resource&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">resourceType</span><span class="o">:</span> <span class="s1">&#39;Custom::CustomResource&#39;</span><span class="p">,</span>
+      <span class="nx">serviceToken</span>: <span class="kt">this.lambdaFunction.functionArn</span><span class="p">,</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
 
-  private get lambdaFunction() {
-    const constructName = `CustomResourceLambda`;
+  <span class="k">private</span> <span class="nx">get</span> <span class="nx">lambdaFunction</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">constructName</span> <span class="o">=</span> <span class="sb">`CustomResourceLambda`</span><span class="p">;</span>
 
-    const stack = cdk.Stack.of(this);
-    const existing = stack.node.tryFindChild(constructName);
-    if (existing) {
-      return existing as lambda.Function;
-    }
+    <span class="kd">const</span> <span class="nx">stack</span> <span class="o">=</span> <span class="nx">cdk</span><span class="p">.</span><span class="nx">Stack</span><span class="p">.</span><span class="k">of</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">existing</span> <span class="o">=</span> <span class="nx">stack</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">tryFindChild</span><span class="p">(</span><span class="nx">constructName</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">existing</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">existing</span> <span class="kr">as</span> <span class="nx">lambda</span><span class="p">.</span><span class="nb">Function</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    // The package '@aws-accelerator/custom-resources/cdk-custom-resource-runtime' contains the runtime code for the custom resource
-    const lambdaPath = require.resolve('@aws-accelerator/custom-resources/cdk-custom-resource-runtime');
-    const lambdaDir = path.dirname(lambdaPath);
+    <span class="c1">// The package &#39;@aws-accelerator/custom-resources/cdk-custom-resource-runtime&#39; contains the runtime code for the custom resource</span>
+    <span class="kd">const</span> <span class="nx">lambdaPath</span> <span class="o">=</span> <span class="nx">require</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;@aws-accelerator/custom-resources/cdk-custom-resource-runtime&#39;</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">lambdaDir</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">lambdaPath</span><span class="p">);</span>
 
-    return new lambda.Function(stack, constructName, {
-      code: lambda.Code.fromAsset(lambdaDir),
-    });
-  }
-}
-</code></pre>
+    <span class="k">return</span> <span class="ow">new</span> <span class="nx">lambda</span><span class="p">.</span><span class="nb">Function</span><span class="p">(</span><span class="nx">stack</span><span class="p">,</span> <span class="nx">constructName</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">code</span>: <span class="kt">lambda.Code.fromAsset</span><span class="p">(</span><span class="nx">lambdaDir</span><span class="p">),</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="escape-hatches">Escape Hatches<a class="headerlink" href="#escape-hatches" title="Permanent link">&para;</a></h3>
 <p>Sometimes CDK does not support a property on a resource that CloudFormation does support. You can then override the property using the <code>addOverride</code> or <code>addPropertyOverride</code> methods on CDK CloudFormation resources. See <a href="https://docs.aws.amazon.com/cdk/latest/guide/cfn_layer.html">CDK escape hatches</a>.</p>
 <h4 id="autoscaling-group-metadata">AutoScaling Group Metadata<a class="headerlink" href="#autoscaling-group-metadata" title="Permanent link">&para;</a></h4>
 <p>An example where we override metadata is when we create a launch configuration.S</p>
-<pre><code class="language-typescript">const launchConfig = new autoscaling.CfnLaunchConfiguration(this, 'LaunchConfig', { ... });
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">launchConfig</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">autoscaling</span><span class="p">.</span><span class="nx">CfnLaunchConfiguration</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;LaunchConfig&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="p">...</span> <span class="p">});</span>
 
-launchConfig.addOverride('Metadata.AWS::CloudFormation::Authentication', {
-  S3AccessCreds: {
-    type: 'S3',
-    roleName,
-    buckets: [bucketName],
-  },
-});
+<span class="nx">launchConfig</span><span class="p">.</span><span class="nx">addOverride</span><span class="p">(</span><span class="s1">&#39;Metadata.AWS::CloudFormation::Authentication&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">S3AccessCreds</span><span class="o">:</span> <span class="p">{</span>
+    <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;S3&#39;</span><span class="p">,</span>
+    <span class="nx">roleName</span><span class="p">,</span>
+    <span class="nx">buckets</span><span class="o">:</span> <span class="p">[</span><span class="nx">bucketName</span><span class="p">],</span>
+  <span class="p">},</span>
+<span class="p">});</span>
 
-launchConfig.addOverride('Metadata.AWS::CloudFormation::Init', {
-  configSets: {
-    config: ['setup'],
-  },
-  setup: {
-    files: {
-      // Add files here
-    },
-    services: {
-      // Add services here
-    },
-    commands: {
-      // Add commands here
-    },
-  },
-});
-</code></pre>
+<span class="nx">launchConfig</span><span class="p">.</span><span class="nx">addOverride</span><span class="p">(</span><span class="s1">&#39;Metadata.AWS::CloudFormation::Init&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">configSets</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">config</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;setup&#39;</span><span class="p">],</span>
+  <span class="p">},</span>
+  <span class="nx">setup</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">files</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// Add files here</span>
+    <span class="p">},</span>
+    <span class="nx">services</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// Add services here</span>
+    <span class="p">},</span>
+    <span class="nx">commands</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// Add commands here</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
 <h4 id="secret-secretvalue">Secret <code>SecretValue</code><a class="headerlink" href="#secret-secretvalue" title="Permanent link">&para;</a></h4>
 <p>Another example is when we want to use <code>secretsmanager.Secret</code> and set the secret value.</p>
-<pre><code class="language-typescript">function setSecretValue(secret: secrets.Secret, value: string) {
-  const cfnSecret = secret.node.defaultChild as secrets.CfnSecret; // Get the L1 resource that backs this L2 resource
-  cfnSecret.addPropertyOverride('SecretString', value); // Override the property `SecretString` on the L1 resource
-  cfnSecret.addPropertyDeletionOverride('GenerateSecretString'); // Delete the property `GenerateSecretString` from the L1 resource
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span> <span class="nx">setSecretValue</span><span class="p">(</span><span class="nx">secret</span>: <span class="kt">secrets.Secret</span><span class="p">,</span> <span class="nx">value</span>: <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">cfnSecret</span> <span class="o">=</span> <span class="nx">secret</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">defaultChild</span> <span class="kr">as</span> <span class="nx">secrets</span><span class="p">.</span><span class="nx">CfnSecret</span><span class="p">;</span> <span class="c1">// Get the L1 resource that backs this L2 resource</span>
+  <span class="nx">cfnSecret</span><span class="p">.</span><span class="nx">addPropertyOverride</span><span class="p">(</span><span class="s1">&#39;SecretString&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span> <span class="c1">// Override the property `SecretString` on the L1 resource</span>
+  <span class="nx">cfnSecret</span><span class="p">.</span><span class="nx">addPropertyDeletionOverride</span><span class="p">(</span><span class="s1">&#39;GenerateSecretString&#39;</span><span class="p">);</span> <span class="c1">// Delete the property `GenerateSecretString` from the L1 resource</span>
+<span class="p">}</span>
+</code></pre></div>
 
               
             </article>

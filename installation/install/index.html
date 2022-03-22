@@ -265,6 +265,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -602,6 +612,76 @@
     <li class="md-nav__item">
       <a href="../services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1775,24 +1855,22 @@
 </ol>
 <details><summary>Sample DynamoDB JSON to add an entry to the table:</summary>
 
-
-<pre><code class="language-json">{
-    &quot;id&quot;: &quot;App1&quot;,
-    &quot;targetAlbDnsName&quot;: &quot;internal-Core-mydevacct1-alb-123456789.ca-central-1.elb.amazonaws.com&quot;,
-    &quot;targetGroupDestinationPort&quot;: 443,
-    &quot;targetGroupProtocol&quot;: &quot;HTTPS&quot;,
-    &quot;vpcId&quot;: &quot;vpc-0a6f44a80514daaaf&quot;,
-    &quot;rule&quot;: {
-      &quot;sourceListenerArn&quot;: &quot;arn:aws:elasticloadbalancing:ca-central-1:123456789012:listener/app/Public-DevTest-perimeter-alb/b1b12e7a0c412bf3/ef9b022a4fdd8bdf&quot;,
-      &quot;condition&quot;: {
-        &quot;paths&quot;: [&quot;/img/*&quot;, &quot;/myApp2&quot;],
-        &quot;hosts&quot;: [&quot;aws.amazon.com&quot;],
-        &quot;priority&quot;: 30
-      }
- }
-}
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;App1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;targetAlbDnsName&quot;</span><span class="p">:</span> <span class="s2">&quot;internal-Core-mydevacct1-alb-123456789.ca-central-1.elb.amazonaws.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;targetGroupDestinationPort&quot;</span><span class="p">:</span> <span class="mi">443</span><span class="p">,</span>
+    <span class="nt">&quot;targetGroupProtocol&quot;</span><span class="p">:</span> <span class="s2">&quot;HTTPS&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;vpcId&quot;</span><span class="p">:</span> <span class="s2">&quot;vpc-0a6f44a80514daaaf&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;rule&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;sourceListenerArn&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:elasticloadbalancing:ca-central-1:123456789012:listener/app/Public-DevTest-perimeter-alb/b1b12e7a0c412bf3/ef9b022a4fdd8bdf&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;condition&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;paths&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;/img/*&quot;</span><span class="p">,</span> <span class="s2">&quot;/myApp2&quot;</span><span class="p">],</span>
+        <span class="nt">&quot;hosts&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;aws.amazon.com&quot;</span><span class="p">],</span>
+        <span class="nt">&quot;priority&quot;</span><span class="p">:</span> <span class="mi">30</span>
+      <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 
 - where `id` is any unique text, `targetAlbDnsName` is the DNS address for the backend alb for this application (found in parameter store), `vpcId` is the vpc id containing the front-end alb (in this account), `sourceListenerArn` is the arn of the listener of the front-end alb, `paths` and `hosts` are both optional, but one of the two must be supplied. Finally, `priority` must be unique and is used to order the listener rules. Priorities should be spaced at least 40 apart to allow for easy insertion of new applications and forwarder rules.
 - the provided `targetAlbDnsName` must resolve to addresses within a [supported](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html) IP address space.

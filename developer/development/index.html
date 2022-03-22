@@ -263,6 +263,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -402,6 +412,76 @@
     <li class="md-nav__item">
       <a href="../../installation/services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1451,34 +1531,34 @@
 <h2 id="installer-stack">Installer Stack<a class="headerlink" href="#installer-stack" title="Permanent link">&para;</a></h2>
 <p>Read the <a href="../../operations/#installer-stack">Operations Guide</a> first before reading this section. This section is a technical addition to the section in the Operations Guide.</p>
 <p>As stated in the Operations Guide, the <code>Installer</code> stack is responsible for installing the <code>Initial Setup</code> stack. It is an Accelerator-management resource. The main resource in the <code>Installer</code> stack is the <code>ASEA-Installer</code> CodePipeline. The CodePipeline uses this GitHub repository as source action and runs CDK in a CodeBuild step to deploy the <code>Initial Setup</code> stack.</p>
-<pre><code class="language-typescript">new codebuild.PipelineProject(stack, 'InstallerProject', {
-  buildSpec: codebuild.BuildSpec.fromObject({
-    version: '0.2',
-    phases: {
-      install: {
-        'runtime-versions': {
-          nodejs: 14,
-        },
-        // The flag '--unsafe-perm' is necessary to run pnpm scripts in Docker
-        commands: ['npm install --global pnpm@6.2.3', 'pnpm install --unsafe-perm --frozen-lockfile'],
-      },
-      pre_build: {
-        // The flag '--unsafe-perm' is necessary to run pnpm scripts in Docker
-        commands: ['pnpm recursive run build --unsafe-perm'],
-      },
-      build: {
-        commands: [
-          'cd src/core/cdk',
-          // Bootstrap the environment for use by CDK
-          'pnpx cdk bootstrap --require-approval never',
-          // Deploy the Initial Setup stack
-          'pnpx cdk deploy --require-approval never',
-        ],
-      },
-    },
-  }),
-});
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="ow">new</span> <span class="nx">codebuild</span><span class="p">.</span><span class="nx">PipelineProject</span><span class="p">(</span><span class="nx">stack</span><span class="p">,</span> <span class="s1">&#39;InstallerProject&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">buildSpec</span>: <span class="kt">codebuild.BuildSpec.fromObject</span><span class="p">({</span>
+    <span class="nx">version</span><span class="o">:</span> <span class="s1">&#39;0.2&#39;</span><span class="p">,</span>
+    <span class="nx">phases</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">install</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;runtime-versions&#39;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="nx">nodejs</span>: <span class="kt">14</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="c1">// The flag &#39;--unsafe-perm&#39; is necessary to run pnpm scripts in Docker</span>
+        <span class="nx">commands</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;npm install --global pnpm@6.2.3&#39;</span><span class="p">,</span> <span class="s1">&#39;pnpm install --unsafe-perm --frozen-lockfile&#39;</span><span class="p">],</span>
+      <span class="p">},</span>
+      <span class="nx">pre_build</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">// The flag &#39;--unsafe-perm&#39; is necessary to run pnpm scripts in Docker</span>
+        <span class="nx">commands</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;pnpm recursive run build --unsafe-perm&#39;</span><span class="p">],</span>
+      <span class="p">},</span>
+      <span class="nx">build</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">commands</span><span class="o">:</span> <span class="p">[</span>
+          <span class="s1">&#39;cd src/core/cdk&#39;</span><span class="p">,</span>
+          <span class="c1">// Bootstrap the environment for use by CDK</span>
+          <span class="s1">&#39;pnpx cdk bootstrap --require-approval never&#39;</span><span class="p">,</span>
+          <span class="c1">// Deploy the Initial Setup stack</span>
+          <span class="s1">&#39;pnpx cdk deploy --require-approval never&#39;</span><span class="p">,</span>
+        <span class="p">],</span>
+      <span class="p">},</span>
+    <span class="p">},</span>
+  <span class="p">}),</span>
+<span class="p">});</span>
+</code></pre></div>
 <p>When the CodePipeline finishes deploying the <code>Initial Setup</code> stack, it starts a Lambda function that starts the execution of the <code>Initial Setup</code> stack's main state machine.</p>
 <p>The <code>Initial Setup</code> stack deployment receives environment variables from the CodePipeline's CodeBuild step. The most notable environment variables are:</p>
 <ul>
@@ -1500,23 +1580,23 @@
 <p>The CodeBuild project that deploys the different <code>Phase</code> stacks is constructed using the <code>CdkDeployProject</code> or <code>PrebuiltCdkDeployProject</code> based on the value of the environment variable <code>ENABLE_PREBUILT_PROJECT</code>.</p>
 <p>The first, <code>CdkDeployProject</code> constructs a CodeBuild project that copies this whole Github repository as a ZIP file to S3 using <a href="https://docs.aws.amazon.com/cdk/api/latest/docs/aws-s3-assets-readme.html">CDK S3 assets</a>. This ZIP file is then used as source for the CodeBuild project. When the CodeBuild project executes, it runs <code>pnpm recursive install</code> which in turn will run all <code>prepare</code> scripts in all <code>package.json</code> files in the project -- as described in section <a href="#334-cdk-code-dependency-on-lambda-function-code">CDK Code Dependency on Lambda Function Code</a>.</p>
 <p>After installing the dependencies, the CodeBuild project deploys the <code>Phase</code> stacks.</p>
-<pre><code class="language-bash">cd src/deployments/cdk
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> src/deployments/cdk
 sh codebuild-deploy.sh
-</code></pre>
+</code></pre></div>
 <p>We have more than 50 workspace projects in the monorepo with a <code>prepare</code> script, so the <code>pnpm recursive install</code> step can take some time. Also, the CodeBuild project will run for each deployed <code>Phase</code> stack in each Accelerator-managed account.</p>
 <p>This is where the <code>PrebuiltCdkDeployProject</code> CodeBuild project comes in. The <code>PrebuiltCdkDeployProject</code> contains a Docker image that contains the whole project in the <code>/app</code> directory and has all the dependencies already installed.</p>
-<pre><code class="language-Dockerfile">FROM node:12-alpine3.11
-# Install the package manager
-RUN npm install --global pnpm
-RUN mkdir /app
-WORKDIR /app
-# Copy over the project root to the /app directory
-ADD . /app/
-# Install the dependencies
-RUN pnpm install --unsafe-perm --frozen-lockfile
-# Build all Lambda function runtime code
-RUN pnpm recursive run build --unsafe-perm
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">node:12-alpine3.11</span>
+<span class="c"># Install the package manager</span>
+<span class="k">RUN</span> npm install --global pnpm
+<span class="k">RUN</span> mkdir /app
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="c"># Copy over the project root to the /app directory</span>
+<span class="k">ADD</span> . /app/
+<span class="c"># Install the dependencies</span>
+<span class="k">RUN</span> pnpm install --unsafe-perm --frozen-lockfile
+<span class="c"># Build all Lambda function runtime code</span>
+<span class="k">RUN</span> pnpm recursive run build --unsafe-perm
+</code></pre></div>
 <p>When this CodeBuild project executes, it uses the Docker image as base -- the dependencies are already installed -- and runs the same commands as the <code>CdkDeployProject</code> to deploy the <code>Phase</code> stacks.</p>
 <h3 id="passing-data-to-phase-steps-and-phase-stacks">Passing Data to Phase Steps and Phase Stacks<a class="headerlink" href="#passing-data-to-phase-steps-and-phase-stacks" title="Permanent link">&para;</a></h3>
 <p>Some steps in the state machine write data to Amazon DynamoDB. This data is necessary to deploy the <code>Phase</code> stacks later on. At one time this data was written to Secrets Manager and/or S3, these mechanisms were deemed ineffective due to object size limitations or consistency challenges and were all eventually migrated to DynamoDB.</p>
@@ -1551,62 +1631,62 @@ RUN pnpm recursive run build --unsafe-perm
 <p>This allows customers to reliably build Infrastructure as Code (IaC) which depends on accelerator deployed objects like VPC's, security groups, subnets, ELB's, KMS keys, IAM users and policies. Rather than making the parameters dependent on object names, we used an indexing scheme, which we maintain and don't update as a customers configuration changes. We have attempted to keep the index values consistent across accounts (based on the config file), such that when code is propoted through the SDLC cycle from Dev to Test to Prod, the input parameters to the IaC scripts do not need to be updated, the App subnet, for example, will have the same index value in all accounts.</p>
 <h3 id="phases-and-deployments">Phases and Deployments<a class="headerlink" href="#phases-and-deployments" title="Permanent link">&para;</a></h3>
 <p>The <code>cdk.ts</code> file calls the <code>deploy</code> method in the <code>apps/app.ts</code>. This <code>deploy</code> method loads the Accelerator configuration, accounts, organizations from DynamoDB; loads the stack outputs from Amazon DynamoDB; and loads required environment variables.</p>
-<pre><code class="language-typescript">/**
- * Input to the `deploy` method of a phase.
- */
-export interface PhaseInput {
-  // The config.json file
-  acceleratorConfig: AcceleratorConfig;
-  // Auxiliary class to construct stacks
-  accountStacks: AccountStacks;
-  // The list of accounts, their key in the configuration file and their ID
-  accounts: Account[];
-  // The parsed environment variables
-  context: Context;
-  // The list of stack outputs from previous phases
-  outputs: StackOutput[];
-  // Auxiliary class to manage limits
-  limiter: Limiter;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Input to the `deploy` method of a phase.</span>
+<span class="cm"> */</span>
+<span class="k">export</span> <span class="kd">interface</span> <span class="nx">PhaseInput</span> <span class="p">{</span>
+  <span class="c1">// The config.json file</span>
+  <span class="nx">acceleratorConfig</span>: <span class="kt">AcceleratorConfig</span><span class="p">;</span>
+  <span class="c1">// Auxiliary class to construct stacks</span>
+  <span class="nx">accountStacks</span>: <span class="kt">AccountStacks</span><span class="p">;</span>
+  <span class="c1">// The list of accounts, their key in the configuration file and their ID</span>
+  <span class="nx">accounts</span>: <span class="kt">Account</span><span class="p">[];</span>
+  <span class="c1">// The parsed environment variables</span>
+  <span class="nx">context</span>: <span class="kt">Context</span><span class="p">;</span>
+  <span class="c1">// The list of stack outputs from previous phases</span>
+  <span class="nx">outputs</span>: <span class="kt">StackOutput</span><span class="p">[];</span>
+  <span class="c1">// Auxiliary class to manage limits</span>
+  <span class="nx">limiter</span>: <span class="kt">Limiter</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>It is important to note that no configuration is hard-coded. The CloudFormation templates are generated by CDK and the CDK constructs are created according to the configuration file. Changes to the configuration will change the CDK construct tree and that will result in a different CloudFormation template that is deployed.</p>
 <p>The different phases are defined in <code>apps/phase-x.ts</code>. Historically we created all CDK constructs in the <code>phase-x.ts</code> files. After a while the <code>phase-x.ts</code> files started to get too big and we moved to separating the logic into separate deployments. Every logical component has a separate folder in the <code>deployments</code> folder. Every <code>deployment</code> consists of so-called steps. Separate steps are put in loaded in phases.</p>
 <p>For example, take the <code>deployments/defaults</code> deployment. The deployment consists of two steps, i.e. <code>step-1.ts</code> and <code>step-2.ts</code>. <code>deployments/defaults/step-1.ts</code> is created in <code>apps/phase-0.ts</code> and <code>deployments/defaults/step-2.ts</code> is created in <code>apps/phase-1.ts</code>. You can find more details about what happens in each phase in the <a href="../../operations/">Operations Guide</a>.</p>
 <p><code>apps/phase-0.ts</code></p>
-<pre><code class="language-typescript">export async function deploy({ acceleratorConfig, accountStacks, accounts, context }: PhaseInput) {
-  // Create defaults, e.g. S3 buckets, EBS encryption keys
-  const defaultsResult = await defaults.step1({
-    acceleratorPrefix: context.acceleratorPrefix,
-    accountStacks,
-    accounts,
-    config: acceleratorConfig,
-  });
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">deploy</span><span class="p">({</span> <span class="nx">acceleratorConfig</span><span class="p">,</span> <span class="nx">accountStacks</span><span class="p">,</span> <span class="nx">accounts</span><span class="p">,</span> <span class="nx">context</span> <span class="p">}</span><span class="o">:</span> <span class="nx">PhaseInput</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Create defaults, e.g. S3 buckets, EBS encryption keys</span>
+  <span class="kd">const</span> <span class="nx">defaultsResult</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">step1</span><span class="p">({</span>
+    <span class="nx">acceleratorPrefix</span>: <span class="kt">context.acceleratorPrefix</span><span class="p">,</span>
+    <span class="nx">accountStacks</span><span class="p">,</span>
+    <span class="nx">accounts</span><span class="p">,</span>
+    <span class="nx">config</span>: <span class="kt">acceleratorConfig</span><span class="p">,</span>
+  <span class="p">});</span>
+</code></pre></div>
 <p><code>apps/phase-1.ts</code></p>
-<pre><code class="language-typescript">export async function deploy({ acceleratorConfig, accountStacks, accounts, outputs }: PhaseInput) {
-  // Find the central bucket in the outputs
-  const centralBucket = CentralBucketOutput.getBucket({
-    accountStacks,
-    config: acceleratorConfig,
-    outputs,
-  });
+<div class="highlight"><pre><span></span><code><span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">deploy</span><span class="p">({</span> <span class="nx">acceleratorConfig</span><span class="p">,</span> <span class="nx">accountStacks</span><span class="p">,</span> <span class="nx">accounts</span><span class="p">,</span> <span class="nx">outputs</span> <span class="p">}</span><span class="o">:</span> <span class="nx">PhaseInput</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Find the central bucket in the outputs</span>
+  <span class="kd">const</span> <span class="nx">centralBucket</span> <span class="o">=</span> <span class="nx">CentralBucketOutput</span><span class="p">.</span><span class="nx">getBucket</span><span class="p">({</span>
+    <span class="nx">accountStacks</span><span class="p">,</span>
+    <span class="nx">config</span>: <span class="kt">acceleratorConfig</span><span class="p">,</span>
+    <span class="nx">outputs</span><span class="p">,</span>
+  <span class="p">});</span>
 
-  // Find the log bucket in the outputs
-  const logBucket = LogBucketOutput.getBucket({
-    accountStacks,
-    config: acceleratorConfig,
-    outputs,
-  });
+  <span class="c1">// Find the log bucket in the outputs</span>
+  <span class="kd">const</span> <span class="nx">logBucket</span> <span class="o">=</span> <span class="nx">LogBucketOutput</span><span class="p">.</span><span class="nx">getBucket</span><span class="p">({</span>
+    <span class="nx">accountStacks</span><span class="p">,</span>
+    <span class="nx">config</span>: <span class="kt">acceleratorConfig</span><span class="p">,</span>
+    <span class="nx">outputs</span><span class="p">,</span>
+  <span class="p">});</span>
 
-  // Find the account buckets in the outputs
-  const accountBuckets = await defaults.step2({
-    accounts,
-    accountStacks,
-    centralLogBucket: logBucket,
-    config: acceleratorConfig,
-  });
-}
-</code></pre>
+  <span class="c1">// Find the account buckets in the outputs</span>
+  <span class="kd">const</span> <span class="nx">accountBuckets</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">defaults</span><span class="p">.</span><span class="nx">step2</span><span class="p">({</span>
+    <span class="nx">accounts</span><span class="p">,</span>
+    <span class="nx">accountStacks</span><span class="p">,</span>
+    <span class="nx">centralLogBucket</span>: <span class="kt">logBucket</span><span class="p">,</span>
+    <span class="nx">config</span>: <span class="kt">acceleratorConfig</span><span class="p">,</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
 <h3 id="passing-outputs-between-phases">Passing Outputs between Phases<a class="headerlink" href="#passing-outputs-between-phases" title="Permanent link">&para;</a></h3>
 <p>The CodeBuild step that is responsible for deploying a <code>Phase</code> stack runs in the Organization Management (root) account. We wrote a CDK plugin that allows the CDK deploy step to assume a role in the Accelerator-managed account and create the CloudFormation <code>Phase</code> stack in the managed account. See <a href="#cdk-assume-role-plugin">CDK Assume Role Plugin</a>.</p>
 <p>After a <code>Phase-X</code> is deployed in all Accelerator-managed accounts, a step in the <code>Initial Setup</code> state machine collects all the <code>Phase-X</code> stack outputs in all Accelerator-managed accounts and regions and stores theses outputs in DynamoDB.</p>
@@ -1639,18 +1719,18 @@ export interface PhaseInput {
 <h4 id="acceleratornametagger"><code>AcceleratorNameTagger</code><a class="headerlink" href="#acceleratornametagger" title="Permanent link">&para;</a></h4>
 <p><code>AcceleratorNameTagger</code> is a <a href="https://docs.aws.amazon.com/cdk/latest/guide/aspects.html">CDK aspect</a> that sets the name tag on specific resources based on the construct ID of the resource.</p>
 <p>The following example illustrates its purpose.</p>
-<pre><code class="language-typescript">const stack = new cdk.Stack();
-new ec2.CfnVpc(stack, 'SharedNetwork', {});
-Aspects.of(stack).add(new AcceleratorNameTagger());
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="nx">stack</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">cdk</span><span class="p">.</span><span class="nx">Stack</span><span class="p">();</span>
+<span class="ow">new</span> <span class="nx">ec2</span><span class="p">.</span><span class="nx">CfnVpc</span><span class="p">(</span><span class="nx">stack</span><span class="p">,</span> <span class="s1">&#39;SharedNetwork&#39;</span><span class="p">,</span> <span class="p">{});</span>
+<span class="nx">Aspects</span><span class="p">.</span><span class="k">of</span><span class="p">(</span><span class="nx">stack</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="ow">new</span> <span class="nx">AcceleratorNameTagger</span><span class="p">());</span>
+</code></pre></div>
 <p>The example above synthesizes to the following CloudFormation template.</p>
-<pre><code class="language-yaml">Resources:
-  SharedNetworkAB7JKF7:
-    Properties:
-      Tags:
-        - Key: Name
-          Value: SharedNetwork_vpc
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">Resources</span><span class="p">:</span>
+  <span class="nt">SharedNetworkAB7JKF7</span><span class="p">:</span>
+    <span class="nt">Properties</span><span class="p">:</span>
+      <span class="nt">Tags</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">Key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Name</span>
+          <span class="nt">Value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SharedNetwork_vpc</span>
+</code></pre></div>
 <h4 id="acceleratorstack"><code>AcceleratorStack</code><a class="headerlink" href="#acceleratorstack" title="Permanent link">&para;</a></h4>
 <p><code>AcceleratorStack</code> is a class that extends <code>cdk.Stack</code> and adds the <code>Accelerator</code> tag to all resources in the stack. It also applies the aspect <code>AcceleratorNameTagger</code>.</p>
 <p>It is also used by the <code>accelerator-name-generator.ts</code> functions to find the name of the <code>Accelerator</code>.</p>
@@ -1659,120 +1739,120 @@ Aspects.of(stack).add(new AcceleratorNameTagger());
 <p>The functions should be used to create pseudo-random names for IAM roles, KMS keys, key pairs and log groups.</p>
 <h4 id="accountstacks"><code>AccountStacks</code><a class="headerlink" href="#accountstacks" title="Permanent link">&para;</a></h4>
 <p><code>AccountStacks</code> is a class that manages the creation of an <code>AcceleratorStack</code> based on a given account key and region. If an account with the given account key cannot be found in the accounts object -- which is loaded by <code>apps/app.ts</code> then no stack will be created. This class is used extensively throughout the phases and deployment steps.</p>
-<pre><code class="language-typescript">export async function step1(props: CertificatesStep1Props) {
-  const { accountStacks, centralBucket: centralBucket, config } = props;
+<div class="highlight"><pre><span></span><code><span class="k">export</span> <span class="k">async</span> <span class="kd">function</span> <span class="nx">step1</span><span class="p">(</span><span class="nx">props</span>: <span class="kt">CertificatesStep1Props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">{</span> <span class="nx">accountStacks</span><span class="p">,</span> <span class="nx">centralBucket</span>: <span class="kt">centralBucket</span><span class="p">,</span> <span class="nx">config</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">props</span><span class="p">;</span>
 
-  for (const { accountKey, certificates } of config.getCertificateConfigs()) {
-    if (certificates.length === 0) {
-      continue;
-    }
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="p">{</span> <span class="nx">accountKey</span><span class="p">,</span> <span class="nx">certificates</span> <span class="p">}</span> <span class="k">of</span> <span class="nx">config</span><span class="p">.</span><span class="nx">getCertificateConfigs</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">certificates</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mf">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    const accountStack = accountStacks.tryGetOrCreateAccountStack(accountKey);
-    if (!accountStack) {
-      console.warn(`Cannot find account stack ${accountKey}`);
-      continue;
-    }
+    <span class="kd">const</span> <span class="nx">accountStack</span> <span class="o">=</span> <span class="nx">accountStacks</span><span class="p">.</span><span class="nx">tryGetOrCreateAccountStack</span><span class="p">(</span><span class="nx">accountKey</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">accountStack</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="sb">`Cannot find account stack </span><span class="si">${</span><span class="nx">accountKey</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    for (const certificate of certificates) {
-      createCertificate({
-        centralBucket,
-        certificate,
-        scope: accountStack,
-      });
-    }
-  }
-}
-</code></pre>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">certificate</span> <span class="k">of</span> <span class="nx">certificates</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">createCertificate</span><span class="p">({</span>
+        <span class="nx">centralBucket</span><span class="p">,</span>
+        <span class="nx">certificate</span><span class="p">,</span>
+        <span class="nx">scope</span>: <span class="kt">accountStack</span><span class="p">,</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="vpc-and-importedvpc"><code>Vpc</code> and <code>ImportedVpc</code><a class="headerlink" href="#vpc-and-importedvpc" title="Permanent link">&para;</a></h4>
 <p><code>Vpc</code> is an interface in the <code>src/lib/cdk-constructs/src/vpc/vpc.ts</code> file that attempts to define an interface for a VPC. The goal of the interface is to be implemented by a <code>cdk.Construct</code> that implements the interface. This CDK issue provides more background [https://github.com/aws/aws-cdk/issues/5927].</p>
 <p>Another goal of the interface is to provide an interface on top of imported VPC outputs. This is what the <code>ImportedVpc</code> class implements. The class loads outputs from VPC in a previous phase and implements the <code>Vpc</code> interface on top of those outputs.</p>
 <h4 id="limiter"><code>Limiter</code><a class="headerlink" href="#limiter" title="Permanent link">&para;</a></h4>
 <p>So far we haven't talked about limits yet. There is a step in the <code>Initial Setup</code> state machine that requests limit increases according to the desired limits in the configuration file. The step saves the current limits to the <code>limits</code> key in the DynamoDB table <code>ASEA-Parameters</code>. The <code>apps/app.ts</code> file loads the limits and passes them as an input to the phase deployment.</p>
 <p>The <code>Limiter</code> class helps keeps track of resource we create and prevents exceeding these limits.</p>
-<pre><code class="language-typescript">for (const { ouKey, accountKey, vpcConfig, deployments } of acceleratorConfig.getVpcConfigs()) {
-  if (!limiter.create(accountKey, Limit.VpcPerRegion, region)) {
-    console.log(`Skipping VPC &quot;${vpcConfig.name}&quot; deployment.`);
-    console.log(`Reached maximum VPCs per region for account &quot;${accountKey}&quot; and region &quot;${region}&quot;`);
-    continue;
-  }
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="p">{</span> <span class="nx">ouKey</span><span class="p">,</span> <span class="nx">accountKey</span><span class="p">,</span> <span class="nx">vpcConfig</span><span class="p">,</span> <span class="nx">deployments</span> <span class="p">}</span> <span class="k">of</span> <span class="nx">acceleratorConfig</span><span class="p">.</span><span class="nx">getVpcConfigs</span><span class="p">())</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">limiter</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">accountKey</span><span class="p">,</span> <span class="nx">Limit</span><span class="p">.</span><span class="nx">VpcPerRegion</span><span class="p">,</span> <span class="nx">region</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Skipping VPC &quot;</span><span class="si">${</span><span class="nx">vpcConfig</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">&quot; deployment.`</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Reached maximum VPCs per region for account &quot;</span><span class="si">${</span><span class="nx">accountKey</span><span class="si">}</span><span class="sb">&quot; and region &quot;</span><span class="si">${</span><span class="nx">region</span><span class="si">}</span><span class="sb">&quot;`</span><span class="p">);</span>
+    <span class="k">continue</span><span class="p">;</span>
+  <span class="p">}</span>
 
-  createVpc({ ouKey, accountKey, vpcConfig });
-}
-</code></pre>
+  <span class="nx">createVpc</span><span class="p">({</span> <span class="nx">ouKey</span><span class="p">,</span> <span class="nx">accountKey</span><span class="p">,</span> <span class="nx">vpcConfig</span> <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
 <blockquote>
 <p><em>Action Item:</em> This functionality could be redesigned to scan all the constructs in a <code>cdk.App</code> and remove resource that are exceeding any limits.</p>
 </blockquote>
 <h3 id="creating-stack-outputs">Creating Stack Outputs<a class="headerlink" href="#creating-stack-outputs" title="Permanent link">&para;</a></h3>
 <p>Initially we would create stack outputs like this:</p>
-<pre><code class="language-typescript">new cdk.CfnOutput(stack, 'BucketOutput', {
-  value: bucket.bucketArn,
-});
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="ow">new</span> <span class="nx">cdk</span><span class="p">.</span><span class="nx">CfnOutput</span><span class="p">(</span><span class="nx">stack</span><span class="p">,</span> <span class="s1">&#39;BucketOutput&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">value</span>: <span class="kt">bucket.bucketArn</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
 <p>But then we'd get a lot of outputs in a stack. We started some outputs together using JSON. This allowed us to store structured data inside the stack outputs.</p>
-<pre><code class="language-typescript">new JsonOutputValue(stack, 'Output', {
-  type: 'FirewallInstanceOutput',
-  value: {
-    instanceId: instance.instanceId,
-    name: firewallConfig.name,
-    az,
-  },
-});
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="ow">new</span> <span class="nx">JsonOutputValue</span><span class="p">(</span><span class="nx">stack</span><span class="p">,</span> <span class="s1">&#39;Output&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="kr">type</span><span class="o">:</span> <span class="s1">&#39;FirewallInstanceOutput&#39;</span><span class="p">,</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">instanceId</span>: <span class="kt">instance.instanceId</span><span class="p">,</span>
+    <span class="nx">name</span>: <span class="kt">firewallConfig.name</span><span class="p">,</span>
+    <span class="nx">az</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
 <p>Using the solution above, we'd not have type checking when reading or writing outputs. That's what the class <code>StructuredOutputValue</code> has a solution for. It uses the <code>io-ts</code> library to serialize and deserialize structured types.</p>
-<pre><code class="language-typescript">export const FirewallInstanceOutput = t.interface(
-  {
-    id: t.string,
-    name: t.string,
-    az: t.string,
-  },
-  'FirewallInstanceOutput',
-);
+<div class="highlight"><pre><span></span><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">FirewallInstanceOutput</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="kd">interface</span><span class="p">(</span>
+  <span class="p">{</span>
+    <span class="nx">id</span>: <span class="kt">t.string</span><span class="p">,</span>
+    <span class="nx">name</span>: <span class="kt">t.string</span><span class="p">,</span>
+    <span class="nx">az</span>: <span class="kt">t.string</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="s1">&#39;FirewallInstanceOutput&#39;</span><span class="p">,</span>
+<span class="p">);</span>
 
-export type FirewallInstanceOutput = t.TypeOf&lt;typeof FirewallInstanceOutput&gt;;
+<span class="k">export</span> <span class="kr">type</span> <span class="nx">FirewallInstanceOutput</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">TypeOf</span><span class="o">&lt;</span><span class="ow">typeof</span> <span class="nx">FirewallInstanceOutput</span><span class="o">&gt;</span><span class="p">;</span>
 
-new StructuredOutputValue&lt;FirewallInstanceOutput&gt;(stack, 'Output', {
-  type: FirewallInstanceOutput,
-  value: {
-    instanceId: instance.instanceId,
-    name: firewallConfig.name,
-    az,
-  },
-});
-</code></pre>
+<span class="ow">new</span> <span class="nx">StructuredOutputValue</span><span class="o">&lt;</span><span class="nx">FirewallInstanceOutput</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">stack</span><span class="p">,</span> <span class="s1">&#39;Output&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="kr">type</span><span class="o">:</span> <span class="nx">FirewallInstanceOutput</span><span class="p">,</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">instanceId</span>: <span class="kt">instance.instanceId</span><span class="p">,</span>
+    <span class="nx">name</span>: <span class="kt">firewallConfig.name</span><span class="p">,</span>
+    <span class="nx">az</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">});</span>
+</code></pre></div>
 <p>And we can even improve on this a bit more.</p>
-<pre><code class="language-typescript">export const CfnFirewallInstanceOutput = createCfnStructuredOutput(FirewallInstanceOutput);
+<div class="highlight"><pre><span></span><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">CfnFirewallInstanceOutput</span> <span class="o">=</span> <span class="nx">createCfnStructuredOutput</span><span class="p">(</span><span class="nx">FirewallInstanceOutput</span><span class="p">);</span>
 
-new CfnFirewallInstanceOutput(stack, 'Output', {
-  vpcId: vpc.ref,
-  vpcName: vpcConfig.name,
-});
-</code></pre>
-<pre><code class="language-typescript">export const FirewallInstanceOutputFinder = createStructuredOutputFinder(FirewallInstanceOutput, () =&gt; ({}));
+<span class="ow">new</span> <span class="nx">CfnFirewallInstanceOutput</span><span class="p">(</span><span class="nx">stack</span><span class="p">,</span> <span class="s1">&#39;Output&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">vpcId</span>: <span class="kt">vpc.ref</span><span class="p">,</span>
+  <span class="nx">vpcName</span>: <span class="kt">vpcConfig.name</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">FirewallInstanceOutputFinder</span> <span class="o">=</span> <span class="nx">createStructuredOutputFinder</span><span class="p">(</span><span class="nx">FirewallInstanceOutput</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">({}));</span>
 
-// Create an OutputFinder
-const firewallInstances = FirewallInstanceOutputFinder.findAll({
-  outputs,
-  accountKey,
-});
+<span class="c1">// Create an OutputFinder</span>
+<span class="kd">const</span> <span class="nx">firewallInstances</span> <span class="o">=</span> <span class="nx">FirewallInstanceOutputFinder</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span>
+  <span class="nx">outputs</span><span class="p">,</span>
+  <span class="nx">accountKey</span><span class="p">,</span>
+<span class="p">});</span>
 
-// Example usage of the OutputFinder
-const firewallInstance = firewallInstances.find(i =&gt; i.name === target.name &amp;&amp; i.az === target.az);
-</code></pre>
+<span class="c1">// Example usage of the OutputFinder</span>
+<span class="kd">const</span> <span class="nx">firewallInstance</span> <span class="o">=</span> <span class="nx">firewallInstances</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">i</span> <span class="p">=&gt;</span> <span class="nx">i</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="nx">target</span><span class="p">.</span><span class="nx">name</span> <span class="o">&amp;&amp;</span> <span class="nx">i</span><span class="p">.</span><span class="nx">az</span> <span class="o">===</span> <span class="nx">target</span><span class="p">.</span><span class="nx">az</span><span class="p">);</span>
+</code></pre></div>
 <p>Generally you would place the output type definition inside <code>src/lib/common-outputs</code> along with the output finder. Then in the deployment folder in <code>src/deployments/cdk/deployments</code> you would create an <code>output.ts</code> file where you would define the CDK output type with <code>createCfnStructuredOutput</code>. You would not define the CDK output type in <code>src/lib/common-outputs</code> since that project is also used by runtime code that does not need to know about CDK and CloudFormation.</p>
 <h4 id="adding-tags-to-shared-resources-in-destination-account">Adding Tags to Shared Resources in Destination Account<a class="headerlink" href="#adding-tags-to-shared-resources-in-destination-account" title="Permanent link">&para;</a></h4>
 <p>There is another special type of output, <code>AddTagsToResourcesOutput</code>. It can be used to attach tags to resources that are shared into another account.</p>
-<pre><code class="language-typescript">new AddTagsToResourcesOutput(this, 'OutputSharedResourcesSubnets', {
-  dependencies: sharedSubnets.map(o =&gt; o.subnet),
-  produceResources: () =&gt;
-    sharedSubnets.map(o =&gt; ({
-      resourceId: o.subnet.ref,
-      resourceType: 'subnet',
-      sourceAccountId: o.sourceAccountId,
-      targetAccountIds: o.targetAccountIds,
-      tags: o.subnet.tags.renderTags(),
-    })),
-});
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="ow">new</span> <span class="nx">AddTagsToResourcesOutput</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;OutputSharedResourcesSubnets&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">dependencies</span>: <span class="kt">sharedSubnets.map</span><span class="p">(</span><span class="nx">o</span> <span class="p">=&gt;</span> <span class="nx">o</span><span class="p">.</span><span class="nx">subnet</span><span class="p">),</span>
+  <span class="nx">produceResources</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span>
+    <span class="nx">sharedSubnets</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">o</span> <span class="p">=&gt;</span> <span class="p">({</span>
+      <span class="nx">resourceId</span>: <span class="kt">o.subnet.ref</span><span class="p">,</span>
+      <span class="nx">resourceType</span><span class="o">:</span> <span class="s1">&#39;subnet&#39;</span><span class="p">,</span>
+      <span class="nx">sourceAccountId</span>: <span class="kt">o.sourceAccountId</span><span class="p">,</span>
+      <span class="nx">targetAccountIds</span>: <span class="kt">o.targetAccountIds</span><span class="p">,</span>
+      <span class="nx">tags</span>: <span class="kt">o.subnet.tags.renderTags</span><span class="p">(),</span>
+    <span class="p">})),</span>
+<span class="p">});</span>
+</code></pre></div>
 <p>This will add the outputs to the stack in the account that is initiating the resource share.</p>
 <p>Next, the state machine step <code>Add Tags to Shared Resources</code> looks for all those outputs. The step will assume the <code>PipelineRole</code> in the <code>targetAccountIds</code> and attach the given tags to the shared resource.</p>
 <h3 id="custom-resources">Custom Resources<a class="headerlink" href="#custom-resources" title="Permanent link">&para;</a></h3>
@@ -1782,99 +1862,99 @@ const firewallInstance = firewallInstances.find(i =&gt; i.name === target.name &
 <p>Some custom resources set the <code>aws-sdk</code> as external dependency and some do not.</p>
 <p>Example of setting <code>aws-sdk</code> as external dependency.</p>
 <p><code>src/lib/custom-resources/cdk-kms-grant/runtime/package.json</code></p>
-<pre><code class="language-json">{
-  &quot;externals&quot;: [&quot;aws-lambda&quot;, &quot;aws-sdk&quot;],
-  &quot;dependencies&quot;: {
-    &quot;aws-lambda&quot;: &quot;1.0.6&quot;,
-    &quot;aws-sdk&quot;: &quot;2.631.0&quot;
-  }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;externals&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;aws-lambda&quot;</span><span class="p">,</span> <span class="s2">&quot;aws-sdk&quot;</span><span class="p">],</span>
+  <span class="nt">&quot;dependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;aws-lambda&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.6&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aws-sdk&quot;</span><span class="p">:</span> <span class="s2">&quot;2.631.0&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Example of setting <code>aws-sdk</code> as embedded dependency.</p>
 <p><code>src/lib/custom-resources/cdk-guardduty-enable-admin/runtime/package.json</code></p>
-<pre><code class="language-json">{
-  &quot;externals&quot;: [&quot;aws-lambda&quot;],
-  &quot;dependencies&quot;: {
-    &quot;aws-lambda&quot;: &quot;1.0.6&quot;,
-    &quot;aws-sdk&quot;: &quot;2.711.0&quot;
-  }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;externals&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;aws-lambda&quot;</span><span class="p">],</span>
+  <span class="nt">&quot;dependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;aws-lambda&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.6&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aws-sdk&quot;</span><span class="p">:</span> <span class="s2">&quot;2.711.0&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Setting the <code>aws-sdk</code> library as external is sometimes necessary when a newer <code>aws-sdk</code> version is necessary for the Lambda runtime code. At the time of writing the NodeJS 12 runtime uses <code>aws-sdk</code> version <code>2.631.0</code></p>
 <p>For example the method <code>AWS.GuardDuty.enableOrganizationAdminAccount</code> was only introduced in <code>aws-sdk</code> version <code>2.660</code>. That means that Webpack has to embed the <code>aws-sdk</code> version specified in <code>package.json</code> into the compiled JavaScript file. This can be achieved by removing <code>aws-sdk</code> from the <code>external</code> array.</p>
 <p><code>src/lib/custom-resources/cdk-kms-grant/runtime/package.json</code></p>
 <h4 id="cfn-response">cfn-response<a class="headerlink" href="#cfn-response" title="Permanent link">&para;</a></h4>
 <p>This library helps you send a custom resource response to CloudFormation.</p>
 <p><code>src/lib/custom-resources/cdk-kms-grant/runtime/src/index.ts</code></p>
-<pre><code class="language-typescript">export const handler = errorHandler(onEvent);
+<div class="highlight"><pre><span></span><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">handler</span> <span class="o">=</span> <span class="nx">errorHandler</span><span class="p">(</span><span class="nx">onEvent</span><span class="p">);</span>
 
-async function onEvent(event: CloudFormationCustomResourceEvent) {
-  console.log(`Creating KMS grant...`);
-  console.log(JSON.stringify(event, null, 2));
+<span class="k">async</span> <span class="kd">function</span> <span class="nx">onEvent</span><span class="p">(</span><span class="nx">event</span>: <span class="kt">CloudFormationCustomResourceEvent</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Creating KMS grant...`</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">event</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mf">2</span><span class="p">));</span>
 
-  // eslint-disable-next-line default-case
-  switch (event.RequestType) {
-    case 'Create':
-      return onCreate(event);
-    case 'Update':
-      return onUpdate(event);
-    case 'Delete':
-      return onDelete(event);
-  }
-}
-</code></pre>
+  <span class="c1">// eslint-disable-next-line default-case</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">RequestType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s1">&#39;Create&#39;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="nx">onCreate</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+    <span class="k">case</span> <span class="s1">&#39;Update&#39;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="nx">onUpdate</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+    <span class="k">case</span> <span class="s1">&#39;Delete&#39;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="nx">onDelete</span><span class="p">(</span><span class="nx">event</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <h4 id="cfn-tags">cfn-tags<a class="headerlink" href="#cfn-tags" title="Permanent link">&para;</a></h4>
 <p>This library helps you send attaching tags to resource created in a custom resource.</p>
 <h4 id="webpack-base">webpack-base<a class="headerlink" href="#webpack-base" title="Permanent link">&para;</a></h4>
 <p>This library defines the base Webpack template to compile custom resource runtime code.</p>
 <p><code>src/lib/custom-resources/cdk-kms-grant/runtime/package.json</code></p>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;@aws-accelerator/custom-resource-kms-grant-runtime&quot;,
-  &quot;version&quot;: &quot;0.0.1&quot;,
-  &quot;private&quot;: true,
-  &quot;scripts&quot;: {
-    &quot;prepare&quot;: &quot;webpack-cli --config webpack.config.ts&quot;
-  },
-  &quot;source&quot;: &quot;src/index.ts&quot;,
-  &quot;main&quot;: &quot;dist/index.js&quot;,
-  &quot;types&quot;: &quot;dist/index.d.ts&quot;,
-  &quot;externals&quot;: [&quot;aws-lambda&quot;, &quot;aws-sdk&quot;],
-  &quot;devDependencies&quot;: {
-    &quot;@aws-accelerator/custom-resource-runtime-webpack-base&quot;: &quot;workspace:^0.0.1&quot;,
-    &quot;@types/aws-lambda&quot;: &quot;8.10.46&quot;,
-    &quot;@types/node&quot;: &quot;14.14.31&quot;,
-    &quot;ts-loader&quot;: &quot;7.0.5&quot;,
-    &quot;typescript&quot;: &quot;3.8.3&quot;,
-    &quot;webpack&quot;: &quot;4.42.1&quot;,
-    &quot;webpack-cli&quot;: &quot;3.3.11&quot;
-  },
-  &quot;dependencies&quot;: {
-    &quot;@aws-accelerator/custom-resource-runtime-cfn-response&quot;: &quot;workspace:^0.0.1&quot;,
-    &quot;aws-lambda&quot;: &quot;1.0.6&quot;,
-    &quot;aws-sdk&quot;: &quot;2.668.0&quot;
-  }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;@aws-accelerator/custom-resource-kms-grant-runtime&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;private&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;prepare&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack-cli --config webpack.config.ts&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;src/index.ts&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;main&quot;</span><span class="p">:</span> <span class="s2">&quot;dist/index.js&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;types&quot;</span><span class="p">:</span> <span class="s2">&quot;dist/index.d.ts&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;externals&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;aws-lambda&quot;</span><span class="p">,</span> <span class="s2">&quot;aws-sdk&quot;</span><span class="p">],</span>
+  <span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;@aws-accelerator/custom-resource-runtime-webpack-base&quot;</span><span class="p">:</span> <span class="s2">&quot;workspace:^0.0.1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;@types/aws-lambda&quot;</span><span class="p">:</span> <span class="s2">&quot;8.10.46&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;@types/node&quot;</span><span class="p">:</span> <span class="s2">&quot;14.14.31&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ts-loader&quot;</span><span class="p">:</span> <span class="s2">&quot;7.0.5&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;typescript&quot;</span><span class="p">:</span> <span class="s2">&quot;3.8.3&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;webpack&quot;</span><span class="p">:</span> <span class="s2">&quot;4.42.1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;webpack-cli&quot;</span><span class="p">:</span> <span class="s2">&quot;3.3.11&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;dependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;@aws-accelerator/custom-resource-runtime-cfn-response&quot;</span><span class="p">:</span> <span class="s2">&quot;workspace:^0.0.1&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aws-lambda&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.6&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;aws-sdk&quot;</span><span class="p">:</span> <span class="s2">&quot;2.668.0&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><code>src/lib/custom-resources/cdk-ec2-image-finder/runtime/webpack.config.ts</code></p>
-<pre><code class="language-typescript">import { webpackConfigurationForPackage } from '@aws-accelerator/custom-resource-runtime-webpack-base';
-import pkg from './package.json';
+<div class="highlight"><pre><span></span><code><span class="k">import</span> <span class="p">{</span> <span class="nx">webpackConfigurationForPackage</span> <span class="p">}</span> <span class="kr">from</span> <span class="s1">&#39;@aws-accelerator/custom-resource-runtime-webpack-base&#39;</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">pkg</span> <span class="kr">from</span> <span class="s1">&#39;./package.json&#39;</span><span class="p">;</span>
 
-export default webpackConfigurationForPackage(pkg);
-</code></pre>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">webpackConfigurationForPackage</span><span class="p">(</span><span class="nx">pkg</span><span class="p">);</span>
+</code></pre></div>
 <h2 id="workarounds">Workarounds<a class="headerlink" href="#workarounds" title="Permanent link">&para;</a></h2>
 <h3 id="stacks-with-same-name-in-different-regions">Stacks with Same Name in Different Regions<a class="headerlink" href="#stacks-with-same-name-in-different-regions" title="Permanent link">&para;</a></h3>
 <p>The reason we're creating a <code>cdk.App</code> per account and per region and per phase is because stack names across environments might overlap, and at the time of writing, the CDK CLI does not handle stacks with the same name well. For example, when there is a stack <code>Phase1</code> in <code>us-east-1</code> and another stack <code>Phase1</code> in <code>ca-central-1</code>, the stacks will both be synthesized by CDK to the <code>cdk.out/Phase1.template.json</code> file and one stack will overwrite another's output. Using multiple <code>cdk.App</code>s overcomes this issues as a different <code>outdir</code> can be set on each <code>cdk.App</code>. These <code>cdk.App</code>s are managed by the <code>AccountStacks</code> abstraction.</p>
 <h2 id="local-development">Local Development<a class="headerlink" href="#local-development" title="Permanent link">&para;</a></h2>
 <h3 id="local-installer-stack">Local Installer Stack<a class="headerlink" href="#local-installer-stack" title="Permanent link">&para;</a></h3>
 <p>Use CDK to synthesize the CloudFormation template.</p>
-<pre><code class="language-sh">cd src/installer/cdk
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> src/installer/cdk
 pnpx cdk synth
-</code></pre>
+</code></pre></div>
 <p>The installer template file is now in <code>cdk.out/AcceleratorInstaller.template.json</code>. This file can be used to install the installer stack.</p>
 <p>You can also deploy the installer stack directly from the command line but then you'd have to pass some stack parameters. See <a href="https://docs.aws.amazon.com/cdk/latest/guide/parameters.html#parameters_deploy">CDK documentation: Deploying with parameters</a>.</p>
-<pre><code class="language-sh">cd accelerator/installer
-pnpx cdk deploy --parameters GithubBranch=main --parameters ConfigS3Bucket=ASEA-myconfigbucket
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> accelerator/installer
+pnpx cdk deploy --parameters <span class="nv">GithubBranch</span><span class="o">=</span>main --parameters <span class="nv">ConfigS3Bucket</span><span class="o">=</span>ASEA-myconfigbucket
+</code></pre></div>
 <h3 id="local-initial-setup-stack">Local Initial Setup Stack<a class="headerlink" href="#local-initial-setup-stack" title="Permanent link">&para;</a></h3>
 <p>There is a script called <code>cdk.sh</code> in <code>src/core/cdk</code> that allows you to deploy the Initial Setup stack.</p>
 <p>The script sets the required environment variables and makes sure all workspace projects are built before deploying the CDK stack.</p>
@@ -1884,125 +1964,125 @@ pnpx cdk deploy --parameters GithubBranch=main --parameters ConfigS3Bucket=ASEA-
 <ol>
 <li><code>accounts.json</code> based on <code>accelerator/accounts</code> (-Parameters table)</li>
 </ol>
-<pre><code class="language-json">[
-  {
-    &quot;key&quot;: &quot;shared-network&quot;,
-    &quot;id&quot;: &quot;000000000001&quot;,
-    &quot;arn&quot;: &quot;arn:aws:organizations::000000000000:account/o-0123456789/000000000001&quot;,
-    &quot;name&quot;: &quot;myacct-ASEA-shared-network&quot;,
-    &quot;email&quot;: &quot;myacct+ASEA-mandatory-shared-network@example.com&quot;,
-    &quot;ou&quot;: &quot;core&quot;
-  },
-  {
-    &quot;key&quot;: &quot;operations&quot;,
-    &quot;id&quot;: &quot;000000000002&quot;,
-    &quot;arn&quot;: &quot;arn:aws:organizations::000000000000:account/o-0123456789/000000000002&quot;,
-    &quot;name&quot;: &quot;myacct-ASEA-operations&quot;,
-    &quot;email&quot;: &quot;myacct+ASEA-mandatory-operations@example.com&quot;,
-    &quot;ou&quot;: &quot;core&quot;
-  }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;shared-network&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;000000000001&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;arn&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:organizations::000000000000:account/o-0123456789/000000000001&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;myacct-ASEA-shared-network&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;myacct+ASEA-mandatory-shared-network@example.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ou&quot;</span><span class="p">:</span> <span class="s2">&quot;core&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;operations&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;000000000002&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;arn&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:organizations::000000000000:account/o-0123456789/000000000002&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;myacct-ASEA-operations&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;myacct+ASEA-mandatory-operations@example.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ou&quot;</span><span class="p">:</span> <span class="s2">&quot;core&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <ol>
 <li><code>organizations.json</code> based on <code>accelerator/organizations</code> (-Parameters table)</li>
 </ol>
-<pre><code class="language-json">[
-  {
-    &quot;ouId&quot;: &quot;ou-0000-00000000&quot;,
-    &quot;ouArn&quot;: &quot;arn:aws:organizations::000000000000:ou/o-0123456789/ou-0000-00000000&quot;,
-    &quot;ouName&quot;: &quot;core&quot;,
-    &quot;ouPath&quot;: &quot;core&quot;
-  },
-  {
-    &quot;ouId&quot;: &quot;ou-0000-00000001&quot;,
-    &quot;ouArn&quot;: &quot;arn:aws:organizations::000000000000:ou/o-0123456789/ou-0000-00000001&quot;,
-    &quot;ouName&quot;: &quot;prod&quot;,
-    &quot;ouPath&quot;: &quot;prod&quot;
-  }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;ouId&quot;</span><span class="p">:</span> <span class="s2">&quot;ou-0000-00000000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ouArn&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:organizations::000000000000:ou/o-0123456789/ou-0000-00000000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ouName&quot;</span><span class="p">:</span> <span class="s2">&quot;core&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ouPath&quot;</span><span class="p">:</span> <span class="s2">&quot;core&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;ouId&quot;</span><span class="p">:</span> <span class="s2">&quot;ou-0000-00000001&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ouArn&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:organizations::000000000000:ou/o-0123456789/ou-0000-00000001&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ouName&quot;</span><span class="p">:</span> <span class="s2">&quot;prod&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;ouPath&quot;</span><span class="p">:</span> <span class="s2">&quot;prod&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <ol>
 <li><code>limits.json</code> based on <code>accelerator/limits</code> (-Parameters table)</li>
 </ol>
-<pre><code class="language-json">[
-  {
-    &quot;accountKey&quot;: &quot;shared-network&quot;,
-    &quot;limitKey&quot;: &quot;Amazon VPC/VPCs per Region&quot;,
-    &quot;serviceCode&quot;: &quot;vpc&quot;,
-    &quot;quotaCode&quot;: &quot;L-F678F1CE&quot;,
-    &quot;value&quot;: 15,
-    &quot;region&quot;: &quot;ca-central-1&quot;
-  },
-  {
-    &quot;accountKey&quot;: &quot;shared-network&quot;,
-    &quot;limitKey&quot;: &quot;Amazon VPC/Interface VPC endpoints per VPC&quot;,
-    &quot;serviceCode&quot;: &quot;vpc&quot;,
-    &quot;quotaCode&quot;: &quot;L-29B6F2EB&quot;,
-    &quot;value&quot;: 50,
-    &quot;region&quot;: &quot;ca-central-1&quot;
-  }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;accountKey&quot;</span><span class="p">:</span> <span class="s2">&quot;shared-network&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;limitKey&quot;</span><span class="p">:</span> <span class="s2">&quot;Amazon VPC/VPCs per Region&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;serviceCode&quot;</span><span class="p">:</span> <span class="s2">&quot;vpc&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;quotaCode&quot;</span><span class="p">:</span> <span class="s2">&quot;L-F678F1CE&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;ca-central-1&quot;</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;accountKey&quot;</span><span class="p">:</span> <span class="s2">&quot;shared-network&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;limitKey&quot;</span><span class="p">:</span> <span class="s2">&quot;Amazon VPC/Interface VPC endpoints per VPC&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;serviceCode&quot;</span><span class="p">:</span> <span class="s2">&quot;vpc&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;quotaCode&quot;</span><span class="p">:</span> <span class="s2">&quot;L-29B6F2EB&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="nt">&quot;region&quot;</span><span class="p">:</span> <span class="s2">&quot;ca-central-1&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <ol>
 <li><code>outputs.json</code> based on the -Outputs table</li>
 </ol>
-<pre><code class="language-json">[
-  {
-    &quot;accountKey&quot;: &quot;shared-network&quot;,
-    &quot;outputKey&quot;: &quot;DefaultBucketOutputC7CE5936&quot;,
-    &quot;outputValue&quot;: &quot;{\&quot;type\&quot;:\&quot;AccountBucket\&quot;,\&quot;value\&quot;:{\&quot;bucketArn\&quot;:\&quot;arn:aws:s3:::ASEA-sharednetwork-phase1-cacentral1-18vq0emthri3h\&quot;,\&quot;bucketName\&quot;:\&quot;ASEA-sharednetwork-phase1-cacentral1-18vq0emthri3h\&quot;,\&quot;encryptionKeyArn\&quot;:\&quot;arn:aws:kms:ca-central-1:0000000000001:key/d54a8acb-694c-4fc5-9afe-ca2b263cd0b3\&quot;,\&quot;region\&quot;:\&quot;ca-central-1\&quot;}}&quot;
-  }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;accountKey&quot;</span><span class="p">:</span> <span class="s2">&quot;shared-network&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;outputKey&quot;</span><span class="p">:</span> <span class="s2">&quot;DefaultBucketOutputC7CE5936&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;outputValue&quot;</span><span class="p">:</span> <span class="s2">&quot;{\&quot;type\&quot;:\&quot;AccountBucket\&quot;,\&quot;value\&quot;:{\&quot;bucketArn\&quot;:\&quot;arn:aws:s3:::ASEA-sharednetwork-phase1-cacentral1-18vq0emthri3h\&quot;,\&quot;bucketName\&quot;:\&quot;ASEA-sharednetwork-phase1-cacentral1-18vq0emthri3h\&quot;,\&quot;encryptionKeyArn\&quot;:\&quot;arn:aws:kms:ca-central-1:0000000000001:key/d54a8acb-694c-4fc5-9afe-ca2b263cd0b3\&quot;,\&quot;region\&quot;:\&quot;ca-central-1\&quot;}}&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <ol>
 <li><code>context.json</code> that contains the default values for values that are otherwise passed as environment variables.</li>
 </ol>
-<pre><code class="language-json">{
-  &quot;acceleratorName&quot;: &quot;ASEA&quot;,
-  &quot;acceleratorPrefix&quot;: &quot;ASEA-&quot;,
-  &quot;acceleratorExecutionRoleName&quot;: &quot;ASEA-PipelineRole&quot;,
-  &quot;defaultRegion&quot;: &quot;ca-central-1&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;acceleratorName&quot;</span><span class="p">:</span> <span class="s2">&quot;ASEA&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;acceleratorPrefix&quot;</span><span class="p">:</span> <span class="s2">&quot;ASEA-&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;acceleratorExecutionRoleName&quot;</span><span class="p">:</span> <span class="s2">&quot;ASEA-PipelineRole&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;defaultRegion&quot;</span><span class="p">:</span> <span class="s2">&quot;ca-central-1&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <ol>
 <li><code>config.json</code> that contains the Accelerator configuration.</li>
 </ol>
 <p>The script also sets the default execution role to allow CDK to assume a role in subaccounts to deploy the phase stacks.</p>
 <p>Now that you have all the required local files you can deploy the phase stacks using <code>cdk.sh</code>.</p>
-<pre><code class="language-bash">cd src/deployments/cdk
-./cdk.sh deploy --phase 1                             # deploy all phase 1 stacks
-./cdk.sh deploy --phase 1 --parallel                  # deploy all phase 1 stacks in parallel
-./cdk.sh deploy --phase 1 --account shared-network    # deploy phase 1 stacks for account shared-network in all regions
-./cdk.sh deploy --phase 1 --region ca-central-1       # deploy phase 1 stacks for region ca-central-1 for all accounts
-./cdk.sh deploy --phase 1 --account shared-network --region ca-central-1 # deploy phase 1 stacks for account shared-network and region ca-central
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> src/deployments/cdk
+./cdk.sh deploy --phase <span class="m">1</span>                             <span class="c1"># deploy all phase 1 stacks</span>
+./cdk.sh deploy --phase <span class="m">1</span> --parallel                  <span class="c1"># deploy all phase 1 stacks in parallel</span>
+./cdk.sh deploy --phase <span class="m">1</span> --account shared-network    <span class="c1"># deploy phase 1 stacks for account shared-network in all regions</span>
+./cdk.sh deploy --phase <span class="m">1</span> --region ca-central-1       <span class="c1"># deploy phase 1 stacks for region ca-central-1 for all accounts</span>
+./cdk.sh deploy --phase <span class="m">1</span> --account shared-network --region ca-central-1 <span class="c1"># deploy phase 1 stacks for account shared-network and region ca-central</span>
+</code></pre></div>
 <p>Other CDK commands are also available.</p>
-<pre><code class="language-bash">cd src/deployments/cdk
-./cdk.sh bootstrap --phase 1
-./cdk.sh synth --phase 1
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> src/deployments/cdk
+./cdk.sh bootstrap --phase <span class="m">1</span>
+./cdk.sh synth --phase <span class="m">1</span>
+</code></pre></div>
 <h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
 <p>We use <code>jest</code> for unit testing. There are no integration tests but this could be set-up by configuring the <code>Installer</code> CodePipeline to have a webhook on the repository and deploying changes automatically.</p>
 <p>To run unit tests locally you can run the following command in the monorepo.</p>
-<pre><code class="language-bash">pnpx recursive run test -- --pass-with-no-tests --silent
-</code></pre>
+<div class="highlight"><pre><span></span><code>pnpx recursive run <span class="nb">test</span> -- --pass-with-no-tests --silent
+</code></pre></div>
 <p>See CDK's documentation on <a href="https://docs.aws.amazon.com/cdk/latest/guide/testing.html">Testing constructs</a> for more information on how to tests CDK constructs.</p>
 <h3 id="validating-immutable-property-changes-and-logical-id-changes">Validating Immutable Property Changes and Logical ID Changes<a class="headerlink" href="#validating-immutable-property-changes-and-logical-id-changes" title="Permanent link">&para;</a></h3>
 <p>The most important unit test in this project is one that validates that logical IDs and immutable properties do not change unexpectedly. To avoid the issues described in section <a href="#resource-names-and-logical-ids">Resource Names and Logical IDs</a>, <a href="#changing-logical-ids">Changing Logical IDs</a> and <a href="#changing-immutable-properties">Changing (Immutable) Properties</a>.</p>
 <p>This test can be found in the <code>src/deployments/cdk/test/apps/unsupported-changes.spec.ts</code> file. It synthesizes the <code>Phase</code> stacks using mocked outputs and uses <a href="https://jestjs.io/docs/en/snapshot-testing"><code>jest</code> snapshots</a> to compare against future changes.</p>
 <p>The test will fail when changing immutable properties or changing logical IDs of existing resources. In case the changes are expected then the snapshots will need to be updated. You can update the snapshots by running the following command.</p>
-<pre><code class="language-sh">pnpx run test -- -u
-</code></pre>
+<div class="highlight"><pre><span></span><code>pnpx run <span class="nb">test</span> -- -u
+</code></pre></div>
 <p>See <a href="#accept-unit-test-snapshot-changes">Accept Unit Test Snapshot Changes</a>.</p>
 <h3 id="upgrade-cdk">Upgrade CDK<a class="headerlink" href="#upgrade-cdk" title="Permanent link">&para;</a></h3>
 <p>There's a test in the file <code>src/deployments/cdk/test/apps/unsupported-changes.spec.ts</code> that is currently commented out. The test takes a snapshot of the whole <code>Phase</code> stack and compares the snapshot to changes in the code.</p>
-<pre><code class="language-typescript">test('templates should stay exactly the same', () =&gt; {
-  for (const [stackName, resources] of Object.entries(stackResources)) {
-    // Compare the relevant properties to the snapshot
-    expect(resources).toMatchSnapshot(stackName);
-  }
-});
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;templates should stay exactly the same&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">const</span> <span class="p">[</span><span class="nx">stackName</span><span class="p">,</span> <span class="nx">resources</span><span class="p">]</span> <span class="k">of</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">entries</span><span class="p">(</span><span class="nx">stackResources</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// Compare the relevant properties to the snapshot</span>
+    <span class="nx">expect</span><span class="p">(</span><span class="nx">resources</span><span class="p">).</span><span class="nx">toMatchSnapshot</span><span class="p">(</span><span class="nx">stackName</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
 <p>Before upgrading CDK we uncomment this test. We run the test to update all the snapshots. Then we update all CDK versions and run the test again to compare the snapshots with the code using the new CDK version. If the test passes, then the upgrade should be stable.</p>
 <blockquote>
 <p><em>Action Item:</em> Automate this process.</p>

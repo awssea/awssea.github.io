@@ -263,6 +263,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -402,6 +412,76 @@
     <li class="md-nav__item">
       <a href="../../../installation/services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1221,26 +1301,26 @@
 <p><img alt="Organizations Diagram" src="../images/organization_structure.drawio.png" /></p>
 <h2 id="organization-management-root-aws-account">Organization Management (root) AWS Account<a class="headerlink" href="#organization-management-root-aws-account" title="Permanent link">&para;</a></h2>
 <p>The AWS Organization resides in the Organization Management (root) AWS account. This account is not used for workloads (to the full extent possible) - it functions primarily as a billing aggregator, and a gateway to the entire cloud footprint for a high-trust principal. There exists a trust relationship between child AWS accounts in the Organization and the Organization Management (root) account; i.e. the child accounts have a role of this form:</p>
-<pre><code class="language-json">{
-  &quot;Role&quot;: {
-    &quot;Path&quot;: &quot;/&quot;,
-    &quot;RoleName&quot;: &quot;AWSCloudFormationStackSetExecutionRole&quot;,
-    &quot;Arn&quot;: &quot;arn:aws:iam::111111111111:role/AWSCloudFormationStackSetExecutionRole&quot;, // Child account.
-    &quot;AssumeRolePolicyDocument&quot;: {
-      &quot;Version&quot;: &quot;2012-10-17&quot;,
-      &quot;Statement&quot;: [
-        {
-          &quot;Effect&quot;: &quot;Allow&quot;,
-          &quot;Principal&quot;: {
-            &quot;AWS&quot;: &quot;arn:aws:iam::123456789012:root&quot; // Organization Management (root) account may assume this role.
-          },
-          &quot;Action&quot;: &quot;sts:AssumeRole&quot;
-        }
-      ]
-    }
-  }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;Role&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;Path&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;RoleName&quot;</span><span class="p">:</span> <span class="s2">&quot;AWSCloudFormationStackSetExecutionRole&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;Arn&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:iam::111111111111:role/AWSCloudFormationStackSetExecutionRole&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Child</span> <span class="err">accou</span><span class="kc">nt</span><span class="err">.</span>
+    <span class="nt">&quot;AssumeRolePolicyDocument&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;Principal&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;AWS&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:iam::123456789012:root&quot;</span> <span class="err">//</span> <span class="err">Orga</span><span class="kc">n</span><span class="err">iza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span> <span class="err">Ma</span><span class="kc">na</span><span class="err">geme</span><span class="kc">nt</span> <span class="err">(roo</span><span class="kc">t</span><span class="err">)</span> <span class="err">accou</span><span class="kc">nt</span> <span class="err">may</span> <span class="err">assume</span> <span class="kc">t</span><span class="err">his</span> <span class="err">role.</span>
+          <span class="p">},</span>
+          <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="s2">&quot;sts:AssumeRole&quot;</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Note that this is a different role name than the default installed by AWS Organizations (<code>OrganizationAccountAccessRole</code>).</p>
 <h3 id="aws-sso">AWS SSO<a class="headerlink" href="#aws-sso" title="Permanent link">&para;</a></h3>
 <p>AWS SSO resides in the Organization Management (root) account in the organization, due to a current requirement of the AWS SSO service. This service deploys IAM roles into the accounts in the Organization. More details on SSO are available in the <strong>Authentication and Authorization</strong> section.</p>

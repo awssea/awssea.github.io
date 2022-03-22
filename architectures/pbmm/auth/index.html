@@ -263,6 +263,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -402,6 +412,76 @@
     <li class="md-nav__item">
       <a href="../../../installation/services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1189,26 +1269,26 @@
 <p>The <em>AWS Secure Environment Architecture</em> makes extensive use of AWS authorization and authentication primitives from the Identity and Access Management (IAM) service as a means to enforce the guardrail objectives of the <em>AWS Secure Environment Architecture</em>, and govern access to the set of accounts that makes up the Organization.</p>
 <h2 id="relationship-to-the-organization-management-root-aws-account">Relationship to the Organization Management (root) AWS Account<a class="headerlink" href="#relationship-to-the-organization-management-root-aws-account" title="Permanent link">&para;</a></h2>
 <p>AWS accounts, as a default position, are entirely self-contained with respect to IAM principals - their Users, Roles, Groups are independent and scoped only to themselves. Accounts created by AWS Organizations deploy a default role with a trust policy back to the Organization Management (root). By default, this role is named the <code>OrganizationAccountAccessRole</code>; by contrast, the <em>AWS Secure Environment Architecture</em> allows customers to customize this role by defining it in <code>organization-admin-role</code> (default: <code>AWSCloudFormationStackSetAdministrationRole</code>).</p>
-<pre><code class="language-json">{
-  &quot;Role&quot;: {
-    &quot;Path&quot;: &quot;/&quot;,
-    &quot;RoleName&quot;: &quot;AWSCloudFormationStackSetExecutionRole&quot;,
-    &quot;Arn&quot;: &quot;arn:aws:iam::111111111111:role/AWSCloudFormationStackSetExecutionRole&quot;, // Child account.
-    &quot;AssumeRolePolicyDocument&quot;: {
-      &quot;Version&quot;: &quot;2012-10-17&quot;,
-      &quot;Statement&quot;: [
-        {
-          &quot;Effect&quot;: &quot;Allow&quot;,
-          &quot;Principal&quot;: {
-            &quot;AWS&quot;: &quot;arn:aws:iam::123456789012:root&quot; // Organization Management (root) account may assume this role.
-          },
-          &quot;Action&quot;: &quot;sts:AssumeRole&quot;
-        }
-      ]
-    }
-  }
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;Role&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;Path&quot;</span><span class="p">:</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;RoleName&quot;</span><span class="p">:</span> <span class="s2">&quot;AWSCloudFormationStackSetExecutionRole&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;Arn&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:iam::111111111111:role/AWSCloudFormationStackSetExecutionRole&quot;</span><span class="p">,</span> <span class="err">//</span> <span class="err">Child</span> <span class="err">accou</span><span class="kc">nt</span><span class="err">.</span>
+    <span class="nt">&quot;AssumeRolePolicyDocument&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;Principal&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;AWS&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:iam::123456789012:root&quot;</span> <span class="err">//</span> <span class="err">Orga</span><span class="kc">n</span><span class="err">iza</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span> <span class="err">Ma</span><span class="kc">na</span><span class="err">geme</span><span class="kc">nt</span> <span class="err">(roo</span><span class="kc">t</span><span class="err">)</span> <span class="err">accou</span><span class="kc">nt</span> <span class="err">may</span> <span class="err">assume</span> <span class="kc">t</span><span class="err">his</span> <span class="err">role.</span>
+          <span class="p">},</span>
+          <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="s2">&quot;sts:AssumeRole&quot;</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>As discussed, the AWS Organization resides in the Organization Management (root) account. This account is not used for workloads and is primarily a gateway to the entire cloud footprint for a high-trust principal. This is realized via the role defined in <code>organization-admin-role</code> (default: <code>AWSCloudFormationStackSetAdministrationRole</code>). It is therefore crucial that the Organization Management (root) account root credentials be handled with extreme diligence, and with a U2F hardware key enabled as a second-factor (and stored in a secure location such as a safe).</p>
 <h2 id="break-glass-accounts">Break Glass Accounts<a class="headerlink" href="#break-glass-accounts" title="Permanent link">&para;</a></h2>
 <p>Given the Organizational-wide trust relationship to the role defined in <code>organization-admin-role</code> (default: <code>AWSCloudFormationStackSetAdministrationRole</code>) and its broad exclusion from SCPs (discussed below), the assumption of this role grants 'super admin' status, and is thus an extremely high privilege operation. The ability to assume this role should be considered a 'break glass' capability - to be used only in extraordinary circumstances. Access to this role can be granted by IAM Users or IAM Roles in the Organization Management (root) account (via SSO) - as with the Organization Management (root) account credentials, these should be handled with extreme diligence, and with a U2F hardware key enabled as a second-factor (and stored in a secure location such as a safe).</p>

@@ -263,6 +263,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -402,6 +412,76 @@
     <li class="md-nav__item">
       <a href="../../../installation/services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1233,16 +1313,16 @@
 <p>The endpoint VPC hosts VPC Interface Endpoints (VPCEs) and associated Route 53 private hosted zones for all applicable services in the <code>ca-central-1</code> region. This permits traffic destined for an eligible AWS service; for example SQS, to remain entirely within the SharedNetwork account rather than transiting via the IPv4 public endpoint for the service:</p>
 <p><img alt="Endpoints" src="../images/endpoints.png" /></p>
 <p>From within an associated workload VPC such as <code>Dev</code>, the service endpoint (e.g. <code>sqs.ca-central-1.amazonaws.com</code>) will resolve to an IP in the <code>Endpoint</code> VPC:</p>
-<pre><code class="language-bash">sh-4.2$ nslookup sqs.ca-central-1.amazonaws.com
-Server:         10.2.0.2                  # Dev VPC's .2 resolver.
-Address:        10.2.0.2#53
+<div class="highlight"><pre><span></span><code>sh-4.2$ nslookup sqs.ca-central-1.amazonaws.com
+Server:         <span class="m">10</span>.2.0.2                  <span class="c1"># Dev VPC&#39;s .2 resolver.</span>
+Address:        <span class="m">10</span>.2.0.2#53
 
 Non-authoritative answer:
 Name:   sqs.ca-central-1.amazonaws.com
-Address: 10.7.1.190                       # IP in Endpoint VPC - AZ-a.
+Address: <span class="m">10</span>.7.1.190                       <span class="c1"># IP in Endpoint VPC - AZ-a.</span>
 Name:   sqs.ca-central-1.amazonaws.com
-Address: 10.7.0.135                       # IP in Endpoint VPC - AZ-b.
-</code></pre>
+Address: <span class="m">10</span>.7.0.135                       <span class="c1"># IP in Endpoint VPC - AZ-b.</span>
+</code></pre></div>
 <p>This cross-VPC resolution of the service-specific private hosted zone functions via the association of each VPC to each private hosted zone, as depicted above.</p>
 <h3 id="endpoint-vpc-hybrid-dns">Endpoint VPC: Hybrid DNS<a class="headerlink" href="#endpoint-vpc-hybrid-dns" title="Permanent link">&para;</a></h3>
 <p>The Endpoint VPC also hosts the common DNS infrastructure used to resolve DNS queries:</p>

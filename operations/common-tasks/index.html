@@ -263,6 +263,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -402,6 +412,76 @@
     <li class="md-nav__item">
       <a href="../../installation/services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1004,36 +1084,36 @@
 <p>The state machine prevents users from accidentally performing certain major breaking changes, specifically unsupported AWS platform changes, changes that will fail to deploy, or changes that could be catastrophic to users. If someone knows exactly what they are doing and the full implications of these changes, we provide the option to override these checks. Customers should expect that items we have blocked CANNOT be changed after the Accelerator installation.</p>
 <p><strong><em>These flags should be used with extreme caution. Specifying any of these flags without proper guidance will likely leave your Accelerator in a state of disrepair. These flags were added for internal purposes only - we do NOT support customers providing these flags.</em></strong></p>
 <p>Providing this parameter to the state machine overrides <em>all</em> checks:</p>
-<pre><code class="language-json">{
-   &quot;overrideComparison&quot;: true
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+   <span class="nt">&quot;overrideComparison&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Providing any one or more of the following flags will only override the specified check(s):</p>
-<pre><code class="language-json"> {
-   &quot;configOverrides&quot;: {
-     'ov-global-options': true,
-     'ov-del-accts': true,
-     'ov-ren-accts': true,
-     'ov-acct-email': true,
-     'ov-acct-ou': true,
-     'ov-acct-vpc': true,
-     'ov-acct-subnet': true,
-     'ov-tgw': true,
-     'ov-mad': true,
-     'ov-ou-vpc': true,
-     'ov-ou-subnet': true,
-     'ov-share-to-ou': true,
-     'ov-share-to-accounts': true,
-     'ov-nacl': true,
-     'ov-nfw': true
- }
- }
-</code></pre>
+<div class="highlight"><pre><span></span><code> <span class="p">{</span>
+   <span class="nt">&quot;configOverrides&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">global</span><span class="mi">-</span><span class="err">op</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">del</span><span class="mi">-</span><span class="err">acc</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">re</span><span class="kc">n</span><span class="mi">-</span><span class="err">acc</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">acc</span><span class="kc">t</span><span class="mf">-e</span><span class="err">mail&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">acc</span><span class="kc">t</span><span class="mi">-</span><span class="err">ou&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">acc</span><span class="kc">t</span><span class="mi">-</span><span class="err">vpc&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">acc</span><span class="kc">t</span><span class="mi">-</span><span class="err">sub</span><span class="kc">net</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="kc">t</span><span class="err">gw&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">mad&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">ou</span><span class="mi">-</span><span class="err">vpc&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">ou</span><span class="mi">-</span><span class="err">sub</span><span class="kc">net</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">share</span><span class="mi">-</span><span class="kc">t</span><span class="err">o</span><span class="mi">-</span><span class="err">ou&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">share</span><span class="mi">-</span><span class="kc">t</span><span class="err">o</span><span class="mi">-</span><span class="err">accou</span><span class="kc">nts</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="kc">na</span><span class="err">cl&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="kc">nf</span><span class="err">w&#39;</span><span class="p">:</span> <span class="kc">true</span>
+ <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></div>
 <p>Providing this value allows for the forced rebuilding of the DynamoDB Outputs table:</p>
-<pre><code class="language-json">{
-  &quot;storeAllOutputs&quot;: true
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+  <span class="nt">&quot;storeAllOutputs&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="switch-to-a-managed-account">Switch To a Managed Account<a class="headerlink" href="#switch-to-a-managed-account" title="Permanent link">&para;</a></h2>
 <p>To switch from the root account to a managed account you can click on your account name in the AWS Console. Then choose <code>Switch Role</code> in the menu.</p>
 <p><img alt="Switch Role Menu" src="../img/switch-role-menu.png" /></p>

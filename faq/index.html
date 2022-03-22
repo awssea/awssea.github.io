@@ -339,6 +339,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -478,6 +488,76 @@
     <li class="md-nav__item">
       <a href="../installation/services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1048,21 +1128,23 @@
 
 <h1 id="accelerator-basic-operation-and-frequently-asked-questions">Accelerator Basic Operation and Frequently asked Questions<a class="headerlink" href="#accelerator-basic-operation-and-frequently-asked-questions" title="Permanent link">&para;</a></h1>
 <h2 id="operational-activities">Operational Activities<a class="headerlink" href="#operational-activities" title="Permanent link">&para;</a></h2>
+<details class="faq">
+<summary>How do I add new AWS accounts to my AWS Organization?</summary>
 <h4 id="how-do-i-add-new-aws-accounts-to-my-aws-organization">How do I add new AWS accounts to my AWS Organization?<a class="headerlink" href="#how-do-i-add-new-aws-accounts-to-my-aws-organization" title="Permanent link">&para;</a></h4>
 <p>We offer three options and all can be used in the same Accelerator deployment. All options work with AWS Control Tower, ensuring the account is both ingested into Control Tower and all Accelerator guardrails are automatically applied:</p>
 <p><strong>Option 1</strong></p>
-<p>Users can simply add the following five lines to the configuration file <code>workload-account-configs</code> section and rerun the state machine. The majority of the account configuration will be picked up from the ou the AWS account has been assigned. You can also add additional account specific configuration, or override items like the default ou budget with an account specific budget. This mechanism is often used by customers that wish to programmatically create AWS accounts using the Accelerator and allows for adding many new accounts at one time.</p>
-<pre><code class="language-json">&quot;fun-acct&quot;: {
-  &quot;account-name&quot;: &quot;TheFunAccount&quot;,
-  &quot;email&quot;: &quot;myemail+aseaT-funacct@example.com&quot;,
-  &quot;src-filename&quot;: &quot;config.json&quot;,
-  &quot;ou&quot;: &quot;Sandbox&quot;
-}
-</code></pre>
+<p>Users can simply add the following five lines to the configuration file <code>workload-account-configs</code> section and rerun the state machine. The majority of the account configuration will be picked up from the ou the AWS account has been assigned. You can also add     additional account specific configuration, or override items like the default ou budget with an account specific budget. This mechanism is often used by customers that wish to programmatically create AWS accounts using the Accelerator and allows for adding many     new accounts at one time.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;fun-acct&quot;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nt">&quot;account-name&quot;</span><span class="p">:</span> <span class="s2">&quot;TheFunAccount&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;myemail+aseaT-funacct@example.com&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;src-filename&quot;</span><span class="p">:</span> <span class="s2">&quot;config.json&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;ou&quot;</span><span class="p">:</span> <span class="s2">&quot;Sandbox&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p><strong>Option 2</strong></p>
-<p>We've heard consistent feedback that our customers wish to use native AWS services and do not want to do things differently once security controls, guardrails, or accelerators are applied to their environment. In this regard, simply create your new AWS account in AWS Organizations as you did before**, either by a) using the AWS Console or b) by using standard AWS account creation API's, CLI or 3rd party tools like Terraform.</p>
+<p>We've heard consistent feedback that our customers wish to use native AWS services and do not want to do things differently once security controls, guardrails, or accelerators are applied to their environment. In this regard, simply create your new AWS account in     AWS Organizations as you did before**, either by a) using the AWS Console or b) by using standard AWS account creation API's, CLI or 3rd party tools like Terraform.</p>
 <ul>
-<li>** <strong>IMPORTANT:</strong> When creating the new AWS account using AWS Organizations, you need to specify the role name provided in the Accelerator configuration file <code>global-options\organization-admin-role</code>, otherwise we cannot bootstrap the account. In Control Tower installations, this <strong>MUST</strong> be set to <strong><em><code>AWSControlTowerExecution</code></em></strong>, for customers who installed prior to v1.2.5 this value is <strong><em><code>AWSCloudFormationStackSetExecutionRole</code></em></strong> and after v1.2.5 we were recommending using the role <strong><em><code>OrganizationAccountAccessRole</code></em></strong> as this role is used by default by AWS Organizations if no role name is specified when creating AWS accounts through the AWS console or cli.</li>
+<li>** <strong>IMPORTANT:</strong> When creating the new AWS account using AWS Organizations, you need to specify the role name provided in the Accelerator configuration file <code>global-options\organization-admin-role</code>, otherwise we cannot bootstrap the account. In Control Tower     installations, this <strong>MUST</strong> be set to <strong><em><code>AWSControlTowerExecution</code></em></strong>, for customers who installed prior to v1.2.5 this value is <strong><em><code>AWSCloudFormationStackSetExecutionRole</code></em></strong> and after v1.2.5 we were recommending using the role    <strong><em><code>OrganizationAccountAccessRole</code></em></strong> as this role is used by default by AWS Organizations if no role name is specified when creating AWS accounts through the AWS console or cli.</li>
 <li>On account creation we will apply a quarantine SCP which prevents the account from being used by anyone until the Accelerator has applied the appropriate guardrails</li>
 <li>Moving the account into the appropriate OU triggers the state machine and the application of the guardrails to the account, once complete, we will remove the quarantine SCP.<ul>
 <li><strong>NOTE:</strong> Accounts CANNOT be moved between OU's to maintain compliance, so select the proper top-level OU with care</li>
@@ -1075,11 +1157,18 @@
 <p><strong>Option 3</strong></p>
 <p>Create your account using Account Factory in the AWS Control Tower console.</p>
 <p>No matter the mechanism you choose, new accounts will automatically be blocked from use until fully guardrailed, the Accelerator will automatically execute, and accounts will automatically be ingested into AWS Control Tower.</p>
-<h4 id="i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed-the-state-machine-failed-during-the-load-organization-configuration-step-with-the-error-the-control-tower-account-account_name-is-in-a-failed-state-error">I tried to enroll a new account via Control Tower but it failed? The state machine failed during the "Load Organization Configuration" step with the error "The Control Tower account: ACCOUNT_NAME is in a failed state ERROR"?<a class="headerlink" href="#i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed-the-state-machine-failed-during-the-load-organization-configuration-step-with-the-error-the-control-tower-account-account_name-is-in-a-failed-state-error" title="Permanent link">&para;</a></h4>
-<p>If account enrollment fails within Control Tower, you will need to follow the troubleshooting steps <a href="https://docs.aws.amazon.com/controltower/latest/userguide/troubleshooting.html">here</a>. A common reason for this is not having the <code>ControlTowerExectution</code> role created in the account you are trying to enroll. Even after you successfully enroll the account, it is possible the state machine will fail at <code>Load Organization Configuration</code>. If you look at the cloudwatch logs you will see the error message:</p>
-<pre><code class="language-text">There were errors while loading the configuration: The Control Tower account: ACCOUNT_NAME is in a failed state ERROR.
-</code></pre>
-<p>This is because the Accelerator checks that there are no errors with Control Tower before continuing. In some cases Control Tower can leave an orphaned Service Catalog product in an <strong>Error</strong> state. You need to cleanup Control Towers Service Catalogs Provisioned Products so there are no products remaining in an error or tainted state before you can successfully re-run the state machine.</p>
+</details>
+<details class="faq">
+<summary>I tried to enroll a new account via Control Tower but it failed?</summary>
+<h4 id="i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed">I tried to enroll a new account via Control Tower but it failed?<a class="headerlink" href="#i-tried-to-enroll-a-new-account-via-control-tower-but-it-failed" title="Permanent link">&para;</a></h4>
+<p>The state machine failed during the "Load Organization Configuration" step with the error "The Control Tower account: ACCOUNT_NAME is in a failed state ERROR"?</p>
+<p>If account enrollment fails within Control Tower, you will need to follow the troubleshooting steps <a href="https://docs.aws.amazon.com/controltower/latest/userguide/troubleshooting.html">here</a>. A common reason for this is not having the <code>ControlTowerExectution</code> role    created in the account you are trying to enroll. Even after you successfully enroll the account, it is possible the state machine will fail at <code>Load Organization Configuration</code>. If you look at the cloudwatch logs you will see the error message:</p>
+<div class="highlight"><pre><span></span><code>There were errors while loading the configuration: The Control Tower account: ACCOUNT_NAME is in a failed state ERROR.
+</code></pre></div>
+<p>This is because the Accelerator checks that there are no errors with Control Tower before continuing. In some cases Control Tower can leave an orphaned Service Catalog product in an <strong>Error</strong> state. You need to cleanup Control Towers Service Catalogs Provisioned    Products so there are no products remaining in an error or tainted state before you can successfully re-run the state machine.</p>
+</details>
+<details class="faq">
+<summary>Can I use AWS Organizations for all tasks I currently use AWS Organizations for?</summary>
 <h4 id="can-i-use-aws-organizations-for-all-tasks-i-currently-use-aws-organizations-for">Can I use AWS Organizations for all tasks I currently use AWS Organizations for?<a class="headerlink" href="#can-i-use-aws-organizations-for-all-tasks-i-currently-use-aws-organizations-for" title="Permanent link">&para;</a></h4>
 <p>In AWS Organizations you can continue to:</p>
 <ul>
@@ -1110,12 +1199,13 @@
 <li>If you edit an Accelerator controlled SCP through Organizations, we will reset it per what is defined in the Accelerator configuration files.</li>
 <li>If you add/remove an SCP from a top-level ou or Accelerator controlled account, we will put them back as defined in the Accelerator configuration file.</li>
 <li>If you move an account between top-level ou's, we will put it back to its original designated top-level ou.</li>
-<li>The Accelerator fully supports nested ou's, customers can create any depth ou structure in AWS Organizations and add/remove/change SCP's <em>below</em> the top-level as they desire or move accounts between these ou's without restriction. Users can create ou's to the full AWS ou structure/depth</li>
+<li>The Accelerator fully supports nested ou's, customers can create any depth ou structure in AWS Organizations and add/remove/change SCP's <em>below</em> the top-level as they desire or move accounts between these ou's without restriction. Users can create ou's to the     full AWS ou structure/depth</li>
 <li>Except for the Quarantine SCP applied to specific accounts, we do not 'control' SCP's below the top level, customers can add/create/customize SCP's<ul>
 <li>as of v1.3.3 customers can optionally control account level SCP's through the configuration file</li>
 </ul>
 </li>
 </ul>
+</details>
 <h4 id="how-do-i-make-changes-to-items-i-defined-in-the-accelerator-configuration-file-during-installation">How do I make changes to items I defined in the Accelerator configuration file during installation?<a class="headerlink" href="#how-do-i-make-changes-to-items-i-defined-in-the-accelerator-configuration-file-during-installation" title="Permanent link">&para;</a></h4>
 <p>Simply update your configuration file in CodeCommit and rerun the state machine! In most cases, it is that simple.</p>
 <p>If you ask the Accelerator to do something that is not supported by the AWS platform, the state machine will fail, so it needs to be a supported capability. For example, the platform does not allow you to change the CIDR block on a VPC, but you can accomplish this as you would today by using the Accelerator to deploy a new second VPC, manually migrating workloads, and then removing the deprecated VPC from the Accelerator configuration.</p>
@@ -1375,27 +1465,27 @@
 </ul>
 </li>
 </ul>
-<p><code>json
-    "certificates": [
-        {
-          "name": "My-Cert",
-          "type": "import",
-          "priv-key": "certs/example1-cert.key",
-          "cert": "certs/example1-cert.crt"
-        }
-      ]</code></p>
+<div class="highlight"><pre><span></span><code>  <span class="nt">&quot;certificates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;My-Cert&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;import&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;priv-key&quot;</span><span class="p">:</span> <span class="s2">&quot;certs/example1-cert.key&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;cert&quot;</span><span class="p">:</span> <span class="s2">&quot;certs/example1-cert.crt&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+</code></pre></div>
 <pre><code>- When using a certificate that has a certificate chain (usually this is the case when signed by a Certificate Authority with a CA Bundle)
 </code></pre>
-<p><code>json
-    "certificates": [
-        {
-          "name": "My-Cert",
-          "type": "import",
-          "priv-key": "certs/example1-cert.key",
-          "cert": "certs/example1-cert.crt",
-          "chain": "certs/example1-cert.chain"
-        }
-      ]</code></p>
+<div class="highlight"><pre><span></span><code>  <span class="nt">&quot;certificates&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;My-Cert&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;import&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;priv-key&quot;</span><span class="p">:</span> <span class="s2">&quot;certs/example1-cert.key&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;cert&quot;</span><span class="p">:</span> <span class="s2">&quot;certs/example1-cert.crt&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;chain&quot;</span><span class="p">:</span> <span class="s2">&quot;certs/example1-cert.chain&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+</code></pre></div>
 <pre><code>- this mechanism allows a customer to generate certificates using their existing tools and processes and import 3rd party certificates into AWS Certificate Manager for use in AWS
 - Self-Signed certificates should NOT be used for production (samples were provided simply to demonstrate functionality)
 - both a `.key` and a `.crt` file must be supplied in the customers S3 input bucket
@@ -1406,16 +1496,16 @@
 <ul>
 <li><strong>Method 2</strong> - REQUEST AWS Certificate Manager generate a certificate</li>
 </ul>
-<p><code>json
-  "certificates": [
-    {
-      "name": "My-Cert",
-      "type": "request",
-      "domain": "*.example.com",
-      "validation": "DNS",
-      "san": ["www.example.com"]
-    }
-  ]</code></p>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;certificates&quot;</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;My-Cert&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;request&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;domain&quot;</span><span class="p">:</span> <span class="s2">&quot;*.example.com&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;validation&quot;</span><span class="p">:</span> <span class="s2">&quot;DNS&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;san&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;www.example.com&quot;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <pre><code>- this mechanism allows a customer to generate new public certificates directly in ACM
 - both `DNS` and `EMAIL` validation mechanisms are supported (DNS recommended)
 - this requires a **_Public_** DNS zone be properly configured to validate you are legally entitled to issue certificates for the domain
@@ -1450,12 +1540,12 @@
 </li>
 <li>In the Accelerator config file, find the definition of the ALB for that AWS account and specify <code>My-Cert</code> for the ALB <code>cert-name</code></li>
 </ul>
-<pre><code class="language-json">&quot;alb&quot;: [
-  {
-    &quot;cert-name&quot;: &quot;My-Cert&quot;
-  }
-]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;alb&quot;</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;cert-name&quot;</span><span class="p">:</span> <span class="s2">&quot;My-Cert&quot;</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <ul>
 <li>The state machine will fail if you specify a certificate in any ALB which is not defined in Secrets Manager in the local account.</li>
 </ul>
@@ -1482,42 +1572,42 @@
 <h4 id="can-the-fortinet-firewall-deployments-use-static-private-ip-address-assignments">Can the Fortinet Firewall deployments use static private IP address assignments?<a class="headerlink" href="#can-the-fortinet-firewall-deployments-use-static-private-ip-address-assignments" title="Permanent link">&para;</a></h4>
 <p>Yes, the <code>"port"</code> stanza in the configuration file can support a private static IP address assignment from the az and subnet. Care must be exercised to assure the assigned IP address is within the correct subnet and availability zone. Consideration must also be given to the Amazon reserved IP addresses (first three addresses, and the last) within subnets when choosing an IP Address to assign.</p>
 <p>Using the <code>config.example.json</code> as a reference, static IP Assignments would look like this in the <code>ports:</code> stanza of the firewall deployment.</p>
-<pre><code class="language-json">&quot;ports&quot;: [
-  {
-    &quot;name&quot;: &quot;Public&quot;,
-    &quot;subnet&quot;: &quot;Public&quot;,
-    &quot;create-eip&quot;: true,
-    &quot;create-cgw&quot;: true,
-    &quot;private-ips&quot;: [
-      {
-        &quot;az&quot;: &quot;a&quot;,
-        &quot;ip&quot;: &quot;100.96.250.4&quot;
-      },
-      {
-        &quot;az&quot;: &quot;b&quot;,
-        &quot;ip&quot;: &quot;100.96.250.132&quot;
-      }
-    ]
-  },
-  {
-    &quot;name&quot;: &quot;OnPremise&quot;,
-    &quot;subnet&quot;: &quot;OnPremise&quot;,
-    &quot;create-eip&quot;: false,
-    &quot;create-cgw&quot;: false,
-    &quot;private-ips&quot;: [
-      {
-        &quot;az&quot;: &quot;a&quot;,
-        &quot;ip&quot;: &quot;100.96.250.68&quot;
-      },
-      {
-        &quot;az&quot;: &quot;b&quot;,
-        &quot;ip&quot;: &quot;100.96.250.196&quot;
-      }
-    ]
-  }
-  ...
-],
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;ports&quot;</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Public&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;subnet&quot;</span><span class="p">:</span> <span class="s2">&quot;Public&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;create-eip&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;create-cgw&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;private-ips&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;az&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;100.96.250.4&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;az&quot;</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;100.96.250.132&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;OnPremise&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;subnet&quot;</span><span class="p">:</span> <span class="s2">&quot;OnPremise&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;create-eip&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;create-cgw&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nt">&quot;private-ips&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;az&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;100.96.250.68&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;az&quot;</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;100.96.250.196&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+  <span class="err">...</span>
+<span class="p">],</span>
+</code></pre></div>
 <p>Where <code>private-ips</code> are not present for the subnet or availability zone an address will be assigned automatically from available addresses when the firewall instance is created.</p>
 <h4 id="ive-noticed-cloudtrail-logs-and-in-certain-situation-vpc-flow-logs-are-stored-in-the-centralized-log-archive-account-logging-bucket-twice">I've noticed CloudTrail logs and in certain situation VPC flow logs are stored in the centralized log-archive account logging bucket twice?<a class="headerlink" href="#ive-noticed-cloudtrail-logs-and-in-certain-situation-vpc-flow-logs-are-stored-in-the-centralized-log-archive-account-logging-bucket-twice" title="Permanent link">&para;</a></h4>
 <p>Yes. Cloudtrail is configured to send its logs directly to S3 for centralized immutable log retention. CloudTrail is also configured to send it's logs to a centralized Organizational CloudWatch Log group such that the trail can be a) easily queried online using CloudWatch Insights across all AWS accounts in the organization, and b) to enable alerting based on undesirable API activity using CloudWatch Metrics and Alarms. All CloudWatch Log groups are also configured to be sent, using Amazon Kinesis, to S3 for centralized immutable log retention.</p>

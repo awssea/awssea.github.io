@@ -19,7 +19,7 @@
     
     
       
-        <title>**State Machine Behavior and Inputs** - AWS Secure Environment Accelerator</title>
+        <title>State Machine Behavior - AWS Secure Environment Accelerator</title>
       
     
     
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              **State Machine Behavior and Inputs**
+              State Machine Behavior
             
           </span>
         </div>
@@ -239,18 +239,30 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
         
           
             
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
           
         
           
@@ -402,6 +414,117 @@
     <li class="md-nav__item">
       <a href="../services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          State Machine Behavior
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        State Machine Behavior
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state-machine-behavior" class="md-nav__link">
+    State Machine Behavior
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -988,60 +1111,60 @@
 <h1 id="accelerator-state-machine-inputs"><strong>Accelerator State Machine Inputs</strong><a class="headerlink" href="#accelerator-state-machine-inputs" title="Permanent link">&para;</a></h1>
 <h2 id="rebuild-dynamodb-table-contents">Rebuild DynamoDB table contents<a class="headerlink" href="#rebuild-dynamodb-table-contents" title="Permanent link">&para;</a></h2>
 <p>With the exception of the Outputs table, the contents of the Accelerator DynamoDB tables are rebuilt on every state machine execution. We recently started depending on the Outputs DynamoDB tables to ensure the parameters in parameter store are consistently maintained in the same order as objects are created and deleted. Should the CONTENTS of the tables be destroyed or corrupted, customers can force a rebuild of the CloudFormation Outputs in DynamoDB by starting the state machine with the parameter:</p>
-<pre><code class="language-json">{ &quot;storeAllOutputs&quot;: true }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span> <span class="nt">&quot;storeAllOutputs&quot;</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+</code></pre></div>
 <p>This should be completed BEFORE running the state machine with a corrupt or empty DynamoDB table or the Accelerator is likely to reorder a customers parameters. If the DynamoDB tables were completely destroyed, they must be recreated before running the state machine with this parameter.</p>
 <h2 id="bypass-all-config-file-validation-checks">Bypass <strong>ALL</strong> config file validation checks<a class="headerlink" href="#bypass-all-config-file-validation-checks" title="Permanent link">&para;</a></h2>
 <p>This parameter should be specified with extreme caution, as it bypasses all config file validation. The state machine typically has protections enabled preventing customers from making breaking changes to the config file. Under certain conditions with the support of a trained expert, bypassing these checks is required. Start the state machine with the parameter:</p>
-<pre><code class="language-json">{ &quot;overrideComparison&quot;: true }
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span> <span class="nt">&quot;overrideComparison&quot;</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span>
+</code></pre></div>
 <p><strong><em>Customers are encouraged to use the specific override variables below, rather than the all-inclusive override, to ensure they only bypasses intended config changes.</em></strong></p>
 <h2 id="bypassing-specific-config-file-validation-checks">Bypassing SPECIFIC config file validation checks<a class="headerlink" href="#bypassing-specific-config-file-validation-checks" title="Permanent link">&para;</a></h2>
 <p>Providing any one or more of the following flags will only override the specified check(s):</p>
-<pre><code class="language-json"> {
-   &quot;configOverrides&quot;: {
-     'ov-global-options': true,
-     'ov-del-accts': true,
-     'ov-ren-accts': true,
-     'ov-acct-email': true,
-     'ov-acct-ou': true,
-     'ov-acct-vpc': true,
-     'ov-acct-subnet': true,
-  'ov-acct-vpc-optin': true,
-     'ov-tgw': true,
-     'ov-mad': true,
-     'ov-ou-vpc': true,
-     'ov-ou-subnet': true,
-     'ov-share-to-ou': true,
-     'ov-share-to-accounts': true,
-     'ov-nacl': true,
-     'ov-nfw': true
- }
- }
-</code></pre>
+<div class="highlight"><pre><span></span><code> <span class="p">{</span>
+   <span class="nt">&quot;configOverrides&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">global</span><span class="mi">-</span><span class="err">op</span><span class="kc">t</span><span class="err">io</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">del</span><span class="mi">-</span><span class="err">acc</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">re</span><span class="kc">n</span><span class="mi">-</span><span class="err">acc</span><span class="kc">ts</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">acc</span><span class="kc">t</span><span class="mf">-e</span><span class="err">mail&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">acc</span><span class="kc">t</span><span class="mi">-</span><span class="err">ou&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">acc</span><span class="kc">t</span><span class="mi">-</span><span class="err">vpc&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">acc</span><span class="kc">t</span><span class="mi">-</span><span class="err">sub</span><span class="kc">net</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">acc</span><span class="kc">t</span><span class="mi">-</span><span class="err">vpc</span><span class="mi">-</span><span class="err">op</span><span class="kc">t</span><span class="err">i</span><span class="kc">n</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="kc">t</span><span class="err">gw&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">mad&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">ou</span><span class="mi">-</span><span class="err">vpc&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">ou</span><span class="mi">-</span><span class="err">sub</span><span class="kc">net</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">share</span><span class="mi">-</span><span class="kc">t</span><span class="err">o</span><span class="mi">-</span><span class="err">ou&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="err">share</span><span class="mi">-</span><span class="kc">t</span><span class="err">o</span><span class="mi">-</span><span class="err">accou</span><span class="kc">nts</span><span class="err">&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="kc">na</span><span class="err">cl&#39;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="err">&#39;ov</span><span class="mi">-</span><span class="kc">nf</span><span class="err">w&#39;</span><span class="p">:</span> <span class="kc">true</span>
+ <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></div>
 <h2 id="generate-verbose-logging-within-state-machine">Generate verbose logging within state machine<a class="headerlink" href="#generate-verbose-logging-within-state-machine" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Added "verbose": "1" state machine input options</li>
 <li>parameter is optional</li>
 <li>parameter defaults to 0</li>
 </ul>
-<pre><code class="language-json">{&quot;scope&quot;:&quot;FULL&quot;, &quot;mode&quot;:&quot;APPLY&quot;, &quot;verbose&quot;:&quot;1&quot;}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="s2">&quot;FULL&quot;</span><span class="p">,</span> <span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;APPLY&quot;</span><span class="p">,</span> <span class="nt">&quot;verbose&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">}</span>
+</code></pre></div>
 <h2 id="state-machine-scoping-inputs">State Machine scoping inputs<a class="headerlink" href="#state-machine-scoping-inputs" title="Permanent link">&para;</a></h2>
 <p>Summary of inputs, per section 1.1 above:</p>
-<pre><code class="language-json">{&quot;scope&quot;:&quot;FULL&quot;, &quot;mode&quot;:&quot;APPLY&quot;}
-</code></pre>
-<pre><code class="language-json">{&quot;scope&quot;:&quot;NEW-ACCOUNTS&quot;, &quot;mode&quot;:&quot;APPLY&quot;}
-</code></pre>
-<pre><code class="language-json">{&quot;scope&quot;:&quot;GLOBAL-OPTIONS&quot;, &quot;mode&quot;:&quot;APPLY&quot;}
-</code></pre>
-<pre><code class="language-json">{&quot;scope&quot;:&quot;OU&quot;, &quot;targetOus&quot;:[&quot;ou-name&quot;, &quot;ou-name&quot;], &quot;mode&quot;:&quot;APPLY&quot;}
-</code></pre>
-<pre><code class="language-json">{&quot;scope&quot;:&quot;ACCOUNT&quot;, &quot;targetAccounts&quot;:[&quot;123456789012&quot;,&quot;234567890123&quot;], &quot;mode&quot;:&quot;APPLY&quot;}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="s2">&quot;FULL&quot;</span><span class="p">,</span> <span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;APPLY&quot;</span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="s2">&quot;NEW-ACCOUNTS&quot;</span><span class="p">,</span> <span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;APPLY&quot;</span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="s2">&quot;GLOBAL-OPTIONS&quot;</span><span class="p">,</span> <span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;APPLY&quot;</span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="s2">&quot;OU&quot;</span><span class="p">,</span> <span class="nt">&quot;targetOus&quot;</span><span class="p">:[</span><span class="s2">&quot;ou-name&quot;</span><span class="p">,</span> <span class="s2">&quot;ou-name&quot;</span><span class="p">],</span> <span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;APPLY&quot;</span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;scope&quot;</span><span class="p">:</span><span class="s2">&quot;ACCOUNT&quot;</span><span class="p">,</span> <span class="nt">&quot;targetAccounts&quot;</span><span class="p">:[</span><span class="s2">&quot;123456789012&quot;</span><span class="p">,</span><span class="s2">&quot;234567890123&quot;</span><span class="p">],</span> <span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;APPLY&quot;</span><span class="p">}</span>
+</code></pre></div>
 <h2 id="example-of-combined-inputs">Example of combined inputs<a class="headerlink" href="#example-of-combined-inputs" title="Permanent link">&para;</a></h2>
-<pre><code class="language-json">{&quot;scope&quot;: &quot;FULL&quot;, &quot;mode&quot;: &quot;APPLY&quot;, &quot;configOverrides&quot;: {&quot;ov-ou-vpc&quot;: true, &quot;ov-ou-subnet&quot;: true, &quot;ov-acct-vpc&quot;: true }}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;scope&quot;</span><span class="p">:</span> <span class="s2">&quot;FULL&quot;</span><span class="p">,</span> <span class="nt">&quot;mode&quot;</span><span class="p">:</span> <span class="s2">&quot;APPLY&quot;</span><span class="p">,</span> <span class="nt">&quot;configOverrides&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;ov-ou-vpc&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nt">&quot;ov-ou-subnet&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nt">&quot;ov-acct-vpc&quot;</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}}</span>
+</code></pre></div>
 
               
             </article>
@@ -1056,6 +1179,41 @@
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../object-naming/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Accelerator Object Naming" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Accelerator Object Naming
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../v150-Upgrade/" class="md-footer__link md-footer__link--next" aria-label="Next: v1.5.0 Upgrade Instructions" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              v1.5.0 Upgrade Instructions
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

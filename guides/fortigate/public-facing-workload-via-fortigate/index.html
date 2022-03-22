@@ -263,6 +263,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -402,6 +412,76 @@
     <li class="md-nav__item">
       <a href="../../../installation/services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../installation/what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1079,7 +1159,7 @@
 <p><img alt="FGVIPsCLI1" src="../img/public-facing-workload-via-fortigate/Picture22.png" /></p>
 <p>9) Update the following script template replacing values for the following:
 name, extip, mapped-addr, extport</p>
-<pre><code>config firewall vip
+<div class="highlight"><pre><span></span><code>config firewall vip
 edit &quot;Dev1-SampleWebApplication-ALB&quot;
         set type fqdn
         set extip 100.96.250.22
@@ -1090,7 +1170,7 @@ edit &quot;Dev1-SampleWebApplication-ALB&quot;
         set mappedport 443
     next
 end
-</code></pre>
+</code></pre></div>
 <p><img alt="FGVIPsCLI2" src="../img/public-facing-workload-via-fortigate/Picture23.png" /></p>
 <p>10) Returning back to the UI interface shows the new entry.</p>
 <p><img alt="FGVIPsCLI3" src="../img/public-facing-workload-via-fortigate/Picture24.png" /></p>

@@ -263,6 +263,16 @@
         
           
         
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
       
       
         
@@ -402,6 +412,76 @@
     <li class="md-nav__item">
       <a href="../../installation/services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/multi-file-config-capabilities/" class="md-nav__link">
+        Multi-file Config
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1203,20 +1283,20 @@
 <h3 id="custom-resource">Custom Resource<a class="headerlink" href="#custom-resource" title="Permanent link">&para;</a></h3>
 <p>Custom resources are backed by a Lambda function that implements the creation, modification or deletion or the resource. Every Lambda function has a CloudWatch log group that contains logs about the custom resource creation. To troubleshoot errors in custom resource, you need to check the custom resource's log group.</p>
 <p>Example custom resource log group names:</p>
-<pre><code>/aws/lambda/ASEA-Master-Phase1-CustomCurReportDefinitionL-14IHLQCC1LY8L
+<div class="highlight"><pre><span></span><code>/aws/lambda/ASEA-Master-Phase1-CustomCurReportDefinitionL-14IHLQCC1LY8L
 /aws/lambda/ASEA-Master-Phase2-AWS679f53fac002430cb0da5b7-Z75Q4GG9LIV5
 /aws/lambda/ASEA-Operations-Phas-AWS679f53fac002430cb0da5-HMV2YF6OKJET
 /aws/lambda/ASEA-Operations-Phas-CustomGetDetectorIdLambd-HEM07DR0DOOJ
-</code></pre>
+</code></pre></div>
 <h3 id="cloudwatch">CloudWatch<a class="headerlink" href="#cloudwatch" title="Permanent link">&para;</a></h3>
 <p>When you arrived in CloudWatch logs by clicking on the state machine's step <code>CloudWatch Logs</code> link you will immediately see the list of log streams. Every log stream represents an instance of the Lambda function.</p>
 <p>You can find errors in multiple log groups using CloudWatch Log Insights.</p>
 <p><img alt="CloudWatch Log Insights" src="../img/cloudwatch-insights.png" /></p>
-<pre><code>fields @timestamp, @message
+<div class="highlight"><pre><span></span><code>fields @timestamp, @message
 | sort @timestamp desc
-| filter strcontains(@message, 'ERROR')
+| filter strcontains(@message, &#39;ERROR&#39;)
 | limit 100
-</code></pre>
+</code></pre></div>
 <h3 id="codepipeline">CodePipeline<a class="headerlink" href="#codepipeline" title="Permanent link">&para;</a></h3>
 <ul>
 <li>"Internal Failure" incorrect Github token, repo or branch</li>

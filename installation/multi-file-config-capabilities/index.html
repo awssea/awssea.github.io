@@ -19,7 +19,7 @@
     
     
       
-        <title>AWS Secure Environment Accelerator - AWS Secure Environment Accelerator</title>
+        <title>Multi-file Config - AWS Secure Environment Accelerator</title>
       
     
     
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              AWS Secure Environment Accelerator
+              Multi-file Config
             
           </span>
         </div>
@@ -239,18 +239,30 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
         
           
             
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
           
         
           
@@ -402,6 +414,179 @@
     <li class="md-nav__item">
       <a href="../services-list/" class="md-nav__link">
         Deployed Services List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Multi-file Config
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Multi-file Config
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#multi-file-accelerator-config-file-and-yaml-support-details" class="md-nav__link">
+    Multi-file Accelerator Config file and YAML Support Details
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-file Accelerator Config file and YAML Support Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#customers-would-like-the-ability-to-specify-their-configuration-in-yaml-this-facilitates" class="md-nav__link">
+    Customers would like the ability to specify their configuration in YAML. This facilitates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customers-would-like-the-configuration-file-split-into-multiple-files" class="md-nav__link">
+    Customers would like the configuration file split into multiple files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#benefits" class="md-nav__link">
+    Benefits
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-for-yaml" class="md-nav__link">
+    Steps FOR YAML
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-for-file-split" class="md-nav__link">
+    Steps For File Split
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dealing-with-accelerator-automatic-config-file-updates" class="md-nav__link">
+    Dealing with Accelerator Automatic Config File Updates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acceptance-criteria" class="md-nav__link">
+    Acceptance Criteria
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../object-naming/" class="md-nav__link">
+        Accelerator Object Naming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sm_inputs/" class="md-nav__link">
+        State Machine Behavior
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v150-Upgrade/" class="md-nav__link">
+        v1.5.0 Upgrade Instructions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-we-do-where/" class="md-nav__link">
+        Key Account & Capability Overview
       </a>
     </li>
   
@@ -1035,31 +1220,31 @@
 <ul>
 <li>When the <code>__LOAD</code> keyword is encountered, search relatively (from the same location as root config file) for the file, and insert into the config tree, recursively following <code>__LOAD</code> if necessary (to max depth of 2). Any file referenced in <code>__LOAD</code> must parse successfully in one of the two formats, otherwise FAIL.</li>
 </ul>
-<pre><code class="language-json">  {
-    &quot;core&quot;: {
-       &quot;__LOAD&quot;: &quot;ous/core.json&quot;
-    }
-  }
-</code></pre>
+<div class="highlight"><pre><span></span><code>  <span class="p">{</span>
+    <span class="nt">&quot;core&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;ous/core.json&quot;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></div>
 <p>Note that while we will provide sensible examples, there is no prescriptive requirement for file organization within a customer's configuration, customers can use the feature to break-out sections as is most effective for their deployment. Breaking out large repeatable sections like security groups is a good example and could be included off the main file, an account file, or off an ou file:</p>
-<pre><code class="language-json">&quot;security-groups&quot;: [ &quot;__LOAD&quot;: &quot;global/security-groups.json&quot; ]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">&quot;security-groups&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;global/security-groups.json&quot;</span> <span class="p">]</span>
+</code></pre></div>
 <p>Examples:</p>
 <ol>
 <li>All in one (single file like today):</li>
 </ol>
-<pre><code>.
+<div class="highlight"><pre><span></span><code>.
 ├── config.json
-</code></pre>
+</code></pre></div>
 <ol>
 <li>Split along major sections:</li>
 </ol>
-<pre><code>.
+<div class="highlight"><pre><span></span><code>.
 ├── config.json
 ├── ous
 │ ├── core.json
 │ ├── dev.json
-│ └── test.json ---&gt; could be one per ou, could only be for some ou's as determined by customer
+│ └── test.json ---&gt; could be one per ou, could only be for some ou&#39;s as determined by customer
 ├── accounts
 │ ├── workload-accounts-group1.json
 │ ├── workload-accounts-group2.json
@@ -1070,7 +1255,7 @@
 ├── security-groups.json
 
 etc
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Max depth of 2 means config.json can load ou/dev.json, which can load global/security-groups.json.</li>
 <li>security-groups.json CANNOT load another sub-file (unless security-groups.json was only directly loaded from config.json).</li>
@@ -1080,10 +1265,10 @@ etc
 <ol>
 <li>Add the following new parameters to the global-options section of the config file</li>
 </ol>
-<pre><code>    &quot;workloadaccounts-param-filename&quot;: &quot;accounts/more-accounts2.json&quot;,
+<div class="highlight"><pre><span></span><code>    &quot;workloadaccounts-param-filename&quot;: &quot;accounts/more-accounts2.json&quot;,
     &quot;workloadaccounts-prefix&quot; : &quot;accounts/more-accounts&quot;,
     &quot;workloadaccounts-suffix&quot; : 3,
-</code></pre>
+</code></pre></div>
 <ul>
 <li>filename is set to <code>config.json</code>, and prefix to <code>config</code> in a single file configuration scenario (suffix is not used)</li>
 <li>While OU contents can be moved into <code>__LOADED</code> sub-files, it was decided the OU object itself must remain in the main config file</li>
@@ -1099,8 +1284,8 @@ etc
 <p>Add the following new parameter to each mandatory and workload account config</p>
 </li>
 </ul>
-<pre><code>      &quot;src-filename&quot;: &quot;accounts/my-workload-accounts.json&quot;,
-</code></pre>
+<div class="highlight"><pre><span></span><code>      &quot;src-filename&quot;: &quot;accounts/my-workload-accounts.json&quot;,
+</code></pre></div>
 <p>Accelerator Internal Operations:</p>
 <ul>
 <li>when updating an account in the config file, we use the <code>"src-filename"</code> parameters to find and update an accounts <code>ou</code>, <code>ou-path</code>, <code>account-name</code>, and <code>email</code> parameters</li>
@@ -1120,44 +1305,44 @@ etc
 </ul>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>The entire main config file could be reduced to this:</p>
-<pre><code class="language-json">{&quot;global-options&quot;: {
-   &quot;workloadaccounts-param-filename&quot;: &quot;accounts/more-accounts2.json&quot;,
-   &quot;workloadaccounts-prefix&quot; : &quot;accounts/more-accounts&quot;,
-   &quot;workloadaccounts-suffix&quot; : 3,
-   &quot;__LOAD&quot;: &quot;global/global-options.json&quot;
-},
-&quot;mandatory-account-configs&quot;: {
-   &quot;__LOAD&quot;: &quot;accounts/mandatory-accounts.json&quot;
-},
-&quot;workload-account-configs&quot;: {
-   &quot;__LOAD&quot;: [&quot;accounts/workload-accounts1.json&quot;,
-     &quot;accounts/my-other-accounts.json&quot;,
-     &quot;accounts/workload-accounts2.json&quot;]
-},
-&quot;organizational-units&quot;: {
-  &quot;core&quot;: {
-    &quot;__LOAD&quot;: &quot;ous/core.json&quot;
-  },
-  &quot;Central&quot;: {
-    &quot;__LOAD&quot;: &quot;ous/central.json&quot;
-  },
-  &quot;Dev&quot;: {
-    &quot;__LOAD&quot;: &quot;ous/dev.json&quot;
-  },
-  &quot;Test&quot;: {
-    &quot;__LOAD&quot;: &quot;ous/test.json&quot;
-  },
-  &quot;Prod&quot;: {
-    &quot;__LOAD&quot;: &quot;ous/prod.json&quot;
-  },
-  &quot;UnClass&quot;: {
-    &quot;__LOAD&quot;: &quot;ous/unclass.json&quot;
-  },
-  &quot;Sandbox&quot;: {
-    &quot;__LOAD&quot;: &quot;ous/sandbox.json&quot;
-  }
-}}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;global-options&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="nt">&quot;workloadaccounts-param-filename&quot;</span><span class="p">:</span> <span class="s2">&quot;accounts/more-accounts2.json&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;workloadaccounts-prefix&quot;</span> <span class="p">:</span> <span class="s2">&quot;accounts/more-accounts&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;workloadaccounts-suffix&quot;</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+   <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;global/global-options.json&quot;</span>
+<span class="p">},</span>
+<span class="nt">&quot;mandatory-account-configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;accounts/mandatory-accounts.json&quot;</span>
+<span class="p">},</span>
+<span class="nt">&quot;workload-account-configs&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;accounts/workload-accounts1.json&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;accounts/my-other-accounts.json&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;accounts/workload-accounts2.json&quot;</span><span class="p">]</span>
+<span class="p">},</span>
+<span class="nt">&quot;organizational-units&quot;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nt">&quot;core&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;ous/core.json&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;Central&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;ous/central.json&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;Dev&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;ous/dev.json&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;Test&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;ous/test.json&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;Prod&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;ous/prod.json&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;UnClass&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;ous/unclass.json&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;Sandbox&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;__LOAD&quot;</span><span class="p">:</span> <span class="s2">&quot;ous/sandbox.json&quot;</span>
+  <span class="p">}</span>
+<span class="p">}}</span>
+</code></pre></div>
 <h3 id="acceptance-criteria">Acceptance Criteria<a class="headerlink" href="#acceptance-criteria" title="Permanent link">&para;</a></h3>
 <ul>
 <li>A new customer may start an Accelerator deployment with a config.json or config.yaml, and have it deploy as expected so long as the file is semantically correct according to structure and expected keys (and of course syntactically correct in either YAML or JSON)</li>
@@ -1185,6 +1370,41 @@ etc
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../services-list/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Deployed Services List" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Deployed Services List
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../object-naming/" class="md-footer__link md-footer__link--next" aria-label="Next: Accelerator Object Naming" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Accelerator Object Naming
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
