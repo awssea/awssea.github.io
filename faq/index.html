@@ -1089,11 +1089,15 @@
 <p>What can't I do:</p>
 <ul>
 <li>modify Accelerator or Control Tower controlled SCP's</li>
-<li>add/remove SCP's on top-level OU's (these are Accelerator and/or Control Tower controlled)</li>
+<li>add/remove SCP's on top-level OU's (these are Accelerator and/or Control Tower controlled)<ul>
 <li>users can change SCP's on non-top-level ou's and non-Accelerator controlled accounts as they please</li>
+</ul>
+</li>
 <li>add/remove SCP's on specific accounts that have Accelerator controlled SCPs</li>
-<li>move an AWS account between top-level ou's (i.e. <code>Sandbox</code> to <code>Prod</code> is a security violation)</li>
+<li>move an AWS account between top-level ou's (i.e. <code>Sandbox</code> to <code>Prod</code> is a security violation)<ul>
 <li>moving between <code>Prod/sub-ou-1</code> to <code>Prod/sub-ou2</code> or <code>Prod/sub-ou2/sub-ou2a/sub-ou2ab</code> is fully supported</li>
+</ul>
+</li>
 <li>create a top-level ou (need to validate, as they require config file entries)</li>
 <li>remove quarantine SCP from newly created accounts</li>
 <li>we do not support forward slashes (<code>/</code>) in ou names, even though the AWS platform does</li>
@@ -1105,8 +1109,10 @@
 <li>If you add/remove an SCP from a top-level ou or Accelerator controlled account, we will put them back as defined in the Accelerator configuration file.</li>
 <li>If you move an account between top-level ou's, we will put it back to its original designated top-level ou.</li>
 <li>The Accelerator fully supports nested ou's, customers can create any depth ou structure in AWS Organizations and add/remove/change SCP's <em>below</em> the top-level as they desire or move accounts between these ou's without restriction. Users can create ou's to the full AWS ou structure/depth</li>
-<li>Except for the Quarantine SCP applied to specific accounts, we do not 'control' SCP's below the top level, customers can add/create/customize SCP's</li>
+<li>Except for the Quarantine SCP applied to specific accounts, we do not 'control' SCP's below the top level, customers can add/create/customize SCP's<ul>
 <li>as of v1.3.3 customers can optionally control account level SCP's through the configuration file</li>
+</ul>
+</li>
 </ul>
 <h4 id="how-do-i-make-changes-to-items-i-defined-in-the-accelerator-configuration-file-during-installation">How do I make changes to items I defined in the Accelerator configuration file during installation?<a class="headerlink" href="#how-do-i-make-changes-to-items-i-defined-in-the-accelerator-configuration-file-during-installation" title="Permanent link">&para;</a></h4>
 <p>Simply update your configuration file in CodeCommit and rerun the state machine! In most cases, it is that simple.</p>
@@ -1141,8 +1147,10 @@
 <p>Customers have clearly indicated they do NOT want to use the Accelerator to manage their Active Directory domain or change the way they manage Active Directory on an ongoing basis. Customer have also indicated, they need help getting up and running quickly. For these reasons, the Accelerator only sets the domain password policy, and creates AD users and groups on the initial installation of MAD. After the initial installation, customers must manage Windows users and groups using their traditional tools. A bastion Windows host is deployed as a mechanism to support these capabilities. Passwords for all newly created MAD users have been stored, encrypted, in AWS Secrets Manager in the Management (root) Organization AWS account.</p>
 <p>To create new users and groups:</p>
 <ul>
-<li>RDP into the ASEA-RDGW bastion host in the Ops account</li>
+<li>RDP into the ASEA-RDGW bastion host in the Ops account<ul>
 <li>Run ADUC and create users and groups as you please under the NETBIOSDOMAIN (example) tree</li>
+</ul>
+</li>
 <li>Or run the appropriate powershell command</li>
 <li>Go to AWS SSO and map the Active Directory group to the appropriate AWS account and permission set</li>
 </ul>
@@ -1227,11 +1235,13 @@
 </ul>
 <p><strong>Connecting to an Instance</strong></p>
 <ul>
-<li>From the AWS Console</li>
+<li>From the AWS Console<ul>
 <li>Go to: EC2, Instances, select the instance (i.e. ASEA-RDGW), click “Connect”, select Session Manager, Connect</li>
 <li>Ideal for Linux or Windows Powershell users</li>
 <li>Everything is fully logged for future reference</li>
-<li>Directly through local RDP client using Session Managers tunnel capability:</li>
+</ul>
+</li>
+<li>Directly through local RDP client using Session Managers tunnel capability:<ul>
 <li>Provides direct access to your instances/host without any open internet ports on the RDGW instance, using a local/fat client tool</li>
 <li>Install AWS CLI v2 on your PC - available <a href="https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html">here</a> (uninstall CLIv1 first, if installed)</li>
 <li>Install the SSM plugin on your PC - available <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html">here</a></li>
@@ -1256,12 +1266,18 @@
 <li>Your netbios domain is found here in your config file: "netbios-domain": "example",</li>
 </ul>
 </li>
-<li>Connect to your desktop command line to command line interface of remote Windows or Linux servers, instead of through console (i.e. no tunnel):</li>
+</ul>
+</li>
+<li>Connect to your desktop command line to command line interface of remote Windows or Linux servers, instead of through console (i.e. no tunnel):<ul>
 <li>aws ssm start-session --target "i-090c25e64c2d9d276""--region ca-central-1</li>
 <li>Replace i-xxx with your instance ID</li>
 <li>Everything is fully logged for future reference</li>
-<li>If you want to remove the region from your command line, you can:</li>
+</ul>
+</li>
+<li>If you want to remove the region from your command line, you can:<ul>
 <li>Type: “aws configure” from command prompt, hit {enter} (key), {enter} (secret), enter: ca-central-1, {enter}</li>
+</ul>
+</li>
 </ul>
 <h4 id="i-ran-the-state-machine-but-it-failed-when-it-tried-to-delete-the-default-vpc-the-state-machine-cannot-delete-the-default-vpc-error-vpc-has-dependencies-and-cannot-be-deleted">I ran the state machine but it failed when it tried to delete the default VPC? The state machine cannot delete the default VPC (Error: VPC has dependencies and cannot be deleted)<a class="headerlink" href="#i-ran-the-state-machine-but-it-failed-when-it-tried-to-delete-the-default-vpc-the-state-machine-cannot-delete-the-default-vpc-error-vpc-has-dependencies-and-cannot-be-deleted" title="Permanent link">&para;</a></h4>
 <ul>
@@ -1271,19 +1287,25 @@
 <h4 id="how-do-i-import-an-existing-aws-account-into-my-accelerator-managed-aws-organization-or-what-if-i-created-a-new-aws-account-with-a-different-organization-trust-role">How do I import an existing AWS account into my Accelerator managed AWS Organization (or what if I created a new AWS account with a different Organization trust role)?<a class="headerlink" href="#how-do-i-import-an-existing-aws-account-into-my-accelerator-managed-aws-organization-or-what-if-i-created-a-new-aws-account-with-a-different-organization-trust-role" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Ensure you have valid administrative privileges for the account to be invited/added</li>
-<li>Add the account to your AWS Organization using standard processes (i.e. Invite/Accept)</li>
+<li>Add the account to your AWS Organization using standard processes (i.e. Invite/Accept)<ul>
 <li>this process does NOT create an organization trust role</li>
 <li>imported accounts do NOT have the quarantine SCP applied as we don't want to break existing workloads</li>
+</ul>
+</li>
 <li>Login to the account using the existing administrative credentials</li>
-<li>Execute the Accelerator provided CloudFormation template to create the required Accelerator bootstrapping role - in the Github repo here: <code>reference-artifacts\Custom-Scripts\Import-Account-CFN-Role-Template.yml</code></li>
+<li>Execute the Accelerator provided CloudFormation template to create the required Accelerator bootstrapping role - in the Github repo here: <code>reference-artifacts\Custom-Scripts\Import-Account-CFN-Role-Template.yml</code><ul>
 <li>add the account to the Accelerator config file and run the state machine</li>
-<li>If you simply created the account with an incorrect role name, you likely need to take extra steps:</li>
+</ul>
+</li>
+<li>If you simply created the account with an incorrect role name, you likely need to take extra steps:<ul>
 <li>Update the Accelerator config file to add the parameter: <code>global-options\ignored-ous</code> = <code>["UnManagedAccounts"]</code></li>
 <li>In AWS Organizations, create a new OU named <code>UnManagedAccounts</code> (case sensitive)</li>
 <li>Move the account to the <code>UnManagedAccounts</code> ou</li>
 <li>You can now remove the Quarantine SCP from the account</li>
 <li>Assume an administrative role into the account</li>
 <li>Execute the Accelerator provided CloudFormation template to create the required Accelerator bootstrapping role</li>
+</ul>
+</li>
 </ul>
 <h4 id="is-it-possible-to-deploy-the-accelerator-on-top-of-an-aws-organization-that-i-have-already-installed-the-aws-landing-zone-alz-solution-into">Is it possible to deploy the Accelerator on top of an AWS Organization that I have already installed the AWS Landing Zone (ALZ) solution into?<a class="headerlink" href="#is-it-possible-to-deploy-the-accelerator-on-top-of-an-aws-organization-that-i-have-already-installed-the-aws-landing-zone-alz-solution-into" title="Permanent link">&para;</a></h4>
 <p>Existing ALZ customers are required to uninstall their ALZ deployment before deploying the Accelerator. Please work with your AWS account team to find the best mechanism to uninstall the ALZ solution (procedures and scripts exist). Additionally, please reference section 4 of the Instation and Upgrade Guide. It may be easier to migrate AWS accounts to a new Accelerator Organization, per the process detailed in FAQ #1.2.3.</p>
@@ -1342,9 +1364,9 @@
 <ul>
 <li>
 <p><strong>Method 1</strong> - IMPORT a certificate into AWS Certificate Manager from a 3rd party product</p>
-</li>
-<li>
-<p>When using a certificate that does not have a certificate chain (usually this is the case with Self-Signed)</p>
+<ul>
+<li>When using a certificate that does not have a certificate chain (usually this is the case with Self-Signed)</li>
+</ul>
 </li>
 </ul>
 <p><code>json
@@ -1356,9 +1378,8 @@
           "cert": "certs/example1-cert.crt"
         }
       ]</code></p>
-<ul>
-<li>When using a certificate that has a certificate chain (usually this is the case when signed by a Certificate Authority with a CA Bundle)</li>
-</ul>
+<pre><code>- When using a certificate that has a certificate chain (usually this is the case when signed by a Certificate Authority with a CA Bundle)
+</code></pre>
 <p><code>json
     "certificates": [
         {
@@ -1369,18 +1390,15 @@
           "chain": "certs/example1-cert.chain"
         }
       ]</code></p>
+<pre><code>- this mechanism allows a customer to generate certificates using their existing tools and processes and import 3rd party certificates into AWS Certificate Manager for use in AWS
+- Self-Signed certificates should NOT be used for production (samples were provided simply to demonstrate functionality)
+- both a `.key` and a `.crt` file must be supplied in the customers S3 input bucket
+- "cert" must contain only the certificate and not the full chain
+- "chain" is an optional attribute that contains the certificate chain. This is generally used when importing a CA signed certificate
+- this will create a certificate in ACM and a secret in secrets manager named `accelerator/certificates/My-Cert` in the specified AWS account(s), which points to the newly imported certificates ARN
+</code></pre>
 <ul>
-<li>this mechanism allows a customer to generate certificates using their existing tools and processes and import 3rd party certificates into AWS Certificate Manager for use in AWS</li>
-<li>Self-Signed certificates should NOT be used for production (samples were provided simply to demonstrate functionality)</li>
-<li>both a <code>.key</code> and a <code>.crt</code> file must be supplied in the customers S3 input bucket</li>
-<li>"cert" must contain only the certificate and not the full chain</li>
-<li>"chain" is an optional attribute that contains the certificate chain. This is generally used when importing a CA signed certificate</li>
-<li>
-<p>this will create a certificate in ACM and a secret in secrets manager named <code>accelerator/certificates/My-Cert</code> in the specified AWS account(s), which points to the newly imported certificates ARN</p>
-</li>
-<li>
-<p><strong>Method 2</strong> - REQUEST AWS Certificate Manager generate a certificate</p>
-</li>
+<li><strong>Method 2</strong> - REQUEST AWS Certificate Manager generate a certificate</li>
 </ul>
 <p><code>json
   "certificates": [
@@ -1392,38 +1410,33 @@
       "san": ["www.example.com"]
     }
   ]</code></p>
+<pre><code>- this mechanism allows a customer to generate new public certificates directly in ACM
+- both `DNS` and `EMAIL` validation mechanisms are supported (DNS recommended)
+- this requires a **_Public_** DNS zone be properly configured to validate you are legally entitled to issue certificates for the domain
+- this will also create a certificate in ACM and a secret in secrets manager named `accelerator/certificates/My-Cert` in the specified AWS account(s), which points to the newly imported certificates ARN
+- this mechanism should NOT be used on new installs, skip certificate and ALB deployment during initial deployment (removing them from the config file) and simply add on a subsequent state machine execution
+- Process:
+    - you need a public DNS domain properly registered and configured to publicly resolve the domain(s) you will be generating certificates for (i.e. example.com)
+        - domains can be purchased and configured in Amazon Route53 or through any 3rd party registrar and DNS service provider
+    - in Accelerator phase 1, the cert is generated, but the stack does NOT complete deploying (i.e. it waits) until certificate validation is complete
+    - during deployment, go to the AWS account in question, open ACM and the newly requested certificate. Document the authorization CNAME record required to validate certificate generation
+    - add the CNAME record to the zone in bullet 1 (in Route53 or 3rd party DNS provider) (documented [here](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-dns.html))
+    - after a few minutes the certificate will validate and switch to `Issued` status
+    - Accelerator phase 1 will finish (as long as the certificate is validated before the Phase 1 credentials time-out after 60-minutes)
+    - the ALB will deploy in a later phase with the specified certificate
+</code></pre>
 <ul>
-<li>this mechanism allows a customer to generate new public certificates directly in ACM</li>
-<li>both <code>DNS</code> and <code>EMAIL</code> validation mechanisms are supported (DNS recommended)</li>
-<li>this requires a <strong><em>Public</em></strong> DNS zone be properly configured to validate you are legally entitled to issue certificates for the domain</li>
-<li>this will also create a certificate in ACM and a secret in secrets manager named <code>accelerator/certificates/My-Cert</code> in the specified AWS account(s), which points to the newly imported certificates ARN</li>
-<li>this mechanism should NOT be used on new installs, skip certificate and ALB deployment during initial deployment (removing them from the config file) and simply add on a subsequent state machine execution</li>
-<li>
-<p>Process:</p>
-<ul>
-<li>you need a public DNS domain properly registered and configured to publicly resolve the domain(s) you will be generating certificates for (i.e. example.com)</li>
-<li>domains can be purchased and configured in Amazon Route53 or through any 3rd party registrar and DNS service provider</li>
-<li>in Accelerator phase 1, the cert is generated, but the stack does NOT complete deploying (i.e. it waits) until certificate validation is complete</li>
-<li>during deployment, go to the AWS account in question, open ACM and the newly requested certificate. Document the authorization CNAME record required to validate certificate generation</li>
-<li>add the CNAME record to the zone in bullet 1 (in Route53 or 3rd party DNS provider) (documented <a href="https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-dns.html">here</a>)</li>
-<li>after a few minutes the certificate will validate and switch to <code>Issued</code> status</li>
-<li>Accelerator phase 1 will finish (as long as the certificate is validated before the Phase 1 credentials time-out after 60-minutes)</li>
-<li>the ALB will deploy in a later phase with the specified certificate</li>
-</ul>
-</li>
 <li>
 <p><strong>Method 3</strong> - Manually generate a certificate in ACM</p>
-</li>
-<li>
-<p>this mechanism allows a customer to manually generate certificates directly in the ACM interface for use by the Accelerator</p>
-</li>
-<li>this mechanism should NOT be used on new installs, skip certificate and ALB deployment during initial deployment (removing them from the config file) and simply add on a subsequent state machine execution</li>
-<li>
-<p>Process:</p>
 <ul>
+<li>this mechanism allows a customer to manually generate certificates directly in the ACM interface for use by the Accelerator</li>
+<li>this mechanism should NOT be used on new installs, skip certificate and ALB deployment during initial deployment (removing them from the config file) and simply add on a subsequent state machine execution</li>
+<li>Process:<ul>
 <li>go to the AWS account for which you plan to deploy an ALB and open ACM</li>
 <li>generate a certificate, documenting the certificates ARN</li>
 <li>open Secrets manager and generate a new secret of the format <code>accelerator/certificates/My-Cert</code> (of type <code>Plaintext</code> under <code>Other type of secrets</code>), where <code>My-Cert</code> is the unique name you will use to reference this certificate</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
